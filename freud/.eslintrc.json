@@ -9,7 +9,6 @@
     "jest/globals": true
   },
   "extends": [
-    "next/core-web-vitals",
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
@@ -71,6 +70,7 @@
         "groups": [
           ["/(^react$)|^react-native$/"],
           ["absolute", "module"],
+          ["/components/", "/locale/"],
           ["parent", "sibling", "index"]
         ],
         "alphabetize": {
