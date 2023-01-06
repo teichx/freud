@@ -1,2 +1,2 @@
-export * from "./GoogleLogin";
-export * from "./types";
+export * from './GoogleLogin';
+export * from './types';
