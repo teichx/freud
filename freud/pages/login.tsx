@@ -1,8 +1,11 @@
-import { Flex } from "@chakra-ui/react";
-import { GoogleLogin } from "../components/GoogleLogin";
+import { Flex } from '@chakra-ui/react';
 
-export default () => (
-  <Flex height="100vh" alignItems="center" justifyContent="center">
+import { GoogleLogin } from '../components/GoogleLogin';
+
+export const Login = () => (
+  <Flex height='100vh' alignItems='center' justifyContent='center'>
     <GoogleLogin />
   </Flex>
 );
+
+export default Login;

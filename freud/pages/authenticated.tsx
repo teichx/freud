@@ -1,7 +1,8 @@
-import Router, { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useEffect } from 'react';
 
-export default () => {
+import Router, { useRouter } from 'next/router';
+
+export const Authenticate = () => {
   const { query } = useRouter();
 
   useEffect(() => {
@@ -9,9 +10,10 @@ export default () => {
     if (!code) return;
 
     fetch(`/api/authenticate?code=${code}`)
-      .then(async (token) => {
-        console.log({ token: await token.json() });
-        Router.push("/dashboard");
+      .then(async (response) => {
+        const token = await response.json();
+        console.log({ token    });
+        Router.push('/dashboard');
       })
       .catch((err) => {
         console.log({ err });
@@ -20,3 +22,5 @@ export default () => {
 
   return null;
 };
+
+export default Authenticate;
