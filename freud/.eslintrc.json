@@ -9,6 +9,7 @@
     "jest/globals": true
   },
   "extends": [
+    "next/core-web-vitals",
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
@@ -16,7 +17,13 @@
     "plugin:jest/all",
     "prettier"
   ],
-  "ignorePatterns": ["node_modules", "dist", "coverage", "build", "lib"],
+  "ignorePatterns": [
+    "node_modules",
+    "dist",
+    "coverage",
+    "build",
+    "lib"
+  ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaFeatures": {
@@ -24,7 +31,9 @@
     },
     "ecmaVersion": "latest",
     "sourceType": "module",
-    "project": ["./tsconfig.json"]
+    "project": [
+      "**/tsconfig.json"
+    ]
   },
   "plugins": [
     "react",
@@ -40,7 +49,10 @@
     "indent": "off",
     "jest/require-hook": "off",
     "jest/no-hooks": "off",
-    "linebreak-style": ["error", "unix"],
+    "linebreak-style": [
+      "error",
+      "unix"
+    ],
     "quotes": [
       "error",
       "single",
@@ -48,18 +60,35 @@
         "avoidEscape": true
       }
     ],
-    "semi": ["error", "always"],
-    "arrow-body-style": ["error", "as-needed"],
+    "semi": [
+      "error",
+      "always"
+    ],
+    "arrow-body-style": [
+      "error",
+      "as-needed"
+    ],
     "react/prop-types": "off",
-    "comma-dangle": ["error", "only-multiline"],
-    "jsx-quotes": ["error", "prefer-single"],
+    "comma-dangle": [
+      "error",
+      "only-multiline"
+    ],
+    "jsx-quotes": [
+      "error",
+      "prefer-single"
+    ],
     "sort-imports": [
       "error",
       {
         "ignoreCase": true,
         "ignoreDeclarationSort": true,
         "ignoreMemberSort": false,
-        "memberSyntaxSortOrder": ["none", "all", "multiple", "single"],
+        "memberSyntaxSortOrder": [
+          "none",
+          "all",
+          "multiple",
+          "single"
+        ],
         "allowSeparatedGroups": true
       }
     ],
@@ -68,10 +97,22 @@
       {
         "newlinesBetween": "always",
         "groups": [
-          ["/(^react$)|^react-native$/"],
-          ["absolute", "module"],
-          ["/components/", "/locale/"],
-          ["parent", "sibling", "index"]
+          [
+            "/(^react$)|^react-native$/"
+          ],
+          [
+            "absolute",
+            "module"
+          ],
+          [
+            "/components/",
+            "/locale/"
+          ],
+          [
+            "parent",
+            "sibling",
+            "index"
+          ]
         ],
         "alphabetize": {
           "order": "asc",
