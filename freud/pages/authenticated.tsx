@@ -12,7 +12,7 @@ export const Authenticate = () => {
     fetch(`/api/authenticate?code=${code}`)
       .then(async (response) => {
         const token = await response.json();
-        console.log({ token    });
+        console.log({ token });
         Router.push('/dashboard');
       })
       .catch((err) => {
