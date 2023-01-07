@@ -1,3 +1,10 @@
+export type GoogleLoginCallback = {
+  clientId: string;
+  client_id: string;
+  credential: string;
+  select_by: 'btn';
+};
+
 export type GoogleLoginProps = {
-  scope?: string[];
+  handleLogin: (props: GoogleLoginCallback) => void;
 };

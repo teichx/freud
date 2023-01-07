@@ -1,30 +1,41 @@
-import { FC, useMemo } from 'react';
-
-import { Link } from '@chakra-ui/react';
+import { FC, useCallback, useEffect, useState } from 'react';
 
 import { GoogleLoginProps } from './types';
 
-export const GoogleLogin: FC<GoogleLoginProps> = ({ scope = ['profile'] }) => {
-  const getGoogleUrl = useMemo(() => {
-    const redirectUri =
-      process.env.NEXT_PUBLIC_GOOGLE_AUTHENTICATE_REDIRECT_URL;
+export const GoogleLogin: FC<GoogleLoginProps> = () => {
+  const [domLoaded, setDomLoaded] = useState(false);
+
+  useEffect(() => {
+    setDomLoaded(true);
+  }, []);
+
+  const handleCallbackResponse = useCallback(
+    (event: Record<string, string>) => {
+      console.log({ event });
+    },
+    []
+  );
+
+  useEffect(() => {
+    if (!domLoaded) return;
+
     const clientId = process.env.NEXT_PUBLIC_GOOGLE_AUTHENTICATE_CLIENT_ID;
-    const baseUrl = process.env.NEXT_PUBLIC_GOOGLE_AUTHENTICATE_URL;
+    if (!clientId) return;
 
-    if (!redirectUri) return '';
-    if (!clientId) return '';
-    if (!baseUrl) return '';
+    const elementParent = document.getElementById('signInDiv');
+    if (!elementParent) return;
+    if (!google) return;
 
-    const searchParams = new URLSearchParams({
-      redirect_uri: redirectUri,
+    google.accounts.id.initialize({
       client_id: clientId,
-      access_type: 'offline',
-      scope: scope.join(' '),
-      response_type: 'code',
+      callback: handleCallbackResponse,
     });
 
-    return `${baseUrl}?${searchParams}`;
-  }, [scope]);
+    google.accounts.id.renderButton(elementParent, {
+      theme: 'outline',
+      size: 'large',
+    });
+  }, [domLoaded, handleCallbackResponse]);
 
-  return getGoogleUrl ? <Link href={getGoogleUrl}>Action</Link> : null;
+  return domLoaded ? <div id='signInDiv' /> : null;
 };
