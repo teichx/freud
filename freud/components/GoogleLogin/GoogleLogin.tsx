@@ -1,10 +1,11 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useId, useState } from 'react';
 
 import jwt_decode from 'jwt-decode';
 
 import { GoogleLoginCallback, GoogleLoginProps, JWTTokenProps } from './types';
 
 export const GoogleLogin: FC<GoogleLoginProps> = ({ handleLogin }) => {
+  const divId = useId();
   const [domLoaded, setDomLoaded] = useState(false);
 
   useEffect(() => {
@@ -17,7 +18,7 @@ export const GoogleLogin: FC<GoogleLoginProps> = ({ handleLogin }) => {
     const clientId = process.env.NEXT_PUBLIC_GOOGLE_AUTHENTICATE_CLIENT_ID;
     if (!clientId) return;
 
-    const elementParent = document.getElementById('signInDiv');
+    const elementParent = document.getElementById(divId);
     if (!elementParent) return;
     if (typeof google === 'undefined') return;
 
@@ -35,7 +36,7 @@ export const GoogleLogin: FC<GoogleLoginProps> = ({ handleLogin }) => {
       theme: 'outline',
       size: 'large',
     });
-  }, [domLoaded, handleLogin]);
+  }, [divId, domLoaded, handleLogin]);
 
-  return domLoaded ? <div id='signInDiv' /> : null;
+  return domLoaded ? <div id={divId} /> : null;
 };
