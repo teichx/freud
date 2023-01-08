@@ -24,7 +24,7 @@ export const GoogleLogin: FC<GoogleLoginProps> = () => {
 
     const elementParent = document.getElementById('signInDiv');
     if (!elementParent) return;
-    if (!google) return;
+    if (typeof google === 'undefined') return;
 
     google.accounts.id.initialize({
       client_id: clientId,
