@@ -1,6 +1,8 @@
 import { FC, useEffect, useState } from 'react';
 
-import { GoogleLoginProps } from './types';
+import jwt_decode from 'jwt-decode';
+
+import { GoogleLoginCallback, GoogleLoginProps, JWTTokenProps } from './types';
 
 export const GoogleLogin: FC<GoogleLoginProps> = ({ handleLogin }) => {
   const [domLoaded, setDomLoaded] = useState(false);
@@ -21,7 +23,12 @@ export const GoogleLogin: FC<GoogleLoginProps> = ({ handleLogin }) => {
 
     google.accounts.id.initialize({
       client_id: clientId,
-      callback: handleLogin,
+      callback: (data: GoogleLoginCallback) => {
+        if (!handleLogin) return;
+
+        const decoded = jwt_decode<JWTTokenProps>(data.credential);
+        handleLogin(decoded);
+      },
     });
 
     google.accounts.id.renderButton(elementParent, {
