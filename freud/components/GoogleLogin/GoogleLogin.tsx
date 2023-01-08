@@ -1,20 +1,13 @@
-import { FC, useCallback, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 
 import { GoogleLoginProps } from './types';
 
-export const GoogleLogin: FC<GoogleLoginProps> = () => {
+export const GoogleLogin: FC<GoogleLoginProps> = ({ handleLogin }) => {
   const [domLoaded, setDomLoaded] = useState(false);
 
   useEffect(() => {
     setDomLoaded(true);
   }, []);
-
-  const handleCallbackResponse = useCallback(
-    (event: Record<string, string>) => {
-      console.log({ event });
-    },
-    []
-  );
 
   useEffect(() => {
     if (!domLoaded) return;
@@ -28,14 +21,14 @@ export const GoogleLogin: FC<GoogleLoginProps> = () => {
 
     google.accounts.id.initialize({
       client_id: clientId,
-      callback: handleCallbackResponse,
+      callback: handleLogin,
     });
 
     google.accounts.id.renderButton(elementParent, {
       theme: 'outline',
       size: 'large',
     });
-  }, [domLoaded, handleCallbackResponse]);
+  }, [domLoaded, handleLogin]);
 
   return domLoaded ? <div id='signInDiv' /> : null;
 };
