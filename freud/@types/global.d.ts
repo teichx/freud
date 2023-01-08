@@ -8,7 +8,7 @@ declare namespace google {
     el: HTMLElement,
     props: {
       theme: 'outline';
-      size: 'large';
+      size: 'small' | 'medium' | 'large';
     }
   ) => void;
 
