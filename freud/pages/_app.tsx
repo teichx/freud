@@ -1,9 +1,12 @@
 import { ChakraProvider } from '@chakra-ui/react';
+import { AuthContextProvider } from 'context/Auth';
 import type { AppProps } from 'next/app';
 
 export const App = ({ Component, pageProps }: AppProps) => (
   <ChakraProvider>
-    <Component {...pageProps} />
+    <AuthContextProvider>
+      <Component {...pageProps} />
+    </AuthContextProvider>
   </ChakraProvider>
 );
 

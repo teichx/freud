@@ -1,11 +1,13 @@
 import { FC, useEffect, useId, useState } from 'react';
 
+import { useAuth } from 'context/Auth';
 import jwt_decode from 'jwt-decode';
 
-import { GoogleLoginCallback, GoogleLoginProps, JWTTokenProps } from './types';
+import { GoogleLoginCallback, JWTTokenProps } from './types';
 
-export const GoogleLogin: FC<GoogleLoginProps> = ({ handleLogin }) => {
+export const GoogleLogin: FC = () => {
   const divId = useId();
+  const { saveData } = useAuth();
   const [domLoaded, setDomLoaded] = useState(false);
 
   useEffect(() => {
@@ -25,10 +27,15 @@ export const GoogleLogin: FC<GoogleLoginProps> = ({ handleLogin }) => {
     google.accounts.id.initialize({
       client_id: clientId,
       callback: (data: GoogleLoginCallback) => {
-        if (!handleLogin) return;
-
         const decoded = jwt_decode<JWTTokenProps>(data.credential);
-        handleLogin(decoded);
+        saveData({
+          name: decoded.name,
+          givenName: decoded.given_name,
+          familyName: decoded.family_name,
+          picture: decoded.picture,
+          clientId: decoded.aud,
+          email: decoded.email,
+        });
       },
     });
 
@@ -36,7 +43,7 @@ export const GoogleLogin: FC<GoogleLoginProps> = ({ handleLogin }) => {
       theme: 'outline',
       size: 'large',
     });
-  }, [divId, domLoaded, handleLogin]);
+  }, [divId, domLoaded, saveData]);
 
   return domLoaded ? <div id={divId} /> : null;
 };

@@ -21,7 +21,3 @@ export type JWTTokenProps = {
   exp: number;
   jti: string;
 };
-
-export type GoogleLoginProps = {
-  handleLogin: (props: JWTTokenProps) => void;
-};
