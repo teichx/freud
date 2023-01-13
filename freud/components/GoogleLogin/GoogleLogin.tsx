@@ -3,7 +3,7 @@ import { FC, useEffect, useId, useState } from 'react';
 import { useAuth } from 'context/Auth';
 import jwt_decode from 'jwt-decode';
 
-import { GoogleLoginCallback, GoogleLoginProps, JWTTokenProps } from './types';
+import { GoogleLoginProps, JWTTokenProps } from './types';
 
 export const GoogleLogin: FC<GoogleLoginProps> = ({
   theme = 'outline',
@@ -29,7 +29,7 @@ export const GoogleLogin: FC<GoogleLoginProps> = ({
 
     google.accounts.id.initialize({
       client_id: clientId,
-      callback: (data: GoogleLoginCallback) => {
+      callback: (data) => {
         const decoded = jwt_decode<JWTTokenProps>(data.credential);
         saveData({
           id: decoded.sub,
@@ -44,6 +44,7 @@ export const GoogleLogin: FC<GoogleLoginProps> = ({
     });
 
     google.accounts.id.renderButton(elementParent, {
+      type: 'standard',
       theme,
       size,
     });
