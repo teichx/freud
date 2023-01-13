@@ -3,9 +3,12 @@ import { FC, useEffect, useId, useState } from 'react';
 import { useAuth } from 'context/Auth';
 import jwt_decode from 'jwt-decode';
 
-import { GoogleLoginCallback, JWTTokenProps } from './types';
+import { GoogleLoginCallback, GoogleLoginProps, JWTTokenProps } from './types';
 
-export const GoogleLogin: FC = () => {
+export const GoogleLogin: FC<GoogleLoginProps> = ({
+  theme = 'outline',
+  size = 'medium',
+}) => {
   const divId = useId();
   const { saveData } = useAuth();
   const [domLoaded, setDomLoaded] = useState(false);
@@ -40,10 +43,10 @@ export const GoogleLogin: FC = () => {
     });
 
     google.accounts.id.renderButton(elementParent, {
-      theme: 'outline',
-      size: 'large',
+      theme,
+      size,
     });
-  }, [divId, domLoaded, saveData]);
+  }, [divId, domLoaded, saveData, theme, size]);
 
   return domLoaded ? <div id={divId} /> : null;
 };

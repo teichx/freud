@@ -21,3 +21,8 @@ export type JWTTokenProps = {
   exp: number;
   jti: string;
 };
+
+export type GoogleLoginProps = {
+  size?: 'small' | 'medium' | 'large';
+  theme?: 'outline';
+};
