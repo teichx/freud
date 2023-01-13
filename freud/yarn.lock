@@ -1824,6 +1824,11 @@
   dependencies:
     "@babel/types" "^7.3.0"
 
+"@types/google.accounts@^0.0.5":
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/@types/google.accounts/-/google.accounts-0.0.5.tgz#847dc76fda529b0563cb4b01bdde511b394c0ced"
+  integrity sha512-5cH9OHlJSTNMwHS7d5FyxdoaotUzrruTmf/cFvDiH1g5DIlcmhgG1OCs2yWrph6dgxNUKhZDha1FYySwzQZPkA==
+
 "@types/graceful-fs@^4.1.3":
   version "4.1.5"
   resolved "https://registry.yarnpkg.com/@types/graceful-fs/-/graceful-fs-4.1.5.tgz#21ffba0d98da4350db64891f92a9e5db3cdb4e15"
