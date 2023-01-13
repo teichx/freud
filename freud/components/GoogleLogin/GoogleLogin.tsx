@@ -32,6 +32,7 @@ export const GoogleLogin: FC<GoogleLoginProps> = ({
       callback: (data: GoogleLoginCallback) => {
         const decoded = jwt_decode<JWTTokenProps>(data.credential);
         saveData({
+          id: decoded.sub,
           name: decoded.name,
           givenName: decoded.given_name,
           familyName: decoded.family_name,

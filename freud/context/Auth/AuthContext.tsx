@@ -9,6 +9,7 @@ import {
 import { AuthStateProps, useAuthResultProps } from './types';
 
 const INITIAL_STATE: AuthStateProps = {
+  id: '',
   name: '',
   givenName: '',
   familyName: '',

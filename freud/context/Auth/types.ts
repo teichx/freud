@@ -1,4 +1,5 @@
 export type AuthDataProps = {
+  id: string;
   name: string;
   givenName: string;
   familyName: string;
