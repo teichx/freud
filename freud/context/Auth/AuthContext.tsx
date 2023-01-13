@@ -8,10 +8,6 @@ import {
 
 import { AuthStateProps, useAuthResultProps } from './types';
 
-export const AuthContext = createContext<useAuthResultProps>(
-  {} as useAuthResultProps
-);
-
 const INITIAL_STATE: AuthStateProps = {
   name: '',
   givenName: '',
@@ -21,6 +17,11 @@ const INITIAL_STATE: AuthStateProps = {
   email: '',
   logged: false,
 };
+
+export const AuthContext = createContext<useAuthResultProps>({
+  ...INITIAL_STATE,
+  saveData: () => undefined,
+});
 
 export const AuthContextProvider: FC<PropsWithChildren> = ({ children }) => {
   const [state, setState] = useState<AuthStateProps>(INITIAL_STATE);
