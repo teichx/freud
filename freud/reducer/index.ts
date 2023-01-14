@@ -11,7 +11,7 @@ import {
   createStateSyncMiddleware,
   initMessageListener,
 } from 'redux-state-sync';
-import { AUTH_KEY, AuthReducer } from 'services/Auth';
+import { AuthReducer, AUTH_KEY } from 'services/Auth';
 
 export const ReducerStore = configureStore({
   reducer: {
@@ -24,7 +24,7 @@ export const ReducerStore = configureStore({
       createStateSyncMiddleware({
         blacklist: [PERSIST, REHYDRATE],
         broadcastChannelOption: {
-          type: 'native',
+          type: typeof window === 'undefined' ? 'simulate' : 'native',
         },
       })
     ),
