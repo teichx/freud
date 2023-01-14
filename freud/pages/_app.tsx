@@ -1,9 +1,10 @@
 import { ChakraProvider } from '@chakra-ui/react';
 import type { AppProps } from 'next/app';
 import { Provider } from 'react-redux';
-import { persister, ReducerStore } from 'reducer';
 import { PersistGate } from 'redux-persist/integration/react';
-import { CustomTheme } from 'themes/CustomTheme';
+
+import { persister, ReducerStore } from '~/reducer';
+import { CustomTheme } from '~/themes/CustomTheme';
 
 export const App = ({ Component, pageProps }: AppProps) => (
   <Provider store={ReducerStore}>

@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 
-import { useAppDispatch, useAppSelector } from 'reducer';
+import { useAppDispatch, useAppSelector } from '~/reducer';
 
 import { AuthSlice } from './AuthReducer';
 import { AuthStateProps, useAuthResultProps } from './types';

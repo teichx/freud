@@ -11,7 +11,8 @@ import {
   createStateSyncMiddleware,
   initMessageListener,
 } from 'redux-state-sync';
-import { AuthReducer, AUTH_KEY } from 'services/Auth';
+
+import { AuthReducer, AUTH_KEY } from '~/services/Auth';
 
 export const ReducerStore = configureStore({
   reducer: {
