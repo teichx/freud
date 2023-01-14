@@ -7,7 +7,9 @@
       "dom.iterable",
       "esnext"
     ],
-    "baseUrl": ".",
+    "paths": {
+      "~/*": ["./*"]
+    },
     "target": "es5",
     "jsx": "preserve",
     "module": "esnext",
