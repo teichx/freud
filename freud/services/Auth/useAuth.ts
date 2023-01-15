@@ -40,6 +40,7 @@ export const useAuth = (): useAuthResultProps => {
 
   return {
     ...state.user,
+    isLogged: !!state?.user?.id,
     logout,
     saveData,
     setToken,

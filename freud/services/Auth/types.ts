@@ -24,6 +24,7 @@ export type AuthStateRef = {
 };
 
 export type useAuthResultProps = AuthDataProps & {
+  isLogged: boolean;
   saveData: (props: AuthDataProps) => void;
   logout: () => void;
   authenticateFetch: typeof fetch;
