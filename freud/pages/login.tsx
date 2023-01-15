@@ -1,10 +1,10 @@
 import { Flex } from '@chakra-ui/react';
 
-import { GoogleLogin } from '~/components/GoogleLogin';
+import { Header } from '~/sections/Header';
 
 export const Login = () => (
-  <Flex height='100vh' alignItems='center' justifyContent='center'>
-    <GoogleLogin />
+  <Flex height='100vh'>
+    <Header />
   </Flex>
 );
 
