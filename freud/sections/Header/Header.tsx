@@ -11,11 +11,11 @@ import { HeaderButton } from './styles';
 
 const MENU_ITEMS = [
   {
-    path: '/dashboard',
+    path: '/app/dashboard',
     label: 'Dashboard',
   },
   {
-    path: '/patients',
+    path: '/app/patients',
     label: 'Pacientes',
   },
 ] as const;

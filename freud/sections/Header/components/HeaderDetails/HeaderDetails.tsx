@@ -68,7 +68,7 @@ export const HeaderDetails = () => {
 
         <PopoverFooter display='flex' justifyContent='space-between'>
           <Tooltip label={ptBR.configuration}>
-            <Link href='/configuration'>
+            <Link href='/app/configuration'>
               <IconButton
                 size='sm'
                 aria-label='settings'
