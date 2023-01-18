@@ -11,7 +11,7 @@ export const GoogleLogin: FC<GoogleLoginProps> = ({
   size = 'medium',
 }) => {
   const divId = useId();
-  const { saveData } = useAuth();
+  const { saveData, toInitialPage } = useAuth();
   const [domLoaded, setDomLoaded] = useState(false);
 
   useEffect(() => {
@@ -41,6 +41,7 @@ export const GoogleLogin: FC<GoogleLoginProps> = ({
           clientId: decoded.aud,
           email: decoded.email,
         });
+        toInitialPage();
       },
     });
 
@@ -49,7 +50,7 @@ export const GoogleLogin: FC<GoogleLoginProps> = ({
       theme,
       size,
     });
-  }, [divId, domLoaded, saveData, theme, size]);
+  }, [divId, domLoaded, saveData, toInitialPage, theme, size]);
 
   return domLoaded ? <div id={divId} /> : null;
 };

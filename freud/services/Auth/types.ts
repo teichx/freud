@@ -27,6 +27,7 @@ export type useAuthResultProps = AuthDataProps & {
   isLogged: boolean;
   saveData: (props: AuthDataProps) => void;
   logout: () => void;
+  toInitialPage: () => void;
   authenticateFetch: typeof fetch;
   setToken: (props: AuthDataTokenProps) => void;
 };

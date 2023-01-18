@@ -1,11 +1,14 @@
 import { useCallback } from 'react';
 
+import { useRouter } from 'next/router';
+
 import { useAppDispatch, useAppSelector } from '~/reducer';
 
 import { AuthSlice } from './AuthReducer';
 import { AuthStateProps, useAuthResultProps } from './types';
 
 export const useAuth = (): useAuthResultProps => {
+  const router = useRouter();
   const state: AuthStateProps = useAppSelector((x) => x.auth);
   const dispatch = useAppDispatch();
 
@@ -38,12 +41,18 @@ export const useAuth = (): useAuthResultProps => {
     [dispatch]
   );
 
+  const toInitialPage = useCallback<useAuthResultProps['toInitialPage']>(
+    () => router.push('/app/dashboard'),
+    [router]
+  );
+
   return {
     ...state.user,
     isLogged: !!state?.user?.id,
     logout,
     saveData,
     setToken,
+    toInitialPage,
     authenticateFetch,
   };
 };
