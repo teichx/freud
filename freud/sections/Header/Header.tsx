@@ -3,6 +3,7 @@ import Link from 'next/link';
 
 import { GoogleLogin } from '~/components/GoogleLogin';
 import { Logo } from '~/components/Logo';
+import { ToggleTheme } from '~/components/ToggleTheme';
 import { useAuth } from '~/services/Auth';
 
 import { HeaderDetails } from './components/HeaderDetails';
@@ -37,8 +38,15 @@ export const Header = () => {
           </ButtonGroup>
         </HStack>
 
-        <Flex w='50%' justifyContent='flex-end'>
-          {isLogged ? <HeaderDetails /> : <GoogleLogin size='medium' />}
+        <Flex w='50%' justifyContent='flex-end' alignItems='center'>
+          {isLogged ? (
+            <>
+              <ToggleTheme mr={4} size='sm' />
+              <HeaderDetails />
+            </>
+          ) : (
+            <GoogleLogin size='medium' />
+          )}
         </Flex>
       </HStack>
     </Box>

@@ -11,6 +11,7 @@ import {
   PopoverTrigger,
   Text,
   Tooltip,
+  useColorMode,
   useTheme,
 } from '@chakra-ui/react';
 import Link from 'next/link';
@@ -30,6 +31,7 @@ const IMAGE_SIZE = 48;
 
 export const HeaderDetails = () => {
   const { picture, email, name, logout } = useAuth();
+  const { colorMode } = useColorMode();
   const theme = useTheme<ThemeProps>();
 
   return (
@@ -53,7 +55,10 @@ export const HeaderDetails = () => {
           <Text fontSize='md'>
             <strong>{name}</strong>
           </Text>
-          <Text fontSize='xs' color='blackAlpha.600'>
+          <Text
+            fontSize='xs'
+            color={colorMode === 'dark' ? 'whiteAlpha.600' : 'blackAlpha.600'}
+          >
             {email}
           </Text>
           <Text fontSize='md'>
