@@ -30,7 +30,7 @@ export const Logo: FC<LogoProps> = ({
         <Box
           w={`${ICON_SIZE[size]}px`}
           h={`${ICON_SIZE[size]}px`}
-          bg='book.desertSun'
+          bg='book.desertSun.100'
         />
       )}
 

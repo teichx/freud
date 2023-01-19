@@ -24,7 +24,7 @@ export const ToggleTheme: FC<
       <IconButton
         {...props}
         bg='whiteAlpha.400'
-        color='book.desertSun'
+        color='book.desertSun.100'
         aria-label='Toggle color mode'
         onClick={toggleColorMode}
         icon={isDark ? <SunIcon /> : <MoonIcon />}
