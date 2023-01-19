@@ -18,7 +18,7 @@ import Link from 'next/link';
 
 import { Avatar } from '~/components/Avatar';
 import { Routes } from '~/constants/Routes';
-import { useAuth } from '~/services/Auth';
+import { useAuth } from '~/core/services/Auth';
 import { ThemeProps } from '~/themes/CustomTheme';
 
 const ptBR = {
@@ -74,7 +74,7 @@ export const HeaderDetails = () => {
               as={Link}
               aria-label='profile'
               icon={<SettingsIcon />}
-              href={Routes.App.Profile.Default}
+              href={Routes.Core.Profile.Default}
             />
           </Tooltip>
 

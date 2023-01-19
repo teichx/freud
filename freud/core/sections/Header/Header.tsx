@@ -5,18 +5,18 @@ import { GoogleLogin } from '~/components/GoogleLogin';
 import { Logo } from '~/components/Logo';
 import { ToggleTheme } from '~/components/ToggleTheme';
 import { Routes } from '~/constants/Routes';
-import { useAuth } from '~/services/Auth';
+import { useAuth } from '~/core/services/Auth';
 
 import { HeaderDetails } from './components/HeaderDetails';
 import { HeaderButton } from './styles';
 
 const MENU_ITEMS = [
   {
-    path: Routes.App.Dashboard.Default,
+    path: Routes.Core.Dashboard.Default,
     label: 'Dashboard',
   },
   {
-    path: Routes.App.Patient.List,
+    path: Routes.Core.Patient.List,
     label: 'Pacientes',
   },
 ] as const;

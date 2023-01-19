@@ -43,7 +43,7 @@ export const useAuth = (): useAuthResultProps => {
   );
 
   const toInitialPage = useCallback<useAuthResultProps['toInitialPage']>(
-    () => router.push(Routes.App.Dashboard.Default),
+    () => router.push(Routes.Core.Dashboard.Default),
     [router]
   );
 

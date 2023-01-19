@@ -2,8 +2,8 @@ import { Button, Flex } from '@chakra-ui/react';
 import Link from 'next/link';
 
 import { Routes } from '~/constants/Routes';
-import { PatientsTable } from '~/sections/PatientsTable';
-import { AppPage } from '~/template/app/AppPage';
+import { PatientsTable } from '~/core/sections/PatientsTable';
+import { AppPage } from '~/core/template/AppPage';
 
 const ptBR = {
   create: 'Cadastrar paciente',
@@ -14,7 +14,7 @@ export const Patients = () => (
     <Flex pt='2' pb='4' justifyContent='end'>
       <Button
         as={Link}
-        href={Routes.App.Patient.Create}
+        href={Routes.Core.Patient.Create}
         color='whiteAlpha.900'
         colorScheme='book.royalBlue'
       >

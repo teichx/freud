@@ -2,7 +2,7 @@ import { FC, useEffect, useId, useState } from 'react';
 
 import jwt_decode from 'jwt-decode';
 
-import { useAuth } from '~/services/Auth';
+import { useAuth } from '~/core/services/Auth';
 
 import { GoogleLoginProps, JWTTokenProps } from './types';
 

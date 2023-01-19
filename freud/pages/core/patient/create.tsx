@@ -1,4 +1,4 @@
-import { AppPage } from '~/template/app/AppPage';
+import { AppPage } from '~/core/template/AppPage';
 
 export const CreatePatient = () => <AppPage>Create Patient</AppPage>;
 

@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 
-import { AppPage } from '~/template/app/AppPage';
+import { AppPage } from '~/core/template/AppPage';
 
 export const EditProfile = () => {
   const { query } = useRouter();

@@ -1,17 +1,17 @@
 export const Routes = {
   ApiPrefix: '/api/',
-  App: {
-    Login: '/app/login',
+  Core: {
+    Login: '/core/login',
     Profile: {
-      Default: '/app/profile',
+      Default: '/core/profile',
     },
     Dashboard: {
-      Default: '/app/dashboard',
+      Default: '/core/dashboard',
     },
     Patient: {
-      List: '/app/patient',
-      Create: '/app/patient/create',
-      Edit: '/app/patient/{0}',
+      List: '/core/patient',
+      Create: '/core/patient/create',
+      Edit: '/core/patient/{0}',
     },
   },
 } as const;

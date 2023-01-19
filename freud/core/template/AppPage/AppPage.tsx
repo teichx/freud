@@ -4,9 +4,8 @@ import { Box } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 
 import { Routes } from '~/constants/Routes';
-import { useAuth } from '~/services/Auth';
-
-import { Header } from '../../../sections/Header';
+import { Header } from '~/core/sections/Header';
+import { useAuth } from '~/core/services/Auth';
 
 export const AppPage: FC<PropsWithChildren> = ({ children }) => {
   const { isLogged } = useAuth();
@@ -15,7 +14,7 @@ export const AppPage: FC<PropsWithChildren> = ({ children }) => {
   useEffect(() => {
     if (isLogged) return;
 
-    router.push(Routes.App.Login);
+    router.push(Routes.Core.Login);
   }, [isLogged, router]);
 
   return isLogged ? (

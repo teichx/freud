@@ -1,4 +1,4 @@
-import { AppPage } from '~/template/app/AppPage';
+import { AppPage } from '~/core/template/AppPage';
 
 export const Dashboard = () => <AppPage>Dashboard</AppPage>;
 

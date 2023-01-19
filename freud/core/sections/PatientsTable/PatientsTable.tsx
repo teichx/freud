@@ -74,7 +74,7 @@ export const PatientsTable = () => {
                   as={Link}
                   icon={<EditIcon />}
                   aria-label='edit'
-                  href={formatRoute(Routes.App.Patient.Edit, x.identifier)}
+                  href={formatRoute(Routes.Core.Patient.Edit, x.identifier)}
                 />
               </Td>
             </Tr>
