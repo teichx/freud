@@ -3,6 +3,7 @@ import { FC, PropsWithChildren, useEffect } from 'react';
 import { Box } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 
+import { Routes } from '~/constants/Routes';
 import { useAuth } from '~/services/Auth';
 
 import { Header } from '../../../sections/Header';
@@ -14,7 +15,7 @@ export const AppPage: FC<PropsWithChildren> = ({ children }) => {
   useEffect(() => {
     if (isLogged) return;
 
-    router.push('/app/login');
+    router.push(Routes.App.Login);
   }, [isLogged, router]);
 
   return isLogged ? (

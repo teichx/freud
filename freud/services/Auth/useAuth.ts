@@ -2,6 +2,7 @@ import { useCallback } from 'react';
 
 import { useRouter } from 'next/router';
 
+import { Routes } from '~/constants/Routes';
 import { useAppDispatch, useAppSelector } from '~/reducer';
 
 import { AuthSlice } from './AuthReducer';
@@ -42,7 +43,7 @@ export const useAuth = (): useAuthResultProps => {
   );
 
   const toInitialPage = useCallback<useAuthResultProps['toInitialPage']>(
-    () => router.push('/app/dashboard'),
+    () => router.push(Routes.App.Dashboard.Default),
     [router]
   );
 

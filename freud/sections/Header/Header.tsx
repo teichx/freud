@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { GoogleLogin } from '~/components/GoogleLogin';
 import { Logo } from '~/components/Logo';
 import { ToggleTheme } from '~/components/ToggleTheme';
+import { Routes } from '~/constants/Routes';
 import { useAuth } from '~/services/Auth';
 
 import { HeaderDetails } from './components/HeaderDetails';
@@ -11,11 +12,11 @@ import { HeaderButton } from './styles';
 
 const MENU_ITEMS = [
   {
-    path: '/app/dashboard',
+    path: Routes.App.Dashboard.Default,
     label: 'Dashboard',
   },
   {
-    path: '/app/patients',
+    path: Routes.App.Patient.List,
     label: 'Pacientes',
   },
 ] as const;

@@ -17,6 +17,7 @@ import {
 import Link from 'next/link';
 
 import { Avatar } from '~/components/Avatar';
+import { Routes } from '~/constants/Routes';
 import { useAuth } from '~/services/Auth';
 import { ThemeProps } from '~/themes/CustomTheme';
 
@@ -68,13 +69,13 @@ export const HeaderDetails = () => {
 
         <PopoverFooter display='flex' justifyContent='space-between'>
           <Tooltip label={ptBR.configuration}>
-            <Link href='/app/configuration'>
-              <IconButton
-                size='sm'
-                aria-label='settings'
-                icon={<SettingsIcon />}
-              />
-            </Link>
+            <IconButton
+              size='sm'
+              as={Link}
+              aria-label='profile'
+              icon={<SettingsIcon />}
+              href={Routes.App.Profile.Default}
+            />
           </Tooltip>
 
           <Tooltip label={ptBR.out_tooltip}>
