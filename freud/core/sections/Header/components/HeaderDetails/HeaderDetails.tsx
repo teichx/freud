@@ -1,7 +1,6 @@
 import { SettingsIcon } from '@chakra-ui/icons';
 import {
   Button,
-  ColorHues,
   IconButton,
   Popover,
   PopoverArrow,
@@ -12,14 +11,12 @@ import {
   Text,
   Tooltip,
   useColorMode,
-  useTheme,
 } from '@chakra-ui/react';
 import Link from 'next/link';
 
 import { Avatar } from '~/components/Avatar';
 import { Routes } from '~/constants/Routes';
 import { useAuth } from '~/core/services/Auth';
-import { ThemeProps } from '~/themes/CustomTheme';
 
 const ptBR = {
   google_drive: 'Google drive',
@@ -28,24 +25,21 @@ const ptBR = {
   configuration: 'Configuração',
 } as const;
 
-const IMAGE_SIZE = 48;
+const IMAGE_SIZE = 40;
 
 export const HeaderDetails = () => {
   const { picture, email, name, logout } = useAuth();
   const { colorMode } = useColorMode();
-  const theme = useTheme<ThemeProps>();
 
   return (
-    <Popover trigger='hover'>
+    <Popover>
       <PopoverTrigger>
         <Avatar
           alt={name}
+          as={Button}
           src={picture}
           w={IMAGE_SIZE}
           h={IMAGE_SIZE}
-          boxShadow={`0 0 4px 0px ${
-            (theme.colors.whiteAlpha as Partial<ColorHues>)[500]
-          }`}
         />
       </PopoverTrigger>
 
