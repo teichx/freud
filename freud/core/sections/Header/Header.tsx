@@ -3,7 +3,6 @@ import Link from 'next/link';
 
 import { GoogleLogin } from '~/components/GoogleLogin';
 import { Logo } from '~/components/Logo';
-import { ToggleTheme } from '~/components/ToggleTheme';
 import { Routes } from '~/constants/Routes';
 import { useAuth } from '~/core/services/Auth';
 
@@ -40,14 +39,7 @@ export const Header = () => {
         </HStack>
 
         <Flex w='50%' justifyContent='flex-end' alignItems='center'>
-          {isLogged ? (
-            <>
-              <ToggleTheme mr={4} size='sm' />
-              <HeaderDetails />
-            </>
-          ) : (
-            <GoogleLogin size='medium' />
-          )}
+          {isLogged ? <HeaderDetails /> : <GoogleLogin size='medium' />}
         </Flex>
       </HStack>
     </Box>
