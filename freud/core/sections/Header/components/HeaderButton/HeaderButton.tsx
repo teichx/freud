@@ -1,11 +1,11 @@
 import { FC } from 'react';
 
-import { Button } from '@chakra-ui/react';
+import { Box, Button } from '@chakra-ui/react';
 import Link from 'next/link';
 
 import { HeaderButtonProps } from './types';
 
-export const HeaderButton: FC<HeaderButtonProps> = (props) => (
+export const HeaderButton: FC<HeaderButtonProps> = ({ children, ...props }) => (
   <Button
     width='100%'
     iconSpacing='4'
@@ -14,5 +14,9 @@ export const HeaderButton: FC<HeaderButtonProps> = (props) => (
     justifyContent='flex-start'
     as={props.href ? Link : undefined}
     {...props}
-  />
+  >
+    <Box w='100%' textAlign='left'>
+      {children}
+    </Box>
+  </Button>
 );
