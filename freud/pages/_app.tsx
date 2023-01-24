@@ -3,6 +3,7 @@ import type { AppProps } from 'next/app';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 
+import '~/locale/i18n';
 import { persister, ReducerStore } from '~/reducer';
 import { CustomTheme } from '~/themes/CustomTheme';
 
