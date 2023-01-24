@@ -1,3 +1,9 @@
 {
-  "common": {}
+  "common": {
+    "languages": {
+      "options": "pt-BR,en-US",
+      "pt-BR": "Português",
+      "en-US": "English (US)"
+    }
+  }
 }

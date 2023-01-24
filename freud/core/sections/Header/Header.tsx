@@ -1,5 +1,6 @@
 import { Box, ButtonGroup, Flex, HStack } from '@chakra-ui/react';
 import Link from 'next/link';
+import { useTranslation } from 'react-i18next';
 
 import { GoogleLogin } from '~/components/GoogleLogin';
 import { Logo } from '~/components/Logo';
@@ -12,16 +13,19 @@ import { HeaderButton } from './styles';
 const MENU_ITEMS = [
   {
     path: Routes.Core.Dashboard.Default,
-    label: 'Dashboard',
+    label: 'dashboard',
   },
   {
     path: Routes.Core.Patient.List,
-    label: 'Pacientes',
+    label: 'patient',
   },
 ] as const;
 
 export const Header = () => {
   const { isLogged } = useAuth();
+  const { t } = useTranslation(undefined, {
+    keyPrefix: 'header.label',
+  });
 
   return (
     <Box w='100%'>
@@ -32,7 +36,7 @@ export const Header = () => {
           <ButtonGroup variant='unstyled' spacing='8' color='white'>
             {MENU_ITEMS.map(({ path, label }) => (
               <HeaderButton key={path} href={path} as={Link}>
-                {label}
+                {t(label)}
               </HeaderButton>
             ))}
           </ButtonGroup>

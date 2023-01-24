@@ -1,3 +1,43 @@
 {
-  "translations": {}
+  "translations": {
+    "words": {
+      "light": "claro",
+      "dark": "escuro"
+    },
+    "header": {
+      "details": {
+        "default": {
+          "google_drive": "Google drive",
+          "out": "Sair",
+          "configuration": "Configurações",
+          "appearance": "Aparência: $t(words.{{ appearance }})",
+          "language": "Idioma: $t(common:languages.{{ language }})"
+        },
+        "language": {}
+      },
+      "appearance": {
+        "title": "Aparência",
+        "text": "Tema: $t(words.{{ appearance }})",
+        "themes": "light,dark"
+      },
+      "language": {
+        "title": "Selecione seu idioma"
+      }
+    },
+    "components": {
+      "toggle_theme": {
+        "label": "Usar tema $(words.{{ appearance }})"
+      }
+    },
+    "pages": {
+      "patient": {
+        "list": {
+          "name": "Nome",
+          "actions": "Ações",
+          "identifier": "Identificador",
+          "create_label": "Cadastrar paciente"
+        }
+      }
+    }
+  }
 }
