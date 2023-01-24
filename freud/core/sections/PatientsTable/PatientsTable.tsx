@@ -11,18 +11,13 @@ import {
   useColorMode,
 } from '@chakra-ui/react';
 import Link from 'next/link';
+import { useTranslation } from 'react-i18next';
 import { ulid } from 'ulid';
 
 import { Routes } from '~/constants/Routes';
 import { useFormat } from '~/hooks/useFormat';
 
 import { PatientsProps } from './types';
-
-const ptBR = {
-  identifier: 'Identificador',
-  name: 'Nome',
-  actions: 'Ações',
-} as const;
 
 const patients: PatientsProps[] = [
   {
@@ -42,6 +37,9 @@ const patients: PatientsProps[] = [
 export const PatientsTable = () => {
   const { colorMode } = useColorMode();
   const { formatRoute } = useFormat();
+  const { t } = useTranslation(undefined, {
+    keyPrefix: 'pages.patient.list',
+  });
 
   return (
     <TableContainer
@@ -55,11 +53,11 @@ export const PatientsTable = () => {
         <Thead>
           <Tr bgColor='book.navyBlue.100' color='whiteAlpha.900'>
             <Th w='306px' color='inherit'>
-              {ptBR.identifier}
+              {t('identifier')}
             </Th>
-            <Th color='inherit'>{ptBR.name}</Th>
+            <Th color='inherit'>{t('name')}</Th>
             <Th textAlign='center' w='90px' color='inherit'>
-              {ptBR.actions}
+              {t('actions')}
             </Th>
           </Tr>
         </Thead>

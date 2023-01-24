@@ -9,20 +9,13 @@ import {
   PopoverContent,
   Text,
 } from '@chakra-ui/react';
+import { useTranslation } from 'react-i18next';
 import { FiCheck, FiChevronLeft } from 'react-icons/fi';
 
 import { HeaderButton } from '../../../../components/HeaderButton';
 import { HeaderDetailsContentProps } from './types';
 
-const ptBR = {
-  title: 'Selecione seu idioma',
-  languages: {
-    ptBR: 'Português',
-    enUS: 'English (US)',
-  },
-} as const;
-
-let currentLanguage = 'ptBR';
+let currentLanguage = 'pt-BR';
 
 const useLanguage = () => ({
   currentLanguage,
@@ -32,6 +25,7 @@ const useLanguage = () => ({
 export const ContentLanguage: FC<HeaderDetailsContentProps> = ({
   toContent,
 }) => {
+  const { t } = useTranslation();
   const { currentLanguage, toLanguage } = useLanguage();
 
   return (
@@ -46,31 +40,35 @@ export const ContentLanguage: FC<HeaderDetailsContentProps> = ({
             <Icon as={FiChevronLeft} />
           </IconButton>
 
-          <Text>{ptBR.title}</Text>
+          <Text>{t('header.language.title')}</Text>
         </HStack>
       </PopoverBody>
 
       <Divider />
 
       <PopoverBody px='0'>
-        {Object.entries(ptBR.languages).map(([langName, langTranslate]) => (
-          <HeaderButton
-            key={langName}
-            onClick={() => {
-              toLanguage(langName);
-              setTimeout(() => toContent('default'), 200);
-            }}
-            leftIcon={
-              <Icon
-                ml='0.5'
-                as={FiCheck}
-                visibility={currentLanguage === langName ? 'visible' : 'hidden'}
-              />
-            }
-          >
-            {langTranslate}
-          </HeaderButton>
-        ))}
+        {t('common:languages.options')
+          .split(',')
+          .map((langName) => (
+            <HeaderButton
+              key={langName}
+              onClick={() => {
+                toLanguage(langName);
+                setTimeout(() => toContent('default'), 200);
+              }}
+              leftIcon={
+                <Icon
+                  ml='0.5'
+                  as={FiCheck}
+                  visibility={
+                    currentLanguage === langName ? 'visible' : 'hidden'
+                  }
+                />
+              }
+            >
+              {t(`common:languages.${langName}`)}
+            </HeaderButton>
+          ))}
       </PopoverBody>
     </PopoverContent>
   );

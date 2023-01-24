@@ -10,22 +10,18 @@ import {
   Text,
   useColorMode,
 } from '@chakra-ui/react';
+import { useTranslation } from 'react-i18next';
 import { FiCheck, FiChevronLeft } from 'react-icons/fi';
 
 import { HeaderButton } from '../../../../components/HeaderButton';
 import { HeaderDetailsContentProps } from './types';
 
-const ptBR = {
-  title: 'Aparência',
-  themes: {
-    dark: 'Tema escuro',
-    light: 'Tema claro',
-  },
-} as const;
-
 export const ContentAppearance: FC<HeaderDetailsContentProps> = ({
   toContent,
 }) => {
+  const { t } = useTranslation(undefined, {
+    keyPrefix: 'header.appearance',
+  });
   const { setColorMode, colorMode, forced } = useColorMode();
 
   const currentTheme = forced ? 'system' : colorMode;
@@ -42,31 +38,33 @@ export const ContentAppearance: FC<HeaderDetailsContentProps> = ({
             <Icon as={FiChevronLeft} />
           </IconButton>
 
-          <Text>{ptBR.title}</Text>
+          <Text>{t('title')}</Text>
         </HStack>
       </PopoverBody>
 
       <Divider />
 
       <PopoverBody px='0'>
-        {Object.entries(ptBR.themes).map(([themeName, themeTranslate]) => (
-          <HeaderButton
-            key={themeName}
-            onClick={() => {
-              setColorMode(themeName);
-              toContent('default');
-            }}
-            leftIcon={
-              <Icon
-                ml='0.5'
-                as={FiCheck}
-                visibility={currentTheme === themeName ? 'visible' : 'hidden'}
-              />
-            }
-          >
-            {themeTranslate}
-          </HeaderButton>
-        ))}
+        {t('themes')
+          .split(',')
+          .map((themeName) => (
+            <HeaderButton
+              key={themeName}
+              onClick={() => {
+                setColorMode(themeName);
+                toContent('default');
+              }}
+              leftIcon={
+                <Icon
+                  ml='0.5'
+                  as={FiCheck}
+                  visibility={currentTheme === themeName ? 'visible' : 'hidden'}
+                />
+              }
+            >
+              {t('text', { appearance: themeName })}
+            </HeaderButton>
+          ))}
       </PopoverBody>
     </PopoverContent>
   );

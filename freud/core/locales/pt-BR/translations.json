@@ -5,6 +5,10 @@
       "dark": "escuro"
     },
     "header": {
+      "label": {
+        "dashboard": "Dashboard",
+        "patient": "Pacientes"
+      },
       "details": {
         "default": {
           "google_drive": "Google drive",

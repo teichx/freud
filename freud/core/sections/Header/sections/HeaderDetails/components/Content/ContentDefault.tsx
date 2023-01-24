@@ -9,6 +9,7 @@ import {
   Text,
   useColorModeValue,
 } from '@chakra-ui/react';
+import { useTranslation } from 'react-i18next';
 import {
   FiChevronRight,
   FiLogOut,
@@ -25,35 +26,19 @@ import { useAuth } from '~/core/services/Auth';
 import { HeaderButton } from '../../../../components/HeaderButton';
 import { HeaderDetailsContentProps } from './types';
 
-const ptBR = {
-  google_drive: 'Google drive',
-  out: 'Sair',
-  out_tooltip: 'Sair da conta',
-  configuration: 'Configurações',
-  appearance: {
-    text: 'Aparência: ',
-    dark: 'escuro',
-    light: 'claro',
-  },
-  language: {
-    text: 'Idioma: ',
-    portuguese: 'Português',
-  },
-} as const;
-
 const IMAGE_SIZE = 48;
 
 export const ContentDefault: FC<HeaderDetailsContentProps> = ({
   toContent,
 }) => {
+  const { t } = useTranslation(undefined, {
+    keyPrefix: 'header.details.default',
+  });
   const { picture, email, name, logout } = useAuth();
 
   const emailColor = useColorModeValue('blackAlpha.600', 'whiteAlpha.600');
   const AppearanceIcon = useColorModeValue(FiSun, FiMoon);
-  const appearanceText = useColorModeValue(
-    ptBR.appearance.light,
-    ptBR.appearance.dark
-  );
+  const appearanceText = useColorModeValue('light', 'dark');
 
   return (
     <PopoverContent mx={4} mb={0}>
@@ -68,7 +53,7 @@ export const ContentDefault: FC<HeaderDetailsContentProps> = ({
             {email}
           </Text>
           <Text fontSize='md'>
-            <i>{ptBR.google_drive}</i>
+            <i>{t('google_drive')}</i>
           </Text>
         </Box>
       </PopoverBody>
@@ -81,8 +66,7 @@ export const ContentDefault: FC<HeaderDetailsContentProps> = ({
           leftIcon={<Icon as={AppearanceIcon} />}
           rightIcon={<Icon as={FiChevronRight} />}
         >
-          {ptBR.appearance.text}
-          {appearanceText}
+          {t('appearance', { appearance: appearanceText })}
         </HeaderButton>
 
         <HeaderButton
@@ -90,8 +74,7 @@ export const ContentDefault: FC<HeaderDetailsContentProps> = ({
           rightIcon={<Icon as={FiChevronRight} />}
           onClick={() => toContent('language')}
         >
-          {ptBR.language.text}
-          {ptBR.language.portuguese}
+          {t('language', { language: 'pt-BR' })}
         </HeaderButton>
       </PopoverBody>
 
@@ -102,7 +85,7 @@ export const ContentDefault: FC<HeaderDetailsContentProps> = ({
           leftIcon={<Icon as={FiSettings} />}
           href={Routes.Core.Profile.Default}
         >
-          {ptBR.configuration}
+          {t('configuration')}
         </HeaderButton>
       </PopoverBody>
 
@@ -110,7 +93,7 @@ export const ContentDefault: FC<HeaderDetailsContentProps> = ({
 
       <PopoverBody px='0'>
         <HeaderButton leftIcon={<Icon as={FiLogOut} />} onClick={logout}>
-          {ptBR.out}
+          {t('out')}
         </HeaderButton>
       </PopoverBody>
     </PopoverContent>
