@@ -6,7 +6,7 @@ import { Logo } from '~/components/Logo';
 import { Routes } from '~/constants/Routes';
 import { useAuth } from '~/core/services/Auth';
 
-import { HeaderDetails } from './components/HeaderDetails';
+import { HeaderDetails } from './sections/HeaderDetails';
 import { HeaderButton } from './styles';
 
 const MENU_ITEMS = [
