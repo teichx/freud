@@ -1,11 +1,19 @@
-import { Flex } from '@chakra-ui/react';
+import { useEffect } from 'react';
 
-import { GoogleLogin } from '~/components/GoogleLogin';
+import { useRouter } from 'next/router';
 
-export const Login = () => (
-  <Flex height='100vh' align='center' justify='center'>
-    <GoogleLogin />
-  </Flex>
-);
+import { PageLoader } from '~/core/sections/PageLoader';
+
+export const Login = () => {
+  const { push } = useRouter();
+
+  useEffect(() => {
+    const { origin } = window.location;
+
+    push(`/api/auth/get-url?baseUrl=${encodeURIComponent(origin)}`);
+  }, [push]);
+
+  return <PageLoader />;
+};
 
 export default Login;

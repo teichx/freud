@@ -12,6 +12,8 @@ export type AuthDataProps = {
 
 export type AuthDataTokenProps = {
   bearer: string;
+  refreshToken: string | undefined;
+  expireAt: Date;
 };
 
 export type AuthStateProps = {

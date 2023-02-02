@@ -49,7 +49,7 @@ export const useAuth = (): useAuthResultProps => {
 
   return {
     ...state.user,
-    isLogged: !!state?.user?.id,
+    isLogged: !!state.token?.bearer,
     logout,
     saveData,
     setToken,
