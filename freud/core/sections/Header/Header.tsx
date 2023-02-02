@@ -2,10 +2,8 @@ import { Box, ButtonGroup, Flex, HStack } from '@chakra-ui/react';
 import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
 
-import { GoogleLogin } from '~/components/GoogleLogin';
 import { Logo } from '~/components/Logo';
 import { Routes } from '~/constants/Routes';
-import { useAuth } from '~/core/services/Auth';
 
 import { HeaderDetails } from './sections/HeaderDetails';
 import { HeaderButton } from './styles';
@@ -22,7 +20,6 @@ const MENU_ITEMS = [
 ] as const;
 
 export const Header = () => {
-  const { isLogged } = useAuth();
   const { t } = useTranslation(undefined, {
     keyPrefix: 'header.label',
   });
@@ -43,7 +40,7 @@ export const Header = () => {
         </HStack>
 
         <Flex w='50%' justifyContent='flex-end' alignItems='center'>
-          {isLogged ? <HeaderDetails /> : <GoogleLogin size='medium' />}
+          <HeaderDetails />
         </Flex>
       </HStack>
     </Box>
