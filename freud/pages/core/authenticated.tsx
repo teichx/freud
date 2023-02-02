@@ -53,6 +53,7 @@ export const Authenticated = () => {
           bearer: tokens?.access_token || '',
           refreshToken: tokens.refresh_token || undefined,
           expireAt: new Date(tokens.expiry_date || ''),
+          redirectUri: tokens.redirectUri,
         });
 
         const data = jwtDecode<IdTokenData>(tokens.id_token || '');

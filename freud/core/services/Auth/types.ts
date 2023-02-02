@@ -14,6 +14,7 @@ export type AuthDataTokenProps = {
   bearer: string;
   refreshToken: string | undefined;
   expireAt: Date;
+  redirectUri: string;
 };
 
 export type AuthStateProps = {

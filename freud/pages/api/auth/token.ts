@@ -7,7 +7,9 @@ export type GetTokenError = {
   message: string;
 };
 
-export type GetResultSuccess = Credentials;
+export type GetResultSuccess = Credentials & {
+  redirectUri: string;
+};
 
 export type GetTokenResult = GetResultSuccess | GetTokenError;
 
@@ -27,14 +29,19 @@ export default async function handler(
       return res.status(400).send({ message: 'Origin not found' });
     }
 
+    const redirectUri = getRedirectUri(origin);
+
     const oauth2Client = new OAuth2Client({
       clientId: process.env.NEXT_PUBLIC_GOOGLE_AUTHENTICATE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_AUTHENTICATE_CLIENT_SECRET,
-      redirectUri: getRedirectUri(origin),
+      redirectUri,
     });
     const token = await oauth2Client.getToken(code);
 
-    return res.status(200).send(token.tokens);
+    return res.status(200).send({
+      ...token.tokens,
+      redirectUri,
+    });
   } catch (error) {
     return res.status(400).send({
       message: (<Error>error).message,
