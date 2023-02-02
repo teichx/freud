@@ -13,6 +13,12 @@ export type AuthenticateResponse =
   | AuthenticateErrorResponse
   | AuthenticationSuccessResponse;
 
+export const generateHash = (key: string) => {
+  const salt = process.env.HASH_SALT || '';
+
+  return createHash('SHA-512').update(`${key}${salt}`).digest('base64url');
+};
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<AuthenticateResponse>
@@ -22,13 +28,8 @@ export default async function handler(
     if (!key) {
       return res.status(400).json({ error: 'Invalid param' });
     }
-    const salt = process.env.HASH_SALT || '';
 
-    const hash = createHash('SHA-512')
-      .update(`${key}${salt}`)
-      .digest('base64url');
-
-    return res.status(200).json({ hash });
+    return res.status(200).json({ hash: generateHash(key) });
   } catch (err) {
     return res.status(412).json({ error: 'Failed on generate hash' });
   }
