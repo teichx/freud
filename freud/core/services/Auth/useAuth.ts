@@ -3,7 +3,7 @@ import { useCallback } from 'react';
 import { useRouter } from 'next/router';
 
 import { CustomHeaders } from '~/constants/CustomHeaders';
-import { Routes } from '~/constants/Routes';
+import { ApiRoutes, Routes } from '~/constants/Routes';
 import { useAppDispatch, useAppSelector } from '~/reducer';
 
 import { AuthSlice } from './AuthReducer';
@@ -16,11 +16,6 @@ export const useAuth = (): useAuthResultProps => {
 
   const saveData = useCallback<useAuthResultProps['saveData']>(
     (data) => dispatch(AuthSlice.actions.saveData(data)),
-    [dispatch]
-  );
-
-  const logout = useCallback<useAuthResultProps['logout']>(
-    () => dispatch(AuthSlice.actions.logout()),
     [dispatch]
   );
 
@@ -38,6 +33,12 @@ export const useAuth = (): useAuthResultProps => {
       }),
     [state.token?.bearer, state.token?.redirectUri]
   );
+
+  const logout = useCallback<useAuthResultProps['logout']>(() => {
+    authenticateFetch(ApiRoutes.Auth.Logout).finally(() => {
+      dispatch(AuthSlice.actions.logout());
+    });
+  }, [dispatch, authenticateFetch]);
 
   const setToken = useCallback<useAuthResultProps['setToken']>(
     (data) => dispatch(AuthSlice.actions.setToken(data)),

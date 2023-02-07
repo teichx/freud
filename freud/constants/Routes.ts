@@ -15,3 +15,11 @@ export const Routes = {
     },
   },
 } as const;
+
+export const ApiRoutes = {
+  Auth: {
+    GetUrl: '/api/auth/get-url',
+    Logout: '/api/auth/logout',
+    Token: '/api/auth/token',
+  },
+} as const;
