@@ -3,6 +3,7 @@ import { useEffect, useRef } from 'react';
 import jwtDecode from 'jwt-decode';
 import { useRouter } from 'next/router';
 
+import { ApiRoutes, Routes } from '~/constants/Routes';
 import { PageLoader } from '~/core/sections/PageLoader';
 import { useAuth } from '~/core/services/Auth';
 
@@ -40,7 +41,7 @@ export const Authenticated = () => {
     const urlSearchParams = new URLSearchParams(query);
     const params = Object.fromEntries(urlSearchParams.entries()) as ParamsProps;
 
-    fetch('/api/auth/token', {
+    fetch(ApiRoutes.Auth.Token, {
       method: 'POST',
       body: JSON.stringify({ origin, code: params.code }),
       headers: {
@@ -67,7 +68,7 @@ export const Authenticated = () => {
           email: data.email,
         });
 
-        replace('/core/dashboard');
+        replace(Routes.Core.Dashboard.Default);
       })
       .catch(console.log);
   }, [asPath, pathname, setToken, saveData, logout, replace]);

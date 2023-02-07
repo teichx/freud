@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 
 import { useRouter } from 'next/router';
 
+import { ApiRoutes } from '~/constants/Routes';
 import { PageLoader } from '~/core/sections/PageLoader';
 
 export const Login = () => {
@@ -10,7 +11,7 @@ export const Login = () => {
   useEffect(() => {
     const { origin } = window.location;
 
-    push(`/api/auth/get-url?baseUrl=${encodeURIComponent(origin)}`);
+    push(`${ApiRoutes.Auth.GetUrl}?baseUrl=${encodeURIComponent(origin)}`);
   }, [push]);
 
   return <PageLoader />;
