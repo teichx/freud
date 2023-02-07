@@ -1,10 +1,7 @@
 import { OAuth2Client } from 'google-auth-library';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-const AUTHENTICATION_SCOPES = ['profile', 'email'];
-
-export const getRedirectUri = (baseUrl: string) =>
-  `${baseUrl}/core/authenticated`;
+import { AUTHENTICATION_SCOPES, getRedirectUri } from '.';
 
 export default async function handler(
   req: NextApiRequest,

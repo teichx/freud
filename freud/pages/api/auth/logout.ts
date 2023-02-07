@@ -2,6 +2,8 @@ import { OAuth2Client } from 'google-auth-library';
 import { RevokeCredentialsResult } from 'google-auth-library/build/src/auth/oauth2client';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
+import { extractToken } from '.';
+
 export type LogoutError = {
   message: string;
 };
@@ -15,10 +17,7 @@ export default async function handler(
   res: NextApiResponse<LogoutResult>
 ) {
   try {
-    const {
-      headers: { authorization = '' },
-    } = req;
-    const bearerToken = (authorization || '').replace('Bearer ', '');
+    const bearerToken = extractToken(req);
 
     if (!bearerToken) {
       return res.status(200).send({ success: true });

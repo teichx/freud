@@ -1,7 +1,7 @@
 import { Credentials, OAuth2Client } from 'google-auth-library';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-import { getRedirectUri } from './get-url';
+import { getRedirectUri } from '.';
 
 export type GetTokenError = {
   message: string;
