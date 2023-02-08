@@ -21,5 +21,6 @@ export const ApiRoutes = {
     GetUrl: '/api/auth/get-url',
     Logout: '/api/auth/logout',
     Token: '/api/auth/token',
+    RefreshToken: '/api/auth/refresh-token',
   },
 } as const;
