@@ -1,7 +1,7 @@
-import { Credentials, OAuth2Client } from 'google-auth-library';
+import { Credentials } from 'google-auth-library';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-import { getRedirectUri } from '.';
+import { getClient, getRedirectUri } from '.';
 
 export type GetTokenError = {
   message: string;
@@ -31,11 +31,7 @@ export default async function handler(
 
     const redirectUri = getRedirectUri(origin);
 
-    const oauth2Client = new OAuth2Client({
-      clientId: process.env.NEXT_PUBLIC_GOOGLE_AUTHENTICATE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_AUTHENTICATE_CLIENT_SECRET,
-      redirectUri,
-    });
+    const oauth2Client = getClient(req, { redirectUri });
     const token = await oauth2Client.getToken(code);
 
     return res.status(200).send({

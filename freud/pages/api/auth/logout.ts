@@ -1,8 +1,7 @@
-import { OAuth2Client } from 'google-auth-library';
 import { RevokeCredentialsResult } from 'google-auth-library/build/src/auth/oauth2client';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-import { extractToken } from '.';
+import { extractToken, getClient } from '.';
 
 export type LogoutError = {
   message: string;
@@ -23,10 +22,7 @@ export default async function handler(
       return res.status(200).send({ success: true });
     }
 
-    const oauth2Client = new OAuth2Client({
-      clientId: process.env.NEXT_PUBLIC_GOOGLE_AUTHENTICATE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_AUTHENTICATE_CLIENT_SECRET,
-    });
+    const oauth2Client = getClient(req);
     const token = await oauth2Client.revokeToken(bearerToken);
 
     return res.status(token.status).send({ success: true });

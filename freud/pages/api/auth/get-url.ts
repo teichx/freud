@@ -1,7 +1,6 @@
-import { OAuth2Client } from 'google-auth-library';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-import { AUTHENTICATION_SCOPES, getRedirectUri } from '.';
+import { AUTHENTICATION_SCOPES, getClient, getRedirectUri } from '.';
 
 export default async function handler(
   req: NextApiRequest,
@@ -9,8 +8,7 @@ export default async function handler(
 ) {
   const baseUrl = decodeURIComponent(req.query.baseUrl as string);
 
-  const oauth2Client = new OAuth2Client({
-    clientId: process.env.NEXT_PUBLIC_GOOGLE_AUTHENTICATE_CLIENT_ID,
+  const oauth2Client = getClient(req, {
     redirectUri: getRedirectUri(baseUrl),
   });
 
