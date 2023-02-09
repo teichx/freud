@@ -3,7 +3,24 @@
   "scripts": {
     "postinstall": "husky install"
   },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ],
+    "rules": {
+      "subject-case": [
+        2,
+        "always",
+        [
+          "start-case",
+          "sentence-case"
+        ]
+      ]
+    }
+  },
   "devDependencies": {
+    "@commitlint/cli": "^17.4.2",
+    "@commitlint/config-conventional": "^17.4.2",
     "husky": "^8.0.3"
   }
 }
