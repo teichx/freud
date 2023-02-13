@@ -1,6 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-import { AUTHENTICATION_SCOPES, getClient, getRedirectUri } from '.';
+import { AUTHENTICATION_SCOPES, getClient } from '.';
+
+import { getRedirectUri } from '..';
 
 export default async function handler(
   req: NextApiRequest,

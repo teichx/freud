@@ -1,7 +1,9 @@
 import { RevokeCredentialsResult } from 'google-auth-library/build/src/auth/oauth2client';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-import { extractToken, getClient } from '.';
+import { getClient } from '.';
+
+import { extractToken } from '..';
 
 export type LogoutError = {
   message: string;

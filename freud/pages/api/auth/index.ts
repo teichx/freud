@@ -5,18 +5,9 @@ import {
 } from 'google-auth-library';
 import type { NextApiRequest } from 'next';
 
-import { CustomHeaders } from '~/constants/CustomHeaders';
+import { extractRedirectUri, extractToken } from '..';
 
 export const AUTHENTICATION_SCOPES = ['profile', 'email'];
-
-export const getRedirectUri = (baseUrl: string) =>
-  `${baseUrl}/core/authenticated`;
-
-export const extractRedirectUri = (req: NextApiRequest) =>
-  req.headers[CustomHeaders.RedirectUri]?.toString();
-
-export const extractToken = (req: NextApiRequest) =>
-  (req.headers.authorization || '').replace('Bearer ', '');
 
 export const getClient = (
   req: NextApiRequest | undefined,
