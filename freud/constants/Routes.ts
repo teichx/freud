@@ -2,6 +2,7 @@ export const Routes = {
   ApiPrefix: '/api/',
   Core: {
     Login: '/core/login',
+    Authenticated: '/core/authenticated',
     Profile: {
       Default: '/core/profile',
     },

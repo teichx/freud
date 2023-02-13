@@ -1,9 +1,10 @@
 import type { NextApiRequest } from 'next/types';
 
 import { CustomHeaders } from '~/constants/CustomHeaders';
+import { Routes } from '~/constants/Routes';
 
 export const getRedirectUri = (baseUrl: string) =>
-  `${baseUrl}/core/authenticated`;
+  `${baseUrl}${Routes.Core.Authenticated}`;
 
 export const extractRedirectUri = (req: NextApiRequest) =>
   req.headers[CustomHeaders.RedirectUri]?.toString();
