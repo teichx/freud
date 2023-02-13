@@ -10,7 +10,7 @@ export const extractRedirectUri = (req: NextApiRequest) =>
   req.headers[CustomHeaders.RedirectUri]?.toString();
 
 export const extractToken = (req: NextApiRequest) =>
-  (req.headers.authorization || '').replace('Bearer ', '');
+  (req.headers.authorization || '').replace('Bearer', '').trim();
 
 export const getToken = (req: NextApiRequest) =>
   req.headers.authorization || '';
