@@ -23,6 +23,7 @@
     "eslint-config-next": "13.1.1",
     "framer-motion": "^6",
     "google-auth-library": "^8.7.0",
+    "googleapis": "^110.0.0",
     "i18next": "^22.4.9",
     "jwt-decode": "^3.1.2",
     "next": "13.1.1",
