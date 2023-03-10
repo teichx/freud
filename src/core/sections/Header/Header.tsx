@@ -1,5 +1,6 @@
 import { Box, ButtonGroup, Flex, HStack } from '@chakra-ui/react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
 
 import { Logo } from '~/components/Logo';
@@ -20,6 +21,7 @@ const MENU_ITEMS = [
 ] as const;
 
 export const Header = () => {
+  const { asPath } = useRouter();
   const { t } = useTranslation(undefined, {
     keyPrefix: 'header.label',
   });
@@ -30,9 +32,14 @@ export const Header = () => {
         <HStack w='50%' alignItems='center'>
           <Logo mr={4} color='book.desertSun.100' />
 
-          <ButtonGroup variant='unstyled' spacing='8' color='white'>
+          <ButtonGroup variant='unstyled' spacing='4' color='white'>
             {MENU_ITEMS.map(({ path, label }) => (
-              <HeaderButton key={path} href={path} as={Link}>
+              <HeaderButton
+                key={path}
+                href={path}
+                as={Link}
+                selected={asPath === path}
+              >
                 {t(label)}
               </HeaderButton>
             ))}
