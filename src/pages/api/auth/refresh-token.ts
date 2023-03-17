@@ -30,7 +30,7 @@ export default async function handler(
     return res.status(200).send(credentials);
   } catch (error) {
     return res.status(400).send({
-      message: (<Error>error).message,
+      message: error?.toString() || '',
     });
   }
 }

@@ -31,7 +31,7 @@ export default async function handler(
   } catch (error) {
     return res.status(400).send({
       success: false,
-      message: (<Error>error).message,
+      message: error?.toString() || '',
     });
   }
 }

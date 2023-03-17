@@ -42,7 +42,7 @@ export default async function handler(
     });
   } catch (error) {
     return res.status(400).send({
-      message: (<Error>error).message,
+      message: error?.toString() || '',
     });
   }
 }
