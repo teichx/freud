@@ -2,6 +2,8 @@ import { FC } from 'react';
 
 import { Box, HStack } from '@chakra-ui/react';
 
+import { expletusSans } from '~/fonts';
+
 import { LogoText } from './styles';
 import { LogoProps, LogoVariants } from './types';
 
@@ -35,7 +37,7 @@ export const Logo: FC<LogoProps> = ({
       )}
 
       {VARIANTS_WITH_TEXT.includes(variant) && (
-        <LogoText>{i18nText.logo}</LogoText>
+        <LogoText className={expletusSans.className}>{i18nText.logo}</LogoText>
       )}
     </HStack>
   </Box>
