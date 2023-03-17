@@ -1,4 +1,4 @@
-import type { NextApiRequest } from 'next/types';
+import type { NextApiRequest, NextApiResponse } from 'next/types';
 
 import { CustomHeaders } from '~/constants/CustomHeaders';
 import { Routes } from '~/constants/Routes';
@@ -14,3 +14,13 @@ export const extractToken = (req: NextApiRequest) =>
 
 export const getToken = (req: NextApiRequest) =>
   req.headers.authorization || '';
+
+export const sendError = (
+  res: NextApiResponse<{ message: string }>,
+  error: unknown,
+  extras = {}
+) =>
+  res.status(400).send({
+    message: (error as Error)?.message || `${error}`,
+    ...extras,
+  });

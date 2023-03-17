@@ -3,7 +3,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 
 import { getRefreshClient } from '.';
 
-import { extractToken } from '..';
+import { extractToken, sendError } from '..';
 
 export type RefreshTokenError = {
   message: string;
@@ -29,8 +29,6 @@ export default async function handler(
 
     return res.status(200).send(credentials);
   } catch (error) {
-    return res.status(400).send({
-      message: error?.toString() || '',
-    });
+    return sendError(res, error);
   }
 }

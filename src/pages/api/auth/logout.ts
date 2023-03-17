@@ -3,7 +3,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 
 import { getClient } from '.';
 
-import { extractToken } from '..';
+import { extractToken, sendError } from '..';
 
 export type LogoutError = {
   message: string;
@@ -29,9 +29,6 @@ export default async function handler(
 
     return res.status(token.status).send({ success: true });
   } catch (error) {
-    return res.status(400).send({
-      success: false,
-      message: error?.toString() || '',
-    });
+    return sendError(res, error, { success: false });
   }
 }

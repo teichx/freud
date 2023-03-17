@@ -3,7 +3,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 
 import { getClient } from '.';
 
-import { getRedirectUri } from '..';
+import { getRedirectUri, sendError } from '..';
 
 export type GetTokenError = {
   message: string;
@@ -41,8 +41,6 @@ export default async function handler(
       redirectUri,
     });
   } catch (error) {
-    return res.status(400).send({
-      message: error?.toString() || '',
-    });
+    return sendError(res, error);
   }
 }
