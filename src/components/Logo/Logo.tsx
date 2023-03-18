@@ -1,33 +1,25 @@
 import { FC } from 'react';
 
-import { Box, HStack } from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
 
 import { expletusSans } from '~/fonts';
 
+import {
+  ICON_SIZE,
+  LOGO_TEXT,
+  VARIANTS_WITH_ICON,
+  VARIANTS_WITH_TEXT,
+} from './constants';
 import { LogoText } from './styles';
-import { LogoProps, LogoVariants } from './types';
-
-const ICON_SIZE = {
-  small: 24,
-  medium: 48,
-  large: 64,
-} as const;
-
-const VARIANTS_WITH_ICON: LogoVariants[] = ['icon', 'full'];
-
-const VARIANTS_WITH_TEXT: LogoVariants[] = ['text', 'full'];
-
-const i18nText = {
-  logo: 'Freud',
-} as const;
+import { LogoProps } from './types';
 
 export const Logo: FC<LogoProps> = ({
-  variant = 'full',
-  size = 'medium',
+  variant = 'icon',
+  size = 'small',
   ...props
 }) => (
   <Box {...props}>
-    <HStack alignItems='center'>
+    <Box display='flex' justifyContent='start' alignItems='center'>
       {VARIANTS_WITH_ICON.includes(variant) && (
         <Box
           w={`${ICON_SIZE[size]}px`}
@@ -36,9 +28,15 @@ export const Logo: FC<LogoProps> = ({
         />
       )}
 
-      {VARIANTS_WITH_TEXT.includes(variant) && (
-        <LogoText className={expletusSans.className}>{i18nText.logo}</LogoText>
-      )}
-    </HStack>
+      <LogoText
+        size={size}
+        variant={variant}
+        className={expletusSans.className}
+      >
+        {VARIANTS_WITH_TEXT.includes(variant)
+          ? LOGO_TEXT.logo
+          : LOGO_TEXT.character}
+      </LogoText>
+    </Box>
   </Box>
 );

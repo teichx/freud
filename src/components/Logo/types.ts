@@ -8,3 +8,8 @@ export type LogoProps = BoxProps & {
 export type LogoSizes = 'small' | 'medium' | 'large';
 
 export type LogoVariants = 'icon' | 'text' | 'full';
+
+export type LogoTextProps = {
+  size: LogoSizes;
+  variant: LogoVariants;
+};

@@ -57,4 +57,4 @@ export type CustomThemeProps = typeof theme;
 
 export type ThemeProps = ThemeOverride & CustomThemeProps;
 
-export type HavingThemeProps = { theme?: CustomThemeProps };
+export type HavingThemeProps = { theme?: ThemeProps };
