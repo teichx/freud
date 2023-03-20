@@ -13,3 +13,7 @@ export type LogoTextProps = {
   size: LogoSizes;
   variant: LogoVariants;
 };
+
+export type LogoItemProps = {
+  size: LogoSizes;
+};

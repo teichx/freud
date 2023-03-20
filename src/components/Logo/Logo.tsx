@@ -4,39 +4,36 @@ import { Box } from '@chakra-ui/react';
 
 import { expletusSans } from '~/fonts';
 
-import {
-  ICON_SIZE,
-  LOGO_TEXT,
-  VARIANTS_WITH_ICON,
-  VARIANTS_WITH_TEXT,
-} from './constants';
+import { LOGO_TEXT, VARIANTS_WITH_ICON, VARIANTS_WITH_TEXT } from './constants';
+import { LogoItem } from './LogoIcon';
 import { LogoText } from './styles';
 import { LogoProps } from './types';
 
 export const Logo: FC<LogoProps> = ({
-  variant = 'icon',
-  size = 'small',
+  variant = 'full',
+  size = 'large',
   ...props
-}) => (
-  <Box {...props}>
-    <Box display='flex' justifyContent='start' alignItems='center'>
-      {VARIANTS_WITH_ICON.includes(variant) && (
-        <Box
-          w={`${ICON_SIZE[size]}px`}
-          h={`${ICON_SIZE[size]}px`}
-          bg='book.desertSun.100'
-        />
-      )}
+}) => {
+  const withIcon = VARIANTS_WITH_ICON.includes(variant);
+  const withText = VARIANTS_WITH_TEXT.includes(variant);
 
-      <LogoText
-        size={size}
-        variant={variant}
-        className={expletusSans.className}
-      >
-        {VARIANTS_WITH_TEXT.includes(variant)
-          ? LOGO_TEXT.logo
-          : LOGO_TEXT.character}
-      </LogoText>
+  return (
+    <Box {...props}>
+      <Box display='flex' justifyContent='start' alignItems='center' my='0.5'>
+        <Box id='foo' mr={withText ? 2 : 0}>
+          {withIcon && <LogoItem size={size} />}
+        </Box>
+
+        {withText && (
+          <LogoText
+            size={size}
+            variant={variant}
+            className={expletusSans.className}
+          >
+            {LOGO_TEXT.logo}
+          </LogoText>
+        )}
+      </Box>
     </Box>
-  </Box>
-);
+  );
+};
