@@ -6,7 +6,7 @@ export const LOGO_TEXT = {
 
 export const ICON_WIDTH = {
   small: 36,
-  medium: 50,
+  medium: 48,
   large: 60,
 } as const;
 
@@ -15,9 +15,9 @@ export const VARIANTS_WITH_ICON: LogoVariants[] = ['icon', 'full'];
 export const VARIANTS_WITH_TEXT: LogoVariants[] = ['text', 'full'];
 
 export const FONT_SIZE = {
-  small: '24px',
-  medium: '32px',
-  large: '36px',
+  small: '22px',
+  medium: '28px',
+  large: '32px',
 } as const;
 
 export const SVG_LOGO_SIZE = {
