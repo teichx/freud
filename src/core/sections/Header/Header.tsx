@@ -30,7 +30,7 @@ export const Header = () => {
     <Box w='100%'>
       <HStack w='100%' py='2' px='8' spacing={4} bg='book.darkBlue.100'>
         <HStack w='50%' alignItems='center'>
-          <Logo mr={4} color='book.desertSun.100' />
+          <Logo mr={4} color='book.desertSun.100' size='medium' />
 
           <ButtonGroup variant='unstyled' spacing='4' color='white'>
             {MENU_ITEMS.map(({ path, label }) => (
