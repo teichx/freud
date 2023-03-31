@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-import { AUTHENTICATION_SCOPES, getClient } from '.';
+import { GOOGLE_AUTHENTICATION_SCOPES, getClient } from '../google';
 
 import { getRedirectUri } from '..';
 
@@ -15,7 +15,7 @@ export default async function handler(
   });
 
   const url = oauth2Client.generateAuthUrl({
-    scope: AUTHENTICATION_SCOPES,
+    scope: GOOGLE_AUTHENTICATION_SCOPES,
     access_type: 'offline',
     response_type: 'code',
   });

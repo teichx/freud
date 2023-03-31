@@ -1,7 +1,7 @@
 import { RevokeCredentialsResult } from 'google-auth-library/build/src/auth/oauth2client';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-import { getClient } from '.';
+import { getClient } from '../google';
 
 import { extractToken, sendError } from '..';
 

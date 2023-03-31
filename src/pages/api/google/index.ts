@@ -7,7 +7,7 @@ import type { NextApiRequest } from 'next';
 
 import { extractRedirectUri, extractToken } from '..';
 
-export const AUTHENTICATION_SCOPES = ['profile', 'email'];
+export const GOOGLE_AUTHENTICATION_SCOPES = ['profile', 'email'];
 
 export const getClient = (
   req: NextApiRequest | undefined,

@@ -1,7 +1,7 @@
 import { Credentials } from 'google-auth-library';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-import { getClient } from '.';
+import { getClient } from '../google';
 
 import { getRedirectUri, sendError } from '..';
 
