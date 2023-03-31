@@ -5,7 +5,7 @@ import {
 } from 'google-auth-library';
 import type { NextApiRequest } from 'next';
 
-import { extractRedirectUri, extractToken } from '..';
+import { extractToken } from '..';
 
 export const GOOGLE_AUTHENTICATION_SCOPES = ['profile', 'email'];
 
@@ -16,7 +16,7 @@ export const getClient = (
   new OAuth2Client({
     clientId: process.env.NEXT_PUBLIC_GOOGLE_AUTHENTICATE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_AUTHENTICATE_CLIENT_SECRET,
-    redirectUri: req ? extractRedirectUri(req) : undefined,
+    redirectUri: process.env.NEXT_PUBLIC_GOOGLE_REDIRECT_URLS,
     ...(options || {}),
   });
 

@@ -2,7 +2,6 @@ import { useCallback } from 'react';
 
 import { useRouter } from 'next/router';
 
-import { CustomHeaders } from '~/constants/CustomHeaders';
 import { ApiRoutes, Routes } from '~/constants/Routes';
 import { useAppDispatch, useAppSelector } from '~/reducer';
 
@@ -28,10 +27,9 @@ export const useAuth = (): useAuthResultProps => {
         headers: {
           ...(init?.headers || {}),
           Authorization: `Bearer ${state.token?.bearer || ''}`,
-          [CustomHeaders.RedirectUri]: state.token?.redirectUri || '',
         },
       }),
-    [state.token?.bearer, state.token?.redirectUri]
+    [state.token?.bearer]
   );
 
   const logout = useCallback<useAuthResultProps['logout']>(() => {
