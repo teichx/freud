@@ -6,7 +6,7 @@ import { expletusSans } from '~/fonts';
 
 import { LOGO_TEXT, VARIANTS_WITH_ICON, VARIANTS_WITH_TEXT } from './constants';
 import { LogoItem } from './LogoIcon';
-import { LogoText } from './styles';
+import { LogoText, Wrapper } from './styles';
 import { LogoProps } from './types';
 
 export const Logo: FC<LogoProps> = ({
@@ -18,7 +18,7 @@ export const Logo: FC<LogoProps> = ({
   const withText = VARIANTS_WITH_TEXT.includes(variant);
 
   return (
-    <Box {...props}>
+    <Wrapper {...props}>
       <Box display='flex' justifyContent='start' alignItems='center' my='0.5'>
         <Box id='foo' mr={withText ? 2 : 0}>
           {withIcon && <LogoItem size={size} />}
@@ -34,6 +34,6 @@ export const Logo: FC<LogoProps> = ({
           </LogoText>
         )}
       </Box>
-    </Box>
+    </Wrapper>
   );
 };

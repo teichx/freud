@@ -1,4 +1,4 @@
-import { Icon, Text } from '@chakra-ui/react';
+import { Box, Icon, Text } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 
 import { HavingThemeProps } from '~/themes/CustomTheme';
@@ -9,6 +9,7 @@ import { LogoItemProps, LogoTextProps } from './types';
 export const LogoText = styled(Text)(({ size }: LogoTextProps) => ({
   lineHeight: 1,
   fontSize: FONT_SIZE[size],
+  userSelect: 'none',
 }));
 
 export const LogoIconStyled = styled(Icon)(
@@ -23,3 +24,7 @@ export const LogoIconStyled = styled(Icon)(
     },
   })
 );
+
+export const Wrapper = styled(Box)({
+  cursor: 'default',
+});
