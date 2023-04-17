@@ -1,30 +1,54 @@
-import { Box, Icon, Text } from '@chakra-ui/react';
-import styled from '@emotion/styled';
+import {
+  Box,
+  ComponentWithAs,
+  Icon,
+  IconProps,
+  Text,
+  styled,
+} from '@chakra-ui/react';
 
 import { HavingThemeProps } from '~/themes/CustomTheme';
 
 import { FONT_SIZE, ICON_WIDTH, SVG_LOGO_SIZE } from './constants';
 import { LogoItemProps, LogoTextProps } from './types';
 
-export const LogoText = styled(Text)(({ size }: LogoTextProps) => ({
-  lineHeight: 1,
-  fontSize: FONT_SIZE[size],
-  userSelect: 'none',
-}));
+export const LogoText = styled(Text, {
+  baseStyle: (props) => {
+    const { size } = props as unknown as LogoTextProps;
 
-export const LogoIconStyled = styled(Icon)(
-  ({ size, theme }: HavingThemeProps & LogoItemProps) => ({
-    width: ICON_WIDTH[size],
-    height: (SVG_LOGO_SIZE.height / SVG_LOGO_SIZE.width) * ICON_WIDTH[size],
-    '.color-1': {
-      fill: theme?.colors.book.desertSun[500],
-    },
-    '.color-2': {
-      fill: theme?.colors.white?.toString(),
-    },
-  })
-);
+    return {
+      lineHeight: 1,
+      fontSize: FONT_SIZE[size],
+      userSelect: 'none',
+    };
+  },
+});
 
-export const Wrapper = styled(Box)({
-  cursor: 'default',
+export const LogoIconStyled = styled<
+  ComponentWithAs<'svg', IconProps>,
+  LogoItemProps
+>(Icon, {
+  baseStyle: (props) => {
+    const { size, theme } = props as unknown as HavingThemeProps &
+      LogoItemProps;
+
+    return {
+      width: `${ICON_WIDTH[size]}px`,
+      height: `${
+        (SVG_LOGO_SIZE.height / SVG_LOGO_SIZE.width) * ICON_WIDTH[size]
+      }px`,
+      '.color-1': {
+        fill: theme.colors.book.desertSun[500],
+      },
+      '.color-2': {
+        fill: theme.colors.white,
+      },
+    };
+  },
+});
+
+export const Wrapper = styled(Box, {
+  baseStyle: {
+    cursor: 'default',
+  },
 });
