@@ -1,11 +1,10 @@
-import { useRouter } from 'next/router';
-
+import { PatientForm } from '~/core/sections/PatientForm';
 import { AppPage } from '~/core/template/AppPage';
 
-export const EditProfile = () => {
-  const { query } = useRouter();
-
-  return <AppPage>{JSON.stringify(query)}</AppPage>;
-};
+export const EditProfile = () => (
+  <AppPage>
+    <PatientForm />
+  </AppPage>
+);
 
 export default EditProfile;
