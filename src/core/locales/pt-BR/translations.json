@@ -37,9 +37,18 @@
     "pages": {
       "patient": {
         "list": {
-          "name": "Nome",
-          "actions": "Ações",
-          "identifier": "Identificador",
+          "header": {
+            "name": "Nome",
+            "actions": "Ações",
+            "identifier": "Identificador",
+            "last_case_report": "Último relato de caso",
+            "case_report_count": "Casos anotados"
+          },
+          "cell": {
+            "case_report_count_zero": "Nenhum caso anotado",
+            "case_report_count_one": "{{ count }} caso anotado",
+            "case_report_count": "{{ count }} casos anotados"
+          },
           "create_label": "Cadastrar paciente"
         }
       }
