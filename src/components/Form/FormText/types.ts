@@ -1,4 +1,5 @@
 import { FormControlProps, InputProps } from '@chakra-ui/react';
+import { IMask } from 'react-imask';
 
 export type FormTextInputProps = {
   isTextArea?: false;
@@ -14,6 +15,7 @@ export type FormTextProps = {
   label?: string | null;
   helperText?: string;
   inputProps?: InputProps;
+  mask?: IMask.AnyMaskedOptions;
 } & Pick<
   FormControlProps,
   'isRequired' | 'isDisabled' | 'isInvalid' | 'isReadOnly' | 'isTruncated' | 'w'
