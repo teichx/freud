@@ -1,7 +1,7 @@
-import { Checkbox, CheckboxGroup, SimpleGrid, VStack } from '@chakra-ui/react';
+import { CheckboxGroup, SimpleGrid, VStack } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
 
-import { FormText } from '~/components/Form';
+import { FormText, FormCheckbox } from '~/components/Form';
 import { Section } from '~/components/Section';
 
 import { fields, fieldsTypes } from './constants';
@@ -32,9 +32,11 @@ export const ComplainedCheck = () => {
                 columns={fields[type].length > 4 ? [1, 1, 2] : 1}
               >
                 {fields[type].map((x) => (
-                  <Checkbox key={x} name={x}>
-                    {t(`${type}.${x}`)}
-                  </Checkbox>
+                  <FormCheckbox
+                    key={x}
+                    name={`${type}.${x}`}
+                    label={t(`${type}.${x}`)}
+                  />
                 ))}
               </SimpleGrid>
             </CheckboxGroup>
@@ -42,8 +44,8 @@ export const ComplainedCheck = () => {
             <FormText
               w='100%'
               isTextArea
-              name='cognitive.other'
-              label={t('cognitive.other')}
+              name={`${type}.other`}
+              label={t(`${type}.other`)}
             />
           </VStack>
         </Section>
