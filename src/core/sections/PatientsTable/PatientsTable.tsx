@@ -21,16 +21,22 @@ import { PatientsProps } from './types';
 
 const patients: PatientsProps[] = [
   {
-    name: 'Foo bar za',
+    name: 'Victor Barbosa Gomes',
     identifier: ulid(),
+    lastCaseReport: undefined,
+    caseReportCount: 0,
   },
   {
-    name: 'Foo bar',
+    name: 'Laura Martins Alves',
     identifier: ulid(),
+    lastCaseReport: '2020-01-1',
+    caseReportCount: 1,
   },
   {
-    name: 'Bar foo',
+    name: 'Giovanna Ferreira Silva',
     identifier: ulid(),
+    lastCaseReport: '2020-01-1',
+    caseReportCount: 4,
   },
 ];
 
@@ -53,11 +59,21 @@ export const PatientsTable = () => {
         <Thead>
           <Tr bgColor='book.navyBlue.100' color='whiteAlpha.900'>
             <Th w='306px' color='inherit'>
-              {t('identifier')}
+              {t('header.identifier')}
             </Th>
-            <Th color='inherit'>{t('name')}</Th>
+
+            <Th color='inherit'>{t('header.name')}</Th>
+
+            <Th color='inherit' w='210px' textAlign='center'>
+              {t('header.case_report_count')}
+            </Th>
+
+            <Th color='inherit' w='210px' textAlign='center'>
+              {t('header.last_case_report')}
+            </Th>
+
             <Th textAlign='center' w='90px' color='inherit'>
-              {t('actions')}
+              {t('header.actions')}
             </Th>
           </Tr>
         </Thead>
@@ -66,6 +82,10 @@ export const PatientsTable = () => {
             <Tr key={x.identifier}>
               <Td>{x.identifier}</Td>
               <Td>{x.name}</Td>
+              <Td textAlign='center'>
+                {t('cell.case_report_count', { count: x.caseReportCount })}
+              </Td>
+              <Td textAlign='center'>{x.lastCaseReport || '-'}</Td>
               <Td textAlign='center'>
                 <IconButton
                   size='sm'
