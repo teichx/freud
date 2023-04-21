@@ -17,13 +17,11 @@ export const FormText: FC<FormTextProps> = ({
   mask = { mask: '' },
   ...props
 }: FormTextProps) => {
-  const unmaskedRef = useRef('');
+  const unmaskedRef = useRef<undefined | string>(undefined);
   const { ref } = useIMask<IMask.AnyMaskedOptions, HTMLInputElement>(
     typeof mask === 'object' ? { lazy: false, ...mask } : mask,
     {
-      onAccept: (value, maskValue) => {
-        unmaskedRef.current = maskValue.unmaskedValue || value;
-      },
+      onAccept: (_, { unmaskedValue }) => (unmaskedRef.current = unmaskedValue),
     }
   );
   const { fieldName, registerField, defaultValue, error } = useField(name);
@@ -32,9 +30,12 @@ export const FormText: FC<FormTextProps> = ({
     registerField<string>({
       name: fieldName,
       ref: ref.current,
-      getValue: (ref) => unmaskedRef.current || ref.value,
-      setValue: (ref, value) => ref.setInputValue(value),
-      clearValue: (ref) => ref.setInputValue(''),
+      getValue: (currentRef) =>
+        unmaskedRef.current === undefined
+          ? currentRef.value
+          : unmaskedRef.current,
+      setValue: (currentRef, value) => currentRef.setInputValue(value),
+      clearValue: (currentRef) => currentRef.setInputValue(''),
     });
   }, [ref, fieldName, registerField]);
 
