@@ -1,7 +1,7 @@
 import { Checkbox, CheckboxGroup, SimpleGrid, VStack } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
 
-import { FormText } from '~/components/FormText';
+import { FormText } from '~/components/Form';
 import { Section } from '~/components/Section';
 
 import { fields, fieldsTypes } from './constants';

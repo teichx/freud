@@ -1,7 +1,7 @@
 import { Box, Stack } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
 
-import { FormText } from '~/components/FormText';
+import { FormText } from '~/components/Form';
 import { Section } from '~/components/Section';
 
 export const PersonalData = () => {

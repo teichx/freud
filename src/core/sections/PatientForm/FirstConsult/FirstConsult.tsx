@@ -1,7 +1,7 @@
 import { Flex } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
 
-import { FormText } from '~/components/FormText';
+import { FormText } from '~/components/Form';
 import { Section } from '~/components/Section';
 
 const COLUMN_WIDTH = ['100%', '100%', '100%', '32%', '32%', '32%'];
