@@ -50,6 +50,69 @@
             "case_report_count": "{{ count }} casos anotados"
           },
           "create_label": "Cadastrar paciente"
+        },
+        "create": {
+          "personal": {
+            "title": "Informações Pessoais",
+            "name": "Nome",
+            "age": "Idade",
+            "gender": "Gênero",
+            "profession": "Ocupação",
+            "cpf": "CPF",
+            "rg": "RG",
+            "phone_number": "Contato",
+            "address": "Endereço",
+            "schooling": "Escolaridade",
+            "marriage_status": "Estado civil",
+            "emergency": "Em caso de emergência"
+          },
+          "first_consult": {
+            "title": "Primeira Consulta",
+            "principal_reason": "Queixa Principal",
+            "appearance_and_behavior": "Aparência e comportamento",
+            "demand_assessment": "Avaliação de Demanda"
+          },
+          "complained_history": {
+            "title": "Histórico da Queixa",
+            "problem_initiation": "Início da problemática",
+            "frequency_and_intensity": "Frequência e Intensidade",
+            "previous_treatments": "Tratamentos Anteriores",
+            "medication": "Uso de Fármacos:"
+          },
+          "complained_check": {
+            "cognitive": {
+              "title": "Queixas Cognitivas",
+              "sensory": "Integridade Sensorial",
+              "perception": "Percepção",
+              "focus": "Atenção e Concentração",
+              "other": "Outro"
+            },
+            "emotional": {
+              "title": "Queixas Afetivas/Emocionais",
+              "decision": "Tomada de decisão",
+              "affectivity": "Afetividade",
+              "anxiety": "Ansiedade",
+              "fear": "Medo",
+              "grief": "Luto",
+              "anger": "Raiva",
+              "humor": "Humor",
+              "blame": "Culpa",
+              "aggressiveness": "Agressividade",
+              "discouragement": "Desânimo",
+              "other": "Outro"
+            }
+          },
+          "free_text": {
+            "lifestyle": "Socialização, Lazer e Estilo de vida",
+            "family_history": "Antecedentes Familiares",
+            "family_relationship": "Relação/Dinâmica Familiar",
+            "traumatic_events": "Eventos Traumáticos de Vida",
+            "affective_experiences": "Experiências afetivas marcantes",
+            "important_facts": "Outras Informações Importantes",
+            "prognosis": "Hipótese Diagnóstica Inicial / Prognóstico",
+            "treatment": "Acompanhamento e Tratamento",
+            "others": "Outras Observações"
+          }
         }
       }
     }
