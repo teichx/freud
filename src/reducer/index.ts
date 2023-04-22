@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
+import { combineReducers } from 'redux';
 import {
   PERSIST,
   persistReducer,
@@ -13,11 +14,15 @@ import {
 } from 'redux-state-sync';
 
 import { AuthReducer, AUTH_KEY } from '~/core/services/Auth';
+import { LOADER_KEY, LoaderReducer } from '~/services/Loader';
+
+const rootReducer = combineReducers({
+  [AUTH_KEY]: persistReducer({ storage, key: AUTH_KEY }, AuthReducer),
+  [LOADER_KEY]: LoaderReducer,
+});
 
 export const ReducerStore = configureStore({
-  reducer: {
-    [AUTH_KEY]: persistReducer({ storage, key: AUTH_KEY }, AuthReducer),
-  },
+  reducer: rootReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false,
