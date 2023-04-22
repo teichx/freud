@@ -1,6 +1,8 @@
-import { Box, Text, styled } from '@chakra-ui/react';
+import { Box, BoxProps, ComponentWithAs, Text, styled } from '@chakra-ui/react';
 
 import { HavingThemeProps } from '~/themes/CustomTheme';
+
+import { SectionLoaderProps } from './types';
 
 export const SectionWrapper = styled(Box, {
   baseStyle: ({ theme }: HavingThemeProps) => ({
@@ -12,6 +14,7 @@ export const SectionWrapper = styled(Box, {
     borderWidth: 1,
     borderColor: theme.colors.book.desertSun[500],
     borderRadius: theme.space[1],
+    position: 'relative',
   }),
 });
 
@@ -29,4 +32,29 @@ export const SectionText = styled(Text, {
     fontWeight: theme.fontWeights.bold,
     letterSpacing: 0.48,
   }),
+});
+
+export const SectionLoader = styled<
+  ComponentWithAs<'div', BoxProps>,
+  SectionLoaderProps
+>(Box, {
+  baseStyle: (props) => {
+    const { isLoading, theme } = props as unknown as SectionLoaderProps &
+      HavingThemeProps;
+
+    return {
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '100%',
+      display: 'flex',
+      alignItems: 'center',
+      transition: `all ${theme.transition.duration.normal}`,
+      justifyContent: 'center',
+      opacity: isLoading ? 1 : 0,
+      backdropFilter: 'blur(6px)',
+      visibility: isLoading ? 'visible' : 'hidden',
+    };
+  },
 });

@@ -1,20 +1,38 @@
 import { FC, PropsWithChildren } from 'react';
 
-import { ChildrenWrapper, SectionText, SectionWrapper } from './style';
+import { CircularProgress } from '@chakra-ui/react';
+
+import { useLoader } from '~/services/Loader';
+
+import {
+  ChildrenWrapper,
+  SectionLoader,
+  SectionText,
+  SectionWrapper,
+} from './style';
 import { SectionProps } from './types';
 
 export const Section: FC<PropsWithChildren<SectionProps>> = ({
-  children,
   label,
+  children,
+  disabledLoading,
   ...props
-}) => (
-  <SectionWrapper {...props} as='fieldset'>
-    {!label ? null : (
-      <SectionText as='legend' variant='xl'>
-        {label}
-      </SectionText>
-    )}
+}) => {
+  const { isLoading } = useLoader();
 
-    <ChildrenWrapper p='2'>{children}</ChildrenWrapper>
-  </SectionWrapper>
-);
+  return (
+    <SectionWrapper {...props} as='fieldset'>
+      {!label ? null : (
+        <SectionText as='legend' variant='xl'>
+          {label}
+        </SectionText>
+      )}
+
+      <ChildrenWrapper p='2'>{children}</ChildrenWrapper>
+
+      <SectionLoader isLoading={isLoading && !disabledLoading}>
+        <CircularProgress isIndeterminate color='book.desertSun.500' />
+      </SectionLoader>
+    </SectionWrapper>
+  );
+};
