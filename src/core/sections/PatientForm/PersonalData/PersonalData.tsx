@@ -1,10 +1,11 @@
 import { Box, Stack } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
 
-import { FormText } from '~/components/Form';
+import { FormSelect, FormText, useFormSelectOptions } from '~/components/Form';
 import { Section } from '~/components/Section';
 
 export const PersonalData = () => {
+  const { getOptions } = useFormSelectOptions();
   const { t } = useTranslation(undefined, {
     keyPrefix: 'pages.patient.create.personal',
   });
@@ -34,8 +35,16 @@ export const PersonalData = () => {
           mask={{ mask: '000.000.000.00' }}
         />
         <FormText name='rg' label={t('rg')} mask={{ mask: '00.000.000' }} />
-        <FormText name='schooling' label={t('schooling')} />
-        <FormText name='marriage_status' label={t('marriage_status')} />
+        <FormSelect
+          name='schooling'
+          label={t('schooling')}
+          options={getOptions('schooling')}
+        />
+        <FormSelect
+          name='marriage_status'
+          label={t('marriage_status')}
+          options={getOptions('marriage_status')}
+        />
       </Stack>
 
       <Stack columnGap='4' direction={['column', 'row']}>
