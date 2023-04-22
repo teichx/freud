@@ -34,6 +34,27 @@
         "label": "Usar tema $(words.{{ appearance }})"
       }
     },
+    "options": {
+      "schooling": {
+        "illiterate": "Analfabeto",
+        "elementary_school_incomplete": "Ensino fundamental incompleto",
+        "elementary_school_complete": "Ensino fundamental completo",
+        "high_school_incomplete": "Ensino médio incompleto",
+        "high_school_complete": "Ensino médio completo",
+        "higher_education_complete": "Superior completo",
+        "post_graduation": "Pós-graduação",
+        "master": "Mestrado",
+        "doctorate": "Doutorado",
+        "post_doctorate": "Pós-Doutorado"
+      },
+      "marriage_status": {
+        "single": "Solteiro",
+        "married": "Casado",
+        "separated": "Separado",
+        "divorced": "Divorciado",
+        "widowed": "Viúvo"
+      }
+    },
     "pages": {
       "patient": {
         "list": {
