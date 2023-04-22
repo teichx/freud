@@ -3,7 +3,12 @@
     "login": "Fazer login",
     "words": {
       "light": "claro",
-      "dark": "escuro"
+      "dark": "escuro",
+      "back": "Voltar",
+      "save": "Salvar",
+      "archive": "Arquivar",
+      "print": "Imprimir",
+      "share": "Compartilhar"
     },
     "header": {
       "label": {
