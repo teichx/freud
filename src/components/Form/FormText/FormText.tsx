@@ -42,7 +42,12 @@ export const FormText: FC<FormTextProps> = ({
   const InputComponent = isTextArea ? TextareaStyled : Input;
 
   return (
-    <FormControl {...props} as='fieldset' size={size}>
+    <FormControl
+      {...props}
+      as='fieldset'
+      size={size}
+      isInvalid={props.isInvalid || !!error}
+    >
       <FormLabel htmlFor={name} as='legend' size={size}>
         {label}
       </FormLabel>
