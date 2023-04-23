@@ -30,7 +30,7 @@ export const Section: FC<PropsWithChildren<SectionProps>> = ({
 
       <ChildrenWrapper p='2'>{children}</ChildrenWrapper>
 
-      <SectionLoader isLoading={isLoading && !disabledLoading}>
+      <SectionLoader data-is-loading={isLoading && !disabledLoading}>
         <CircularProgress isIndeterminate color='book.desertSun.500' />
       </SectionLoader>
     </SectionWrapper>

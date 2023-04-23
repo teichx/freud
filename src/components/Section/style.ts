@@ -38,9 +38,10 @@ export const SectionLoader = styled<
   ComponentWithAs<'div', BoxProps>,
   SectionLoaderProps
 >(Box, {
-  baseStyle: (props) => {
-    const { isLoading, theme } = props as unknown as SectionLoaderProps &
-      HavingThemeProps;
+  baseStyle: ({ theme, ...props }) => {
+    const isLoading = (
+      props as unknown as SectionLoaderProps & HavingThemeProps
+    )['data-is-loading'];
 
     return {
       position: 'absolute',

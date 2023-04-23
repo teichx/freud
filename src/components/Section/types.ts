@@ -6,5 +6,5 @@ export type SectionProps = {
 } & BoxProps;
 
 export type SectionLoaderProps = {
-  isLoading?: boolean;
+  'data-is-loading'?: boolean;
 };
