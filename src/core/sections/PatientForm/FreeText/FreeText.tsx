@@ -4,16 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { FormText } from '~/components/Form';
 import { Section } from '~/components/Section';
 
-const FREE_TEXT_FIELDS = [
-  'lifestyle',
-  'family_history',
-  'family_relationship',
-  'traumatic_events',
-  'affective_experiences',
-  'important_facts',
-  'prognosis',
-  'treatment',
-];
+import { FREE_TEXT_FIELDS } from './constants';
 
 export const FreeText = () => {
   const { t } = useTranslation(undefined, {

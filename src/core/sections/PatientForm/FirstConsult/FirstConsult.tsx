@@ -4,6 +4,8 @@ import { useTranslation } from 'react-i18next';
 import { FormText } from '~/components/Form';
 import { Section } from '~/components/Section';
 
+import { FIRST_CONSULT_FIELDS } from './constants';
+
 const COLUMN_WIDTH = ['100%', '100%', '100%', '32%', '32%', '32%'];
 
 export const FirstConsult = () => {
@@ -14,24 +16,9 @@ export const FirstConsult = () => {
   return (
     <Section label={t('title')}>
       <Flex alignItems='stretch' flexWrap='wrap' justifyContent='space-between'>
-        <FormText
-          isTextArea
-          w={COLUMN_WIDTH}
-          name='principal_reason'
-          label={t('principal_reason')}
-        />
-        <FormText
-          isTextArea
-          w={COLUMN_WIDTH}
-          name='appearance_and_behavior'
-          label={t('appearance_and_behavior')}
-        />
-        <FormText
-          isTextArea
-          w={COLUMN_WIDTH}
-          name='demand_assessment'
-          label={t('demand_assessment')}
-        />
+        {FIRST_CONSULT_FIELDS.map((x) => (
+          <FormText key={x} isTextArea w={COLUMN_WIDTH} name={x} label={t(x)} />
+        ))}
       </Flex>
     </Section>
   );

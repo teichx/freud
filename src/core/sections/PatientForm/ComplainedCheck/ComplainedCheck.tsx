@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { FormText, FormCheckbox } from '~/components/Form';
 import { Section } from '~/components/Section';
 
-import { fields, fieldsTypes } from './constants';
+import { COGNITIVE_FIELDS, COGNITIVE_FIELDS_TYPES } from './constants';
 
 export const ComplainedCheck = () => {
   const { t } = useTranslation(undefined, {
@@ -17,7 +17,7 @@ export const ComplainedCheck = () => {
       columns={[1, 1, 1, 2]}
       my={['-2', '-2', '-2', '0']}
     >
-      {fieldsTypes.map((type) => (
+      {COGNITIVE_FIELDS_TYPES.map((type) => (
         <Section
           key={type}
           w='100%'
@@ -29,9 +29,9 @@ export const ComplainedCheck = () => {
               <SimpleGrid
                 w='100%'
                 columnGap='4'
-                columns={fields[type].length > 4 ? [1, 1, 2] : 1}
+                columns={COGNITIVE_FIELDS[type].length > 4 ? [1, 1, 2] : 1}
               >
-                {fields[type].map((x) => (
+                {COGNITIVE_FIELDS[type].map((x) => (
                   <FormCheckbox
                     key={x}
                     name={`${type}.${x}`}

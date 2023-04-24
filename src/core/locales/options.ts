@@ -9,7 +9,7 @@ export const schooling = [
   'master',
   'doctorate',
   'post_doctorate',
-];
+] as const;
 
 export const marriage_status = [
   'single',
@@ -17,4 +17,4 @@ export const marriage_status = [
   'separated',
   'divorced',
   'widowed',
-];
+] as const;

@@ -1,4 +1,4 @@
-export const fields = {
+export const COGNITIVE_FIELDS = {
   cognitive: ['sensory', 'perception', 'focus'],
   emotional: [
     'decision',
@@ -12,6 +12,6 @@ export const fields = {
     'aggressiveness',
     'discouragement',
   ],
-};
+} as const;
 
-export const fieldsTypes = ['cognitive', 'emotional'] as const;
+export const COGNITIVE_FIELDS_TYPES = ['cognitive', 'emotional'] as const;

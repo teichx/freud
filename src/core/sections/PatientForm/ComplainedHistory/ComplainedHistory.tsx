@@ -4,12 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { FormText } from '~/components/Form';
 import { Section } from '~/components/Section';
 
-const COLUMNS = [
-  'problem_initiation',
-  'frequency_and_intensity',
-  'previous_treatments',
-  'medication',
-];
+import { COMPLAINED_HISTORY_FIELDS } from './constants';
 
 export const ComplainedHistory = () => {
   const { t } = useTranslation(undefined, {
@@ -19,7 +14,7 @@ export const ComplainedHistory = () => {
   return (
     <Section label={t('title')}>
       <SimpleGrid columns={[1, 1, 2, 4]} columnGap='4'>
-        {COLUMNS.map((columnName) => (
+        {COMPLAINED_HISTORY_FIELDS.map((columnName) => (
           <FormText
             key={columnName}
             isTextArea
