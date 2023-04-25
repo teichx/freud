@@ -1,7 +1,7 @@
-export const flattenObject = (
+export const flattenObject = <T = Record<string, unknown>>(
   obj: Record<string, unknown | Record<string, unknown>>,
   prefix = ''
-): Record<string, unknown> =>
+): T =>
   Object.keys(obj).reduce<Record<string, unknown>>((acc, key) => {
     const pre = prefix.length ? prefix + '.' : '';
     const currentValue = obj[key] as unknown as Record<string, unknown>;
@@ -12,9 +12,11 @@ export const flattenObject = (
         ? flattenObject(currentValue, pre + key)
         : { [pre + key]: currentValue }
     );
-  }, {});
+  }, {}) as T;
 
-export const expandObject = (obj: Record<string, unknown>) =>
+export const expandObject = <T = Record<string, unknown>>(
+  obj: Record<string, unknown>
+) =>
   Object.entries(obj).reduce(
     (acc, [key, value]) =>
       Object.assign(
@@ -25,4 +27,4 @@ export const expandObject = (obj: Record<string, unknown>) =>
           .reduce((nestedValue, part) => ({ [part]: nestedValue }), value)
       ),
     {}
-  );
+  ) as T;
