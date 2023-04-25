@@ -16,15 +16,23 @@ export const flattenObject = <T = Record<string, unknown>>(
 
 export const expandObject = <T = Record<string, unknown>>(
   obj: Record<string, unknown>
-) =>
-  Object.entries(obj).reduce(
-    (acc, [key, value]) =>
-      Object.assign(
-        acc,
-        key
-          .split('.')
-          .reverse()
-          .reduce((nestedValue, part) => ({ [part]: nestedValue }), value)
-      ),
-    {}
-  ) as T;
+) => {
+  const result: Record<string, unknown> = {};
+  Object.keys(obj).forEach((key) => {
+    if (!Object.prototype.hasOwnProperty.call(obj, key)) return;
+
+    key
+      .split('.')
+      .reduce(
+        (acc, currentKey, index, keysList) =>
+          (acc[currentKey] ||
+            (acc[currentKey] = Number.isNaN(Number(keysList[index + 1]))
+              ? keysList.length - 1 === index
+                ? obj[key]
+                : {}
+              : [])) as Record<string, unknown>,
+        result
+      );
+  }, {});
+  return result as T;
+};
