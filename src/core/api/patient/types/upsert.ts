@@ -3,7 +3,7 @@ import {
   PatientFieldsWithoutId,
 } from '~/core/sections/PatientForm/types';
 
-import { ErrorMessage } from '../../types';
+import { ErrorMessage } from '../../common';
 
 export type UpsertPatientSuccess = {
   id: string;

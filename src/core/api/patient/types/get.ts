@@ -1,6 +1,6 @@
 import { PatientFields } from '~/core/sections/PatientForm/types';
 
-import { ErrorMessage } from '../../types';
+import { ErrorMessage } from '../../common';
 
 export type GetPatientSuccess = {
   patient: PatientFields | undefined;
