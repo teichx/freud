@@ -8,7 +8,7 @@ import {
 } from '@chakra-ui/react';
 
 import { Avatar } from '~/common/components/Avatar';
-import { useAuth } from '~/core/services/Auth';
+import { useAuth } from '~/core/services';
 
 import { Content } from './components/Content';
 import { HeaderDetailsContent } from './types';

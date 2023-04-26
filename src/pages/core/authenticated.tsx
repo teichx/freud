@@ -3,9 +3,9 @@ import { useEffect, useRef } from 'react';
 import jwtDecode from 'jwt-decode';
 import { useRouter } from 'next/router';
 
-import { ApiRoutes, Routes } from '~/core/constants/Routes';
+import { ApiRoutes, Routes } from '~/core/constants';
 import { PageLoader } from '~/core/sections/PageLoader';
-import { useAuth } from '~/core/services/Auth';
+import { useAuth } from '~/core/services';
 
 import { GetResultSuccess } from '../api/auth/token';
 

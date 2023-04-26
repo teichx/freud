@@ -3,9 +3,9 @@ import { FC, PropsWithChildren, useEffect } from 'react';
 import { Box } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 
-import { Routes } from '~/core/constants/Routes';
+import { Routes } from '~/core/constants';
 import { Header } from '~/core/sections/Header';
-import { useAuth } from '~/core/services/Auth';
+import { useAuth } from '~/core/services';
 
 export const AppPage: FC<PropsWithChildren> = ({ children }) => {
   const { isLogged } = useAuth();

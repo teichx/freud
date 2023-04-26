@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
 import { RxAvatar } from 'react-icons/rx';
 
-import { Routes } from '~/core/constants/Routes';
+import { Routes } from '~/core/constants';
 
 import {
   ButtonRadiusMappingProps,

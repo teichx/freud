@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { FiSave, FiPrinter, FiArchive, FiShare2 } from 'react-icons/fi';
 
 import { Section } from '~/common/components/Section';
-import { useLoader } from '~/core/services/Loader';
+import { useLoader } from '~/core/services';
 
 export const PatientFormHeader = () => {
   const { isLoading } = useLoader();

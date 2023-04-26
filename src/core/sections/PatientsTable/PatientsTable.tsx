@@ -14,8 +14,8 @@ import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
 import { ulid } from 'ulid';
 
-import { Routes } from '~/core/constants/Routes';
-import { useFormat } from '~/core/hooks/useFormat';
+import { Routes } from '~/core/constants';
+import { useFormat } from '~/core/hooks';
 
 import { PatientsProps } from './types';
 

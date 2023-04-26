@@ -20,8 +20,8 @@ import {
 import { IoLanguage } from 'react-icons/io5';
 
 import { Avatar } from '~/common/components/Avatar';
-import { Routes } from '~/core/constants/Routes';
-import { useAuth } from '~/core/services/Auth';
+import { Routes } from '~/core/constants';
+import { useAuth } from '~/core/services';
 
 import { HeaderButton } from '../../../../components/HeaderButton';
 import { HeaderDetailsContentProps } from './types';

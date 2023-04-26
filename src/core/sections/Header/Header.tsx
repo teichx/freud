@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
 
 import { Logo } from '~/common/components/Logo';
-import { Routes } from '~/core/constants/Routes';
+import { Routes } from '~/core/constants';
 
 import { HeaderDetails } from './sections/HeaderDetails';
 import { HeaderButton } from './styles';
