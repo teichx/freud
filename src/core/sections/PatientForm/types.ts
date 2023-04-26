@@ -43,7 +43,13 @@ export type FreeTextFieldFields = {
 };
 
 export type PatientMetaFields = {
+  id: string;
   archived_at: string;
+};
+
+export type PatientCalculatedFields = {
+  case_report_count: number;
+  last_case_report: string | undefined;
 };
 
 export type PatientFields = PersonalDataFields &
@@ -51,4 +57,7 @@ export type PatientFields = PersonalDataFields &
   ComplainedHistoryFields &
   CognitiveFields &
   FreeTextFieldFields &
-  PatientMetaFields;
+  PatientMetaFields &
+  PatientCalculatedFields;
+
+export type PatientFieldsWithoutId = Omit<PatientFields, 'id'>;
