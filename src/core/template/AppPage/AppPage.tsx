@@ -3,7 +3,7 @@ import { FC, PropsWithChildren, useEffect } from 'react';
 import { Box } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 
-import { Routes } from '~/constants/Routes';
+import { Routes } from '~/core/constants/Routes';
 import { Header } from '~/core/sections/Header';
 import { useAuth } from '~/core/services/Auth';
 

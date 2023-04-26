@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 
 import { useRouter } from 'next/router';
 
-import { ApiRoutes } from '~/constants/Routes';
+import { ApiRoutes } from '~/core/constants/Routes';
 import { PageLoader } from '~/core/sections/PageLoader';
 
 export const Login = () => {

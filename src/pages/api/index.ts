@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next/types';
 
-import { Routes } from '~/constants/Routes';
+import { Routes } from '~/core/constants/Routes';
 
 export const getRedirectUri = (baseUrl: string) =>
   `${baseUrl}${Routes.Core.Authenticated}`;

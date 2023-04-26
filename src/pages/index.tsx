@@ -1,6 +1,6 @@
 import { Box } from '@chakra-ui/react';
 
-import { GoogleLogin } from '~/components/GoogleLogin';
+import { GoogleLogin } from '~/common/components/GoogleLogin';
 
 export const Index = () => (
   <Box

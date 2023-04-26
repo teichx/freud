@@ -1,6 +1,6 @@
 import { Button, ComponentWithAs, styled } from '@chakra-ui/react';
 
-import { HavingThemeProps } from '~/themes/CustomTheme';
+import { HavingThemeProps } from '~/common/themes/CustomTheme';
 
 import { HeaderProps } from './types';
 

@@ -3,8 +3,8 @@ import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
 import { FiSave, FiPrinter, FiArchive, FiShare2 } from 'react-icons/fi';
 
-import { Section } from '~/components/Section';
-import { useLoader } from '~/services/Loader';
+import { Section } from '~/common/components/Section';
+import { useLoader } from '~/core/services/Loader';
 
 export const PatientFormHeader = () => {
   const { isLoading } = useLoader();

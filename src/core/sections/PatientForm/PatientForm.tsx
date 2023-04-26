@@ -1,6 +1,6 @@
 import { Form } from '@unform/web';
 
-import { useLoader } from '~/services/Loader';
+import { useLoader } from '~/core/services/Loader';
 
 import { ComplainedCheck } from './ComplainedCheck';
 import { ComplainedHistory } from './ComplainedHistory';

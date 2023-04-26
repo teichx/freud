@@ -7,7 +7,7 @@ import {
   styled,
 } from '@chakra-ui/react';
 
-import { HavingThemeProps } from '~/themes/CustomTheme';
+import { HavingThemeProps } from '~/common/themes/CustomTheme';
 
 import { FONT_SIZE, ICON_WIDTH, SVG_LOGO_SIZE } from './constants';
 import { LogoItemProps, LogoTextProps } from './types';

@@ -1,8 +1,8 @@
 import { SimpleGrid } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
 
-import { FormText } from '~/components/Form';
-import { Section } from '~/components/Section';
+import { FormText } from '~/common/components/Form';
+import { Section } from '~/common/components/Section';
 
 import { COMPLAINED_HISTORY_FIELDS } from './constants';
 

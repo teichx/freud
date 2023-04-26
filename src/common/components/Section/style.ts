@@ -1,6 +1,6 @@
 import { Box, BoxProps, ComponentWithAs, Text, styled } from '@chakra-ui/react';
 
-import { HavingThemeProps } from '~/themes/CustomTheme';
+import { HavingThemeProps } from '~/common/themes/CustomTheme';
 
 import { SectionLoaderProps } from './types';
 

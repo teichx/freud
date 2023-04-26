@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 
-import { useAppDispatch, useAppSelector } from '~/reducer';
+import { useAppDispatch, useAppSelector } from '~/common/reducer';
 
 import { LoaderSlice } from './LoaderReducer';
 import { LoaderStateProps, useLoaderResultProps } from './types';

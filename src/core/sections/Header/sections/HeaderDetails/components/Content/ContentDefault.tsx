@@ -19,8 +19,8 @@ import {
 } from 'react-icons/fi';
 import { IoLanguage } from 'react-icons/io5';
 
-import { Avatar } from '~/components/Avatar';
-import { Routes } from '~/constants/Routes';
+import { Avatar } from '~/common/components/Avatar';
+import { Routes } from '~/core/constants/Routes';
 import { useAuth } from '~/core/services/Auth';
 
 import { HeaderButton } from '../../../../components/HeaderButton';

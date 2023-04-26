@@ -2,8 +2,8 @@ import { useCallback } from 'react';
 
 import { useRouter } from 'next/router';
 
-import { ApiRoutes, Routes } from '~/constants/Routes';
-import { useAppDispatch, useAppSelector } from '~/reducer';
+import { ApiRoutes, Routes } from '~/core/constants/Routes';
+import { useAppDispatch, useAppSelector } from '~/common/reducer';
 
 import { AuthSlice } from './AuthReducer';
 import { AuthStateProps, useAuthResultProps } from './types';

@@ -7,7 +7,7 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 
-import { Avatar } from '~/components/Avatar';
+import { Avatar } from '~/common/components/Avatar';
 import { useAuth } from '~/core/services/Auth';
 
 import { Content } from './components/Content';

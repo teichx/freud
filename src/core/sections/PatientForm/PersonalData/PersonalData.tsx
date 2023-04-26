@@ -1,8 +1,12 @@
 import { Box, Stack } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
 
-import { FormSelect, FormText, useFormSelectOptions } from '~/components/Form';
-import { Section } from '~/components/Section';
+import {
+  FormSelect,
+  FormText,
+  useFormSelectOptions,
+} from '~/common/components/Form';
+import { Section } from '~/common/components/Section';
 
 export const PersonalData = () => {
   const { getOptions } = useFormSelectOptions();

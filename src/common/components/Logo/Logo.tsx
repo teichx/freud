@@ -2,7 +2,7 @@ import { FC } from 'react';
 
 import { Box } from '@chakra-ui/react';
 
-import { expletusSans } from '~/fonts';
+import { expletusSans } from '~/common/fonts';
 
 import { LOGO_TEXT, VARIANTS_WITH_ICON, VARIANTS_WITH_TEXT } from './constants';
 import { LogoItem } from './LogoIcon';

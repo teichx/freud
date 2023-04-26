@@ -2,7 +2,7 @@ import { FC, PropsWithChildren } from 'react';
 
 import { CircularProgress } from '@chakra-ui/react';
 
-import { useLoader } from '~/services/Loader';
+import { useLoader } from '~/core/services/Loader';
 
 import {
   ChildrenWrapper,

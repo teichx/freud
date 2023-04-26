@@ -2,7 +2,7 @@ import { Button, Flex } from '@chakra-ui/react';
 import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
 
-import { Routes } from '~/constants/Routes';
+import { Routes } from '~/core/constants/Routes';
 import { PatientsTable } from '~/core/sections/PatientsTable';
 import { AppPage } from '~/core/template/AppPage';
 

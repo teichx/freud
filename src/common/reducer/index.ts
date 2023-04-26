@@ -14,7 +14,7 @@ import {
 } from 'redux-state-sync';
 
 import { AuthReducer, AUTH_KEY } from '~/core/services/Auth';
-import { LOADER_KEY, LoaderReducer } from '~/services/Loader';
+import { LOADER_KEY, LoaderReducer } from '~/core/services/Loader';
 
 const rootReducer = combineReducers({
   [AUTH_KEY]: persistReducer({ storage, key: AUTH_KEY }, AuthReducer),
