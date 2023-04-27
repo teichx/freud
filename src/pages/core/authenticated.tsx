@@ -3,11 +3,10 @@ import { useEffect, useRef } from 'react';
 import jwtDecode from 'jwt-decode';
 import { useRouter } from 'next/router';
 
+import { GenerateTokenSuccess } from '~/core/api/auth/types';
 import { ApiRoutes, Routes } from '~/core/constants';
 import { PageLoader } from '~/core/sections/PageLoader';
 import { useAuth } from '~/core/services';
-
-import { GetResultSuccess } from '../api/auth/token';
 
 type ParamsProps = {
   code: string;
@@ -48,7 +47,7 @@ export const Authenticated = () => {
         'Content-Type': 'application/json; charset=utf-8',
       },
     })
-      .then<GetResultSuccess>((result) => result.json())
+      .then<GenerateTokenSuccess>((result) => result.json())
       .then((tokens) => {
         setToken({
           bearer: tokens?.access_token || '',
