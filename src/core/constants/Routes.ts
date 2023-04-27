@@ -24,4 +24,11 @@ export const ApiRoutes = {
     Token: '/api/auth/token',
     RefreshToken: '/api/auth/refresh-token',
   },
+  Patient: {
+    Google: {
+      Get: '/api/google/patient/{0}',
+      List: '/api/google/patient/list?page={0}&limit={1}',
+      Upsert: '/api/google/patient/upsert',
+    },
+  },
 } as const;
