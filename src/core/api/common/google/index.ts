@@ -6,8 +6,17 @@ import {
 
 import { extractToken } from '../token';
 import { ReqProps } from '../types';
+export * from './drive';
 
-export const GOOGLE_AUTHENTICATION_SCOPES = ['profile', 'email'];
+export const GOOGLE_AUTHENTICATION_SCOPES = [
+  'profile',
+  'email',
+  'https://www.googleapis.com/auth/spreadsheets',
+  'https://www.googleapis.com/auth/drive.appdata',
+  'https://www.googleapis.com/auth/drive.appfolder',
+  'https://www.googleapis.com/auth/drive.file',
+  'https://www.googleapis.com/auth/drive.resource',
+];
 
 export const getClient = (options?: OAuth2ClientOptions) =>
   new OAuth2Client({
