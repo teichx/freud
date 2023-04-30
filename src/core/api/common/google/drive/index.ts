@@ -6,6 +6,7 @@ import { EnumMimeType } from '../constants';
 import {
   CreateDriveProps,
   CreateFolderProps,
+  FileExistsProps,
   GoogleDriveResult,
 } from './types';
 
@@ -17,16 +18,24 @@ export const googleDrive = ({ req }: ReqProps): GoogleDriveResult => {
     },
   });
 
+  const fileExists = async ({ name, mimeType }: FileExistsProps) => {
+    const fileExists = await service.files.list({
+      q: `mimeType='${mimeType}' and trashed=false and name='${name}'`,
+      fields: 'files(id)',
+    });
+
+    return fileExists.data.files?.length
+      ? fileExists.data.files[0].id || undefined
+      : undefined;
+  };
+
   const createDrive = async ({
     name,
     parents = [],
     mimeType,
   }: CreateDriveProps) => {
-    const fileExists = await service.files.list({
-      q: `mimeType='${mimeType}' and trashed=false and name='${name}'`,
-      fields: 'files(id)',
-    });
-    if (fileExists.data.files?.length) return fileExists.data.files[0].id || '';
+    const fileId = await fileExists({ name, mimeType });
+    if (fileId) return fileId || '';
 
     const file = await service.files.create({
       requestBody: {
@@ -47,6 +56,7 @@ export const googleDrive = ({ req }: ReqProps): GoogleDriveResult => {
     await createDrive({ name, parents, mimeType: EnumMimeType.Spreadsheet });
 
   return {
+    fileExists,
     createDrive,
     createFolder,
     createSpreadsheet,
