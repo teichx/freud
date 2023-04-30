@@ -3,7 +3,7 @@ import { EnumMimeType } from '../constants';
 export type CreateDriveProps = {
   name: string;
   parents?: string[];
-  mimeType: EnumMimeType;
+  mimeType: keyof typeof EnumMimeType;
 };
 
 export type FileExistsProps = Omit<CreateDriveProps, 'parents'>;

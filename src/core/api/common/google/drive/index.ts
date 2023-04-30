@@ -20,7 +20,7 @@ export const googleDrive = ({ req }: ReqProps): GoogleDriveResult => {
 
   const fileExists = async ({ name, mimeType }: FileExistsProps) => {
     const fileExists = await service.files.list({
-      q: `mimeType='${mimeType}' and trashed=false and name='${name}'`,
+      q: `mimeType='${EnumMimeType[mimeType]}' and trashed=false and name='${name}'`,
       fields: 'files(id)',
     });
 
@@ -39,7 +39,7 @@ export const googleDrive = ({ req }: ReqProps): GoogleDriveResult => {
 
     const file = await service.files.create({
       requestBody: {
-        mimeType: mimeType,
+        mimeType: EnumMimeType[mimeType],
         description: 'FreudSystem',
         parents,
         name,
@@ -50,10 +50,10 @@ export const googleDrive = ({ req }: ReqProps): GoogleDriveResult => {
   };
 
   const createFolder = async ({ name, parents = [] }: CreateFolderProps) =>
-    await createDrive({ name, parents, mimeType: EnumMimeType.Folder });
+    await createDrive({ name, parents, mimeType: 'Folder' });
 
   const createSpreadsheet = async ({ name, parents = [] }: CreateFolderProps) =>
-    await createDrive({ name, parents, mimeType: EnumMimeType.Spreadsheet });
+    await createDrive({ name, parents, mimeType: 'Spreadsheet' });
 
   return {
     fileExists,
