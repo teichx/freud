@@ -8,7 +8,6 @@ export type GetPaginateProps = {
 export type GetPaginateResult = {
   page: number;
   limit: number;
-  greaterEqualsThan: number;
-  lessThan: number;
+  offset: number;
   error?: string;
 };

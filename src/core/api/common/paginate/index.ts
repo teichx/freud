@@ -3,16 +3,14 @@ import { GetPaginateProps, GetPaginateResult } from './types';
 const INVALID_PAGE_RESPONSE = {
   page: 0,
   limit: 0,
-  greaterEqualsThan: 0,
-  lessThan: 0,
+  offset: 0,
   error: 'Invalid page',
 };
 
 const INVALID_LIMIT_RESPONSE = {
   page: 0,
   limit: 0,
-  greaterEqualsThan: 0,
-  lessThan: 0,
+  offset: 0,
   error: 'Invalid limit',
 };
 
@@ -28,13 +26,10 @@ export const getPaginate = ({
 
   const limitAfterMin = Math.min(limit, maxPaginate);
   const pageAfterMax = Math.max(page, 1);
-  const minIndex = (pageAfterMax - 1) * limitAfterMin;
-  const maxIndex = minIndex + limitAfterMin;
 
   return {
     page: pageAfterMax,
     limit: limitAfterMin,
-    greaterEqualsThan: minIndex,
-    lessThan: maxIndex,
+    offset: (pageAfterMax - 1) * limitAfterMin,
   };
 };
