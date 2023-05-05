@@ -2,8 +2,8 @@ import { PatientFields } from '~/core/sections/PatientForm/types';
 
 import { ErrorMessage } from '../../common';
 
-export type ListPatientSuccess = {
-  patients: PatientFields[];
+export type ListPatientSuccess<TPatient = PatientFields> = {
+  patients: TPatient[];
   page: number;
   limit: number;
 };
