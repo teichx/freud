@@ -4,18 +4,22 @@ import { useTranslation } from 'react-i18next';
 import { FiSave, FiPrinter, FiArchive, FiShare2 } from 'react-icons/fi';
 
 import { Section } from '~/common/components/Section';
+import { Routes } from '~/core/constants';
 import { useLoader } from '~/core/services';
 
 export const PatientFormHeader = () => {
   const { isLoading } = useLoader();
   const { t } = useTranslation();
-  const { back } = useRouter();
+  const { push } = useRouter();
 
   return (
     <Section disabledLoading>
       <Flex justifyContent='flex-end'>
         <ButtonGroup spacing='4' variant='solid'>
-          <Button onClick={back} variant='outline'>
+          <Button
+            onClick={() => push(Routes.Core.Patient.List)}
+            variant='outline'
+          >
             {t('words.back')}
           </Button>
 
