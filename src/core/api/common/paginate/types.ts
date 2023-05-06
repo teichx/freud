@@ -1,7 +1,7 @@
-import { NextApiRequest } from 'next/types';
+import { ReqCustomQueryProps, RequestHandler } from '../types';
 
 export type GetPaginateProps = {
-  req: NextApiRequest;
+  req: PaginateRequestSimpleProps;
   maxPaginate?: number;
 };
 
@@ -11,3 +11,19 @@ export type GetPaginateResult = {
   offset: number;
   error?: string;
 };
+
+export type PaginateQueryProps = {
+  page: number | undefined;
+  limit: number | undefined;
+};
+
+export type PaginateRequest<T = Record<string, string | number>> =
+  ReqCustomQueryProps<PaginateQueryProps & T>;
+
+export type PaginateRequestSimpleProps =
+  ReqCustomQueryProps<PaginateQueryProps>;
+
+export type PaginateHandler<
+  TQueryProps = Record<string, string | number>,
+  TResponse = unknown
+> = RequestHandler<PaginateRequest<TQueryProps>, TResponse>;
