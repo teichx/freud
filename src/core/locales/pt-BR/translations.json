@@ -17,7 +17,7 @@
       },
       "details": {
         "default": {
-          "google_drive": "Google drive",
+          "googleDrive": "Google drive",
           "out": "Sair",
           "configuration": "Configurações",
           "appearance": "Aparência: $t(words.{{ appearance }})",
@@ -35,24 +35,24 @@
       }
     },
     "components": {
-      "toggle_theme": {
+      "toggleTheme": {
         "label": "Usar tema $(words.{{ appearance }})"
       }
     },
     "options": {
       "schooling": {
         "illiterate": "Analfabeto",
-        "elementary_school_incomplete": "Ensino fundamental incompleto",
-        "elementary_school_complete": "Ensino fundamental completo",
-        "high_school_incomplete": "Ensino médio incompleto",
-        "high_school_complete": "Ensino médio completo",
-        "higher_education_complete": "Superior completo",
-        "post_graduation": "Pós-graduação",
+        "elementarySchoolIncomplete": "Ensino fundamental incompleto",
+        "elementarySchoolComplete": "Ensino fundamental completo",
+        "highSchoolIncomplete": "Ensino médio incompleto",
+        "highSchoolComplete": "Ensino médio completo",
+        "higherEducationComplete": "Superior completo",
+        "postGraduation": "Pós-graduação",
         "master": "Mestrado",
         "doctorate": "Doutorado",
-        "post_doctorate": "Pós-Doutorado"
+        "postDoctorate": "Pós-Doutorado"
       },
-      "marriage_status": {
+      "marriageStatus": {
         "single": "Solteiro",
         "married": "Casado",
         "separated": "Separado",
@@ -67,15 +67,15 @@
             "name": "Nome",
             "actions": "Ações",
             "identifier": "Identificador",
-            "last_case_report": "Último relato de caso",
-            "case_report_count": "Casos anotados"
+            "lastCaseReport": "Último relato de caso",
+            "caseReportCount": "Casos anotados"
           },
           "cell": {
-            "case_report_count_zero": "Nenhum caso anotado",
-            "case_report_count_one": "{{ count }} caso anotado",
-            "case_report_count": "{{ count }} casos anotados"
+            "caseReportCount_zero": "Nenhum caso anotado",
+            "caseReportCount_one": "{{ count }} caso anotado",
+            "caseReportCount": "{{ count }} casos anotados"
           },
-          "create_label": "Cadastrar paciente"
+          "createLabel": "Cadastrar paciente"
         },
         "create": {
           "personal": {
@@ -86,26 +86,26 @@
             "profession": "Ocupação",
             "cpf": "CPF",
             "rg": "RG",
-            "phone_number": "Contato",
+            "phoneNumber": "Contato",
             "address": "Endereço",
             "schooling": "Escolaridade",
-            "marriage_status": "Estado civil",
+            "marriageStatus": "Estado civil",
             "emergency": "Em caso de emergência"
           },
-          "first_consult": {
+          "firstConsult": {
             "title": "Primeira Consulta",
-            "principal_reason": "Queixa Principal",
-            "appearance_and_behavior": "Aparência e comportamento",
-            "demand_assessment": "Avaliação de Demanda"
+            "principalReason": "Queixa Principal",
+            "appearanceAndBehavior": "Aparência e comportamento",
+            "demandAssessment": "Avaliação de Demanda"
           },
-          "complained_history": {
+          "complainedHistory": {
             "title": "Histórico da Queixa",
-            "problem_initiation": "Início da problemática",
-            "frequency_and_intensity": "Frequência e Intensidade",
-            "previous_treatments": "Tratamentos Anteriores",
+            "problemInitiation": "Início da problemática",
+            "frequencyAndIntensity": "Frequência e Intensidade",
+            "previousTreatments": "Tratamentos Anteriores",
             "medication": "Uso de Fármacos:"
           },
-          "complained_check": {
+          "complainedCheck": {
             "cognitive": {
               "title": "Queixas Cognitivas",
               "sensory": "Integridade Sensorial",
@@ -128,13 +128,13 @@
               "other": "Outro"
             }
           },
-          "free_text": {
+          "freeText": {
             "lifestyle": "Socialização, Lazer e Estilo de vida",
-            "family_history": "Antecedentes Familiares",
-            "family_relationship": "Relação/Dinâmica Familiar",
-            "traumatic_events": "Eventos Traumáticos de Vida",
-            "affective_experiences": "Experiências afetivas marcantes",
-            "important_facts": "Outras Informações Importantes",
+            "familyHistory": "Antecedentes Familiares",
+            "familyRelationship": "Relação/Dinâmica Familiar",
+            "traumaticEvents": "Eventos Traumáticos de Vida",
+            "affectiveExperiences": "Experiências afetivas marcantes",
+            "importantFacts": "Outras Informações Importantes",
             "prognosis": "Hipótese Diagnóstica Inicial / Prognóstico",
             "treatment": "Acompanhamento e Tratamento",
             "others": "Outras Observações"
