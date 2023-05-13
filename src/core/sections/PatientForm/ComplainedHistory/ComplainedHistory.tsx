@@ -8,7 +8,7 @@ import { COMPLAINED_HISTORY_FIELDS } from './constants';
 
 export const ComplainedHistory = () => {
   const { t } = useTranslation(undefined, {
-    keyPrefix: 'pages.patient.create.complained_history',
+    keyPrefix: 'pages.patient.create.complainedHistory',
   });
 
   return (

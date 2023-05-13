@@ -1,17 +1,17 @@
 export const schooling = [
   'illiterate',
-  'elementary_school_incomplete',
-  'elementary_school_complete',
-  'high_school_incomplete',
-  'high_school_complete',
-  'higher_education_complete',
-  'post_graduation',
+  'elementarySchoolIncomplete',
+  'elementarySchoolComplete',
+  'highSchoolIncomplete',
+  'highSchoolComplete',
+  'higherEducationComplete',
+  'postGraduation',
   'master',
   'doctorate',
-  'post_doctorate',
+  'postDoctorate',
 ] as const;
 
-export const marriage_status = [
+export const marriageStatus = [
   'single',
   'married',
   'separated',

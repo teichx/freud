@@ -14,7 +14,7 @@ export const ToggleTheme: FC<
   Omit<IconButtonProps, 'onClick' | 'icon' | 'aria-label'>
 > = (props) => {
   const { t } = useTranslation(undefined, {
-    keyPrefix: 'components.toggle_theme.label',
+    keyPrefix: 'components.toggleTheme.label',
   });
   const { toggleColorMode, colorMode } = useColorMode();
   const IconTheme = useColorModeValue(SunIcon, MoonIcon);

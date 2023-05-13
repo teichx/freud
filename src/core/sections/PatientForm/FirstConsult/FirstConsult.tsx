@@ -10,7 +10,7 @@ const COLUMN_WIDTH = ['100%', '100%', '100%', '32%', '32%', '32%'];
 
 export const FirstConsult = () => {
   const { t } = useTranslation(undefined, {
-    keyPrefix: 'pages.patient.create.first_consult',
+    keyPrefix: 'pages.patient.create.firstConsult',
   });
 
   return (

@@ -65,11 +65,11 @@ export const PatientsTable = () => {
             <Th color='inherit'>{t('header.name')}</Th>
 
             <Th color='inherit' w='210px' textAlign='center'>
-              {t('header.case_report_count')}
+              {t('header.caseReportCount')}
             </Th>
 
             <Th color='inherit' w='210px' textAlign='center'>
-              {t('header.last_case_report')}
+              {t('header.lastCaseReport')}
             </Th>
 
             <Th textAlign='center' w='90px' color='inherit'>
@@ -83,7 +83,7 @@ export const PatientsTable = () => {
               <Td>{x.identifier}</Td>
               <Td>{x.name}</Td>
               <Td textAlign='center'>
-                {t('cell.case_report_count', { count: x.caseReportCount })}
+                {t('cell.caseReportCount', { count: x.caseReportCount })}
               </Td>
               <Td textAlign='center'>{x.lastCaseReport || '-'}</Td>
               <Td textAlign='center'>

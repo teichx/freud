@@ -8,7 +8,7 @@ import { COGNITIVE_FIELDS, COGNITIVE_FIELDS_TYPES } from './constants';
 
 export const ComplainedCheck = () => {
   const { t } = useTranslation(undefined, {
-    keyPrefix: 'pages.patient.create.complained_check',
+    keyPrefix: 'pages.patient.create.complainedCheck',
   });
 
   return (

@@ -8,7 +8,7 @@ import { FREE_TEXT_FIELDS } from './constants';
 
 export const FreeText = () => {
   const { t } = useTranslation(undefined, {
-    keyPrefix: 'pages.patient.create.free_text',
+    keyPrefix: 'pages.patient.create.freeText',
   });
 
   return (

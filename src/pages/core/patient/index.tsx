@@ -20,7 +20,7 @@ export const Patients = () => {
           color='whiteAlpha.900'
           colorScheme='book.royalBlue'
         >
-          {t('create_label')}
+          {t('createLabel')}
         </Button>
       </Flex>
 

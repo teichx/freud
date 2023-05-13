@@ -45,17 +45,17 @@ export const PersonalData = () => {
           options={getOptions('schooling')}
         />
         <FormSelect
-          name='marriage_status'
-          label={t('marriage_status')}
-          options={getOptions('marriage_status')}
+          name='marriageStatus'
+          label={t('marriageStatus')}
+          options={getOptions('marriageStatus')}
         />
       </Stack>
 
       <Stack columnGap='4' direction={['column', 'row']}>
         <FormText name='address' label={t('address')} />
         <FormText
-          name='phone_number'
-          label={t('phone_number')}
+          name='phoneNumber'
+          label={t('phoneNumber')}
           mask={{
             mask: [
               { mask: '(00) 0000-0000', lazy: false },

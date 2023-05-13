@@ -53,7 +53,7 @@ export const ContentDefault: FC<HeaderDetailsContentProps> = ({
             {email}
           </Text>
           <Text fontSize='md'>
-            <i>{t('google_drive')}</i>
+            <i>{t('googleDrive')}</i>
           </Text>
         </Box>
       </PopoverBody>

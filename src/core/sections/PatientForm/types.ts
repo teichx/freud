@@ -1,4 +1,4 @@
-import { marriage_status, schooling } from '~/core/locales/options';
+import { marriageStatus, schooling } from '~/core/locales/options';
 
 import {
   COGNITIVE_FIELDS,
@@ -15,9 +15,9 @@ export type PersonalDataFields = {
   cpf?: string;
   rg?: string;
   schooling?: (typeof schooling)[number];
-  marriage_status?: (typeof marriage_status)[number];
+  marriageStatus?: (typeof marriageStatus)[number];
   address?: string;
-  phone_number?: string;
+  phoneNumber?: string;
   emergency?: string;
 };
 
@@ -44,12 +44,12 @@ export type FreeTextFieldFields = {
 
 export type PatientMetaFields = {
   id: string;
-  archived_at: string;
+  archivedAt: string;
 };
 
 export type PatientCalculatedFields = {
-  case_report_count: number;
-  last_case_report: string | undefined;
+  caseReportCount: number;
+  lastCaseReport: string | undefined;
 };
 
 export type PatientFields = PersonalDataFields &
