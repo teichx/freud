@@ -7,7 +7,14 @@ import {
 } from '../../common';
 import { PaginateQueryProps } from '../../common/paginate/types';
 
-export type ListPatientSuccess<TPatient = PatientFields> = {
+export type ListPatientResume = Pick<
+  PatientFields,
+  'id' | 'name' | 'lastCaseReport' | 'caseReportCount'
+>;
+
+export type ListPatientSuccess<
+  TPatient extends ListPatientResume = ListPatientResume
+> = {
   patients: TPatient[];
   page: number;
   limit: number;
