@@ -15,6 +15,7 @@ export const FormSelect: FC<FormSelectProps> = ({
   helperText,
   isDisabled,
   options = [],
+  unForceHelperText,
   selectOptions = {},
   ...props
 }) => {
@@ -54,7 +55,7 @@ export const FormSelect: FC<FormSelectProps> = ({
       />
 
       <FormHelperTextStyled fontSize={size}>
-        {error || helperText || '‎'}
+        {error || helperText || unForceHelperText ? undefined : '‎'}
       </FormHelperTextStyled>
     </FormControl>
   );

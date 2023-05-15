@@ -12,9 +12,10 @@ export type FormTextTextAreaProps = {
 
 export type FormTextProps = {
   name: string;
-  label?: string | null;
   helperText?: string;
+  label?: string | null;
   inputProps?: InputProps;
+  unForceHelperText?: true;
   mask?: IMask.AnyMaskedOptions;
 } & Pick<
   FormControlProps,

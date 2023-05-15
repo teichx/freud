@@ -14,6 +14,7 @@ export const FormText: FC<FormTextProps> = ({
   helperText,
   isTextArea,
   inputProps = {},
+  unForceHelperText,
   mask = { mask: '' },
   ...props
 }: FormTextProps) => {
@@ -63,7 +64,7 @@ export const FormText: FC<FormTextProps> = ({
       />
 
       <FormHelperTextStyled fontSize={size}>
-        {error || helperText || '‎'}
+        {error || helperText || unForceHelperText ? undefined : '‎'}
       </FormHelperTextStyled>
     </FormControl>
   );

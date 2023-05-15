@@ -11,8 +11,9 @@ export type FormSelectOptionProps = {
 
 export type FormSelectProps = Omit<FormControlProps, 'label'> & {
   name: string;
-  label?: string | null;
   helperText?: string;
+  label?: string | null;
+  unForceHelperText?: true;
   options: FormSelectOptionProps[];
   selectOptions?: ComponentProps<typeof Select<FormSelectOptionProps>>;
 };
