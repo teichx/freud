@@ -18,6 +18,7 @@ export type ListPatientSuccess<
   patients: TPatient[];
   page: number;
   limit: number;
+  totalItems: number;
 };
 
 export type ListPatientResponse = ListPatientSuccess | ErrorMessage;

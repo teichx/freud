@@ -8,6 +8,7 @@ import {
   UpsertPatientHandler,
   GetPatientHandler,
   ListPatientHandler,
+  ListPatientResume,
 } from '../types';
 
 export const upsert: UpsertPatientHandler = async (req, res) => {
@@ -40,16 +41,16 @@ export const get: GetPatientHandler = async (req, res) => {
 export const list: ListPatientHandler = async (req, res) => {
   const { page, limit, error } = getPaginate({
     req,
-    maxPaginate: 30,
   });
   if (error) return sendError({ res, error });
 
   // TODO: List patients
-  const patients: PatientFields[] = [];
+  const patients: ListPatientResume[] = [];
 
   return res.status(EnumHttpStatus.Success).send({
     page,
     limit,
     patients,
+    totalItems: patients.length,
   });
 };
