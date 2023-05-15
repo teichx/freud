@@ -4,6 +4,12 @@
       "options": "pt-BR,en-US",
       "pt-BR": "Português",
       "en-US": "English (US)"
+    },
+    "dataTable": {
+      "noData": "Sem dados por aqui",
+      "loading": "Carregando linhas",
+      "pagination": "Página {{ page }} de {{ pageCount }}",
+      "rowsPerPage": "Linhas por página:"
     }
   }
 }
