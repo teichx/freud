@@ -24,7 +24,7 @@ export const getPaginate = ({
   const limit = Number(req.query.limit || '10');
   if (!Number.isInteger(limit)) return INVALID_LIMIT_RESPONSE;
 
-  const limitAfterMin = Math.min(limit, maxPaginate);
+  const limitAfterMin = maxPaginate ? Math.min(limit, maxPaginate) : limit;
   const pageAfterMax = Math.max(page, 1);
 
   return {
