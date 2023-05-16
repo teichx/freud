@@ -13,6 +13,7 @@ import {
   Flex,
   Icon,
   HStack,
+  SkeletonText,
 } from '@chakra-ui/react';
 import { Form } from '@unform/web';
 import { useTranslation } from 'react-i18next';
@@ -82,33 +83,38 @@ export function DataTable<
           )}
 
           {isLoading && (
-            <Tr>
-              <Td textAlign='center' colSpan={columns.length}>
-                {t('common:dataTable.loading')}
-              </Td>
-            </Tr>
+            <>
+              {new Array(limit).fill(undefined).map((_, index) => (
+                <Tr key={index}>
+                  <Td textAlign='center' colSpan={columns.length}>
+                    <SkeletonText noOfLines={1} skeletonHeight='8' />
+                  </Td>
+                </Tr>
+              ))}
+            </>
           )}
 
-          {data.map((x) => (
-            <Tr key={x.id}>
-              {columns.map((column) => {
-                const { accessor, render, label, ...columnProps } = column;
-                const element = accessor ? x[accessor] : null;
-                const elementDefined =
-                  typeof element === 'undefined' ? '' : element;
+          {!isLoading &&
+            data.map((x) => (
+              <Tr key={x.id}>
+                {columns.map((column) => {
+                  const { accessor, render, label, ...columnProps } = column;
+                  const element = accessor ? x[accessor] : null;
+                  const elementDefined =
+                    typeof element === 'undefined' ? '' : element;
 
-                const value = render
-                  ? render({ data: x, column })
-                  : `${elementDefined}`;
+                  const value = render
+                    ? render({ data: x, column })
+                    : `${elementDefined}`;
 
-                return (
-                  <Td {...columnProps} key={label}>
-                    {value}
-                  </Td>
-                );
-              })}
-            </Tr>
-          ))}
+                  return (
+                    <Td {...columnProps} key={label}>
+                      {value}
+                    </Td>
+                  );
+                })}
+              </Tr>
+            ))}
         </Tbody>
 
         <Tfoot w='100%'>
