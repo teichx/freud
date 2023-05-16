@@ -2,7 +2,7 @@ import { useCallback, useEffect } from 'react';
 
 import Router from 'next/router';
 
-import { INITIAL_QUERY_PAGINATION } from './constants';
+import { INITIAL_QUERY_PAGINATION, REPLACE_OPTIONS } from './constants';
 import { getPage, getUrlParams } from './functions';
 import { UseQueryPaginationProps, UseQueryPaginationResult } from './types';
 
@@ -25,7 +25,12 @@ export const useQueryPagination = ({
     urlParams.set('page', initialPage.toString());
     urlParams.set('limit', initialLimit.toString());
 
-    Router.replace(`${Router.pathname}?${urlParams}`);
+    const newRoute = {
+      pathname: Router.pathname,
+      search: urlParams.toString(),
+    };
+
+    Router.replace(newRoute, undefined, REPLACE_OPTIONS);
   }, [initialPage, initialLimit]);
 
   const toPage = useCallback<UseQueryPaginationResult['toPage']>(
@@ -33,7 +38,12 @@ export const useQueryPagination = ({
       const urlParams = getUrlParams(Router);
       urlParams.set('page', nextPageValue.toString());
 
-      Router.replace(`${Router.pathname}?${urlParams}`);
+      const newRoute = {
+        pathname: Router.pathname,
+        search: urlParams.toString(),
+      };
+
+      Router.replace(newRoute, undefined, REPLACE_OPTIONS);
     },
     []
   );
@@ -44,7 +54,12 @@ export const useQueryPagination = ({
     const nextPageValue = currentPageValue + 1;
     urlParams.set('page', nextPageValue.toString());
 
-    Router.replace(`${Router.pathname}?${urlParams}`);
+    const newRoute = {
+      pathname: Router.pathname,
+      search: urlParams.toString(),
+    };
+
+    Router.replace(newRoute, undefined, REPLACE_OPTIONS);
   }, []);
 
   const previousPage = useCallback<
@@ -55,7 +70,12 @@ export const useQueryPagination = ({
     const previousPageValue = currentPageValue - 1;
     urlParams.set('page', previousPageValue.toString());
 
-    Router.replace(`${Router.pathname}?${urlParams}`);
+    const newRoute = {
+      pathname: Router.pathname,
+      search: urlParams.toString(),
+    };
+
+    Router.replace(newRoute, undefined, REPLACE_OPTIONS);
   }, []);
 
   const setLimit = useCallback<UseQueryPaginationResult['setLimit']>(
@@ -65,14 +85,19 @@ export const useQueryPagination = ({
       urlParams.set('page', `${1}`);
       urlParams.set('limit', nextLimit.toString());
 
-      Router.replace(`${Router.pathname}?${urlParams}`);
+      const newRoute = {
+        pathname: Router.pathname,
+        search: urlParams.toString(),
+      };
+
+      Router.replace(newRoute, undefined, REPLACE_OPTIONS);
     },
     []
   );
 
   return {
     page,
-    limit: limit,
+    limit,
     toPage,
     nextPage,
     previousPage,
