@@ -1,104 +1,110 @@
+import { useEffect, useState } from 'react';
+
 import { EditIcon } from '@chakra-ui/icons';
-import {
-  Table,
-  Thead,
-  Tbody,
-  Tr,
-  Th,
-  Td,
-  TableContainer,
-  IconButton,
-  useColorMode,
-} from '@chakra-ui/react';
+import { IconButton } from '@chakra-ui/react';
 import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
-import { ulid } from 'ulid';
 
-import { Routes } from '~/core/constants';
+import { DataTable, DataTableColumnProps } from '~/common/components/DataTable';
+import { useQueryPagination } from '~/common/hooks';
+import {
+  ListPatientResume,
+  ListPatientSuccess,
+} from '~/core/api/patient/types';
+import { ApiRoutes, Routes } from '~/core/constants';
 import { useFormat } from '~/core/hooks';
+import { useAuth } from '~/core/services';
 
-import { PatientsProps } from './types';
+import { PatientTableStateProps } from './types';
 
-const patients: PatientsProps[] = [
-  {
-    name: 'Victor Barbosa Gomes',
-    identifier: ulid(),
-    lastCaseReport: undefined,
-    caseReportCount: 0,
-  },
-  {
-    name: 'Laura Martins Alves',
-    identifier: ulid(),
-    lastCaseReport: '2020-01-1',
-    caseReportCount: 1,
-  },
-  {
-    name: 'Giovanna Ferreira Silva',
-    identifier: ulid(),
-    lastCaseReport: '2020-01-1',
-    caseReportCount: 4,
-  },
-];
+const INITIAL_STATE: PatientTableStateProps = {
+  isLoading: false,
+  data: [],
+  totalItems: 0,
+};
 
 export const PatientsTable = () => {
-  const { colorMode } = useColorMode();
   const { formatRoute } = useFormat();
   const { t } = useTranslation(undefined, {
     keyPrefix: 'pages.patient.list',
   });
+  const [{ isLoading, totalItems, data }, setState] = useState(INITIAL_STATE);
+  const { page, limit: pageSize } = useQueryPagination();
+  const { authenticateFetch } = useAuth();
+
+  useEffect(() => {
+    const url = new URLSearchParams();
+    url.set('page', page.toString());
+    url.set('pageSize', pageSize.toString());
+
+    setState((x) => ({ ...x, isLoading: true }));
+    authenticateFetch(
+      formatRoute(
+        ApiRoutes.Patient.Google.List,
+        page.toString(),
+        pageSize.toString()
+      )
+    )
+      .then<ListPatientSuccess>((x) => x.json())
+      .then((result) => {
+        setState((x) => ({
+          ...x,
+          data: result.patients,
+          isLoading: false,
+          totalItems: result.totalItems,
+        }));
+      })
+      .catch(() => setState(INITIAL_STATE));
+  }, [page, pageSize, authenticateFetch, formatRoute]);
+
+  const COLUMNS: DataTableColumnProps<ListPatientResume>[] = [
+    {
+      w: '306px',
+      accessor: 'id',
+      label: t('header.id'),
+    },
+    {
+      accessor: 'name',
+      label: t('header.name'),
+    },
+    {
+      w: '210px',
+      textAlign: 'center',
+      accessor: 'caseReportCount',
+      label: t('header.caseReportCount'),
+      render: ({ data: { caseReportCount } }) =>
+        t('cell.caseReportCount', { count: caseReportCount }),
+    },
+    {
+      w: '210px',
+      textAlign: 'center',
+      accessor: 'lastCaseReport',
+      label: t('header.lastCaseReport'),
+      render: ({ data: { lastCaseReport } }) => lastCaseReport || '-',
+    },
+    {
+      w: '90px',
+      textAlign: 'center',
+      accessor: null,
+      label: t('header.actions'),
+      render: ({ data }) => (
+        <IconButton
+          size='sm'
+          as={Link}
+          icon={<EditIcon />}
+          aria-label='edit'
+          href={formatRoute(Routes.Core.Patient.Edit, data.id)}
+        />
+      ),
+    },
+  ];
 
   return (
-    <TableContainer
-      p='4'
-      borderWidth={1}
-      borderRadius='md'
-      borderStyle='solid'
-      borderColor={colorMode === 'light' ? 'blackAlpha.300' : 'whiteAlpha.300'}
-    >
-      <Table variant='simple' colorScheme='book.desertSun'>
-        <Thead>
-          <Tr bgColor='book.navyBlue.100' color='whiteAlpha.900'>
-            <Th w='306px' color='inherit'>
-              {t('header.identifier')}
-            </Th>
-
-            <Th color='inherit'>{t('header.name')}</Th>
-
-            <Th color='inherit' w='210px' textAlign='center'>
-              {t('header.caseReportCount')}
-            </Th>
-
-            <Th color='inherit' w='210px' textAlign='center'>
-              {t('header.lastCaseReport')}
-            </Th>
-
-            <Th textAlign='center' w='90px' color='inherit'>
-              {t('header.actions')}
-            </Th>
-          </Tr>
-        </Thead>
-        <Tbody>
-          {patients.map((x) => (
-            <Tr key={x.identifier}>
-              <Td>{x.identifier}</Td>
-              <Td>{x.name}</Td>
-              <Td textAlign='center'>
-                {t('cell.caseReportCount', { count: x.caseReportCount })}
-              </Td>
-              <Td textAlign='center'>{x.lastCaseReport || '-'}</Td>
-              <Td textAlign='center'>
-                <IconButton
-                  size='sm'
-                  as={Link}
-                  icon={<EditIcon />}
-                  aria-label='edit'
-                  href={formatRoute(Routes.Core.Patient.Edit, x.identifier)}
-                />
-              </Td>
-            </Tr>
-          ))}
-        </Tbody>
-      </Table>
-    </TableContainer>
+    <DataTable
+      data={data}
+      columns={COLUMNS}
+      isLoading={isLoading}
+      totalItems={totalItems}
+    />
   );
 };
