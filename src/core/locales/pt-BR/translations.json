@@ -9,7 +9,12 @@
       "cancel": "Cancelar",
       "archive": "Arquivar",
       "print": "Imprimir",
-      "share": "Compartilhar"
+      "share": "Compartilhar",
+      "register": "Cadastrar",
+      "update": "Atualizar",
+      "actions": "Ações",
+      "see": "Ver",
+      "new": "Novo"
     },
     "header": {
       "label": {
@@ -66,7 +71,7 @@
         "list": {
           "header": {
             "name": "Nome",
-            "actions": "Ações",
+            "actions": "$t(words.actions)",
             "id": "Id",
             "lastCaseReport": "Último relato de caso",
             "caseReportCount": "Casos anotados"
@@ -76,7 +81,13 @@
             "caseReportCount_one": "{{ count }} caso anotado",
             "caseReportCount": "{{ count }} casos anotados"
           },
-          "createLabel": "Cadastrar paciente"
+          "createLabel": "$t(words.register) paciente",
+          "actions": {
+            "button": "$t(words.actions)",
+            "updatePatient": "$t(words.update) dados",
+            "createCaseReport": "$t(words.new) relato de caso",
+            "seeCaseReport": "$t(words.see) relatos de caso"
+          }
         },
         "create": {
           "personal": {
@@ -140,6 +151,19 @@
             "treatment": "Acompanhamento e Tratamento",
             "others": "Outras Observações"
           }
+        },
+        "caseReport": {
+          "create": {
+            "button": "$t(words.register) relato de caso",
+            "title": "$t(words.register) relato de caso"
+          },
+          "update": {
+            "button": "$t(words.update) relato de caso",
+            "title": "$t(words.update) relato de caso"
+          },
+          "reportingDate": "Data do atendimento",
+          "patientName": "Nome do paciente",
+          "content": "Relato de caso"
         }
       }
     }
