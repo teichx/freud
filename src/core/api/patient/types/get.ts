@@ -7,7 +7,7 @@ import {
 } from '../../common';
 
 export type GetPatientSuccess = {
-  patient: PatientFields | undefined | null;
+  patient: PatientFields | undefined;
 };
 
 export type GetPatientResponse = GetPatientSuccess | ErrorMessage;
