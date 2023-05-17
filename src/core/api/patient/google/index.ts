@@ -1,7 +1,5 @@
 import { ulid } from 'ulid';
 
-import { PatientFields } from '~/core/sections/PatientForm/types';
-
 import { getPaginate, sendError } from '../../common';
 import { EnumHttpStatus } from '../../constants';
 import {
