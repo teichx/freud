@@ -7,11 +7,12 @@ import { LinkButtonProps } from '../types';
 
 export const LinkButton: FC<LinkButtonProps> = ({
   text,
+  children,
   href,
   linkProps,
   ...props
 }) => (
   <Link {...(linkProps || {})} href={href}>
-    <Button {...props}>{text}</Button>
+    <Button {...props}>{text || children}</Button>
   </Link>
 );

@@ -6,7 +6,11 @@ import { FiSave } from 'react-icons/fi';
 
 import { VariantButtonProps } from '../types';
 
-export const SaveButton: FC<VariantButtonProps> = ({ text, ...props }) => {
+export const SaveButton: FC<VariantButtonProps> = ({
+  text,
+  children,
+  ...props
+}) => {
   const { t } = useTranslation();
 
   return (
@@ -17,7 +21,7 @@ export const SaveButton: FC<VariantButtonProps> = ({ text, ...props }) => {
       colorScheme='book.desertSun'
       {...props}
     >
-      {text || t('words.save')}
+      {text || children || t('words.save')}
     </Button>
   );
 };

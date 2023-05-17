@@ -5,12 +5,16 @@ import { useTranslation } from 'react-i18next';
 
 import { VariantButtonProps } from '../types';
 
-export const CancelButton: FC<VariantButtonProps> = ({ text, ...props }) => {
+export const CancelButton: FC<VariantButtonProps> = ({
+  text,
+  children,
+  ...props
+}) => {
   const { t } = useTranslation();
 
   return (
     <Button variant='outline' {...props}>
-      {text || t('words.cancel')}
+      {text || children || t('words.cancel')}
     </Button>
   );
 };
