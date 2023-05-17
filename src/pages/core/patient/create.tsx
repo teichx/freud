@@ -1,4 +1,4 @@
-import { PatientForm } from '~/core/sections/PatientForm';
+import { PatientForm } from '~/core/modules/Patient/PatientForm';
 import { AppPage } from '~/core/template/AppPage';
 
 export const CreatePatient = () => (

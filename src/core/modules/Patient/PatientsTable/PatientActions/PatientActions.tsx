@@ -17,7 +17,7 @@ import { useTranslation } from 'react-i18next';
 import { Routes } from '~/core/constants';
 import { useFormat } from '~/core/hooks';
 
-import { PatientCaseReport } from '../../PatientCaseReport';
+import { PatientCaseReport } from '../../CaseReport/PatientCaseReport';
 import { PatientActionsProps } from './types';
 
 export const PatientActions: FC<PatientActionsProps> = ({

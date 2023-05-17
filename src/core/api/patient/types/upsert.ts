@@ -1,7 +1,7 @@
 import {
   PatientFields,
   PatientFieldsWithoutId,
-} from '~/core/sections/PatientForm/types';
+} from '~/core/modules/Patient/PatientForm/types';
 
 import {
   ErrorMessage,
