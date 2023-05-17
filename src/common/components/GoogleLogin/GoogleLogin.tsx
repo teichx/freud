@@ -1,12 +1,12 @@
 import { FC } from 'react';
 
-import { Box, Button, Icon } from '@chakra-ui/react';
-import Link from 'next/link';
+import { Box, Icon } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
 import { RxAvatar } from 'react-icons/rx';
 
 import { Routes } from '~/core/constants';
 
+import { LinkButton } from '../Buttons';
 import {
   ButtonRadiusMappingProps,
   ButtonSizeMappingProps,
@@ -33,15 +33,13 @@ export const GoogleLogin: FC<GoogleLoginProps> = ({
 
   return (
     <Box>
-      <Button
-        as={Link}
+      <LinkButton
+        text={t('login')}
         href={Routes.Core.Login}
         size={SIZE_MAPPING[size]}
         borderRadius={RADIUS_MAPPING[radius]}
         leftIcon={<Icon as={RxAvatar} />}
-      >
-        {t('login')}
-      </Button>
+      />
     </Box>
   );
 };
