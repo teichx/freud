@@ -31,9 +31,10 @@ export function DataTable<
   data,
   columns,
   isLoading,
-  translateHeader,
-  limitOptions: limitOptionsParam = [10, 25, 50, 100],
   totalItems = 0,
+  translateHeader,
+  skeletonHeight = 8,
+  limitOptions: limitOptionsParam = [10, 25, 50, 100],
 }: DataTableProps<TData>) {
   const borderColor = useColorModeValue('blackAlpha.300', 'whiteAlpha.300');
   const { t } = useTranslation();
@@ -87,7 +88,10 @@ export function DataTable<
               {new Array(limit).fill(undefined).map((_, index) => (
                 <Tr key={index}>
                   <Td textAlign='center' colSpan={columns.length}>
-                    <SkeletonText noOfLines={1} skeletonHeight='8' />
+                    <SkeletonText
+                      noOfLines={1}
+                      skeletonHeight={skeletonHeight}
+                    />
                   </Td>
                 </Tr>
               ))}
