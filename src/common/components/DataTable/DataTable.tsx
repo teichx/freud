@@ -17,7 +17,12 @@ import {
 } from '@chakra-ui/react';
 import { Form } from '@unform/web';
 import { useTranslation } from 'react-i18next';
-import { MdNavigateBefore, MdNavigateNext } from 'react-icons/md';
+import {
+  MdFirstPage,
+  MdLastPage,
+  MdNavigateBefore,
+  MdNavigateNext,
+} from 'react-icons/md';
 
 import { useQueryPagination } from '~/common/hooks';
 
@@ -38,7 +43,7 @@ export function DataTable<
 }: DataTableProps<TData>) {
   const borderColor = useColorModeValue('blackAlpha.300', 'whiteAlpha.300');
   const { t } = useTranslation();
-  const { page, limit, nextPage, previousPage, setLimit } =
+  const { page, limit, nextPage, previousPage, setLimit, toPage } =
     useQueryPagination();
 
   const noData = !data.length;
@@ -146,7 +151,15 @@ export function DataTable<
                   </Form>
                 </HStack>
 
-                <HStack w='50%' justifyContent='flex-start' columnGap={2}>
+                <HStack w='50%' justifyContent='flex-start' columnGap={1}>
+                  <IconButton
+                    onClick={() => toPage(1)}
+                    aria-label='First page'
+                    isDisabled={!canPrevious}
+                  >
+                    <Icon as={MdFirstPage} />
+                  </IconButton>
+
                   <IconButton
                     onClick={previousPage}
                     aria-label='Before page'
@@ -165,6 +178,14 @@ export function DataTable<
                     aria-label='Next page'
                   >
                     <Icon as={MdNavigateNext} />
+                  </IconButton>
+
+                  <IconButton
+                    onClick={() => toPage(pageCount)}
+                    aria-label='Last page'
+                    isDisabled={!canNext}
+                  >
+                    <Icon as={MdLastPage} />
                   </IconButton>
                 </HStack>
               </Flex>
