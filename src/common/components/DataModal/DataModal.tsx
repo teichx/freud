@@ -3,6 +3,7 @@ import { PropsWithChildren } from 'react';
 import {
   Box,
   Divider,
+  HStack,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -30,7 +31,9 @@ export function DataModal<TWrapperProps extends PropsWithChildren>({
 
   return (
     <Box>
-      <Box onClick={onOpen}>{buttonTrigger}</Box>
+      <HStack justifyContent='flex-start'>
+        <Box onClick={onOpen}>{buttonTrigger}</Box>
+      </HStack>
 
       <Modal {...modalProps} size='4xl' isOpen={isOpen} onClose={onClose}>
         <ModalOverlay backdropFilter='blur(6px)' />
