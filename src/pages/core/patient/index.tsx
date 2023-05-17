@@ -2,6 +2,7 @@ import { Flex } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
 
 import { LinkButton } from '~/common/components/Buttons';
+import { Section } from '~/common/components/Section';
 import { Routes } from '~/core/constants';
 import { PatientsTable } from '~/core/sections/PatientsTable';
 import { AppPage } from '~/core/template/AppPage';
@@ -13,14 +14,16 @@ export const Patients = () => {
 
   return (
     <AppPage>
-      <Flex pt='2' pb='4' justifyContent='end'>
-        <LinkButton
-          text={t('createLabel')}
-          href={Routes.Core.Patient.Create}
-          color='whiteAlpha.900'
-          colorScheme='book.royalBlue'
-        />
-      </Flex>
+      <Section>
+        <Flex justifyContent='flex-end'>
+          <LinkButton
+            text={t('createLabel')}
+            href={Routes.Core.Patient.Create}
+            color='whiteAlpha.900'
+            colorScheme='book.desertSun'
+          />
+        </Flex>
+      </Section>
 
       <PatientsTable />
     </AppPage>
