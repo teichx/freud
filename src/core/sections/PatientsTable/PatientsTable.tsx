@@ -1,8 +1,5 @@
 import { useEffect, useState } from 'react';
 
-import { EditIcon } from '@chakra-ui/icons';
-import { IconButton } from '@chakra-ui/react';
-import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
 
 import { DataTable, DataTableColumnProps } from '~/common/components/DataTable';
@@ -11,10 +8,11 @@ import {
   ListPatientResume,
   ListPatientSuccess,
 } from '~/core/api/patient/types';
-import { ApiRoutes, Routes } from '~/core/constants';
+import { ApiRoutes } from '~/core/constants';
 import { useFormat } from '~/core/hooks';
 import { useAuth } from '~/core/services';
 
+import { PatientActions } from './PatientActions';
 import { PatientTableStateProps } from './types';
 
 const INITIAL_STATE: PatientTableStateProps = {
@@ -88,13 +86,7 @@ export const PatientsTable = () => {
       accessor: null,
       label: t('header.actions'),
       render: ({ data }) => (
-        <IconButton
-          size='sm'
-          as={Link}
-          icon={<EditIcon />}
-          aria-label='edit'
-          href={formatRoute(Routes.Core.Patient.Edit, data.id)}
-        />
+        <PatientActions patientId={data.id} patientName={data.name} />
       ),
     },
   ];
@@ -105,6 +97,7 @@ export const PatientsTable = () => {
       columns={COLUMNS}
       isLoading={isLoading}
       totalItems={totalItems}
+      skeletonHeight='38px'
     />
   );
 };
