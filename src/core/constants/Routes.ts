@@ -13,6 +13,9 @@ export const Routes = {
       List: '/core/patient',
       Create: '/core/patient/create',
       Edit: '/core/patient/{0}',
+      CaseReport: {
+        List: '/core/patient/{0}/case-report',
+      },
     },
   },
 } as const;
