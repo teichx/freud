@@ -8,18 +8,23 @@ import { UseQueryPaginationProps, UseQueryPaginationResult } from './types';
 
 export const useQueryPagination = ({
   initialPage = INITIAL_QUERY_PAGINATION.page,
-  initialLimit: initialLimit = INITIAL_QUERY_PAGINATION.limit,
+  initialLimit = INITIAL_QUERY_PAGINATION.limit,
 }: UseQueryPaginationProps = {}): UseQueryPaginationResult => {
-  const { query } = Router;
+  const {
+    query: { page: queryPage, limit: queryLimit },
+  } = Router;
 
-  const page = Number.isInteger(Number(query.page))
-    ? Number(query.page)
+  const page = Number.isInteger(Number(queryPage))
+    ? Number(queryPage)
     : initialPage;
-  const limit = Number.isInteger(Number(query.limit))
-    ? Number(query.limit)
+  const limit = Number.isInteger(Number(queryLimit))
+    ? Number(queryLimit)
     : initialLimit;
 
   useEffect(() => {
+    if (typeof queryPage !== 'undefined') return;
+    if (typeof queryLimit !== 'undefined') return;
+
     const urlParams = getUrlParams(Router);
     if (urlParams.has('page') || urlParams.has('limit')) return;
     urlParams.set('page', initialPage.toString());
@@ -31,7 +36,7 @@ export const useQueryPagination = ({
     };
 
     Router.replace(newRoute, undefined, REPLACE_OPTIONS);
-  }, [initialPage, initialLimit]);
+  }, [queryPage, queryLimit, initialPage, initialLimit]);
 
   const toPage = useCallback<UseQueryPaginationResult['toPage']>(
     (nextPageValue) => {
