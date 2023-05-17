@@ -27,6 +27,7 @@ import {
 import { useQueryPagination } from '~/common/hooks';
 
 import { FormSelect } from '../Form';
+import { TooltipComponent } from '../TooltipComponent';
 import { limitOptionsToSelect } from './functions';
 import { DataTableProps, TDataId } from './types';
 
@@ -152,41 +153,53 @@ export function DataTable<
                 </HStack>
 
                 <HStack w='50%' justifyContent='flex-start' columnGap={1}>
-                  <IconButton
-                    onClick={() => toPage(1)}
-                    aria-label='First page'
-                    isDisabled={!canPrevious}
+                  <TooltipComponent
+                    label={t('common:dataTable.pageHint.first')}
                   >
-                    <Icon as={MdFirstPage} />
-                  </IconButton>
+                    <IconButton
+                      onClick={() => toPage(1)}
+                      aria-label='First page'
+                      isDisabled={!canPrevious}
+                    >
+                      <Icon as={MdFirstPage} />
+                    </IconButton>
+                  </TooltipComponent>
 
-                  <IconButton
-                    onClick={previousPage}
-                    aria-label='Before page'
-                    isDisabled={!canPrevious}
+                  <TooltipComponent
+                    label={t('common:dataTable.pageHint.before')}
                   >
-                    <Icon as={MdNavigateBefore} />
-                  </IconButton>
+                    <IconButton
+                      onClick={previousPage}
+                      aria-label='Before page'
+                      isDisabled={!canPrevious}
+                    >
+                      <Icon as={MdNavigateBefore} />
+                    </IconButton>
+                  </TooltipComponent>
 
                   <Text>
                     {t('common:dataTable.pagination', { page, pageCount })}
                   </Text>
 
-                  <IconButton
-                    onClick={nextPage}
-                    isDisabled={!canNext}
-                    aria-label='Next page'
-                  >
-                    <Icon as={MdNavigateNext} />
-                  </IconButton>
+                  <TooltipComponent label={t('common:dataTable.pageHint.next')}>
+                    <IconButton
+                      onClick={nextPage}
+                      isDisabled={!canNext}
+                      aria-label='Next page'
+                    >
+                      <Icon as={MdNavigateNext} />
+                    </IconButton>
+                  </TooltipComponent>
 
-                  <IconButton
-                    onClick={() => toPage(pageCount)}
-                    aria-label='Last page'
-                    isDisabled={!canNext}
-                  >
-                    <Icon as={MdLastPage} />
-                  </IconButton>
+                  <TooltipComponent label={t('common:dataTable.pageHint.last')}>
+                    <IconButton
+                      onClick={() => toPage(pageCount)}
+                      aria-label='Last page'
+                      isDisabled={!canNext}
+                    >
+                      <Icon as={MdLastPage} />
+                    </IconButton>
+                  </TooltipComponent>
                 </HStack>
               </Flex>
             </Td>
