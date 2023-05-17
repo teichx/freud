@@ -8,5 +8,6 @@ export type VariantButtonProps = Omit<ButtonProps, 'children'> & {
 };
 
 export type LinkButtonProps = VariantButtonProps &
-  Omit<LinkProps, 'children'> &
-  Required<Pick<VariantButtonProps, 'text'>>;
+  Pick<LinkProps, 'href'> & {
+    linkProps?: Omit<LinkProps, 'children' | 'href'>;
+  } & Required<Pick<VariantButtonProps, 'text'>>;
