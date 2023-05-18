@@ -2,7 +2,7 @@ import { FC, useEffect, useRef } from 'react';
 
 import { FormControl, FormLabel } from '@chakra-ui/react';
 import { useField } from '@unform/core';
-import { Select } from 'chakra-react-select';
+import { Select, SelectInstance } from 'chakra-react-select';
 
 import { getSelectOptions } from './constants';
 import { FormHelperTextStyled } from './styles';
@@ -17,6 +17,7 @@ export const FormSelect: FC<FormSelectProps> = ({
   options = [],
   unForceHelperText,
   selectOptions = {},
+  defaultValue: defaultValueParam,
   ...props
 }) => {
   const inputRef = useRef(null);
@@ -24,16 +25,28 @@ export const FormSelect: FC<FormSelectProps> = ({
 
   const initialValue = inputRef.current
     ? undefined
-    : getSelectOptions({ value: defaultValue, options });
+    : getSelectOptions({ value: defaultValueParam || defaultValue, options });
 
   useEffect(() => {
-    registerField<FormSelectOptionProps[]>({
+    registerField<FormSelectOptionProps['value'][]>({
       name: fieldName,
       ref: inputRef.current,
-      getValue: (currentRef) =>
-        currentRef.getValue().map((x: FormSelectOptionProps) => x.value),
-      clearValue: (currentRef) => currentRef.clearValue(),
-      setValue: (currentRef, value) => currentRef.setValue(value),
+      getValue: (currentRef: SelectInstance<FormSelectOptionProps>) =>
+        currentRef.getValue().map((x) => x.value),
+      clearValue: (currentRef: SelectInstance) => currentRef.clearValue(),
+      setValue: (
+        currentRef: SelectInstance<FormSelectOptionProps, true>,
+        value
+      ) => {
+        const currentOptions = currentRef.getCommonProps()
+          .options as FormSelectOptionProps[];
+
+        const selected = getSelectOptions({
+          value,
+          options: currentOptions,
+        });
+        currentRef.setValue(selected, 'select-option');
+      },
     });
   }, [fieldName, registerField]);
 
