@@ -35,8 +35,12 @@ export const FormText: FC<FormTextProps> = ({
         unmaskedRef.current === undefined
           ? currentRef.value
           : unmaskedRef.current,
-      setValue: (currentRef, value) => currentRef.setInputValue(value),
-      clearValue: (currentRef) => currentRef.setInputValue(''),
+      setValue: (currentRef, value) => {
+        currentRef.value = value || '';
+      },
+      clearValue: (currentRef) => {
+        currentRef.value = '';
+      },
     });
   }, [ref, fieldName, registerField]);
 
