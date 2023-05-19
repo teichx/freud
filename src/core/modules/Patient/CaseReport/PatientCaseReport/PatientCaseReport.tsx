@@ -1,12 +1,12 @@
 import { FC, PropsWithChildren } from 'react';
 
 import { Box, HStack } from '@chakra-ui/react';
-import { Form } from '@unform/web';
 import { useTranslation } from 'react-i18next';
 
 import { SaveButton } from '~/common/components/Buttons';
 import { DataModal } from '~/common/components/DataModal';
-import { FormHidden, FormText } from '~/common/components/Form';
+import { FormComponent, FormHidden, FormText } from '~/common/components/Form';
+import { FormComponentProps } from '~/common/components/Form/FormComponent/types';
 
 import { CaseReportFormProps, PatientCaseReportProps } from './types';
 
@@ -22,14 +22,16 @@ export const PatientCaseReport: FC<
   const createOrUpdateKey = caseReport.id ? 'update' : 'create';
 
   return (
-    <DataModal
+    <DataModal<FormComponentProps<CaseReportFormProps>>
       buttonTrigger={children}
-      wrapper={Form}
+      wrapper={FormComponent}
       wrapperProps={{
         onSubmit: handleSubmit,
-        initialData: {
+        initialValues: {
           caseReport: {
             reportingDate: new Date().toISOString().split('T')[0],
+            id: '',
+            content: '',
             ...caseReport,
           },
         },
