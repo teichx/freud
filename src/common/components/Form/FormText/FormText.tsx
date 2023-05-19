@@ -1,8 +1,7 @@
-import { FC, useEffect, useRef } from 'react';
+import { FC } from 'react';
 
 import { FormControl, FormLabel, Input } from '@chakra-ui/react';
-import { useField } from '@unform/core';
-import { useIMask, IMask } from 'react-imask';
+import { Field } from 'react-final-form';
 
 import { FormHelperTextStyled, TextareaStyled } from './styles';
 import { FormTextProps, FormTextTextAreaProps } from './types';
@@ -13,63 +12,42 @@ export const FormText: FC<FormTextProps> = ({
   label,
   helperText,
   isTextArea,
-  inputProps = {},
+  inputProps: { defaultValue, type, ...inputProps } = {},
   unForceHelperText,
-  mask = { mask: '' },
   ...props
 }: FormTextProps) => {
-  const unmaskedRef = useRef<undefined | string>(undefined);
-  const { ref } = useIMask<IMask.AnyMaskedOptions, HTMLInputElement>(
-    typeof mask === 'object' ? { lazy: false, ...mask } : mask,
-    {
-      onAccept: (_, { unmaskedValue }) => (unmaskedRef.current = unmaskedValue),
-    }
-  );
-  const { fieldName, registerField, defaultValue, error } = useField(name);
-
-  useEffect(() => {
-    registerField<string>({
-      name: fieldName,
-      ref: ref.current,
-      getValue: (currentRef) =>
-        unmaskedRef.current === undefined
-          ? currentRef.value
-          : unmaskedRef.current,
-      setValue: (currentRef, value) => {
-        currentRef.value = value || '';
-      },
-      clearValue: (currentRef) => {
-        currentRef.value = '';
-      },
-    });
-  }, [ref, fieldName, registerField]);
-
   const InputComponent = isTextArea ? TextareaStyled : Input;
 
   return (
-    <FormControl
-      {...props}
-      as='fieldset'
-      size={size}
-      isInvalid={props.isInvalid || !!error}
-    >
-      <FormLabel htmlFor={name} as='legend' size={size}>
-        {label}
-      </FormLabel>
+    <Field<string | undefined>
+      name={name}
+      type={type}
+      defaultValue={`${defaultValue || ''}`}
+      render={({ input, meta }) => (
+        <FormControl
+          {...props}
+          as='fieldset'
+          size={size}
+          isInvalid={props.isInvalid || meta.invalid}
+          isDisabled={props.isDisabled}
+        >
+          <FormLabel htmlFor={name} as='legend' size={size}>
+            {label}
+          </FormLabel>
 
-      <InputComponent
-        ref={ref}
-        name={name}
-        size={size}
-        variant='outline'
-        defaultValue={defaultValue}
-        noOfLines={(props as FormTextTextAreaProps).noOfLines}
-        {...inputProps}
-      />
+          <InputComponent
+            {...inputProps}
+            {...input}
+            size={size}
+            variant='outline'
+            noOfLines={(props as FormTextTextAreaProps).noOfLines}
+          />
 
-      <FormHelperTextStyled fontSize={size}>
-        {error || helperText || unForceHelperText ? undefined : '‎'}
-      </FormHelperTextStyled>
-    </FormControl>
+          <FormHelperTextStyled fontSize={size}>
+            {meta.error || helperText || unForceHelperText ? undefined : '‎'}
+          </FormHelperTextStyled>
+        </FormControl>
+      )}
+    />
   );
 };
