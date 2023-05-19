@@ -1,46 +1,37 @@
-import { FC, useEffect, useRef } from 'react';
+import { FC } from 'react';
 
 import { Checkbox } from '@chakra-ui/react';
-import { useField } from '@unform/core';
+import { Field } from 'react-final-form';
 
 import { FormCheckboxProps } from './types';
 
 export const FormCheckbox: FC<FormCheckboxProps> = ({
-  size,
   name,
   label,
-  value: inputValue,
+  isDisabled,
+  defaultChecked,
   ...props
-}) => {
-  const inputRef = useRef(null);
-  const inputValueRef = useRef(inputValue);
-  const { fieldName, registerField, defaultValue, error } = useField(name);
-
-  useEffect(() => {
-    registerField<string | boolean>({
-      name: fieldName,
-      ref: inputRef.current,
-      getValue: (ref) => {
-        if (inputValueRef.current)
-          return ref.checked ? inputValueRef.current : undefined;
-
-        return ref.checked;
-      },
-      setValue: (ref, value) => ref.setInputValue(value),
-      clearValue: (ref) => ref.setInputValue(''),
-    });
-  }, [fieldName, registerField]);
-
-  return (
-    <Checkbox
-      {...props}
-      name={name}
-      size={size}
-      ref={inputRef}
-      isInvalid={!!error}
-      defaultChecked={!!defaultValue}
-    >
-      {label}
-    </Checkbox>
-  );
-};
+}) => (
+  <Field<boolean>
+    name={name}
+    type='checkbox'
+    defaultValue={defaultChecked}
+    render={({ input, meta }) => (
+      <Checkbox
+        {...props}
+        name={input.name}
+        type={input.type}
+        onBlur={input.onBlur}
+        onFocus={input.onFocus}
+        checked={input.checked}
+        isDisabled={isDisabled}
+        isInvalid={meta.invalid}
+        isChecked={input.checked}
+        onChange={input.onChange}
+        defaultChecked={defaultChecked}
+      >
+        {label}
+      </Checkbox>
+    )}
+  />
+);
