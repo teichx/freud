@@ -15,7 +15,6 @@ import {
   HStack,
   SkeletonText,
 } from '@chakra-ui/react';
-import { Form } from '@unform/web';
 import { useTranslation } from 'react-i18next';
 import {
   MdFirstPage,
@@ -26,7 +25,7 @@ import {
 
 import { useQueryPagination } from '~/common/hooks';
 
-import { FormSelect } from '../Form';
+import { FormComponent, FormSelect } from '../Form';
 import { TooltipComponent } from '../TooltipComponent';
 import { limitOptionsToSelect } from './functions';
 import { DataTableProps, TDataId } from './types';
@@ -139,7 +138,10 @@ export function DataTable<
                 <HStack w='50%' justifyContent='flex-end'>
                   <Text mr={2}>{t('common:dataTable.rowsPerPage')}</Text>
 
-                  <Form onSubmit={() => undefined} initialData={{ limit }}>
+                  <FormComponent
+                    onSubmit={() => undefined}
+                    initialValues={{ limit }}
+                  >
                     <FormSelect
                       selectOptions={{
                         menuPosition: 'fixed',
@@ -149,7 +151,7 @@ export function DataTable<
                       unForceHelperText
                       options={limitOptionsToSelect({ limitOptions })}
                     />
-                  </Form>
+                  </FormComponent>
                 </HStack>
 
                 <HStack w='50%' justifyContent='flex-start' columnGap={1}>
