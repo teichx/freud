@@ -9,17 +9,25 @@ export type FormSelectOptionProps = {
   isDisabled?: boolean;
 };
 
-export type FormSelectProps = Omit<FormControlProps, 'label'> & {
+export type FormSelectOptionOrValue =
+  | FormSelectOptionProps
+  | FormSelectOptionProps['value'];
+
+export type FormSelectProps<IsMulti extends boolean = false> = Omit<
+  FormControlProps,
+  'label' | 'defaultValue'
+> & {
   name: string;
   helperText?: string;
   label?: string | null;
   unForceHelperText?: true;
   options: FormSelectOptionProps[];
-  selectOptions?: ComponentProps<typeof Select<FormSelectOptionProps>>;
+  defaultValue?: FormSelectOptionOrValue | FormSelectOptionOrValue[];
+  selectOptions?: ComponentProps<typeof Select<FormSelectOptionProps, IsMulti>>;
 };
 
 export type GetSelectOptionsProps = {
-  value:
+  value?:
     | FormSelectOptionProps
     | number
     | string
