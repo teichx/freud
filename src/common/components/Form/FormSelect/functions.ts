@@ -1,12 +1,19 @@
-import { UseFieldConfig } from 'react-final-form';
-
 import {
   FormSelectOptionOrValue,
   FormSelectOptionProps,
+  FormatFnProps,
   GetSelectOptionsProps,
+  ParseFnProps,
 } from './types';
 
-export const getSelectOptions = ({ value, options }: GetSelectOptionsProps) => {
+const getOnceIfNotMulti = <TItem>(items: TItem[], isMulti?: boolean) =>
+  isMulti ? items : items[0];
+
+export const getSelectOptions = ({
+  value,
+  options,
+  isMulti,
+}: GetSelectOptionsProps) => {
   const valueArray = Array.isArray(value) ? value : [value];
   const valueRawArray = valueArray
     .map((x) => (typeof x === 'object' ? x.value : x))
@@ -16,14 +23,11 @@ export const getSelectOptions = ({ value, options }: GetSelectOptionsProps) => {
   );
 
   const result = selectedOptions.map((x) => x.value);
-  // console.log({ result });
-  return result;
+  return getOnceIfNotMulti(result, isMulti);
 };
 
 export const formatFormSelect =
-  (
-    options: FormSelectOptionProps[]
-  ): UseFieldConfig<(string | number)[], FormSelectOptionProps[]>['format'] =>
+  (options: FormSelectOptionProps[]): FormatFnProps =>
   (x) => {
     const result: FormSelectOptionOrValue[] = Array.isArray(x) ? x : [x];
     const values = result
@@ -31,19 +35,16 @@ export const formatFormSelect =
       .filter(Boolean);
     const formatted = options.filter((x) => values.includes(x.value));
 
-    // console.log({ formatted });
     return formatted;
   };
 
-export const parseFormSelect: UseFieldConfig<
-  (string | number)[],
-  FormSelectOptionProps[]
->['parse'] = (x) => {
-  const result = Array.isArray(x) ? x : [x];
-  const values = result
-    .map((x) => (typeof x === 'object' ? x.value : x))
-    .filter(Boolean);
+export const parseFormSelect =
+  (isMulti?: boolean): ParseFnProps =>
+  (x) => {
+    const result = Array.isArray(x) ? x : [x];
+    const values = result
+      .map((x) => (typeof x === 'object' ? x.value : x))
+      .filter(Boolean);
 
-  // console.log({ values });
-  return values;
-};
+    return getOnceIfNotMulti(values, isMulti);
+  };
