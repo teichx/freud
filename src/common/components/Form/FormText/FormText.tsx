@@ -3,6 +3,7 @@ import { FC } from 'react';
 import { FormControl, FormLabel, Input } from '@chakra-ui/react';
 import { Field } from 'react-final-form';
 
+import { handlerProps } from '../handlers';
 import { FormHelperTextStyled, TextareaStyled } from './styles';
 import { FormTextProps, FormTextTextAreaProps } from './types';
 
@@ -38,6 +39,7 @@ export const FormText: FC<FormTextProps> = ({
           <InputComponent
             {...inputProps}
             {...input}
+            {...handlerProps(input, inputProps)}
             size={size}
             variant='outline'
             noOfLines={(props as FormTextTextAreaProps).noOfLines}
