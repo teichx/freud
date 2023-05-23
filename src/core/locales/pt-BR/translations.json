@@ -94,6 +94,7 @@
             "title": "Informações Pessoais",
             "name": "Nome",
             "age": "Idade",
+            "birth": "Nascimento",
             "gender": "Gênero",
             "profession": "Ocupação",
             "cpf": "CPF",
