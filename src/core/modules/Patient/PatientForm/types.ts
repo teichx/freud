@@ -9,7 +9,7 @@ import {
 
 export type PersonalDataFields = {
   name: string;
-  age?: number;
+  birth?: string;
   gender?: string;
   profession?: string;
   cpf?: string;

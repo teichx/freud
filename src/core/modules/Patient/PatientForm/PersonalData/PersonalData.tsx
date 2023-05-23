@@ -19,12 +19,18 @@ export const PersonalData = () => {
       <Stack columnGap='4' direction={['column', 'row']}>
         <FormText name='name' label={t('name')} isRequired />
 
-        <Box maxW='100px'>
+        <Box maxW='200px'>
           <FormText
-            name='age'
-            label={t('age')}
-            mask={{ mask: Number, min: 1, max: 150 }}
+            name='birth'
+            label={t('birth')}
+            inputProps={{
+              type: 'date',
+            }}
           />
+        </Box>
+
+        <Box maxW='100px'>
+          <FormText isDisabled isReadOnly name='age' label={t('age')} />
         </Box>
         <Box w='300px'>
           <FormText name='gender' label={t('gender')} />
