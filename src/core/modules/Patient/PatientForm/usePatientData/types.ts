@@ -7,5 +7,5 @@ export type PatientStateProps = Pick<GetPatientSuccess, 'patient'> & {
 };
 
 export type UsePatientDataResultProps = Pick<GetPatientSuccess, 'patient'> & {
-  savePatient: (patient: PatientFields) => Promise<boolean>;
+  savePatient: (patient: PatientFields) => Promise<void>;
 };
