@@ -103,7 +103,10 @@
             "address": "Endereço",
             "schooling": "Escolaridade",
             "marriageStatus": "Estado civil",
-            "emergency": "Em caso de emergência"
+            "emergency": "Em caso de emergência",
+            "tooltip": {
+              "age": "Este campo não pode ser preenchido porque é calculado a partir da data de nascimento"
+            }
           },
           "firstConsult": {
             "title": "Primeira Consulta",
