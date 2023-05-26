@@ -3,9 +3,13 @@ import { FC, PropsWithChildren } from 'react';
 import { Box, HStack } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
 
-import { SaveButton } from '~/common/components/Buttons';
 import { DataModal } from '~/common/components/DataModal';
-import { FormComponent, FormHidden, FormText } from '~/common/components/Form';
+import {
+  FormComponent,
+  FormHidden,
+  FormText,
+  FormSaveButton,
+} from '~/common/components/Form';
 import { FormComponentProps } from '~/common/components/Form/FormComponent/types';
 import { ReadOnlyText } from '~/common/components/ReadOnlyText';
 
@@ -38,7 +42,7 @@ export const PatientCaseReport: FC<
         closeOnOverlayClick: false,
       }}
       title={t(`pages.patient.caseReport.${createOrUpdateKey}.title`)}
-      footerComponents={<SaveButton />}
+      footerComponents={<FormSaveButton />}
     >
       <Box>
         <FormHidden name='patientId' />
