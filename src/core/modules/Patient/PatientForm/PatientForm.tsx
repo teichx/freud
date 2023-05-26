@@ -1,18 +1,26 @@
-import { Form } from '@unform/web';
+import { FormComponent, FormHidden } from '~/common/components/Form';
 
 import { ComplainedCheck } from './ComplainedCheck';
 import { ComplainedHistory } from './ComplainedHistory';
 import { FirstConsult } from './FirstConsult';
+import { decorators } from './formDecorators';
 import { FreeText } from './FreeText';
 import { PatientFormHeader } from './PatientFormHeader';
 import { PersonalData } from './PersonalData';
+import { PatientFields } from './types';
 import { usePatientData } from './usePatientData';
 
 export const PatientForm = () => {
   const { patient, savePatient } = usePatientData();
 
   return (
-    <Form onSubmit={savePatient} initialData={patient}>
+    <FormComponent<PatientFields>
+      onSubmit={savePatient}
+      decorators={decorators}
+      initialValues={patient}
+    >
+      <FormHidden name='id' />
+
       <PatientFormHeader />
 
       <PersonalData />
@@ -20,6 +28,6 @@ export const PatientForm = () => {
       <ComplainedHistory />
       <ComplainedCheck />
       <FreeText />
-    </Form>
+    </FormComponent>
   );
 };

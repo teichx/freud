@@ -7,30 +7,39 @@ import { ApiRoutes } from '~/core/constants';
 import { useFormat } from '~/core/hooks';
 import { useAuth, useLoader } from '~/core/services';
 
-import { PatientFields } from '../types';
-import { UsePatientDataResultProps } from './types';
+import { PatientStateProps, UsePatientDataResultProps } from './types';
+
+const INITIAL_STATE = {
+  patient: undefined,
+  isLoaded: false,
+};
 
 export const usePatientData = (): UsePatientDataResultProps => {
   const {
     query: { id: patientId },
   } = useRouter();
-  const [patient, setPatient] = useState<PatientFields | undefined>();
+
+  const [{ patient, isLoaded }, setPatient] =
+    useState<PatientStateProps>(INITIAL_STATE);
   const { setIsLoading } = useLoader();
   const { authenticateFetch } = useAuth();
   const { formatRoute } = useFormat();
 
   useEffect(() => {
     if (!patientId) return;
-    if (patient) return;
+    if (isLoaded) return;
 
-    const route = formatRoute(ApiRoutes.Patient.Google.Get, `${patientId}`);
     setIsLoading(true);
+    const route = formatRoute(ApiRoutes.Patient.Google.Get, `${patientId}`);
     authenticateFetch(route)
       .then<GetPatientSuccess>((x) => x.json())
-      .then((x) => setPatient(x.patient))
+      .then(({ patient }) => setPatient((x) => ({ ...x, patient })))
       .catch(console.error)
-      .finally(() => setIsLoading(false));
-  }, [patientId, patient, authenticateFetch, formatRoute, setIsLoading]);
+      .finally(() => {
+        setIsLoading(false);
+        setPatient((x) => ({ ...x, isLoaded: true }));
+      });
+  }, [patientId, isLoaded, authenticateFetch, formatRoute, setIsLoading]);
 
   const savePatient = useCallback<UsePatientDataResultProps['savePatient']>(
     async (patient) => {
