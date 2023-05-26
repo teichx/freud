@@ -3,7 +3,6 @@ import { FormComponent, FormHidden } from '~/common/components/Form';
 import { ComplainedCheck } from './ComplainedCheck';
 import { ComplainedHistory } from './ComplainedHistory';
 import { FirstConsult } from './FirstConsult';
-import { decorators } from './formDecorators';
 import { FreeText } from './FreeText';
 import { PatientFormHeader } from './PatientFormHeader';
 import { PersonalData } from './PersonalData';
@@ -16,7 +15,6 @@ export const PatientForm = () => {
   return (
     <FormComponent<PatientFields>
       onSubmit={savePatient}
-      decorators={decorators}
       initialValues={patient}
     >
       <FormHidden name='id' />
