@@ -45,6 +45,7 @@ export const usePatientData = (): UsePatientDataResultProps => {
 
   const savePatient = useCallback<UsePatientDataResultProps['savePatient']>(
     async (patient) => {
+      setIsLoading(true);
       const result = await authenticateFetch(ApiRoutes.Patient.Google.Upsert, {
         method: 'POST',
         body: JSON.stringify(patient),
@@ -52,11 +53,12 @@ export const usePatientData = (): UsePatientDataResultProps => {
       const data: PatientFields = await result.json();
 
       setState(INITIAL_STATE);
+      setIsLoading(false);
       replace(formatRoute(Routes.Core.Patient.Edit, data.id), undefined, {
         shallow: true,
       });
     },
-    [authenticateFetch, replace, formatRoute]
+    [authenticateFetch, replace, formatRoute, setIsLoading]
   );
 
   return {
