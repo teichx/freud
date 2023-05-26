@@ -1,4 +1,4 @@
-import { Box, FormControl, FormLabel, Input, Stack } from '@chakra-ui/react';
+import { Box, Stack } from '@chakra-ui/react';
 import { FormSpy } from 'react-final-form';
 import { useTranslation } from 'react-i18next';
 
@@ -7,6 +7,7 @@ import {
   FormText,
   useFormSelectOptions,
 } from '~/common/components/Form';
+import { ReadOnlyText } from '~/common/components/ReadOnlyText';
 import { Section } from '~/common/components/Section';
 import { TooltipComponent } from '~/common/components/TooltipComponent';
 import { calculateAge } from '~/core/helpers/dates';
@@ -38,14 +39,11 @@ export const PersonalData = () => {
           <FormSpy<PatientFields | undefined>
             render={({ values }) => (
               <TooltipComponent label={t('tooltip.age')}>
-                <FormControl as='fieldset' isDisabled isReadOnly>
-                  <FormLabel as='legend'>{t('age')}</FormLabel>
-
-                  <Input
-                    variant='outline'
-                    value={calculateAge(values?.birth)}
-                  />
-                </FormControl>
+                <ReadOnlyText
+                  label={t('age')}
+                  unForceHelperText
+                  value={calculateAge(values?.birth)}
+                />
               </TooltipComponent>
             )}
           />

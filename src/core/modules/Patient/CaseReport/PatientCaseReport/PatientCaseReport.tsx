@@ -7,6 +7,7 @@ import { SaveButton } from '~/common/components/Buttons';
 import { DataModal } from '~/common/components/DataModal';
 import { FormComponent, FormHidden, FormText } from '~/common/components/Form';
 import { FormComponentProps } from '~/common/components/Form/FormComponent/types';
+import { ReadOnlyText } from '~/common/components/ReadOnlyText';
 
 import { CaseReportFormProps, PatientCaseReportProps } from './types';
 
@@ -15,9 +16,8 @@ export const PatientCaseReport: FC<
 > = ({ children, patientName, caseReport }) => {
   const { t } = useTranslation();
 
-  const handleSubmit = ({
-    caseReport: caseReportUpdated,
-  }: CaseReportFormProps) => console.log({ ...caseReportUpdated });
+  const handleSubmit = (caseReportUpdated: CaseReportFormProps) =>
+    console.log({ ...caseReportUpdated });
 
   const createOrUpdateKey = caseReport.id ? 'update' : 'create';
 
@@ -28,12 +28,10 @@ export const PatientCaseReport: FC<
       wrapperProps={{
         onSubmit: handleSubmit,
         initialValues: {
-          caseReport: {
-            reportingDate: new Date().toISOString().split('T')[0],
-            id: '',
-            content: '',
-            ...caseReport,
-          },
+          reportingDate: new Date().toISOString().split('T')[0],
+          id: '',
+          content: '',
+          ...caseReport,
         },
       }}
       modalProps={{
@@ -43,33 +41,31 @@ export const PatientCaseReport: FC<
       footerComponents={<SaveButton />}
     >
       <Box>
-        <FormHidden name='caseReport.patientId' />
-        <FormHidden name='caseReport.id' defaultValue={caseReport.id} />
+        <FormHidden name='patientId' />
+        <FormHidden name='id' defaultValue={caseReport.id} />
 
         <HStack justifyContent='flex-start' columnGap={4}>
           <FormText
             w='250px'
             isRequired
-            name='caseReport.reportingDate'
+            name='reportingDate'
             label={t('pages.patient.caseReport.reportingDate')}
             inputProps={{
               type: 'date',
             }}
           />
 
-          <FormText
-            isDisabled
-            isReadOnly
-            name='patientName'
+          <ReadOnlyText
+            isRequired
+            value={patientName}
             label={t('pages.patient.caseReport.patientName')}
-            inputProps={{ defaultValue: patientName }}
           />
         </HStack>
 
         <FormText
           isTextArea
           isRequired
-          name='caseReport.content'
+          name='content'
           label={t('pages.patient.caseReport.content')}
           inputProps={{ h: '200px' }}
         />

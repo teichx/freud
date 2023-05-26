@@ -14,10 +14,7 @@ export type CaseReportProps = {
   reportingDate: string;
 };
 
-export type CaseReportFormProps = {
-  patientName: string;
-  caseReport: Pick<
-    CaseReportProps,
-    'content' | 'id' | 'patientId' | 'reportingDate'
-  >;
-};
+export type CaseReportFormProps = Pick<
+  CaseReportProps,
+  'content' | 'id' | 'patientId' | 'reportingDate'
+>;
