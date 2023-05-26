@@ -21,7 +21,7 @@ const MENU_ITEMS = [
 ] as const;
 
 export const Header = () => {
-  const { asPath } = useRouter();
+  const { pathname } = useRouter();
   const { t } = useTranslation(undefined, {
     keyPrefix: 'header.label',
   });
@@ -38,7 +38,7 @@ export const Header = () => {
                 key={path}
                 href={path}
                 as={Link}
-                selected={asPath === path}
+                selected={pathname === path}
               >
                 {t(label)}
               </HeaderButton>
