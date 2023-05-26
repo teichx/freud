@@ -14,7 +14,9 @@ export type FormTextProps = {
   name: string;
   helperText?: string;
   label?: string | null;
-  inputProps?: InputProps;
+  inputProps?: Omit<InputProps, 'defaultValue'> & {
+    defaultValue?: string;
+  };
   unForceHelperText?: true;
   mask?: IMask.AnyMaskedOptions;
 } & Pick<

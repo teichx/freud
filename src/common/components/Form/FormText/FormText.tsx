@@ -23,7 +23,7 @@ export const FormText: FC<FormTextProps> = ({
     <Field<string | undefined>
       name={name}
       type={type}
-      defaultValue={`${defaultValue || ''}`}
+      defaultValue={defaultValue}
       render={({ input, meta }) => (
         <FormControl
           {...props}
