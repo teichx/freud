@@ -8,6 +8,7 @@ import {
   useFormSelectOptions,
 } from '~/common/components/Form';
 import { Section } from '~/common/components/Section';
+import { TooltipComponent } from '~/common/components/TooltipComponent';
 import { calculateAge } from '~/core/helpers/dates';
 
 import { PatientFields } from '../types';
@@ -36,11 +37,16 @@ export const PersonalData = () => {
         <Box maxW='100px'>
           <FormSpy<PatientFields | undefined>
             render={({ values }) => (
-              <FormControl as='fieldset' isDisabled isReadOnly>
-                <FormLabel as='legend'>{t('age')}</FormLabel>
+              <TooltipComponent label={t('tooltip.age')}>
+                <FormControl as='fieldset' isDisabled isReadOnly>
+                  <FormLabel as='legend'>{t('age')}</FormLabel>
 
-                <Input variant='outline' value={calculateAge(values?.birth)} />
-              </FormControl>
+                  <Input
+                    variant='outline'
+                    value={calculateAge(values?.birth)}
+                  />
+                </FormControl>
+              </TooltipComponent>
             )}
           />
         </Box>
