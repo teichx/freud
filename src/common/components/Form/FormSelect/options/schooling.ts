@@ -11,10 +11,4 @@ export const schooling = [
   'postDoctorate',
 ] as const;
 
-export const marriageStatus = [
-  'single',
-  'married',
-  'separated',
-  'divorced',
-  'widowed',
-] as const;
+export type SchoolingOptions = (typeof schooling)[number];

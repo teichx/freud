@@ -4,6 +4,8 @@ import { FormControlProps } from '@chakra-ui/react';
 import { Select } from 'chakra-react-select';
 import { UseFieldConfig } from 'react-final-form';
 
+import * as Options from './options';
+
 export type FormSelectOptionProps = {
   value: string | number;
   label: string;
@@ -14,6 +16,16 @@ export type FormSelectOptionOrValue =
   | FormSelectOptionProps
   | FormSelectOptionProps['value'];
 
+export type OptionsOrOptionsKey =
+  | {
+      options: FormSelectOptionProps[];
+      optionsKey?: undefined;
+    }
+  | {
+      options?: undefined;
+      optionsKey: keyof typeof Options;
+    };
+
 export type FormSelectProps<IsMulti extends boolean = false> = Omit<
   FormControlProps,
   'label' | 'defaultValue'
@@ -22,13 +34,12 @@ export type FormSelectProps<IsMulti extends boolean = false> = Omit<
   helperText?: string;
   label?: string | null;
   unForceHelperText?: true;
-  options: FormSelectOptionProps[];
   isMulti?: IsMulti;
   defaultValue?: IsMulti extends true
     ? FormSelectOptionOrValue
     : FormSelectOptionOrValue[];
   selectOptions?: ComponentProps<typeof Select<FormSelectOptionProps, IsMulti>>;
-};
+} & OptionsOrOptionsKey;
 
 export type GetSelectOptionsProps = {
   value?:

@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import * as Options from '~/core/locales/options';
+import * as Options from './options';
 
 export const useFormSelectOptions = () => {
   const { t } = useTranslation(undefined, {

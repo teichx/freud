@@ -13,6 +13,7 @@ import {
   FormSelectOptionProps,
   FormSelectProps,
 } from './types';
+import { useFormSelectOptions } from './useFormSelectOptions';
 
 export function FormSelect<IsMulti extends boolean = false>({
   size,
@@ -21,12 +22,16 @@ export function FormSelect<IsMulti extends boolean = false>({
   helperText,
   isDisabled,
   defaultValue,
-  options = [],
+  options: optionsParam = [],
+  optionsKey,
   unForceHelperText,
   selectOptions = {},
   isMulti,
   ...props
 }: FormSelectProps<IsMulti>) {
+  const { getOptions } = useFormSelectOptions();
+  const options = optionsKey ? getOptions(optionsKey) : optionsParam;
+
   return (
     <Field<
       FormSelectOptionOrValue | FormSelectOptionOrValue[],

@@ -2,11 +2,7 @@ import { Box, Stack } from '@chakra-ui/react';
 import { FormSpy } from 'react-final-form';
 import { useTranslation } from 'react-i18next';
 
-import {
-  FormSelect,
-  FormText,
-  useFormSelectOptions,
-} from '~/common/components/Form';
+import { FormSelect, FormText } from '~/common/components/Form';
 import { ReadOnlyText } from '~/common/components/ReadOnlyText';
 import { Section } from '~/common/components/Section';
 import { TooltipComponent } from '~/common/components/TooltipComponent';
@@ -15,7 +11,6 @@ import { calculateAge } from '~/core/helpers/dates';
 import { PatientFields } from '../types';
 
 export const PersonalData = () => {
-  const { getOptions } = useFormSelectOptions();
   const { t } = useTranslation(undefined, {
     keyPrefix: 'pages.patient.create.personal',
   });
@@ -64,12 +59,12 @@ export const PersonalData = () => {
         <FormSelect
           name='schooling'
           label={t('schooling')}
-          options={getOptions('schooling')}
+          optionsKey='schooling'
         />
         <FormSelect
           name='marriageStatus'
           label={t('marriageStatus')}
-          options={getOptions('marriageStatus')}
+          optionsKey='marriageStatus'
         />
       </Stack>
 

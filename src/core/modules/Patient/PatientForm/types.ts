@@ -1,4 +1,7 @@
-import { marriageStatus, schooling } from '~/core/locales/options';
+import {
+  MarriageStatusOptions,
+  SchoolingOptions,
+} from '~/common/components/Form/FormSelect/options';
 
 import {
   COGNITIVE_FIELDS,
@@ -14,8 +17,8 @@ export type PersonalDataFields = {
   profession?: string;
   cpf?: string;
   rg?: string;
-  schooling?: (typeof schooling)[number];
-  marriageStatus?: (typeof marriageStatus)[number];
+  schooling?: SchoolingOptions;
+  marriageStatus?: MarriageStatusOptions;
   address?: string;
   phoneNumber?: string;
   emergency?: string;
