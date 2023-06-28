@@ -37,7 +37,7 @@ export const get: GetPatientHandler = async (req, res) => {
 };
 
 export const list: ListPatientHandler = async (req, res) => {
-  const { page, limit, error } = getPaginate({
+  const { error, getPagination } = getPaginate({
     req,
   });
   if (error) return sendError({ res, error });
@@ -46,9 +46,7 @@ export const list: ListPatientHandler = async (req, res) => {
   const patients: ListPatientResume[] = [];
 
   return res.status(EnumHttpStatus.Success).send({
-    page,
-    limit,
+    ...getPagination({ totalItems: patients.length }),
     patients,
-    totalItems: patients.length,
   });
 };
