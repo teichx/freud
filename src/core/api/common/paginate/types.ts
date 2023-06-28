@@ -1,4 +1,4 @@
-import { ReqCustomQueryProps, RequestHandler } from '../types';
+import { ReqCustomProps } from '../types';
 
 export type GetPaginateProps = {
   req: PaginateRequestSimpleProps;
@@ -17,13 +17,7 @@ export type PaginateQueryProps = {
   limit: number | undefined;
 };
 
-export type PaginateRequest<T = Record<string, string | number>> =
-  ReqCustomQueryProps<PaginateQueryProps & T>;
-
-export type PaginateRequestSimpleProps =
-  ReqCustomQueryProps<PaginateQueryProps>;
-
-export type PaginateHandler<
-  TQueryProps = Record<string, string | number>,
-  TResponse = unknown
-> = RequestHandler<PaginateRequest<TQueryProps>, TResponse>;
+export type PaginateRequestSimpleProps = ReqCustomProps<
+  PaginateQueryProps,
+  unknown
+>;

@@ -1,10 +1,6 @@
 import { PatientFields } from '~/core/modules/Patient/PatientForm/types';
 
-import {
-  ErrorMessage,
-  ReqCustomQueryProps,
-  RequestHandler,
-} from '../../common';
+import { ErrorMessage, RequestQueryHandler } from '../../common';
 
 export type GetPatientSuccess = {
   patient: PatientFields | undefined;
@@ -12,15 +8,9 @@ export type GetPatientSuccess = {
 
 export type GetPatientResponse = GetPatientSuccess | ErrorMessage;
 
-export type GetPatientProps = {
-  id: string;
-};
+export type GetPatientQueryProps = { id: string };
 
-export type GetPatientQueryProps = { id?: string };
-
-export type GetPatientReqProps = ReqCustomQueryProps<GetPatientQueryProps>;
-
-export type GetPatientHandler = RequestHandler<
+export type GetPatientHandler = RequestQueryHandler<
   GetPatientQueryProps,
   GetPatientResponse
 >;

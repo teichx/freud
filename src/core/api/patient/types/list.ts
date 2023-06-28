@@ -1,10 +1,6 @@
 import { PatientFields } from '~/core/modules/Patient/PatientForm/types';
 
-import {
-  ErrorMessage,
-  ReqCustomQueryProps,
-  RequestHandler,
-} from '../../common';
+import { ErrorMessage, RequestQueryHandler } from '../../common';
 import { PaginateQueryProps } from '../../common/paginate/types';
 
 export type ListPatientResume = Pick<
@@ -27,9 +23,7 @@ export type ListPatientQueryProps = PaginateQueryProps & {
   showArchived?: boolean;
 };
 
-export type ListPatientReqProps = ReqCustomQueryProps<ListPatientQueryProps>;
-
-export type ListPatientHandler = RequestHandler<
+export type ListPatientHandler = RequestQueryHandler<
   ListPatientQueryProps,
   ListPatientResponse
 >;

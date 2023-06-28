@@ -3,11 +3,7 @@ import {
   PatientFieldsWithoutId,
 } from '~/core/modules/Patient/PatientForm/types';
 
-import {
-  ErrorMessage,
-  ReqCustomQueryProps,
-  RequestHandler,
-} from '../../common';
+import { ErrorMessage, RequestBodyHandler } from '../../common';
 
 export type UpsertPatientSuccess = {
   id: string;
@@ -16,15 +12,10 @@ export type UpsertPatientSuccess = {
 export type UpsertPatientResponse = UpsertPatientSuccess | ErrorMessage;
 
 export type UpsertPatientBodyProps = {
-  patient: PatientFields | PatientFieldsWithoutId;
+  patient: PatientFieldsWithoutId & Partial<Pick<PatientFields, 'id'>>;
 };
 
-export type UpsertPatientQueryProps = Partial<string>;
-
-export type UpsertPatientReqProps =
-  ReqCustomQueryProps<UpsertPatientQueryProps>;
-
-export type UpsertPatientHandler = RequestHandler<
-  UpsertPatientQueryProps,
+export type UpsertPatientHandler = RequestBodyHandler<
+  UpsertPatientBodyProps,
   UpsertPatientResponse
 >;

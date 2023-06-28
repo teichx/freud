@@ -5,17 +5,31 @@ export type ErrorMessage = {
 };
 
 export type ReqProps = {
-  req: ReqCustomQueryProps<unknown>;
+  req: ReqCustomProps<unknown, unknown>;
 };
 
-export type ObjectProps = Record<string, string | number | undefined | boolean>;
-
-export interface ReqCustomQueryProps<T = ObjectProps>
-  extends Omit<NextApiRequest, 'query'> {
-  query: T;
+export interface ReqCustomProps<TQuery, TBody>
+  extends Omit<NextApiRequest, 'query' | 'body'> {
+  query: TQuery;
+  body: TBody;
 }
 
-export type RequestHandler<TQueryProps = ObjectProps, TResponse = unknown> = (
-  req: ReqCustomQueryProps<TQueryProps>,
+export type RequestQueryHandler<TQueryProps, TResponse> = (
+  req: ReqCustomProps<TQueryProps, unknown>,
+  res: NextApiResponse<TResponse>
+) => void | Promise<void>;
+
+export type RequestBodyHandler<TBodyProps, TResponse> = (
+  req: ReqCustomProps<unknown, TBodyProps>,
+  res: NextApiResponse<TResponse>
+) => void | Promise<void>;
+
+export type RequestQueryBodyHandler<TQueryProps, TBodyProps, TResponse> = (
+  req: ReqCustomProps<TQueryProps, TBodyProps>,
+  res: NextApiResponse<TResponse>
+) => void | Promise<void>;
+
+export type RequestHandler<TResponse> = (
+  req: ReqCustomProps<unknown, unknown>,
   res: NextApiResponse<TResponse>
 ) => void | Promise<void>;
