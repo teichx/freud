@@ -14,6 +14,7 @@ import {
   Icon,
   HStack,
   SkeletonText,
+  Box,
 } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
 import {
@@ -36,6 +37,7 @@ export function DataTable<
   data,
   columns,
   isLoading,
+  fixedHeight,
   totalItems = 0,
   translateHeader,
   skeletonHeight = 8,
@@ -124,6 +126,20 @@ export function DataTable<
                 })}
               </Tr>
             ))}
+
+          {!isLoading && fixedHeight && (
+            <>
+              {new Array(limit - Math.min(limit, data?.length || 0))
+                .fill(undefined)
+                .map((_, index) => (
+                  <Tr key={index}>
+                    <Td textAlign='center' colSpan={columns.length}>
+                      <Box h={skeletonHeight} />
+                    </Td>
+                  </Tr>
+                ))}
+            </>
+          )}
         </Tbody>
 
         <Tfoot w='100%'>

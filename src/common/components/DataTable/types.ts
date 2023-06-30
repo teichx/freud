@@ -27,6 +27,7 @@ export type DataTableProps<
   isLoading?: boolean;
   translateHeader?: boolean;
   limitOptions?: number[];
+  fixedHeight?: boolean;
 } & Pick<SkeletonTextProps, 'skeletonHeight'>;
 
 export type DataTableStateProps = {
