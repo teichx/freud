@@ -11,49 +11,61 @@ import {
   FormSaveButton,
 } from '~/common/components/Form';
 import { FormComponentProps } from '~/common/components/Form/FormComponent/types';
+import { Loader } from '~/common/components/Loader';
 import { ReadOnlyText } from '~/common/components/ReadOnlyText';
+import { useLoader } from '~/core/services';
 
+import { useGetCaseReport, useSaveCaseReports } from '../hooks';
 import { CaseReportFormProps, PatientCaseReportProps } from './types';
 
 export const PatientCaseReport: FC<
   PropsWithChildren<PatientCaseReportProps>
-> = ({ children, patientName, caseReport }) => {
-  const { t } = useTranslation();
+> = ({ children, caseReportId, patient }) => {
+  const { t } = useTranslation(undefined, {
+    keyPrefix: 'pages.patient.caseReport',
+  });
+  const { caseReport, getById, reset } = useGetCaseReport({
+    patientId: patient.id,
+  });
+  const { isLoading } = useLoader(
+    'GetPatientCaseReport',
+    'SavePatientCaseReport'
+  );
+  const { saveCaseReport } = useSaveCaseReports({
+    patientId: patient.id,
+    successCallback: ({ id }) => getById({ caseReportId: id }),
+  });
 
-  const handleSubmit = (caseReportUpdated: CaseReportFormProps) =>
-    console.log({ ...caseReportUpdated });
+  const handleOpen = () => getById({ caseReportId });
 
-  const createOrUpdateKey = caseReport.id ? 'update' : 'create';
+  const createOrUpdateKey = caseReportId || caseReport.id ? 'update' : 'create';
 
   return (
     <DataModal<FormComponentProps<CaseReportFormProps>>
       buttonTrigger={children}
       wrapper={FormComponent}
       wrapperProps={{
-        onSubmit: handleSubmit,
-        initialValues: {
-          reportingDate: new Date().toISOString().split('T')[0],
-          id: '',
-          content: '',
-          ...caseReport,
-        },
+        onSubmit: saveCaseReport,
+        initialValues: caseReport,
       }}
       modalProps={{
         closeOnOverlayClick: false,
       }}
-      title={t(`pages.patient.caseReport.${createOrUpdateKey}.title`)}
+      disclosureProps={{ onOpen: handleOpen, onClose: reset }}
+      title={t(`${createOrUpdateKey}.title`)}
       footerComponents={<FormSaveButton />}
     >
       <Box>
-        <FormHidden name='patientId' />
-        <FormHidden name='id' defaultValue={caseReport.id} />
+        <Loader isLoading={isLoading} />
+        <FormHidden name='patientId' defaultValue={patient?.id} />
+        <FormHidden name='id' defaultValue={caseReportId} />
 
         <HStack justifyContent='flex-start' columnGap={4}>
           <FormText
             w='250px'
             isRequired
             name='reportingDate'
-            label={t('pages.patient.caseReport.reportingDate')}
+            label={t('reportingDate')}
             inputProps={{
               type: 'date',
             }}
@@ -61,8 +73,8 @@ export const PatientCaseReport: FC<
 
           <ReadOnlyText
             isRequired
-            value={patientName}
-            label={t('pages.patient.caseReport.patientName')}
+            value={patient.name}
+            label={t('patientName')}
           />
         </HStack>
 
@@ -70,7 +82,7 @@ export const PatientCaseReport: FC<
           isTextArea
           isRequired
           name='content'
-          label={t('pages.patient.caseReport.content')}
+          label={t('content')}
           inputProps={{ h: '200px' }}
         />
       </Box>

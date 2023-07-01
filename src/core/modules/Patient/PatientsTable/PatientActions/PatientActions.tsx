@@ -52,10 +52,7 @@ export const PatientActions: FC<PatientActionsProps> = ({
         <MenuDivider />
 
         <MenuItem>
-          <PatientCaseReport
-            patientName={patientName}
-            caseReport={{ patientId }}
-          >
+          <PatientCaseReport patient={{ id: patientId, name: patientName }}>
             <Text>{t('createCaseReport')}</Text>
           </PatientCaseReport>
         </MenuItem>

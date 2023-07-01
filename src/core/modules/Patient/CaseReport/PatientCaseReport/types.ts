@@ -1,17 +1,11 @@
+import { CaseReportProps } from '~/core/api/patient/caseReport/types';
+
 export type PatientCaseReportProps = {
-  patientName: string;
-  caseReport: CaseReportProps | ToCreateCaseReportProps;
-};
-
-export type ToCreateCaseReportProps = {
-  [key in keyof CaseReportProps]?: CaseReportProps[key];
-} & Pick<CaseReportProps, 'patientId'>;
-
-export type CaseReportProps = {
-  id: string;
-  content: string;
-  patientId: string;
-  reportingDate: string;
+  patient: {
+    id: string;
+    name: string;
+  };
+  caseReportId?: string;
 };
 
 export type CaseReportFormProps = Pick<
