@@ -25,9 +25,10 @@ export function DataModal<TWrapperProps extends PropsWithChildren>({
   footerComponents,
   wrapper: Wrapper,
   hideCancelButton,
+  disclosureProps,
   wrapperProps,
 }: PropsWithChildren<DataModalProps<TWrapperProps>>) {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { isOpen, onOpen, onClose } = useDisclosure(disclosureProps);
 
   return (
     <Box>
@@ -52,7 +53,7 @@ export function DataModal<TWrapperProps extends PropsWithChildren>({
               <Box>
                 <Divider mb='2' />
 
-                <ModalBody>{children}</ModalBody>
+                <ModalBody position='relative'>{children}</ModalBody>
               </Box>
             )}
 
