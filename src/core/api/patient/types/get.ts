@@ -8,7 +8,7 @@ export type GetPatientSuccess = {
 
 export type GetPatientResponse = GetPatientSuccess | ErrorMessage;
 
-export type GetPatientQueryProps = { id: string };
+export type GetPatientQueryProps = { patientId: string };
 
 export type GetPatientHandler = RequestQueryHandler<
   GetPatientQueryProps,

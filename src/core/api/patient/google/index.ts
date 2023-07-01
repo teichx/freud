@@ -19,7 +19,7 @@ export const upsert: UpsertPatientHandler = async (req, res) => {
 };
 
 export const get: GetPatientHandler = async (req, res) => {
-  const { id } = req.query;
+  const { patientId: id } = req.query;
   if (!id) return sendError({ res, error: 'Id required' });
 
   // TODO: Get patient
