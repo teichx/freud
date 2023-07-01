@@ -9,10 +9,11 @@ import { SectionProps } from './types';
 export const Section: FC<PropsWithChildren<SectionProps>> = ({
   label,
   children,
+  loaderKeys = ['DEFAULT'],
   disabledLoading,
   ...props
 }) => {
-  const { isLoading } = useLoader();
+  const { isLoading } = useLoader(loaderKeys[0], ...loaderKeys);
 
   return (
     <SectionWrapper {...props} as='fieldset'>

@@ -23,7 +23,7 @@ export const usePatientData = (): UsePatientDataResultProps => {
 
   const [{ patient, isLoaded }, setState] =
     useState<PatientStateProps>(INITIAL_STATE);
-  const { setIsLoading } = useLoader();
+  const { setIsLoading } = useLoader('DEFAULT');
   const { authenticateFetch } = useAuth();
   const { formatRoute } = useFormat();
 

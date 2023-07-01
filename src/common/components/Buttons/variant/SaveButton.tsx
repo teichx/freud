@@ -11,10 +11,11 @@ import { VariantButtonProps } from '../types';
 export const SaveButton: FC<VariantButtonProps> = ({
   text,
   children,
+  loaderKeys = ['DEFAULT'],
   ...props
 }) => {
   const { t } = useTranslation();
-  const { isLoading } = useLoader();
+  const { isLoading } = useLoader(loaderKeys[0], ...loaderKeys);
 
   return (
     <Button

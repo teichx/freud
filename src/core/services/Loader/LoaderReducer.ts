@@ -11,9 +11,9 @@ export const LoaderSlice = createSlice<
   name: LOADER_KEY,
   initialState: LOADER_INITIAL_STATE,
   reducers: {
-    setIsLoading: (old, { payload }) => ({
+    setIsLoading: (old, { payload: { identifiers, isLoading } }) => ({
       ...old,
-      isLoading: payload.isLoading,
+      ...Object.fromEntries(identifiers.map((x) => [x, { isLoading }])),
     }),
   },
 });
