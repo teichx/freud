@@ -12,6 +12,7 @@ export const splitPath = ({ router: { asPath } }: RouterProps) => {
 
 export const replaceRoute = ({ page, limit, router }: ReplaceRouterProps) => {
   const { baseUrl, parameters } = splitPath({ router });
+  if (baseUrl.indexOf('[') != -1) return;
 
   if (page) parameters.set('page', page.toString());
   if (limit) parameters.set('limit', limit.toString());
