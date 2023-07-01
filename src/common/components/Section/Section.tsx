@@ -1,15 +1,9 @@
 import { FC, PropsWithChildren } from 'react';
 
-import { CircularProgress } from '@chakra-ui/react';
-
 import { useLoader } from '~/core/services';
 
-import {
-  ChildrenWrapper,
-  SectionLoader,
-  SectionText,
-  SectionWrapper,
-} from './style';
+import { Loader } from '../Loader/Loader';
+import { ChildrenWrapper, SectionText, SectionWrapper } from './style';
 import { SectionProps } from './types';
 
 export const Section: FC<PropsWithChildren<SectionProps>> = ({
@@ -30,9 +24,7 @@ export const Section: FC<PropsWithChildren<SectionProps>> = ({
 
       <ChildrenWrapper p='2'>{children}</ChildrenWrapper>
 
-      <SectionLoader data-is-loading={isLoading && !disabledLoading}>
-        <CircularProgress isIndeterminate color='book.desertSun.500' />
-      </SectionLoader>
+      <Loader isLoading={isLoading && !disabledLoading} />
     </SectionWrapper>
   );
 };

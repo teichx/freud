@@ -1,8 +1,6 @@
-import { Box, BoxProps, ComponentWithAs, Text, styled } from '@chakra-ui/react';
+import { Box, Text, styled } from '@chakra-ui/react';
 
 import { HavingThemeProps } from '~/common/themes/CustomTheme';
-
-import { SectionLoaderProps } from './types';
 
 export const SectionWrapper = styled(Box, {
   baseStyle: ({ theme }: HavingThemeProps) => ({
@@ -32,30 +30,4 @@ export const SectionText = styled(Text, {
     fontWeight: theme.fontWeights.bold,
     letterSpacing: 0.48,
   }),
-});
-
-export const SectionLoader = styled<
-  ComponentWithAs<'div', BoxProps>,
-  SectionLoaderProps
->(Box, {
-  baseStyle: ({ theme, ...props }) => {
-    const isLoading = (
-      props as unknown as SectionLoaderProps & HavingThemeProps
-    )['data-is-loading'];
-
-    return {
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      width: '100%',
-      height: '100%',
-      display: 'flex',
-      alignItems: 'center',
-      transition: `all ${theme.transition.duration.normal}`,
-      justifyContent: 'center',
-      opacity: isLoading ? 1 : 0,
-      backdropFilter: 'blur(6px)',
-      visibility: isLoading ? 'visible' : 'hidden',
-    };
-  },
 });
