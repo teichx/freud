@@ -53,6 +53,9 @@ export const PatientCaseReport: FC<
       }}
       disclosureProps={{ onOpen: handleOpen, onClose: reset }}
       title={t(`${createOrUpdateKey}.title`)}
+      buttonWrapperProps={{
+        justifyContent: 'center',
+      }}
       footerComponents={<FormSaveButton />}
     >
       <Box>

@@ -27,12 +27,12 @@ export const PatientCaseReportTable: FC<PatientCaseReportTableProps> = ({
 
   const COLUMNS: DataTableColumnProps<ListCaseReportResume>[] = [
     {
-      w: '306px',
+      w: '310px',
+      maxW: '310px',
       accessor: 'id',
       label: tWords('id'),
     },
     {
-      w: '210px',
       maxW: '210px',
       accessor: 'resume',
       label: t('list.resume'),
@@ -40,13 +40,16 @@ export const PatientCaseReportTable: FC<PatientCaseReportTableProps> = ({
       textOverflow: 'ellipsis',
     },
     {
-      w: '210px',
+      w: '155px',
+      maxW: '155px',
       textAlign: 'center',
       accessor: 'reportingDate',
       label: t('reportingDate'),
     },
     {
       w: '150px',
+      maxW: '150px',
+      minW: '150px',
       textAlign: 'center',
       accessor: null,
       label: tWords('actions'),
