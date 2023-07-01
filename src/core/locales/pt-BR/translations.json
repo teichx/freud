@@ -14,7 +14,9 @@
       "update": "Atualizar",
       "actions": "Ações",
       "see": "Ver",
-      "new": "Novo"
+      "new": "Novo",
+      "id": "Id",
+      "identifier": "Identificador"
     },
     "header": {
       "label": {
@@ -164,6 +166,10 @@
           "update": {
             "button": "$t(words.update) relato de caso",
             "title": "$t(words.update) relato de caso"
+          },
+          "list": {
+            "resume": "Reumo do relato",
+            "new": "Novo relato de caso"
           },
           "reportingDate": "Data do atendimento",
           "patientName": "Nome do paciente",
