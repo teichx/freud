@@ -27,13 +27,18 @@ export function DataModal<TWrapperProps extends PropsWithChildren>({
   hideCancelButton,
   disclosureProps,
   wrapperProps,
+  buttonWrapperProps,
 }: PropsWithChildren<DataModalProps<TWrapperProps>>) {
   const { isOpen, onOpen, onClose } = useDisclosure(disclosureProps);
 
   return (
     <Box>
-      <HStack justifyContent='flex-start'>
-        <Box onClick={onOpen}>{buttonTrigger}</Box>
+      <HStack
+        justifyContent='flex-start'
+        {...(buttonWrapperProps || {})}
+        onClick={onOpen}
+      >
+        {buttonTrigger}
       </HStack>
 
       <Modal {...modalProps} size='4xl' isOpen={isOpen} onClose={onClose}>
