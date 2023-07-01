@@ -17,7 +17,7 @@ const INITIAL_STATE = {
 
 export const usePatientData = (): UsePatientDataResultProps => {
   const {
-    query: { id: patientId },
+    query: { patientId },
     replace,
   } = useRouter();
 
