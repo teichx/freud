@@ -168,7 +168,7 @@
             "title": "$t(words.update) relato de caso"
           },
           "list": {
-            "resume": "Reumo do relato",
+            "resume": "Resumo do relato",
             "new": "Novo relato de caso"
           },
           "reportingDate": "Data do atendimento",
