@@ -1,6 +1,8 @@
 import { ulid } from 'ulid';
 
-import { getPaginate, sendError } from '../../common';
+import { getPaginate } from '~/common/query';
+
+import { sendError } from '../../common';
 import { EnumHttpStatus } from '../../constants';
 import {
   UpsertPatientHandler,

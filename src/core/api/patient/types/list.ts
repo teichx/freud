@@ -1,10 +1,7 @@
+import { PaginateQueryProps, PaginateResultTotalItems } from '~/common/query';
 import { PatientFields } from '~/core/modules/Patient/PatientForm/types';
 
 import { ErrorMessage, RequestQueryHandler } from '../../common';
-import {
-  PaginateQueryProps,
-  PaginateResultTotalItems,
-} from '../../common/paginate/types';
 
 export type ListPatientResume = Pick<
   PatientFields,

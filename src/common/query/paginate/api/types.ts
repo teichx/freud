@@ -1,4 +1,4 @@
-import { ReqCustomProps } from '../types';
+import { ReqCustomProps } from '~/core/api/common';
 
 export type GetPaginateProps = {
   req: PaginateRequestSimpleProps;

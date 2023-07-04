@@ -1,5 +1,6 @@
+import { PaginateQueryProps } from '~/common/query';
+
 import { ErrorMessage, RequestQueryHandler } from '../../../common';
-import { PaginateQueryProps } from '../../../common/paginate/types';
 import { CaseReportProps } from './caseReport';
 
 export type ListCaseReportResume = Pick<
