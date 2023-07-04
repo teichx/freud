@@ -1,18 +1,11 @@
-import { INITIAL_QUERY_PAGINATION, REPLACE_OPTIONS } from './constants';
+import { REPLACE_OPTIONS } from '../../constants';
+import { splitPath } from '../../path';
+import { INITIAL_QUERY_PAGINATION } from '../constants';
 import { ReplaceRouterProps, RouterProps } from './types';
 
-export const splitPath = ({ router: { asPath } }: RouterProps) => {
-  const [baseUrl, parameters] = asPath.split('?');
-
-  return {
-    baseUrl,
-    parameters: new URLSearchParams(parameters || ''),
-  };
-};
-
 export const replaceRoute = ({ page, limit, router }: ReplaceRouterProps) => {
-  const { baseUrl, parameters } = splitPath({ router });
-  if (baseUrl.indexOf('[') != -1) return;
+  const { isFinal, baseUrl, parameters } = splitPath(router);
+  if (!isFinal) return;
 
   if (page) parameters.set('page', page.toString());
   if (limit) parameters.set('limit', limit.toString());
@@ -26,7 +19,7 @@ export const replaceRoute = ({ page, limit, router }: ReplaceRouterProps) => {
 };
 
 export const getPage = ({ router }: RouterProps) => {
-  const { parameters } = splitPath({ router });
+  const { parameters } = splitPath(router);
 
   const pageRawNumber = Number(parameters.get('page'));
   const page = Number.isInteger(pageRawNumber)

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { useRouter } from 'next/router';
 
-import { useQueryPagination } from '~/common/hooks';
+import { useQueryPaginate } from '~/common/query';
 import { ListCaseReportSuccess } from '~/core/api/patient/caseReport/types';
 import { ApiRoutes } from '~/core/constants';
 import { useFormat } from '~/core/hooks';
@@ -21,7 +21,7 @@ export const useListCaseReports: UseListCaseReports = () => {
   const { setIsLoading } = useLoader('DEFAULT');
   const { formatRoute } = useFormat();
   const { authenticateFetch } = useAuth();
-  const { page, limit } = useQueryPagination();
+  const { page, limit } = useQueryPaginate();
   const [state, setState] = useState(INITIAL_STATE);
 
   const id = String(query.patientId || '');

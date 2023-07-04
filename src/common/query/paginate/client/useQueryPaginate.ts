@@ -2,14 +2,14 @@ import { useCallback, useEffect } from 'react';
 
 import Router from 'next/router';
 
-import { INITIAL_QUERY_PAGINATION } from './constants';
+import { INITIAL_QUERY_PAGINATION } from '../constants';
 import { getPage, replaceRoute } from './functions';
-import { UseQueryPaginationProps, UseQueryPaginationResult } from './types';
+import { UseQueryPaginateProps, UseQueryPaginateResult } from './types';
 
-export const useQueryPagination = ({
+export const useQueryPaginate = ({
   initialPage = INITIAL_QUERY_PAGINATION.page,
   initialLimit = INITIAL_QUERY_PAGINATION.limit,
-}: UseQueryPaginationProps = {}): UseQueryPaginationResult => {
+}: UseQueryPaginateProps = {}): UseQueryPaginateResult => {
   const {
     query: { page: queryPage, limit: queryLimit },
   } = Router;
@@ -32,7 +32,7 @@ export const useQueryPagination = ({
     });
   }, [queryPage, queryLimit, initialPage, initialLimit]);
 
-  const toPage = useCallback<UseQueryPaginationResult['toPage']>(
+  const toPage = useCallback<UseQueryPaginateResult['toPage']>(
     (nextPageValue) =>
       replaceRoute({
         page: nextPageValue,
@@ -41,7 +41,7 @@ export const useQueryPagination = ({
     []
   );
 
-  const nextPage = useCallback<UseQueryPaginationResult['nextPage']>(() => {
+  const nextPage = useCallback<UseQueryPaginateResult['nextPage']>(() => {
     const currentPageValue = getPage({ router: Router });
     const nextPageValue = currentPageValue + 1;
     replaceRoute({
@@ -51,7 +51,7 @@ export const useQueryPagination = ({
   }, []);
 
   const previousPage = useCallback<
-    UseQueryPaginationResult['previousPage']
+    UseQueryPaginateResult['previousPage']
   >(() => {
     const currentPageValue = getPage({ router: Router });
     const previousPageValue = currentPageValue - 1;
@@ -61,7 +61,7 @@ export const useQueryPagination = ({
     });
   }, []);
 
-  const setLimit = useCallback<UseQueryPaginationResult['setLimit']>(
+  const setLimit = useCallback<UseQueryPaginateResult['setLimit']>(
     (nextLimit) =>
       replaceRoute({
         page: 1,

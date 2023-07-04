@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { DataTable, DataTableColumnProps } from '~/common/components/DataTable';
-import { useQueryPagination } from '~/common/hooks';
+import { useQueryPaginate } from '~/common/query';
 import {
   ListPatientResume,
   ListPatientSuccess,
@@ -27,7 +27,7 @@ export const PatientsTable = () => {
     keyPrefix: 'pages.patient.list',
   });
   const [{ isLoading, totalItems, data }, setState] = useState(INITIAL_STATE);
-  const { page, limit: pageSize } = useQueryPagination();
+  const { page, limit: pageSize } = useQueryPaginate();
   const { authenticateFetch } = useAuth();
 
   useEffect(() => {

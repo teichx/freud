@@ -24,7 +24,7 @@ import {
   MdNavigateNext,
 } from 'react-icons/md';
 
-import { useQueryPagination } from '~/common/hooks';
+import { useQueryPaginate } from '~/common/query';
 
 import { FormComponent, FormSelect } from '../Form';
 import { TooltipComponent } from '../TooltipComponent';
@@ -46,7 +46,7 @@ export function DataTable<
   const borderColor = useColorModeValue('blackAlpha.300', 'whiteAlpha.300');
   const { t } = useTranslation();
   const { page, limit, nextPage, previousPage, setLimit, toPage } =
-    useQueryPagination();
+    useQueryPaginate();
 
   const noData = !data.length;
   const pageCount = Math.ceil(totalItems / limit) || 1;
