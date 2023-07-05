@@ -25,7 +25,7 @@ export const useAuth = (): useAuthResultProps => {
       fetch(input, {
         ...(init || {}),
         headers: {
-          'Content-Type': 'text/json;charset=UTF-8',
+          'Content-Type': 'application/json;charset=UTF-8',
           ...(init?.headers || {}),
           Authorization: `Bearer ${state.token?.bearer || ''}`,
         },
