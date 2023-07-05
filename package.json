@@ -8,7 +8,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint --max-warnings=0",
-    "test": "tsc --noEmit --emitDeclarationOnly false && jest --passWithNoTests"
+    "type-check": "tsc --noEmit --emitDeclarationOnly false",
+    "test": "jest",
+    "pre-push": "npm run lint && npm run type-check && npm run test"
   },
   "commitlint": {
     "extends": [
