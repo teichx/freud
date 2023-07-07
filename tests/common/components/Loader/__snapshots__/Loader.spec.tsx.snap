@@ -1,0 +1,83 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`component.Loader renders when isLoading 1`] = `
+<DocumentFragment>
+  <div
+    class="css-17rq0zv"
+    data-is-loading="true"
+  >
+    <div
+      aria-valuemax="100"
+      aria-valuemin="0"
+      class="chakra-progress css-120wkjd"
+      data-indeterminate=""
+      role="progressbar"
+    >
+      <svg
+        class="css-jf70f3"
+        viewBox="0 0 100 100"
+      >
+        <circle
+          class="chakra-progress__track css-ol3i12"
+          cx="50"
+          cy="50"
+          r="42"
+          stroke-width="10px"
+        />
+        <circle
+          class="chakra-progress__indicator css-1dsne73"
+          cx="50"
+          cy="50"
+          r="42"
+          stroke-width="10px"
+        />
+      </svg>
+    </div>
+  </div>
+  <span
+    hidden=""
+    id="__chakra_env"
+  />
+</DocumentFragment>
+`;
+
+exports[`component.Loader renders when isLoading is false 1`] = `
+<DocumentFragment>
+  <div
+    class="css-19tk458"
+    data-is-loading="false"
+  >
+    <div
+      aria-valuemax="100"
+      aria-valuemin="0"
+      class="chakra-progress css-120wkjd"
+      data-indeterminate=""
+      role="progressbar"
+    >
+      <svg
+        class="css-jf70f3"
+        viewBox="0 0 100 100"
+      >
+        <circle
+          class="chakra-progress__track css-ol3i12"
+          cx="50"
+          cy="50"
+          r="42"
+          stroke-width="10px"
+        />
+        <circle
+          class="chakra-progress__indicator css-1dsne73"
+          cx="50"
+          cy="50"
+          r="42"
+          stroke-width="10px"
+        />
+      </svg>
+    </div>
+  </div>
+  <span
+    hidden=""
+    id="__chakra_env"
+  />
+</DocumentFragment>
+`;
