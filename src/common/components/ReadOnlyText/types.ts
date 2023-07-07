@@ -14,6 +14,7 @@ export type ReadOnlyTextProps = {
   label?: string | null;
   value?: string | number;
   unForceHelperText?: true;
+  children?: undefined;
 } & Pick<FormControlProps, 'isRequired' | 'isInvalid' | 'isTruncated' | 'w'> &
   Pick<InputProps, 'size'> &
   (ReadOnlyTextInputProps | ReadOnlyTextTextAreaProps);
