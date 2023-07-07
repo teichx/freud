@@ -1,0 +1,150 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`component.ReadOnlyText isTextArea noOfLines=5 1`] = `
+<DocumentFragment>
+  <fieldset
+    class="chakra-form-control css-wnrcjm"
+    role="group"
+  >
+    <legend
+      class="chakra-form__label css-g6pte"
+      data-disabled=""
+      data-readonly=""
+      for="field-:r5:"
+      id="field-:r5:-label"
+    >
+      &lt;label&gt;
+    </legend>
+    <textarea
+      aria-describedby="field-:r5:-helptext"
+      aria-readonly="true"
+      class="chakra-textarea css-1bkxc57"
+      disabled=""
+      id="field-:r5:"
+      readonly=""
+    >
+      &lt;value&gt;
+    </textarea>
+    <div
+      class="chakra-form__helper-text css-18fa16y"
+      id="field-:r5:-helptext"
+    >
+      ‎
+    </div>
+  </fieldset>
+  <span
+    hidden=""
+    id="__chakra_env"
+  />
+</DocumentFragment>
+`;
+
+exports[`component.ReadOnlyText renders label and value 1`] = `
+<DocumentFragment>
+  <fieldset
+    class="chakra-form-control css-1kxonj9"
+    role="group"
+  >
+    <legend
+      class="chakra-form__label css-g6pte"
+      data-disabled=""
+      data-readonly=""
+      for="field-:r0:"
+      id="field-:r0:-label"
+    >
+      &lt;label&gt;
+    </legend>
+    <input
+      aria-describedby="field-:r0:-helptext"
+      aria-readonly="true"
+      class="chakra-input css-1kp110w"
+      disabled=""
+      id="field-:r0:"
+      readonly=""
+      value="<value>"
+    />
+    <div
+      class="chakra-form__helper-text css-18fa16y"
+      id="field-:r0:-helptext"
+    >
+      ‎
+    </div>
+  </fieldset>
+  <span
+    hidden=""
+    id="__chakra_env"
+  />
+</DocumentFragment>
+`;
+
+exports[`component.ReadOnlyText renders label value and helper text 1`] = `
+<DocumentFragment>
+  <fieldset
+    class="chakra-form-control css-1kxonj9"
+    role="group"
+  >
+    <legend
+      class="chakra-form__label css-g6pte"
+      data-disabled=""
+      data-readonly=""
+      for="field-:r1:"
+      id="field-:r1:-label"
+    >
+      &lt;label&gt;
+    </legend>
+    <input
+      aria-describedby="field-:r1:-helptext"
+      aria-readonly="true"
+      class="chakra-input css-1kp110w"
+      disabled=""
+      id="field-:r1:"
+      readonly=""
+      value="<value>"
+    />
+    <div
+      class="chakra-form__helper-text css-18fa16y"
+      id="field-:r1:-helptext"
+    />
+  </fieldset>
+  <span
+    hidden=""
+    id="__chakra_env"
+  />
+</DocumentFragment>
+`;
+
+exports[`component.ReadOnlyText unForceHelperText 1`] = `
+<DocumentFragment>
+  <fieldset
+    class="chakra-form-control css-1kxonj9"
+    role="group"
+  >
+    <legend
+      class="chakra-form__label css-g6pte"
+      data-disabled=""
+      data-readonly=""
+      for="field-:r2:"
+      id="field-:r2:-label"
+    >
+      &lt;label&gt;
+    </legend>
+    <input
+      aria-describedby="field-:r2:-helptext"
+      aria-readonly="true"
+      class="chakra-input css-1kp110w"
+      disabled=""
+      id="field-:r2:"
+      readonly=""
+      value="<value>"
+    />
+    <div
+      class="chakra-form__helper-text css-18fa16y"
+      id="field-:r2:-helptext"
+    />
+  </fieldset>
+  <span
+    hidden=""
+    id="__chakra_env"
+  />
+</DocumentFragment>
+`;
