@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`component.Buttons buttons.Back default 1`] = `
+<DocumentFragment>
+  <button
+    class="chakra-button css-pmna7d"
+    type="button"
+  >
+    words.back
+  </button>
+  <span
+    hidden=""
+    id="__chakra_env"
+  />
+</DocumentFragment>
+`;

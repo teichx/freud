@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`component.Buttons buttons.Link default 1`] = `
+<DocumentFragment>
+  <a
+    href="/example/link"
+  >
+    <button
+      class="chakra-button css-i857na"
+      type="button"
+    />
+  </a>
+  <span
+    hidden=""
+    id="__chakra_env"
+  />
+</DocumentFragment>
+`;

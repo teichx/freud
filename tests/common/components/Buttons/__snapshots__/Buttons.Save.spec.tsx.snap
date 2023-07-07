@@ -1,0 +1,104 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`component.Buttons buttons.Save default 1`] = `
+<DocumentFragment>
+  <button
+    class="chakra-button css-pecn96"
+    type="submit"
+  >
+    <span
+      class="chakra-button__icon css-1wh2kri"
+    >
+      <svg
+        aria-hidden="true"
+        fill="none"
+        focusable="false"
+        height="1em"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        width="1em"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"
+        />
+        <polyline
+          points="17 21 17 13 7 13 7 21"
+        />
+        <polyline
+          points="7 3 7 8 15 8"
+        />
+      </svg>
+    </span>
+    words.save
+  </button>
+  <span
+    hidden=""
+    id="__chakra_env"
+  />
+</DocumentFragment>
+`;
+
+exports[`component.Buttons buttons.Save when isLoading default when isLoading 1`] = `
+<DocumentFragment>
+  <button
+    class="chakra-button css-pecn96"
+    data-loading=""
+    disabled=""
+    type="submit"
+  >
+    <div
+      class="chakra-button__spinner chakra-button__spinner--start css-1aamklj"
+    >
+      <div
+        class="chakra-spinner css-1fc7edv"
+      >
+        <span
+          class="css-8b45rq"
+        >
+          Loading...
+        </span>
+      </div>
+    </div>
+    <span
+      class="css-q7lffx"
+    >
+      <span
+        class="chakra-button__icon css-1wh2kri"
+      >
+        <svg
+          aria-hidden="true"
+          fill="none"
+          focusable="false"
+          height="1em"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"
+          />
+          <polyline
+            points="17 21 17 13 7 13 7 21"
+          />
+          <polyline
+            points="7 3 7 8 15 8"
+          />
+        </svg>
+      </span>
+      words.save
+    </span>
+  </button>
+  <span
+    hidden=""
+    id="__chakra_env"
+  />
+</DocumentFragment>
+`;
