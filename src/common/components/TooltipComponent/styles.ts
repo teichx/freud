@@ -10,9 +10,9 @@ export const StyledTooltipComponent = styled(Tooltip, {
     paddingRight: theme.space[3],
     borderRadius: theme.radii.md,
     paddingBottom: theme.space[1],
-    color: theme.colors.book.darkBlue[500],
     fontWeight: theme.fontWeights.semibold,
-    backgroundColor: theme.colors.gray[300],
-    borderColor: theme.colors.book.darkBlue[500],
+    color: theme.semanticTokens.colors['chakra-body-text'],
+    backgroundColor: theme.semanticTokens.colors['chakra-body-bg'],
+    borderColor: theme.semanticTokens.colors['chakra-border-color'],
   }),
 });
