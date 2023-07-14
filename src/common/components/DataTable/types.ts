@@ -10,13 +10,15 @@ export type DataTableColumnProps<TData extends TDataId> = Omit<
   TableColumnHeaderProps,
   'children'
 > & {
-  label: string;
   accessor: keyof TData | null;
   render?: (props: {
     data: TData;
     column: DataTableColumnProps<TData>;
   }) => ReactNode;
-};
+} & (
+    | { label: string; tLabel?: undefined }
+    | { tLabel: string; label?: undefined }
+  );
 
 export type DataTableProps<
   TData extends TDataId = TDataId & Record<string, string>
@@ -25,7 +27,6 @@ export type DataTableProps<
   data: TData[];
   totalItems?: number;
   isLoading?: boolean;
-  translateHeader?: boolean;
   limitOptions?: number[];
   fixedHeight?: boolean;
 } & Pick<SkeletonTextProps, 'skeletonHeight'>;
