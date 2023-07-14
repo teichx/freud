@@ -3,10 +3,10 @@
 exports[`component.Section renders not loading 1`] = `
 <DocumentFragment>
   <fieldset
-    class="css-189pxlq"
+    class="css-1gpmp7y"
   >
     <legend
-      class="css-uk26kh"
+      class="css-5fo07c"
       variant="xl"
     >
       &lt;label&gt;
@@ -59,10 +59,10 @@ exports[`component.Section renders not loading 1`] = `
 exports[`component.Section renders when loading 1`] = `
 <DocumentFragment>
   <fieldset
-    class="css-189pxlq"
+    class="css-1gpmp7y"
   >
     <legend
-      class="css-uk26kh"
+      class="css-5fo07c"
       variant="xl"
     >
       &lt;label&gt;
@@ -115,10 +115,10 @@ exports[`component.Section renders when loading 1`] = `
 exports[`component.Section renders when loading having disabled loading 1`] = `
 <DocumentFragment>
   <fieldset
-    class="css-189pxlq"
+    class="css-1gpmp7y"
   >
     <legend
-      class="css-uk26kh"
+      class="css-5fo07c"
       variant="xl"
     >
       &lt;label&gt;
@@ -171,7 +171,7 @@ exports[`component.Section renders when loading having disabled loading 1`] = `
 exports[`component.Section renders without label 1`] = `
 <DocumentFragment>
   <fieldset
-    class="css-189pxlq"
+    class="css-1gpmp7y"
   >
     <div
       class="css-187wvck"
