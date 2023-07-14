@@ -1,6 +1,7 @@
 import { FormControl, FormLabel } from '@chakra-ui/react';
-import { Select } from 'chakra-react-select';
 import { Field } from 'react-final-form';
+
+import { Select } from '~/common/components/Select';
 
 import {
   formatFormSelect,
