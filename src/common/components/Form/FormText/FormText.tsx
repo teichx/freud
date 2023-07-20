@@ -3,8 +3,9 @@ import { FC } from 'react';
 import { FormControl, FormLabel, Input } from '@chakra-ui/react';
 import { Field } from 'react-final-form';
 
+import { FormHelperText } from '../FormHelperText';
 import { handlerProps } from '../handlers';
-import { FormHelperTextStyled, TextareaStyled } from './styles';
+import { TextareaStyled } from './styles';
 import { FormTextProps, FormTextTextAreaProps } from './types';
 
 export const FormText: FC<FormTextProps> = ({
@@ -45,9 +46,11 @@ export const FormText: FC<FormTextProps> = ({
             noOfLines={(props as FormTextTextAreaProps).noOfLines}
           />
 
-          <FormHelperTextStyled fontSize={size}>
-            {meta.error || helperText || unForceHelperText ? undefined : '‎'}
-          </FormHelperTextStyled>
+          <FormHelperText
+            error={meta.error}
+            helperText={helperText}
+            unForceHelperText={unForceHelperText}
+          />
         </FormControl>
       )}
     />

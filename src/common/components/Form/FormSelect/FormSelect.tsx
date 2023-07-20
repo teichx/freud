@@ -3,12 +3,12 @@ import { Field } from 'react-final-form';
 
 import { Select } from '~/common/components/Select';
 
+import { FormHelperText } from '../FormHelperText';
 import {
   formatFormSelect,
   getSelectOptions,
   parseFormSelect,
 } from './functions';
-import { FormHelperTextStyled } from './styles';
 import {
   FormSelectOptionOrValue,
   FormSelectOptionProps,
@@ -78,9 +78,11 @@ export function FormSelect<IsMulti extends boolean = false>({
             options={options}
           />
 
-          <FormHelperTextStyled fontSize={size}>
-            {meta.error || helperText || unForceHelperText ? undefined : '‎'}
-          </FormHelperTextStyled>
+          <FormHelperText
+            error={meta.error}
+            helperText={helperText}
+            unForceHelperText={unForceHelperText}
+          />
         </FormControl>
       )}
     />
