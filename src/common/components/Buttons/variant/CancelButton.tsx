@@ -1,20 +1,16 @@
-import { FC } from 'react';
-
-import { Button } from '@chakra-ui/react';
+import { forwardRef, Button } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
 
 import { VariantButtonProps } from '../types';
 
-export const CancelButton: FC<VariantButtonProps> = ({
-  text,
-  children,
-  ...props
-}) => {
-  const { t } = useTranslation();
+export const CancelButton = forwardRef<VariantButtonProps, 'button'>(
+  ({ text, children, ...props }, ref) => {
+    const { t } = useTranslation();
 
-  return (
-    <Button variant='outline' {...props}>
-      {text || children || t('words.cancel')}
-    </Button>
-  );
-};
+    return (
+      <Button variant='outline' {...props} ref={ref}>
+        {text || children || t('words.cancel')}
+      </Button>
+    );
+  }
+);
