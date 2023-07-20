@@ -18,6 +18,10 @@
       "id": "Id",
       "identifier": "Identificador"
     },
+    "form": {
+      "disabledByPristine": "Não há alterações a serem salvas",
+      "disabledByHasValidationErrors": "Há dados inválidos no formulário"
+    },
     "header": {
       "label": {
         "dashboard": "Dashboard",
