@@ -34,7 +34,7 @@ export const ComplainedCheck = () => {
                 {COGNITIVE_FIELDS[type].map((x) => (
                   <FormCheckbox
                     key={x}
-                    name={`${type}.${x}`}
+                    name={`symptoms.${type}.${x}`}
                     label={t(`${type}.${x}`)}
                   />
                 ))}
@@ -44,7 +44,7 @@ export const ComplainedCheck = () => {
             <FormText
               w='100%'
               isTextArea
-              name={`${type}.other`}
+              name={`symptoms.${type}.other`}
               label={t(`${type}.other`)}
             />
           </VStack>

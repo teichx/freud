@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 
 import { GetPatientSuccess } from '~/core/api/patient/types';
 import { ApiRoutes, Routes } from '~/core/constants';
+import { patientSchema } from '~/core/contract/patient/schema';
 import { useFormat } from '~/core/hooks';
 import { useAuth, useLoader } from '~/core/services';
 
@@ -44,7 +45,9 @@ export const usePatientData = (): UsePatientDataResultProps => {
   }, [patientId, isLoaded, authenticateFetch, formatRoute, setIsLoading]);
 
   const savePatient = useCallback<UsePatientDataResultProps['savePatient']>(
-    async (patient) => {
+    async (patientRaw) => {
+      const patient = patientSchema.validateSync(patientRaw);
+
       setIsLoading(true);
       const result = await authenticateFetch(ApiRoutes.Patient.Google.Upsert, {
         method: 'POST',

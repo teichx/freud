@@ -1,4 +1,6 @@
 import { FormComponent, FormHidden } from '~/common/components/Form';
+import { schemaValidation } from '~/common/helpers';
+import { patientSchema } from '~/core/contract/patient/schema';
 
 import { ComplainedCheck } from './ComplainedCheck';
 import { ComplainedHistory } from './ComplainedHistory';
@@ -16,6 +18,7 @@ export const PatientForm = () => {
     <FormComponent<PatientFields>
       onSubmit={savePatient}
       initialValues={patient}
+      validate={schemaValidation(patientSchema)}
     >
       <FormHidden name='id' />
 

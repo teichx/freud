@@ -15,7 +15,7 @@ export const FreeText = () => {
     <Box>
       {FREE_TEXT_FIELDS.map((x) => (
         <Section key={x} label={t(x)}>
-          <FormText name={x} isTextArea noOfLines={15} />
+          <FormText name={`freeText.${x}`} isTextArea noOfLines={15} />
         </Section>
       ))}
 

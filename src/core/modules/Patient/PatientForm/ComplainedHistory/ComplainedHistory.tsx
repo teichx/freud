@@ -18,7 +18,7 @@ export const ComplainedHistory = () => {
           <FormText
             key={columnName}
             isTextArea
-            name={columnName}
+            name={`history.${columnName}`}
             label={t(columnName)}
           />
         ))}

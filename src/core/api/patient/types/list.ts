@@ -3,10 +3,13 @@ import { PatientFields } from '~/core/modules/Patient/PatientForm/types';
 
 import { ErrorMessage, RequestQueryHandler } from '../../common';
 
-export type ListPatientResume = Pick<
-  PatientFields,
-  'id' | 'name' | 'lastCaseReport' | 'caseReportCount'
->;
+export type ListPatientResume =
+  | Pick<PatientFields, 'id'> &
+      Pick<PatientFields['personal'], 'name'> &
+      Pick<
+        NonNullable<PatientFields['calculated']>,
+        'lastCaseReport' | 'caseReportCount'
+      >;
 
 export type ListPatientSuccess<
   TPatient extends ListPatientResume = ListPatientResume

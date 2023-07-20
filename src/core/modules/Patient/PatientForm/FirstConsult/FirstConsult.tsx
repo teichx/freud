@@ -17,7 +17,13 @@ export const FirstConsult = () => {
     <Section label={t('title')}>
       <Flex alignItems='stretch' flexWrap='wrap' justifyContent='space-between'>
         {FIRST_CONSULT_FIELDS.map((x) => (
-          <FormText key={x} isTextArea w={COLUMN_WIDTH} name={x} label={t(x)} />
+          <FormText
+            key={x}
+            isTextArea
+            w={COLUMN_WIDTH}
+            name={`firstConsult.${x}`}
+            label={t(x)}
+          />
         ))}
       </Flex>
     </Section>

@@ -18,11 +18,11 @@ export const PersonalData = () => {
   return (
     <Section label={t('title')}>
       <Stack columnGap='4' direction={['column', 'row']}>
-        <FormText name='name' label={t('name')} isRequired />
+        <FormText name='personal.name' label={t('name')} isRequired />
 
         <Box maxW='200px'>
           <FormText
-            name='birth'
+            name='personal.birth'
             label={t('birth')}
             inputProps={{
               type: 'date',
@@ -37,41 +37,45 @@ export const PersonalData = () => {
                 <ReadOnlyText
                   label={t('age')}
                   unForceHelperText
-                  value={calculateAge(values?.birth)}
+                  value={calculateAge(values?.personal?.birth)}
                 />
               </TooltipComponent>
             )}
           />
         </Box>
         <Box w='300px'>
-          <FormText name='gender' label={t('gender')} />
+          <FormText name='personal.gender' label={t('gender')} />
         </Box>
       </Stack>
 
       <Stack columnGap='4' direction={['column', 'row']}>
-        <FormText name='profession' label={t('profession')} />
+        <FormText name='personal.profession' label={t('profession')} />
         <FormText
-          name='cpf'
+          name='personal.cpf'
           label={t('cpf')}
           mask={{ mask: '000.000.000.00' }}
         />
-        <FormText name='rg' label={t('rg')} mask={{ mask: '00.000.000' }} />
+        <FormText
+          name='personal.rg'
+          label={t('rg')}
+          mask={{ mask: '00.000.000' }}
+        />
         <FormSelect
-          name='schooling'
+          name='personal.schooling'
           label={t('schooling')}
           optionsKey='schooling'
         />
         <FormSelect
-          name='marriageStatus'
+          name='personal.marriageStatus'
           label={t('marriageStatus')}
           optionsKey='marriageStatus'
         />
       </Stack>
 
       <Stack columnGap='4' direction={['column', 'row']}>
-        <FormText name='address' label={t('address')} />
+        <FormText name='personal.address' label={t('address')} />
         <FormText
-          name='phoneNumber'
+          name='personal.phoneNumber'
           label={t('phoneNumber')}
           mask={{
             mask: [
@@ -80,7 +84,7 @@ export const PersonalData = () => {
             ],
           }}
         />
-        <FormText name='emergency' label={t('emergency')} />
+        <FormText name='personal.emergency' label={t('emergency')} />
       </Stack>
     </Section>
   );
