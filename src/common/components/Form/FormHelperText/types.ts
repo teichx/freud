@@ -1,5 +1,7 @@
+import { FieldMetaState } from 'react-final-form';
+
 export type FormHelperTextProps = {
-  error: string | undefined;
+  meta: FieldMetaState<unknown> | undefined;
   helperText: string | undefined;
   unForceHelperText: boolean | undefined;
 };

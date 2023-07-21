@@ -30,7 +30,7 @@ export const FormText: FC<FormTextProps> = ({
           {...props}
           as='fieldset'
           size={size}
-          isInvalid={props.isInvalid || meta.invalid}
+          isInvalid={props.isInvalid || (meta.invalid && meta.touched)}
           isDisabled={props.isDisabled}
         >
           <FormLabel htmlFor={name} as='legend' size={size}>
@@ -47,7 +47,7 @@ export const FormText: FC<FormTextProps> = ({
           />
 
           <FormHelperText
-            error={meta.error}
+            meta={meta}
             helperText={helperText}
             unForceHelperText={unForceHelperText}
           />

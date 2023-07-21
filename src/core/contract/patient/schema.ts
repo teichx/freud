@@ -21,7 +21,7 @@ const objectToSet = (object?: Record<string, boolean | undefined>) =>
 export const patientSchema = yup.object().shape({
   id: yup.string(),
   personal: yup.object().shape({
-    name: yup.string(),
+    name: yup.string().required(),
     birth: yup.date().min('1900-01-01').max(new Date()),
     gender: yup.string(),
     profession: yup.string(),

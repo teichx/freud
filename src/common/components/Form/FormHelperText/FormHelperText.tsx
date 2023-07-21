@@ -4,10 +4,12 @@ import { FormHelperTextStyled } from './styles';
 import { FormHelperTextProps } from './types';
 
 export const FormHelperText: FC<FormHelperTextProps> = ({
-  error,
+  meta,
   helperText,
   unForceHelperText,
 }) =>
-  error || helperText || !unForceHelperText ? (
-    <FormHelperTextStyled>{error || helperText || '‎'}</FormHelperTextStyled>
+  meta?.error || helperText || !unForceHelperText ? (
+    <FormHelperTextStyled>
+      {(meta?.touched ? meta?.error : undefined) || helperText || '‎'}
+    </FormHelperTextStyled>
   ) : null;

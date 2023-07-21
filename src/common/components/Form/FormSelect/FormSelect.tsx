@@ -48,7 +48,7 @@ export function FormSelect<IsMulti extends boolean = false>({
         <FormControl
           {...props}
           size={size}
-          isInvalid={meta.invalid}
+          isInvalid={meta.invalid && meta.touched}
           isDisabled={isDisabled}
         >
           <FormLabel>{label}</FormLabel>
@@ -79,7 +79,7 @@ export function FormSelect<IsMulti extends boolean = false>({
           />
 
           <FormHelperText
-            error={meta.error}
+            meta={meta}
             helperText={helperText}
             unForceHelperText={unForceHelperText}
           />
