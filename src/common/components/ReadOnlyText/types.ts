@@ -2,6 +2,7 @@ import { FormControlProps, InputProps } from '@chakra-ui/react';
 
 export type ReadOnlyTextInputProps = {
   isTextArea?: false;
+  noOfLines?: undefined;
 };
 
 export type ReadOnlyTextTextAreaProps = {

@@ -3,6 +3,7 @@ import { IMask } from 'react-imask';
 
 export type FormTextInputProps = {
   isTextArea?: false;
+  noOfLines?: undefined;
 };
 
 export type FormTextTextAreaProps = {

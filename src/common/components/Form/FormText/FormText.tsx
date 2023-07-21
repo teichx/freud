@@ -6,12 +6,13 @@ import { Field } from 'react-final-form';
 import { FormHelperText } from '../FormHelperText';
 import { handlerProps } from '../handlers';
 import { TextareaStyled } from './styles';
-import { FormTextProps, FormTextTextAreaProps } from './types';
+import { FormTextProps } from './types';
 
 export const FormText: FC<FormTextProps> = ({
   name,
   size,
   label,
+  noOfLines,
   helperText,
   isTextArea,
   inputProps: { defaultValue, type, ...inputProps } = {},
@@ -43,7 +44,7 @@ export const FormText: FC<FormTextProps> = ({
             {...handlerProps(input, inputProps)}
             size={size}
             variant='outline'
-            noOfLines={(props as FormTextTextAreaProps).noOfLines}
+            noOfLines={noOfLines}
           />
 
           <FormHelperText
