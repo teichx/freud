@@ -11,8 +11,5 @@ export const StyledTooltipComponent = styled(Tooltip, {
     borderRadius: theme.radii.md,
     paddingBottom: theme.space[1],
     fontWeight: theme.fontWeights.semibold,
-    color: theme.semanticTokens.colors['chakra-body-text'],
-    backgroundColor: theme.semanticTokens.colors['chakra-body-bg'],
-    borderColor: theme.semanticTokens.colors['chakra-border-color'],
   }),
 });

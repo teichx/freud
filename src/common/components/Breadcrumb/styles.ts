@@ -8,10 +8,13 @@ export const BreadcrumbWrapper = styled(Breadcrumb, {
     px: theme.space[4],
     height: theme.space[10],
     borderRadius: theme.radii.md,
-    borderColor: theme.semanticTokens.colors['chakra-border-color'],
     '&, ol': {
       display: 'flex',
       alignItems: 'stretch',
+    },
+    borderColor: theme.semanticTokens.colors['chakra-border-color']._light,
+    _dark: {
+      borderColor: theme.semanticTokens.colors['chakra-border-color']._dark,
     },
   }),
 });
