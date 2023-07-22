@@ -1,6 +1,7 @@
 import { forwardRef, FormControl, FormLabel, Input } from '@chakra-ui/react';
 
-import { FormHelperTextStyled, TextareaStyled } from './styles';
+import { FormHelperText } from '../Form';
+import { TextareaStyled } from './styles';
 import { ReadOnlyTextProps } from './types';
 
 export const ReadOnlyText = forwardRef<ReadOnlyTextProps, 'div'>(
@@ -40,9 +41,11 @@ export const ReadOnlyText = forwardRef<ReadOnlyTextProps, 'div'>(
           noOfLines={noOfLines}
         />
 
-        <FormHelperTextStyled fontSize={size}>
-          {helperText || unForceHelperText ? undefined : '‎'}
-        </FormHelperTextStyled>
+        <FormHelperText
+          meta={undefined}
+          unForceHelperText={unForceHelperText}
+          helperText={helperText}
+        />
       </FormControl>
     );
   }
