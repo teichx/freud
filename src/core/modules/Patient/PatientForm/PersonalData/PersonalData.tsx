@@ -53,6 +53,9 @@ export const PersonalData = () => {
         <FormText
           name='personal.cpf'
           label={t('cpf')}
+          fieldProps={{
+            formatOnBlur: true,
+          }}
           mask={{ mask: '000.000.000.00' }}
         />
         <FormText

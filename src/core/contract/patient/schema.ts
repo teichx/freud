@@ -4,6 +4,7 @@ import {
   marriageStatus,
   schooling,
 } from '~/common/components/Form/FormSelect/options';
+import { isEmptyOrCpf, numbersOnly } from '~/common/helpers';
 import { COGNITIVE_FIELDS } from '~/core/modules/Patient/PatientForm/constants';
 
 const objectToSet = (object?: Record<string, boolean | undefined>) =>
@@ -25,8 +26,8 @@ export const patientSchema = yup.object().shape({
     birth: yup.date().min('1900-01-01').max(new Date()),
     gender: yup.string(),
     profession: yup.string(),
-    cpf: yup.string().length(11),
-    rg: yup.string(),
+    cpf: yup.string().test(isEmptyOrCpf),
+    rg: yup.string().transform(numbersOnly),
     schooling: yup.string().oneOf(schooling),
     marriageStatus: yup.string().oneOf(marriageStatus),
     address: yup.string(),
