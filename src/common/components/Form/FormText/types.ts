@@ -1,4 +1,5 @@
 import { FormControlProps, InputProps } from '@chakra-ui/react';
+import { UseFieldConfig } from 'react-final-form';
 import { IMask } from 'react-imask';
 
 export type FormTextInputProps = {
@@ -20,6 +21,10 @@ export type FormTextProps = {
   };
   unForceHelperText?: true;
   mask?: IMask.AnyMaskedOptions;
+  fieldProps?: Omit<
+    UseFieldConfig<string | undefined>,
+    'name' | 'type' | 'defaultValue'
+  >;
 } & Pick<
   FormControlProps,
   'isRequired' | 'isDisabled' | 'isInvalid' | 'isReadOnly' | 'isTruncated' | 'w'

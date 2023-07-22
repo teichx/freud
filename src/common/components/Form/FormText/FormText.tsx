@@ -17,6 +17,7 @@ export const FormText: FC<FormTextProps> = ({
   isTextArea,
   inputProps: { defaultValue, type, ...inputProps } = {},
   unForceHelperText,
+  fieldProps,
   ...props
 }: FormTextProps) => {
   const InputComponent = isTextArea ? TextareaStyled : Input;
@@ -26,6 +27,7 @@ export const FormText: FC<FormTextProps> = ({
       name={name}
       type={type}
       defaultValue={defaultValue}
+      {...(fieldProps || {})}
       render={({ input, meta }) => (
         <FormControl
           {...props}
@@ -42,6 +44,7 @@ export const FormText: FC<FormTextProps> = ({
             {...inputProps}
             {...input}
             {...handlerProps(input, inputProps)}
+            value={input.value || ''}
             size={size}
             variant='outline'
             noOfLines={noOfLines}
