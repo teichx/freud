@@ -3,7 +3,7 @@
 exports[`component.ReadOnlyText isTextArea noOfLines=5 1`] = `
 <DocumentFragment>
   <fieldset
-    class="chakra-form-control css-wnrcjm"
+    class="chakra-form-control css-1kxonj9"
     role="group"
   >
     <legend
@@ -104,7 +104,9 @@ exports[`component.ReadOnlyText renders label value and helper text 1`] = `
     <div
       class="chakra-form__helper-text css-18fa16y"
       id="field-:r1:-helptext"
-    />
+    >
+      &lt;helper text&gt;
+    </div>
   </fieldset>
   <span
     hidden=""
@@ -129,17 +131,12 @@ exports[`component.ReadOnlyText unForceHelperText 1`] = `
       &lt;label&gt;
     </legend>
     <input
-      aria-describedby="field-:r2:-helptext"
       aria-readonly="true"
       class="chakra-input css-1kp110w"
       disabled=""
       id="field-:r2:"
       readonly=""
       value="<value>"
-    />
-    <div
-      class="chakra-form__helper-text css-18fa16y"
-      id="field-:r2:-helptext"
     />
   </fieldset>
   <span
