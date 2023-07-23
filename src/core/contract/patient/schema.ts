@@ -4,20 +4,12 @@ import {
   marriageStatus,
   schooling,
 } from '~/common/components/Form/FormSelect/options';
-import { isEmptyOrCpf, numbersOnly } from '~/common/helpers';
+import {
+  isEmptyOrCpf,
+  numbersOnly,
+  objectToUniqueList,
+} from '~/common/helpers';
 import { COGNITIVE_FIELDS } from '~/core/modules/Patient/PatientForm/constants';
-
-const objectToSet = (object?: Record<string, boolean | undefined>) =>
-  Array.isArray(object)
-    ? Array.from(new Set(object))
-    : Array.from(
-        new Set(
-          Object.entries(object || {})
-            .filter(([key]) => !key.includes('other'))
-            .filter(([, value]) => !!value)
-            .map(([key]) => key)
-        )
-      );
 
 export const patientSchema = yup.object().shape({
   id: yup.string(),
@@ -48,11 +40,11 @@ export const patientSchema = yup.object().shape({
   symptoms: yup.object().shape({
     cognitive: yup
       .array()
-      .transform(objectToSet)
+      .transform(objectToUniqueList)
       .of(yup.string().oneOf(COGNITIVE_FIELDS.cognitive)),
     emotional: yup
       .array()
-      .transform(objectToSet)
+      .transform(objectToUniqueList)
       .of(yup.string().oneOf(COGNITIVE_FIELDS.emotional)),
   }),
   freeText: yup.object().shape({
