@@ -1,0 +1,35 @@
+version: '3.8'
+services:
+
+  dynamodb-local:
+    image: amazon/dynamodb-local:latest
+    container_name: dynamodb-local
+    volumes:
+     - "dynamodb_data:/home/dynamodblocal/data"
+    ports:
+      - "8000:8000"
+    networks:
+      - freud-network
+    restart: always
+
+  dynamodb-admin:
+    image: aaronshaf/dynamodb-admin
+    ports:
+      - "8001:8001"
+    environment:
+      DYNAMO_ENDPOINT: "http://dynamodb-local:8000"
+      AWS_REGION: "us-west-2"
+      AWS_ACCESS_KEY_ID: local
+      AWS_SECRET_ACCESS_KEY: local
+    depends_on:
+      - dynamodb-local
+    networks:
+      - freud-network
+    restart: always
+
+networks:
+  freud-network:
+    driver: bridge
+
+volumes:
+  dynamodb_data:
