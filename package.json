@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "postinstall": "husky install",
+    "infra-dev": "docker-compose -f docker-compose.dev.yml up -d",
+    "infra-dev-down": "docker-compose -f docker-compose.dev.yml down",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
