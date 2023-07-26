@@ -26,7 +26,7 @@ export const DataTableFooter: FC<DataTableFooterProps> = ({
   const { page, limit, nextPage, previousPage, setLimit, toPage } =
     useQueryPaginate();
 
-  const pageCount = Math.ceil(totalItems || 0 / limit) || 1;
+  const pageCount = Math.ceil((totalItems || 0) / limit) || 1;
   const canPrevious = page > 1;
   const canNext = page < pageCount;
   const limitOptions = Array.from(new Set([...limitOptionsParam, limit])).sort(
