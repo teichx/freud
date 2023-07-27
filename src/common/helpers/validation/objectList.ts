@@ -10,3 +10,6 @@ export const objectToUniqueList = (
             .map(([key]) => key)
         )
       );
+
+export const listToObject = (value: Set<string> | string[] | undefined) =>
+  Object.fromEntries(Array.from(value || []).map((x) => [x, true]));
