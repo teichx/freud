@@ -1,7 +1,4 @@
-import {
-  PatientFields,
-  PatientFieldsWithoutId,
-} from '~/core/modules/Patient/PatientForm/types';
+import { PatientFields, PatientFieldsWithoutId } from '~/core/contract';
 
 import { ErrorMessage, RequestBodyHandler } from '../../common';
 

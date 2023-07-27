@@ -4,11 +4,11 @@ import { useRouter } from 'next/router';
 
 import { GetPatientSuccess } from '~/core/api/patient/types';
 import { ApiRoutes, Routes } from '~/core/constants';
+import { PatientFields } from '~/core/contract';
 import { patientSchema } from '~/core/contract/patient/schema';
 import { useFormat } from '~/core/hooks';
 import { useAuth, useLoader } from '~/core/services';
 
-import { PatientFields } from '../types';
 import { PatientStateProps, UsePatientDataResultProps } from './types';
 
 const INITIAL_STATE = {
@@ -51,12 +51,11 @@ export const usePatientData = (): UsePatientDataResultProps => {
       setIsLoading(true);
       const result = await authenticateFetch(ApiRoutes.Patient.Google.Upsert, {
         method: 'POST',
-        body: JSON.stringify(patient),
+        body: JSON.stringify({ patient }),
       });
       const data: PatientFields = await result.json();
 
       setState(INITIAL_STATE);
-      setIsLoading(false);
       replace(formatRoute(Routes.Core.Patient.Edit, data.id), undefined, {
         shallow: true,
       });

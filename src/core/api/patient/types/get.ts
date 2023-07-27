@@ -1,4 +1,4 @@
-import { PatientFields } from '~/core/modules/Patient/PatientForm/types';
+import { PatientFields } from '~/core/contract';
 
 import { ErrorMessage, RequestQueryHandler } from '../../common';
 

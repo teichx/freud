@@ -1,5 +1,6 @@
 import { FormComponent, FormHidden } from '~/common/components/Form';
 import { schemaValidation } from '~/common/helpers';
+import { PatientFields } from '~/core/contract';
 import { patientSchema } from '~/core/contract/patient/schema';
 
 import { ComplainedCheck } from './ComplainedCheck';
@@ -8,7 +9,6 @@ import { FirstConsult } from './FirstConsult';
 import { FreeText } from './FreeText';
 import { PatientFormHeader } from './PatientFormHeader';
 import { PersonalData } from './PersonalData';
-import { PatientFields } from './types';
 import { usePatientData } from './usePatientData';
 
 export const PatientForm = () => {

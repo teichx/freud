@@ -44,7 +44,7 @@ export const ComplainedCheck = () => {
             <FormText
               w='100%'
               isTextArea
-              name={`symptoms.${type}.other`}
+              name={`symptoms.${type}Details`}
               label={t(`${type}.other`)}
             />
           </VStack>

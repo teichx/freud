@@ -6,9 +6,8 @@ import { FormSelect, FormText } from '~/common/components/Form';
 import { ReadOnlyText } from '~/common/components/ReadOnlyText';
 import { Section } from '~/common/components/Section';
 import { TooltipComponent } from '~/common/components/TooltipComponent';
+import { PatientFields } from '~/core/contract';
 import { calculateAge } from '~/core/helpers/dates';
-
-import { PatientFields } from '../types';
 
 export const PersonalData = () => {
   const { t } = useTranslation(undefined, {
@@ -18,7 +17,7 @@ export const PersonalData = () => {
   return (
     <Section label={t('title')}>
       <Stack columnGap='4' direction={['column', 'row']}>
-        <FormText name='personal.name' label={t('name')} isRequired />
+        <FormText name='name' label={t('name')} isRequired />
 
         <Box maxW='200px'>
           <FormText
@@ -53,9 +52,6 @@ export const PersonalData = () => {
         <FormText
           name='personal.cpf'
           label={t('cpf')}
-          fieldProps={{
-            formatOnBlur: true,
-          }}
           mask={{ mask: '000.000.000.00' }}
         />
         <FormText

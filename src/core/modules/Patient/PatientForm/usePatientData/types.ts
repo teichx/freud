@@ -1,6 +1,5 @@
 import { GetPatientSuccess } from '~/core/api/patient/types';
-
-import { PatientFields } from '../types';
+import { PatientFields } from '~/core/contract';
 
 export type PatientStateProps = Pick<GetPatientSuccess, 'patient'> & {
   isLoaded: boolean;

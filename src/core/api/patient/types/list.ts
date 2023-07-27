@@ -1,11 +1,10 @@
 import { PaginateQueryProps, PaginateResultTotalItems } from '~/common/query';
-import { PatientFields } from '~/core/modules/Patient/PatientForm/types';
+import { PatientFields } from '~/core/contract';
 
 import { ErrorMessage, RequestQueryHandler } from '../../common';
 
 export type ListPatientResume =
-  | Pick<PatientFields, 'id'> &
-      Pick<PatientFields['personal'], 'name'> &
+  | Pick<PatientFields, 'id' | 'name'> &
       Pick<
         NonNullable<PatientFields['calculated']>,
         'lastCaseReport' | 'caseReportCount'

@@ -20,7 +20,7 @@ export const FreeText = () => {
       ))}
 
       <Section label={t('others')}>
-        <FormText name='others' isTextArea noOfLines={15} />
+        <FormText name='freeText.other' isTextArea noOfLines={15} />
       </Section>
     </Box>
   );

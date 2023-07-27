@@ -13,9 +13,13 @@ import { COGNITIVE_FIELDS } from '~/core/modules/Patient/PatientForm/constants';
 
 export const patientSchema = yup.object().shape({
   id: yup.string(),
+  name: yup.string().required(),
   personal: yup.object().shape({
-    name: yup.string().required(),
-    birth: yup.date().min('1900-01-01').max(new Date()),
+    birth: yup
+      .date()
+      .min('1900-01-01')
+      .max(new Date())
+      .withMutation(() => yup.string()),
     gender: yup.string(),
     profession: yup.string(),
     cpf: yup.string().test(isEmptyOrCpf),
@@ -38,10 +42,12 @@ export const patientSchema = yup.object().shape({
     medication: yup.string(),
   }),
   symptoms: yup.object().shape({
+    cognitiveDetails: yup.string(),
     cognitive: yup
       .array()
       .transform(objectToUniqueList)
       .of(yup.string().oneOf(COGNITIVE_FIELDS.cognitive)),
+    emotionalDetails: yup.string(),
     emotional: yup
       .array()
       .transform(objectToUniqueList)
@@ -56,9 +62,12 @@ export const patientSchema = yup.object().shape({
     importantFacts: yup.string(),
     prognosis: yup.string(),
     treatment: yup.string(),
+    other: yup.string(),
   }),
   calculated: yup.object().shape({
     caseReportCount: yup.number(),
-    lastCaseReport: yup.date(),
+    lastCaseReport: yup.date().withMutation(() => yup.string()),
   }),
+  createdAt: yup.date().withMutation(() => yup.string()),
+  updatedAt: yup.date().withMutation(() => yup.string()),
 });
