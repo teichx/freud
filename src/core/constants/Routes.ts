@@ -28,17 +28,13 @@ export const ApiRoutes = {
     RefreshToken: '/api/auth/refresh-token',
   },
   Patient: {
+    Get: '/api/patient/{0}',
+    List: '/api/patient/list?page={0}&limit={1}',
+    Upsert: '/api/patient/upsert',
     CaseReport: {
-      Google: {
-        Get: '/api/google/patient/{0}/case-report/{1}',
-        List: '/api/google/patient/{0}/case-report/list?page={1}&limit={2}',
-        Upsert: '/api/google/patient/{0}/case-report/upsert',
-      },
-    },
-    Google: {
-      Get: '/api/google/patient/{0}',
-      List: '/api/google/patient/list?page={0}&limit={1}',
-      Upsert: '/api/google/patient/upsert',
+      Get: '/api/patient/{0}/case-report/{1}',
+      List: '/api/patient/{0}/case-report/list?page={1}&limit={2}',
+      Upsert: '/api/patient/{0}/case-report/upsert',
     },
   },
 } as const;

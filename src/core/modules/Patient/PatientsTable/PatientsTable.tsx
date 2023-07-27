@@ -37,11 +37,7 @@ export const PatientsTable = () => {
 
     setState((x) => ({ ...x, isLoading: true }));
     authenticateFetch(
-      formatRoute(
-        ApiRoutes.Patient.Google.List,
-        page.toString(),
-        pageSize.toString()
-      )
+      formatRoute(ApiRoutes.Patient.List, page.toString(), pageSize.toString())
     )
       .then<ListPatientSuccess>((x) => x.json())
       .then((result) => {

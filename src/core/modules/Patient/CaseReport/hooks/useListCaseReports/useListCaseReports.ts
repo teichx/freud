@@ -31,7 +31,7 @@ export const useListCaseReports: UseListCaseReports = () => {
 
     setIsLoading(true);
     authenticateFetch(
-      formatRoute(ApiRoutes.Patient.CaseReport.Google.List, id, page, limit)
+      formatRoute(ApiRoutes.Patient.CaseReport.List, id, page, limit)
     )
       .then<ListCaseReportSuccess>((x) => x.json())
       .then((result) => {

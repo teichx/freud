@@ -19,7 +19,7 @@ export const useSaveCaseReports: UseSaveCaseReports = ({
   ) => {
     startLoading();
     authenticateFetch(
-      formatRoute(ApiRoutes.Patient.CaseReport.Google.Upsert, patientId),
+      formatRoute(ApiRoutes.Patient.CaseReport.Upsert, patientId),
       {
         body: JSON.stringify(caseReport),
         method: 'POST',

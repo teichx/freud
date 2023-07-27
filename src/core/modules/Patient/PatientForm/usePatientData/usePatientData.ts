@@ -33,7 +33,7 @@ export const usePatientData = (): UsePatientDataResultProps => {
     if (isLoaded) return;
 
     setIsLoading(true);
-    const route = formatRoute(ApiRoutes.Patient.Google.Get, `${patientId}`);
+    const route = formatRoute(ApiRoutes.Patient.Get, `${patientId}`);
     authenticateFetch(route)
       .then<GetPatientSuccess>((x) => x.json())
       .then(({ patient }) => setState((x) => ({ ...x, patient })))
@@ -49,7 +49,7 @@ export const usePatientData = (): UsePatientDataResultProps => {
       const patient = patientSchema.validateSync(patientRaw);
 
       setIsLoading(true);
-      const result = await authenticateFetch(ApiRoutes.Patient.Google.Upsert, {
+      const result = await authenticateFetch(ApiRoutes.Patient.Upsert, {
         method: 'POST',
         body: JSON.stringify({ patient }),
       });

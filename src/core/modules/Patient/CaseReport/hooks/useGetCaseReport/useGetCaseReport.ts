@@ -34,11 +34,7 @@ export const useGetCaseReport: UseGetCaseReport = ({ patientId }) => {
 
     startLoading();
     authenticateFetch(
-      formatRoute(
-        ApiRoutes.Patient.CaseReport.Google.Get,
-        patientId,
-        caseReportId
-      )
+      formatRoute(ApiRoutes.Patient.CaseReport.Get, patientId, caseReportId)
     )
       .then<GetCaseReportSuccess>((x) => x.json())
       .then((result) => {
