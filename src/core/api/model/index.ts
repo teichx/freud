@@ -10,3 +10,5 @@ const ddb = new aws.ddb.DynamoDB({
 });
 
 aws.ddb.set(ddb);
+
+export * from './patient';
