@@ -10,7 +10,7 @@ import { listToObject } from '~/common/helpers';
 import { PatientFields } from '~/core/contract';
 import { COGNITIVE_FIELDS } from '~/core/modules/Patient/PatientForm/constants';
 
-export const PREFIX = {
+export const PATIENT_PREFIX = {
   PK: 'Tenant#',
   SK: 'Patient#',
 };
@@ -30,7 +30,9 @@ export const patientDynamoSchema = new Schema(
       type: String,
       hashKey: true,
       set: (value) =>
-        value.toString().startsWith(PREFIX.PK) ? value : `${PREFIX.PK}${value}`,
+        value.toString().startsWith(PATIENT_PREFIX.PK)
+          ? value
+          : `${PATIENT_PREFIX.PK}${value}`,
       get: () => '',
       aliases: 'tenantId',
     },
@@ -38,8 +40,10 @@ export const patientDynamoSchema = new Schema(
       type: String,
       rangeKey: true,
       set: (value) =>
-        value.toString().startsWith(PREFIX.SK) ? value : `${PREFIX.SK}${value}`,
-      get: (value) => value.toString().replace(PREFIX.SK, ''),
+        value.toString().startsWith(PATIENT_PREFIX.SK)
+          ? value
+          : `${PATIENT_PREFIX.SK}${value}`,
+      get: (value) => value.toString().replace(PATIENT_PREFIX.SK, ''),
       alias: 'id',
     },
     createdAt: ISO_TYPE,
