@@ -5,9 +5,9 @@ export const sendError = ({
   res,
   error,
   extras = {},
-  status = EnumHttpStatus.BadRequest,
+  status = 'BadRequest',
 }: SendErrorProps) =>
-  res.status(status).send({
+  res.status(EnumHttpStatus[status]).send({
     message: error,
     ...extras,
   });

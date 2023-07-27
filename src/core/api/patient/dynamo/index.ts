@@ -67,8 +67,8 @@ export const get: GetPatientHandler = async (req, res) => {
   if (!patient) {
     return sendError({
       res,
-      error: 'Not found',
-      status: EnumHttpStatus.NotFound,
+      error: 'Patient not found',
+      status: 'NotFound',
     });
   }
 

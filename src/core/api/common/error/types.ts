@@ -7,5 +7,5 @@ export type SendErrorProps = {
   res: NextApiResponse<ErrorMessage>;
   error: string;
   extras?: Record<string, unknown>;
-  status?: EnumHttpStatus;
+  status?: keyof typeof EnumHttpStatus;
 };
