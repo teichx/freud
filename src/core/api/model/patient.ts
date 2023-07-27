@@ -11,7 +11,7 @@ import { PatientFields } from '~/core/contract';
 import { COGNITIVE_FIELDS } from '~/core/modules/Patient/PatientForm/constants';
 
 export const PREFIX = {
-  PK: 'TenantId#',
+  PK: 'Tenant#',
   SK: 'Patient#',
 };
 
