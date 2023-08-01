@@ -18,8 +18,7 @@ export const patientSchema = yup.object().shape({
     birth: yup
       .date()
       .min('1900-01-01')
-      .max(new Date())
-      .withMutation(() => yup.string()),
+      .max(new Date().toISOString().split('T')[0]),
     gender: yup.string(),
     profession: yup.string(),
     cpf: yup.string().test(isEmptyOrCpf),
@@ -68,6 +67,6 @@ export const patientSchema = yup.object().shape({
     caseReportCount: yup.number(),
     lastCaseReport: yup.date().withMutation(() => yup.string()),
   }),
-  createdAt: yup.date().withMutation(() => yup.string()),
-  updatedAt: yup.date().withMutation(() => yup.string()),
+  createdAt: yup.date(),
+  updatedAt: yup.date(),
 });
