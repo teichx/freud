@@ -1,10 +1,10 @@
 import { PaginateQueryProps } from '~/common/query';
+import { CaseReportFields } from '~/core/contract';
 
 import { ErrorMessage, RequestQueryHandler } from '../../../common';
-import { CaseReportProps } from './caseReport';
 
 export type ListCaseReportResume = Pick<
-  CaseReportProps,
+  CaseReportFields,
   'id' | 'reportingDate'
 > & {
   resume: string;
@@ -21,6 +21,6 @@ export type ListCaseReportSuccess = {
 export type ListCaseReportResponse = ListCaseReportSuccess | ErrorMessage;
 
 export type ListCaseReportHandler = RequestQueryHandler<
-  PaginateQueryProps,
+  PaginateQueryProps & { patientId: string },
   ListCaseReportResponse
 >;

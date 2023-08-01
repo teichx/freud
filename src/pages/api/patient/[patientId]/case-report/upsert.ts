@@ -1,1 +1,1 @@
-export { upsert as default } from '~/core/api/patient/caseReport/google';
+export { upsert as default } from '~/core/api/patient/caseReport/dynamo';

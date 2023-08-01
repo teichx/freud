@@ -1,8 +1,9 @@
+import { CaseReportFields } from '~/core/contract';
+
 import { ErrorMessage, RequestQueryHandler } from '../../../common';
-import { CaseReportProps } from './caseReport';
 
 export type GetCaseReportProps = Pick<
-  CaseReportProps,
+  CaseReportFields,
   'id' | 'content' | 'reportingDate'
 >;
 

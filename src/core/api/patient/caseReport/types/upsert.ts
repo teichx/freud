@@ -1,5 +1,6 @@
+import { CaseReportFields, CaseReportFieldsWithoutId } from '~/core/contract';
+
 import { ErrorMessage, RequestBodyHandler } from '../../../common';
-import { CaseReportProps, CasesReportWithoutIdProps } from './caseReport';
 
 export type UpsertCaseReportSuccess = {
   id: string;
@@ -8,7 +9,7 @@ export type UpsertCaseReportSuccess = {
 export type UpsertCaseReportResponse = UpsertCaseReportSuccess | ErrorMessage;
 
 export type UpsertCaseReportBodyProps = {
-  caseReport: CasesReportWithoutIdProps & Partial<Pick<CaseReportProps, 'id'>>;
+  caseReport: CaseReportFieldsWithoutId & Partial<Pick<CaseReportFields, 'id'>>;
 };
 
 export type UpsertCaseReportHandler = RequestBodyHandler<

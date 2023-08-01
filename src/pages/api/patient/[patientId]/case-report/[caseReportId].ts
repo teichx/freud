@@ -1,1 +1,1 @@
-export { get as default } from '~/core/api/patient/caseReport/google';
+export { get as default } from '~/core/api/patient/caseReport/dynamo';
