@@ -21,7 +21,7 @@ export const useSaveCaseReports: UseSaveCaseReports = ({
     authenticateFetch(
       formatRoute(ApiRoutes.Patient.CaseReport.Upsert, patientId),
       {
-        body: JSON.stringify(caseReport),
+        body: JSON.stringify({ caseReport }),
         method: 'POST',
       }
     )

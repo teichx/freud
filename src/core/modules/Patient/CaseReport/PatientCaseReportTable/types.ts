@@ -1,7 +1,5 @@
-import {
-  CaseReportProps,
-  ListCaseReportResume,
-} from '~/core/api/patient/caseReport/types';
+import { ListCaseReportResume } from '~/core/api/patient/caseReport/types';
+import { CaseReportFields } from '~/core/contract';
 
 export type PatientCaseReportTableProps = {
   patientId: string;
@@ -15,5 +13,5 @@ export type CaseReportResumeProps = {
     id: string;
     name: string;
   };
-  caseReports: CaseReportProps[];
+  caseReports: CaseReportFields[];
 };

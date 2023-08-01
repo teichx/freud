@@ -41,7 +41,10 @@ export const useGetCaseReport: UseGetCaseReport = ({ patientId }) => {
         setState((x) => ({
           ...x,
           isLoaded: true,
-          caseReport: result.caseReport,
+          caseReport: {
+            ...result.caseReport,
+            patientId,
+          },
         }));
       })
       .finally(endLoading);

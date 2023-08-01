@@ -1,8 +1,5 @@
-import {
-  CaseReportProps,
-  CasesReportWithoutIdProps,
-  UpsertCaseReportSuccess,
-} from '~/core/api/patient/caseReport/types';
+import { UpsertCaseReportSuccess } from '~/core/api/patient/caseReport/types';
+import { CaseReportFields, CaseReportFieldsWithoutId } from '~/core/contract';
 
 export type UseSaveCaseReportsProps = {
   patientId: string;
@@ -12,6 +9,6 @@ export type UseSaveCaseReportsProps = {
 
 export type UseSaveCaseReports = (props: UseSaveCaseReportsProps) => {
   saveCaseReport: (
-    caseReport: CaseReportProps | CasesReportWithoutIdProps
+    caseReport: CaseReportFields | CaseReportFieldsWithoutId
   ) => void;
 };

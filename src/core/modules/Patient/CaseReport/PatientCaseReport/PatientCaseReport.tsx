@@ -38,7 +38,8 @@ export const PatientCaseReport: FC<
 
   const handleOpen = () => getById({ caseReportId });
 
-  const createOrUpdateKey = caseReportId || caseReport.id ? 'update' : 'create';
+  const createOrUpdateKey =
+    caseReportId || caseReport?.id ? 'update' : 'create';
 
   return (
     <DataModal<FormComponentProps<CaseReportFormProps>>

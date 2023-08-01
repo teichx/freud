@@ -1,4 +1,4 @@
-import { CaseReportProps } from '~/core/api/patient/caseReport/types';
+import { CaseReportFields } from '~/core/contract';
 
 export type PatientCaseReportProps = {
   patient: {
@@ -9,6 +9,6 @@ export type PatientCaseReportProps = {
 };
 
 export type CaseReportFormProps = Pick<
-  CaseReportProps,
+  CaseReportFields,
   'content' | 'id' | 'patientId' | 'reportingDate'
 >;
