@@ -1,9 +1,9 @@
 import { parseISO, differenceInYears } from 'date-fns';
 
-export const calculateAge = (value?: string) => {
+export const calculateAge = (value?: string | Date) => {
   try {
     if (!value) return undefined;
-    const date = parseISO(value);
+    const date = value instanceof Date ? value : parseISO(value);
     const yearReceived = date.getFullYear();
 
     const now = new Date();
