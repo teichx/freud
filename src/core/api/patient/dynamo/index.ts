@@ -20,8 +20,13 @@ export const upsert: UpsertPatientHandler = async (req, res) => {
   const receivedId = req.body.patient?.id;
   const id = receivedId || ulid();
 
+  const bodyPatient = await patientSchema.validate(req.body.patient);
   const patient = {
-    ...(await patientSchema.validate(req.body.patient)),
+    ...bodyPatient,
+    personal: {
+      ...bodyPatient.personal,
+      birth: bodyPatient.personal.birth?.toISOString(),
+    },
     updatedAt: new Date().toISOString(),
   };
 
