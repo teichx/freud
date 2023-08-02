@@ -5,11 +5,7 @@ import { getCustomerId } from '~/core/api/auth/authorization';
 import { sendError } from '~/core/api/common';
 import { EnumHttpStatus } from '~/core/api/constants';
 import { CaseReport, Patient, getCaseReportPK } from '~/core/api/model';
-import {
-  CASE_REPORT_RESUME_LENGTH,
-  CaseReportModelFields,
-  caseReportSchema,
-} from '~/core/contract';
+import { CASE_REPORT_RESUME_LENGTH, caseReportSchema } from '~/core/contract';
 
 import { ListCaseReportHandler, UpsertCaseReportHandler } from '../types';
 import { GetCaseReportHandler } from '../types/get';
@@ -29,17 +25,13 @@ export const upsert: UpsertCaseReportHandler = async (req, res) => {
   const caseReportBody = await caseReportSchema.validate(req.body.caseReport);
   const caseReport = {
     ...caseReportBody,
+    reportingDate: caseReportBody.reportingDate.toISOString(),
     resume: caseReportBody.content.substring(0, CASE_REPORT_RESUME_LENGTH),
-    updatedAt: new Date().toISOString(),
+    PK,
+    SK,
   };
   if (!receivedId) {
-    const payload: CaseReportModelFields = {
-      ...caseReport,
-      createdAt: new Date().toISOString(),
-      PK,
-      SK,
-    };
-    await CaseReport.create(payload);
+    await CaseReport.create(caseReport);
 
     return res.status(EnumHttpStatus.Created).send({
       id: SK,

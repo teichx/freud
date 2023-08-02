@@ -1,8 +1,8 @@
 import { Schema, model } from 'dynamoose';
-import { Item } from 'dynamoose/dist/Item';
 import { ValueType } from 'dynamoose/dist/Schema';
 
 import { CaseReportModelFields } from '~/core/contract';
+import { DynamoItemProps } from '~/core/contract/@types';
 
 export const getCaseReportPK = ({
   tenantId,
@@ -58,7 +58,7 @@ export const caseReportDynamoSchema = new Schema(
   }
 );
 
-export const CaseReport = model<CaseReportModelFields & Item>(
+export const CaseReport = model<DynamoItemProps<CaseReportModelFields>>(
   'CaseReport',
   caseReportDynamoSchema,
   {

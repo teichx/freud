@@ -8,7 +8,6 @@ export const caseReportSchema = yup.object().shape({
   reportingDate: yup
     .date()
     .min('1950-01-01')
-    .max(endOfDay(new Date()).toISOString().split('T')[0]),
-  createdAt: yup.date().withMutation(() => yup.string()),
-  updatedAt: yup.date().withMutation(() => yup.string()),
+    .max(endOfDay(new Date()).toISOString().split('T')[0])
+    .required(),
 });

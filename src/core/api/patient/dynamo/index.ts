@@ -24,20 +24,15 @@ export const upsert: UpsertPatientHandler = async (req, res) => {
   const patient = {
     ...bodyPatient,
     personal: {
-      ...bodyPatient.personal,
-      birth: bodyPatient.personal.birth?.toISOString(),
+      ...(bodyPatient.personal || {}),
+      birth: bodyPatient?.personal.birth?.toISOString(),
     },
-    updatedAt: new Date().toISOString(),
+    PK: customerId,
+    SK: id,
   };
 
   if (!receivedId) {
-    const payload = {
-      ...patient,
-      createdAt: new Date().toISOString(),
-      PK: customerId,
-      SK: id,
-    };
-    await Patient.create(payload);
+    await Patient.create(patient);
 
     return res.status(EnumHttpStatus.Created).send({
       id,

@@ -1,5 +1,4 @@
 import { Schema, model } from 'dynamoose';
-import { Item } from 'dynamoose/dist/Item';
 import { ValueType } from 'dynamoose/dist/Schema';
 
 import {
@@ -8,6 +7,7 @@ import {
 } from '~/common/components/Form/FormSelect/options';
 import { listToObject } from '~/common/helpers';
 import { PatientFields } from '~/core/contract';
+import { DynamoItemProps } from '~/core/contract/@types';
 import { COGNITIVE_FIELDS } from '~/core/modules/Patient/PatientForm/constants';
 
 export const PATIENT_PREFIX = {
@@ -149,7 +149,7 @@ export const patientDynamoSchema = new Schema(
   }
 );
 
-export const Patient = model<PatientFields & Item>(
+export const Patient = model<DynamoItemProps<PatientFields>>(
   'Patient',
   patientDynamoSchema,
   {

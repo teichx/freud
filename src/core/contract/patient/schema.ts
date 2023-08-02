@@ -67,6 +67,4 @@ export const patientSchema = yup.object().shape({
     caseReportCount: yup.number(),
     lastCaseReport: yup.date().withMutation(() => yup.string()),
   }),
-  createdAt: yup.date(),
-  updatedAt: yup.date(),
 });
