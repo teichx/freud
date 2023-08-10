@@ -1,7 +1,7 @@
 import { Credentials } from 'google-auth-library';
-import { NextApiRequest } from 'next';
+import { NextApiResponse } from 'next';
 
-import { ErrorMessage } from '../common';
+import { ErrorMessage, ReqProps } from '../common';
 
 export type GenerateTokenSuccess = Credentials & {
   redirectUri: string;
@@ -13,7 +13,10 @@ export type RefreshTokenSuccess = Credentials;
 
 export type RefreshTokenResponse = RefreshTokenSuccess | ErrorMessage;
 
-export type HandleGetCustomerId = (req: Pick<NextApiRequest, 'headers'>) =>
+export type HandleGetCustomerId = (
+  req: ReqProps['req'],
+  res: NextApiResponse
+) => Promise<
   | {
       customerId: string;
       authError: '';
@@ -21,4 +24,5 @@ export type HandleGetCustomerId = (req: Pick<NextApiRequest, 'headers'>) =>
   | {
       customerId?: undefined;
       authError: string;
-    };
+    }
+>;

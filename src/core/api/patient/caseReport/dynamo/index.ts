@@ -11,7 +11,7 @@ import { ListCaseReportHandler, UpsertCaseReportHandler } from '../types';
 import { GetCaseReportHandler } from '../types/get';
 
 export const upsert: UpsertCaseReportHandler = async (req, res) => {
-  const { authError, customerId } = getCustomerId(req);
+  const { authError, customerId } = await getCustomerId(req, res);
   if (!customerId) return sendError({ res, error: authError });
 
   const PK = getCaseReportPK({
@@ -52,7 +52,7 @@ export const upsert: UpsertCaseReportHandler = async (req, res) => {
 };
 
 export const list: ListCaseReportHandler = async (req, res) => {
-  const { authError, customerId } = getCustomerId(req);
+  const { authError, customerId } = await getCustomerId(req, res);
   if (!customerId) return sendError({ res, error: authError });
 
   const { error, limit, getPagination } = getPaginate({
@@ -109,7 +109,7 @@ export const list: ListCaseReportHandler = async (req, res) => {
 };
 
 export const get: GetCaseReportHandler = async (req, res) => {
-  const { authError, customerId } = getCustomerId(req);
+  const { authError, customerId } = await getCustomerId(req, res);
   if (!customerId) return sendError({ res, error: authError });
 
   const { patientId, caseReportId } = req.query;

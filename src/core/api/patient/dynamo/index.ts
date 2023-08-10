@@ -14,7 +14,7 @@ import {
 } from '../types';
 
 export const upsert: UpsertPatientHandler = async (req, res) => {
-  const { authError, customerId } = getCustomerId(req);
+  const { authError, customerId } = await getCustomerId(req, res);
   if (!customerId) return sendError({ res, error: authError });
 
   const receivedId = req.body.patient?.id;
@@ -53,7 +53,7 @@ export const upsert: UpsertPatientHandler = async (req, res) => {
 };
 
 export const get: GetPatientHandler = async (req, res) => {
-  const { authError, customerId } = getCustomerId(req);
+  const { authError, customerId } = await getCustomerId(req, res);
   if (!customerId) return sendError({ res, error: authError });
 
   const { patientId: id } = req.query;
@@ -78,7 +78,7 @@ export const get: GetPatientHandler = async (req, res) => {
 };
 
 export const list: ListPatientHandler = async (req, res) => {
-  const { authError, customerId } = getCustomerId(req);
+  const { authError, customerId } = await getCustomerId(req, res);
   if (!customerId) return sendError({ res, error: authError });
 
   const { error, limit, getPagination } = getPaginate({
