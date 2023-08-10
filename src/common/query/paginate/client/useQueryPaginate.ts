@@ -1,6 +1,6 @@
 import { useCallback, useEffect } from 'react';
 
-import Router from 'next/router';
+import { useRouter } from 'next/router';
 
 import { INITIAL_QUERY_PAGINATION } from '../constants';
 import { getPage, replaceRoute } from './functions';
@@ -10,9 +10,10 @@ export const useQueryPaginate = ({
   initialPage = INITIAL_QUERY_PAGINATION.page,
   initialLimit = INITIAL_QUERY_PAGINATION.limit,
 }: UseQueryPaginateProps = {}): UseQueryPaginateResult => {
+  const router = useRouter();
   const {
     query: { page: queryPage, limit: queryLimit },
-  } = Router;
+  } = router;
 
   const page = Number.isInteger(Number(queryPage))
     ? Number(queryPage)
@@ -28,47 +29,47 @@ export const useQueryPaginate = ({
     replaceRoute({
       page: initialPage,
       limit: initialLimit,
-      router: Router,
+      router: router,
     });
-  }, [queryPage, queryLimit, initialPage, initialLimit]);
+  }, [router, queryPage, queryLimit, initialPage, initialLimit]);
 
   const toPage = useCallback<UseQueryPaginateResult['toPage']>(
     (nextPageValue) =>
       replaceRoute({
         page: nextPageValue,
-        router: Router,
+        router,
       }),
-    []
+    [router]
   );
 
   const nextPage = useCallback<UseQueryPaginateResult['nextPage']>(() => {
-    const currentPageValue = getPage({ router: Router });
+    const currentPageValue = getPage({ router });
     const nextPageValue = currentPageValue + 1;
     replaceRoute({
       page: nextPageValue,
-      router: Router,
+      router,
     });
-  }, []);
+  }, [router]);
 
   const previousPage = useCallback<
     UseQueryPaginateResult['previousPage']
   >(() => {
-    const currentPageValue = getPage({ router: Router });
+    const currentPageValue = getPage({ router });
     const previousPageValue = currentPageValue - 1;
     replaceRoute({
       page: previousPageValue,
-      router: Router,
+      router,
     });
-  }, []);
+  }, [router]);
 
   const setLimit = useCallback<UseQueryPaginateResult['setLimit']>(
     (nextLimit) =>
       replaceRoute({
         page: 1,
         limit: nextLimit,
-        router: Router,
+        router,
       }),
-    []
+    [router]
   );
 
   return {
