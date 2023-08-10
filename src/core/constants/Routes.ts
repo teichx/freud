@@ -22,10 +22,7 @@ export const Routes = {
 
 export const ApiRoutes = {
   Auth: {
-    GetUrl: '/api/auth/get-url',
-    Logout: '/api/auth/logout',
-    Token: '/api/auth/token',
-    RefreshToken: '/api/auth/refresh-token',
+    Login: '/api/auth/signin/google',
   },
   Patient: {
     Get: '/api/patient/{0}',

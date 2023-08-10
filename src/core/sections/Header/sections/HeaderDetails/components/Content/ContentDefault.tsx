@@ -9,6 +9,7 @@ import {
   Text,
   useColorModeValue,
 } from '@chakra-ui/react';
+import { signOut, useSession } from 'next-auth/react';
 import { useTranslation } from 'react-i18next';
 import {
   FiChevronRight,
@@ -21,7 +22,6 @@ import { IoLanguage } from 'react-icons/io5';
 
 import { Avatar } from '~/common/components/Avatar';
 import { Routes } from '~/core/constants';
-import { useAuth } from '~/core/services';
 
 import { HeaderButton } from '../../../../components/HeaderButton';
 import { HeaderDetailsContentProps } from './types';
@@ -34,7 +34,11 @@ export const ContentDefault: FC<HeaderDetailsContentProps> = ({
   const { t } = useTranslation(undefined, {
     keyPrefix: 'header.details.default',
   });
-  const { picture, email, name, logout } = useAuth();
+  const { data } = useSession({ required: true });
+  const { user = {} } = data || { user: {} };
+  const name = user.name || '';
+  const image = user.image || '';
+  const email = user.email || '';
 
   const emailColor = useColorModeValue('blackAlpha.600', 'whiteAlpha.600');
   const AppearanceIcon = useColorModeValue(FiSun, FiMoon);
@@ -44,7 +48,7 @@ export const ContentDefault: FC<HeaderDetailsContentProps> = ({
     <PopoverContent mx={4} mb={0}>
       <PopoverBody display='flex' justifyContent='flex-start'>
         <Box w={`${IMAGE_SIZE}px`} mr='4'>
-          <Avatar alt={name} src={picture} w={IMAGE_SIZE} h={IMAGE_SIZE} />
+          <Avatar alt={name} src={image} w={IMAGE_SIZE} h={IMAGE_SIZE} />
         </Box>
 
         <Box>
@@ -92,7 +96,10 @@ export const ContentDefault: FC<HeaderDetailsContentProps> = ({
       <Divider />
 
       <PopoverBody px='0'>
-        <HeaderButton leftIcon={<Icon as={FiLogOut} />} onClick={logout}>
+        <HeaderButton
+          leftIcon={<Icon as={FiLogOut} />}
+          onClick={() => signOut()}
+        >
           {t('out')}
         </HeaderButton>
       </PopoverBody>

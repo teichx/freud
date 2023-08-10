@@ -9,9 +9,7 @@ export const Login = () => {
   const { push } = useRouter();
 
   useEffect(() => {
-    const { origin } = window.location;
-
-    push(`${ApiRoutes.Auth.GetUrl}?baseUrl=${encodeURIComponent(origin)}`);
+    push(ApiRoutes.Auth.Login);
   }, [push]);
 
   return <PageLoader />;

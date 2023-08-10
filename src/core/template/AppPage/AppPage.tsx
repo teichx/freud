@@ -1,23 +1,23 @@
 import { FC, PropsWithChildren, useEffect } from 'react';
 
 import { Box } from '@chakra-ui/react';
+import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 
 import { Routes } from '~/core/constants';
 import { Header } from '~/core/sections/Header';
-import { useAuth } from '~/core/services';
 
 export const AppPage: FC<PropsWithChildren> = ({ children }) => {
-  const { isLogged } = useAuth();
+  const { status } = useSession();
   const router = useRouter();
 
   useEffect(() => {
-    if (isLogged) return;
+    if (status !== 'unauthenticated') return;
 
     router.push(Routes.Core.Login);
-  }, [isLogged, router]);
+  }, [status, router]);
 
-  return isLogged ? (
+  return status === 'authenticated' ? (
     <Box>
       <Header />
 

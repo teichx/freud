@@ -6,9 +6,9 @@ import {
   PopoverAnchor,
   useDisclosure,
 } from '@chakra-ui/react';
+import { useSession } from 'next-auth/react';
 
 import { Avatar } from '~/common/components/Avatar';
-import { useAuth } from '~/core/services';
 
 import { Content } from './components/Content';
 import { HeaderDetailsContent } from './types';
@@ -19,7 +19,7 @@ export const HeaderDetails = () => {
   const [contentKind, setContentKind] =
     useState<HeaderDetailsContent>('default');
   const { isOpen, onOpen, onClose, onToggle } = useDisclosure();
-  const { picture, name } = useAuth();
+  const { data: session } = useSession({ required: true });
 
   const handleToContent = (content: HeaderDetailsContent) => {
     if (content === 'close') {
@@ -34,9 +34,9 @@ export const HeaderDetails = () => {
     <Popover isOpen={isOpen} onClose={onClose} onOpen={onOpen} closeOnBlur>
       <PopoverAnchor>
         <Avatar
-          alt={name}
+          alt={session?.user?.name || ''}
           as={Button}
-          src={picture}
+          src={session?.user?.image || '#'}
           w={IMAGE_SIZE}
           h={IMAGE_SIZE}
           onClick={onToggle}
