@@ -16,7 +16,7 @@ export const CaseReport = () => {
     useListCaseReports();
 
   return (
-    <AppPage>
+    <AppPage titleKey='patient.listCaseReports'>
       <Section disabledLoading>
         <Flex justifyContent='flex-end'>
           <ButtonGroup spacing='4' variant='solid'>

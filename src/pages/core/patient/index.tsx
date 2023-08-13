@@ -13,7 +13,7 @@ export const Patients = () => {
   });
 
   return (
-    <AppPage>
+    <AppPage titleKey='patient.list'>
       <Section>
         <Flex justifyContent='flex-end'>
           <LinkButton
