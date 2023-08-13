@@ -1,30 +1,14 @@
 import { Box, ButtonGroup, Flex, HStack } from '@chakra-ui/react';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { useTranslation } from 'react-i18next';
 
 import { Logo } from '~/common/components/Logo';
-import { Routes } from '~/core/constants';
 
+import { useHeader } from './hooks';
 import { HeaderDetails } from './sections/HeaderDetails';
 import { HeaderButton } from './styles';
 
-const MENU_ITEMS = [
-  {
-    path: Routes.Core.Dashboard.Default,
-    label: 'dashboard',
-  },
-  {
-    path: Routes.Core.Patient.List,
-    label: 'patient',
-  },
-] as const;
-
 export const Header = () => {
-  const { pathname } = useRouter();
-  const { t } = useTranslation(undefined, {
-    keyPrefix: 'header.label',
-  });
+  const { headersItems } = useHeader();
 
   return (
     <Box w='100%'>
@@ -33,14 +17,14 @@ export const Header = () => {
           <Logo mr={4} color='book.desertSun.500' size='medium' />
 
           <ButtonGroup variant='unstyled' spacing='4' color='white'>
-            {MENU_ITEMS.map(({ path, label }) => (
+            {headersItems.map(({ path, label, isSelected }) => (
               <HeaderButton
                 key={path}
                 href={path}
                 as={Link}
-                selected={pathname === path}
+                selected={isSelected}
               >
-                {t(label)}
+                {label}
               </HeaderButton>
             ))}
           </ButtonGroup>
