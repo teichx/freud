@@ -21,30 +21,29 @@ export const upsert: UpsertCaseReportHandler = async (req, res) => {
 
   const receivedId = req.body.caseReport?.id;
   const SK = req.body.caseReport?.id || ulid();
+  const keys = {
+    PK,
+    SK,
+  } as const;
 
   const caseReportBody = await caseReportSchema.validate(req.body.caseReport);
   const caseReport = {
     ...caseReportBody,
     reportingDate: caseReportBody.reportingDate.toISOString(),
     resume: caseReportBody.content.substring(0, CASE_REPORT_RESUME_LENGTH),
-    PK,
-    SK,
   };
   if (!receivedId) {
-    await CaseReport.create(caseReport);
+    await CaseReport.create({
+      ...keys,
+      ...caseReport,
+    });
 
     return res.status(EnumHttpStatus.Created).send({
       id: SK,
     });
   }
 
-  await CaseReport.update(
-    {
-      PK,
-      SK,
-    },
-    caseReport
-  );
+  await CaseReport.update(keys, caseReport);
 
   return res.status(EnumHttpStatus.Success).send({
     id: SK,

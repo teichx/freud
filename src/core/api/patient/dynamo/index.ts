@@ -19,6 +19,10 @@ export const upsert: UpsertPatientHandler = async (req, res) => {
 
   const receivedId = req.body.patient?.id;
   const id = receivedId || ulid();
+  const keys = {
+    PK: customerId,
+    SK: id,
+  } as const;
 
   const bodyPatient = await patientSchema.validate(req.body.patient);
   const patient = {
@@ -27,25 +31,20 @@ export const upsert: UpsertPatientHandler = async (req, res) => {
       ...(bodyPatient.personal || {}),
       birth: bodyPatient?.personal.birth?.toISOString(),
     },
-    PK: customerId,
-    SK: id,
   };
 
   if (!receivedId) {
-    await Patient.create(patient);
+    await Patient.create({
+      ...keys,
+      ...patient,
+    });
 
     return res.status(EnumHttpStatus.Created).send({
       id,
     });
   }
 
-  await Patient.update(
-    {
-      PK: customerId,
-      SK: id,
-    },
-    patient
-  );
+  await Patient.update(keys, patient);
 
   return res.status(EnumHttpStatus.Success).send({
     id,
