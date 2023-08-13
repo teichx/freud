@@ -16,11 +16,20 @@
       "see": "Ver",
       "new": "Novo",
       "id": "Id",
-      "identifier": "Identificador"
+      "identifier": "Identificador",
+      "freud": "Freud"
     },
     "form": {
       "disabledByPristine": "Não há alterações a serem salvas",
       "disabledByHasValidationErrors": "Há dados inválidos no formulário"
+    },
+    "pageTitle": {
+      "patient": {
+        "list": "Pacientes - $t(words.freud)",
+        "create": "Criar paciente - $t(words.freud)",
+        "details": "Detalhes do paciente - $t(words.freud)",
+        "listCaseReports": "Relatos de caso - $t(words.freud)"
+      }
     },
     "validation": {
       "mixed": {
