@@ -107,7 +107,9 @@ export const list: ListPatientHandler = async (req, res) => {
     patients: patients.map((x) => ({
       id: x.id,
       name: x.name,
-      lastCaseReport: x.calculated?.lastCaseReport,
+      lastCaseReport: x.calculated?.lastCaseReport
+        ? new Date(x.calculated.lastCaseReport).toISOString().split('T')[0]
+        : undefined,
       caseReportCount: x.calculated?.caseReportCount || 0,
     })),
   });
