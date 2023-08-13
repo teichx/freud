@@ -18,7 +18,7 @@ export const useHeader: UseHeaderProps = () => {
         ({ path, labelKey }) => ({
           path: path,
           label: t(labelKey),
-          isSelected: path === pathname,
+          isSelected: pathname.includes(path),
         })
       ),
     [t, pathname]
