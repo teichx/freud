@@ -10,7 +10,7 @@ export const authOptions: AuthOptions = {
   ],
   session: {
     strategy: 'jwt',
-    maxAge: 60 * 60,
+    maxAge: 60 * 60 * 16,
   },
   debug: process.env.NODE_ENV !== 'production',
   callbacks: {
