@@ -98,9 +98,16 @@
         "title": "Selecione seu idioma"
       }
     },
+    "helperText": {
+      "editOnlyNotListening": "O campo não pode ser editado enquanto o microfone estiver ligado"
+    },
     "components": {
       "toggleTheme": {
         "label": "Usar tema $(words.{{ appearance }})"
+      },
+      "microphone": {
+        "toDisable": "Desligar microfone",
+        "toEnable": "Ativar microfone"
       }
     },
     "options": {
