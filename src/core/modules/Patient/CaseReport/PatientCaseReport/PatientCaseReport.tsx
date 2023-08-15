@@ -16,6 +16,7 @@ import { ReadOnlyText } from '~/common/components/ReadOnlyText';
 import { useLoader } from '~/core/services';
 
 import { useGetCaseReport, useSaveCaseReports } from '../hooks';
+import { CaseReportContent } from './CaseReportContent';
 import { CaseReportFormProps, PatientCaseReportProps } from './types';
 
 export const PatientCaseReport: FC<
@@ -82,13 +83,7 @@ export const PatientCaseReport: FC<
           />
         </HStack>
 
-        <FormText
-          isTextArea
-          isRequired
-          name='content'
-          label={t('content')}
-          inputProps={{ h: '200px' }}
-        />
+        <CaseReportContent />
       </Box>
     </DataModal>
   );
