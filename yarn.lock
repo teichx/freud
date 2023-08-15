@@ -2844,6 +2844,11 @@
   dependencies:
     "@babel/types" "^7.3.0"
 
+"@types/dom-speech-recognition@*":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@types/dom-speech-recognition/-/dom-speech-recognition-0.0.1.tgz#e326761a04b4a49c0eec2ac7948afc1c6aa12baa"
+  integrity sha512-udCxb8DvjcDKfk1WTBzDsxFbLgYxmQGKrE/ricoMqHRNjSlSUCcamVTA5lIQqzY10mY5qCY0QDwBfFEwhfoDPw==
+
 "@types/google.accounts@^0.0.5":
   version "0.0.5"
   resolved "https://registry.yarnpkg.com/@types/google.accounts/-/google.accounts-0.0.5.tgz#847dc76fda529b0563cb4b01bdde511b394c0ced"
@@ -2970,6 +2975,13 @@
   integrity sha512-O38bPbI2CWtgw/OoQoY+BRelw7uysmXbWvw3nLWO21H1HSh+GOlqPuXshJfjmpNlKiiSDG9cc1JZAaMmVdcTlw==
   dependencies:
     "@types/react" "*"
+
+"@types/react-speech-recognition@^3.9.2":
+  version "3.9.2"
+  resolved "https://registry.yarnpkg.com/@types/react-speech-recognition/-/react-speech-recognition-3.9.2.tgz#0084ad4aca3e70d92807ae411c660e6aa751c78f"
+  integrity sha512-LS13Z4A8nluGWyT1NQncWoyaWARJdEojxmcRvaFDT9nTHpRkMgPjaYBJIc/9GBRYYFy8TQGaiCmUdH2g4M9INg==
+  dependencies:
+    "@types/dom-speech-recognition" "*"
 
 "@types/react-table@^7.7.14":
   version "7.7.14"
