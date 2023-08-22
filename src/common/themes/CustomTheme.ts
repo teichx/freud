@@ -53,7 +53,7 @@ const theme = {
   styles: {
     global: (props: StyleFunctionProps) => ({
       body: {
-        bg: mode('blackAlpha.200', 'gray.800')(props),
+        bg: mode('gray.200', 'gray.800')(props),
         '*, *::before, ::after': {
           borderColor: mode('blackAlpha.400', 'whiteAlpha.400')(props),
         },
