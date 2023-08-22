@@ -11,7 +11,7 @@ export const Header = () => {
   const { headersItems } = useHeader();
 
   return (
-    <Box w='100%'>
+    <Box w='100%' position='relative' zIndex='banner'>
       <HStack w='100%' py='2' px='8' spacing={4} bg='book.darkBlue.500'>
         <HStack w='50%' alignItems='center'>
           <Logo mr={4} color='book.desertSun.500' size='medium' />
