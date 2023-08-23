@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { FormControl, FormLabel, Input } from '@chakra-ui/react';
+import { FormControl, FormLabel, Input, InputGroup } from '@chakra-ui/react';
 import { Field } from 'react-final-form';
 
 import { FormHelperText } from '../FormHelperText';
@@ -18,6 +18,8 @@ export const FormText: FC<FormTextProps> = ({
   inputProps: { defaultValue, type, ...inputProps } = {},
   unForceHelperText,
   fieldProps,
+  InputLeftElement,
+  InputRightElement,
   ...props
 }: FormTextProps) => {
   const InputComponent = isTextArea ? TextareaStyled : Input;
@@ -40,15 +42,21 @@ export const FormText: FC<FormTextProps> = ({
             {label}
           </FormLabel>
 
-          <InputComponent
-            {...inputProps}
-            {...input}
-            {...handlerProps(input, inputProps)}
-            value={input.value || ''}
-            size={size}
-            variant='outline'
-            noOfLines={noOfLines}
-          />
+          <InputGroup>
+            {InputLeftElement}
+
+            <InputComponent
+              {...inputProps}
+              {...input}
+              {...handlerProps(input, inputProps)}
+              value={input.value || ''}
+              size={size}
+              variant='outline'
+              noOfLines={noOfLines}
+            />
+
+            {InputRightElement}
+          </InputGroup>
 
           <FormHelperText
             meta={meta}

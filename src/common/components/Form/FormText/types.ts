@@ -1,3 +1,5 @@
+import { ReactElement } from 'react';
+
 import { FormControlProps, InputProps } from '@chakra-ui/react';
 import { UseFieldConfig } from 'react-final-form';
 import { IMask } from 'react-imask';
@@ -20,6 +22,8 @@ export type FormTextProps = {
     defaultValue?: string;
   };
   unForceHelperText?: true;
+  InputLeftElement?: ReactElement;
+  InputRightElement?: ReactElement | null;
   mask?: IMask.AnyMaskedOptions;
   fieldProps?: Omit<
     UseFieldConfig<string | undefined>,
