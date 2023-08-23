@@ -1,18 +1,17 @@
 import { ReqCustomProps } from '~/core/api/common';
 
-export type GetFilterProps = {
-  req: FilterRequestProps;
+export type GetFilterProps<TFilter extends Record<string, unknown>> = {
+  req: FilterRequestProps<TFilter>;
 };
 
 export type GetFilterResult<TFilter> = {
   filter: TFilter;
 };
 
-export type FilterRequestProps = ReqCustomProps<
-  Record<string, string>,
-  unknown
->;
+export type FilterRequestProps<
+  TFilter extends Record<string, unknown> = Record<string, unknown>
+> = ReqCustomProps<TFilter, unknown>;
 
-export type GetFilterHandler<TFilter = unknown> = (
-  props: GetFilterProps
-) => GetFilterResult<TFilter>;
+export type GetFilterHandler<
+  TFilter extends Record<string, unknown> = Record<string, unknown>
+> = (props: GetFilterProps<TFilter>) => GetFilterResult<TFilter>;
