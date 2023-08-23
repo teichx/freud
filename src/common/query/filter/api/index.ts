@@ -6,6 +6,7 @@ export function getFilter<TFilter extends Record<string, unknown>>({
 }: GetFilterProps<TFilter>): GetFilterResult<TFilter> {
   const keyValues = Object.entries(req.query)
     .filter(([key]) => key.startsWith(FILTER_PREFIX))
+    .filter(([, value]) => value !== undefined && value !== 'undefined')
     .map(([key, value]) => [key.replace(FILTER_PREFIX, ''), value]);
 
   return {
