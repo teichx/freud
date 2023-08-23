@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { DataTable, DataTableColumnProps } from '~/common/components/DataTable';
-import { useQueryPaginate } from '~/common/query';
+import { useQueryFilter, useQueryPaginate } from '~/common/query';
 import {
   ListPatientResume,
   ListPatientSuccess,
@@ -28,16 +28,14 @@ export const PatientsTable = () => {
   });
   const [{ isLoading, totalItems, data }, setState] = useState(INITIAL_STATE);
   const { page, limit: pageSize } = useQueryPaginate();
+  const { getFilters } = useQueryFilter();
   const { authenticateFetch } = useAuth();
+  const { patientName } = getFilters();
 
   useEffect(() => {
-    const url = new URLSearchParams();
-    url.set('page', page.toString());
-    url.set('pageSize', pageSize.toString());
-
     setState((x) => ({ ...x, isLoading: true }));
     authenticateFetch(
-      formatRoute(ApiRoutes.Patient.List, page.toString(), pageSize.toString())
+      formatRoute(ApiRoutes.Patient.List, page, pageSize, patientName)
     )
       .then<ListPatientSuccess>((x) => x.json())
       .then((result) => {
@@ -49,7 +47,7 @@ export const PatientsTable = () => {
         }));
       })
       .catch(() => setState(INITIAL_STATE));
-  }, [page, pageSize, authenticateFetch, formatRoute]);
+  }, [page, pageSize, authenticateFetch, formatRoute, patientName]);
 
   const COLUMNS: DataTableColumnProps<ListPatientResume>[] = [
     {

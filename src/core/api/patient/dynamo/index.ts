@@ -1,6 +1,6 @@
 import { ulid } from 'ulid';
 
-import { getPaginate } from '~/common/query';
+import { getFilter, getPaginate } from '~/common/query';
 import { patientSchema } from '~/core/contract/patient/schema';
 
 import { getCustomerId } from '../../auth/authorization';
@@ -85,10 +85,20 @@ export const list: ListPatientHandler = async (req, res) => {
   });
   if (error) return sendError({ res, error });
 
-  const getQueryWithFilters = () =>
-    Patient.query({
+  const {
+    filter: { patientName },
+  } = getFilter({ req });
+
+  const getQueryWithFilters = () => {
+    const base = Patient.query({
       PK: { eq: customerId },
     });
+    const withNameFilter = patientName
+      ? base.where('name').contains(patientName)
+      : base;
+
+    return withNameFilter;
+  };
 
   const patientsQuery = getQueryWithFilters()
     .attributes(['SK', 'name', 'calculated'])

@@ -26,7 +26,7 @@ export const ApiRoutes = {
   },
   Patient: {
     Get: '/api/patient/{0}',
-    List: '/api/patient/list?page={0}&limit={1}',
+    List: '/api/patient/list?page={0}&limit={1}&filter_by_patientName={2}',
     Upsert: '/api/patient/upsert',
     CaseReport: {
       Get: '/api/patient/{0}/case-report/{1}',

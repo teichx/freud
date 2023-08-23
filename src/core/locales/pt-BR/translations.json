@@ -134,6 +134,7 @@
     "pages": {
       "patient": {
         "list": {
+          "search": "Nome do paciente",
           "header": {
             "name": "Nome",
             "actions": "$t(words.actions)",

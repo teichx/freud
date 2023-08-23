@@ -20,6 +20,7 @@ export type ListPatientResponse = ListPatientSuccess | ErrorMessage;
 
 export type ListPatientQueryProps = PaginateQueryProps & {
   showArchived?: boolean;
+  patientName?: string;
 };
 
 export type ListPatientHandler = RequestQueryHandler<
