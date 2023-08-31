@@ -16,42 +16,39 @@ const ripple = keyframes`
 `;
 
 export const IconButtonStyled = styled(IconButton, {
-  baseStyle: ({ theme, ...rest }: HavingThemeProps) => {
-    console.log({ theme, ...rest });
-    return {
-      position: 'relative',
-      color: theme.colors.white,
+  baseStyle: ({ theme }: HavingThemeProps) => ({
+    position: 'relative',
+    color: theme.colors.white,
+    borderRadius: theme.radii.full,
+    zIndex: theme.zIndices.tooltip,
+    backgroundColor: theme.colors.book.desertSun[500],
+    '::before': {
+      content: '""',
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '100%',
+      display: 'block',
+      position: 'absolute',
+      pointerEvents: 'none',
+      animationDuration: '1.75s',
       borderRadius: theme.radii.full,
-      zIndex: theme.zIndices.tooltip,
-      backgroundColor: theme.colors.book.desertSun[500],
-      '::before': {
-        content: '""',
-        top: 0,
-        left: 0,
-        width: '100%',
-        height: '100%',
-        display: 'block',
-        position: 'absolute',
-        pointerEvents: 'none',
-        animationDuration: '1.75s',
-        borderRadius: theme.radii.full,
-        animationIterationCount: 'infinite',
-        backgroundColor: theme.colors.whiteAlpha[400],
-        animationTimingFunction: theme.transition.easing['ease-in-out'],
-        animationName: `${ripple}`,
-      },
-      '&[data-ripple="false"]::before': {
-        visibility: 'hidden',
-      },
+      animationIterationCount: 'infinite',
+      backgroundColor: theme.colors.whiteAlpha[400],
+      animationTimingFunction: theme.transition.easing['ease-in-out'],
+      animationName: `${ripple}`,
+    },
+    '&[data-ripple="false"]::before': {
+      visibility: 'hidden',
+    },
+    _hover: {
+      backgroundColor: theme.colors.book.desertSun[600],
+    },
+    _dark: {
+      backgroundColor: theme.colors.book.desertSun[300],
       _hover: {
-        backgroundColor: theme.colors.book.desertSun[600],
+        backgroundColor: theme.colors.book.desertSun[400],
       },
-      _dark: {
-        backgroundColor: theme.colors.book.desertSun[300],
-        _hover: {
-          backgroundColor: theme.colors.book.desertSun[400],
-        },
-      },
-    };
-  },
+    },
+  }),
 });
