@@ -6,16 +6,7 @@ import { ReadOnlyTextProps } from './types';
 
 export const ReadOnlyText = forwardRef<ReadOnlyTextProps, 'div'>(
   (
-    {
-      size,
-      label,
-      value,
-      helperText,
-      isTextArea,
-      unForceHelperText,
-      noOfLines,
-      ...props
-    },
+    { size, label, value, helperText, isTextArea, unForceHelperText, ...props },
     ref
   ) => {
     const InputComponent = isTextArea ? TextareaStyled : Input;
@@ -38,7 +29,6 @@ export const ReadOnlyText = forwardRef<ReadOnlyTextProps, 'div'>(
           size={size}
           value={value}
           variant='outline'
-          noOfLines={noOfLines}
         />
 
         <FormHelperText

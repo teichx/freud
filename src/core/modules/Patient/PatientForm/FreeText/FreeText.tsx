@@ -15,12 +15,12 @@ export const FreeText = () => {
     <Box>
       {FREE_TEXT_FIELDS.map((x) => (
         <Section key={x} label={t(x)}>
-          <FormText name={`freeText.${x}`} isTextArea noOfLines={15} />
+          <FormText name={`freeText.${x}`} isTextArea />
         </Section>
       ))}
 
       <Section label={t('others')}>
-        <FormText name='freeText.other' isTextArea noOfLines={15} />
+        <FormText name='freeText.other' isTextArea />
       </Section>
     </Box>
   );

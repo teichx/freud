@@ -1,7 +1,7 @@
-import { FC } from 'react';
+import { FC, useEffect, useRef } from 'react';
 
 import { FormControl, FormLabel, Input, InputGroup } from '@chakra-ui/react';
-import { Field } from 'react-final-form';
+import { useField } from 'react-final-form';
 
 import { FormHelperText } from '../FormHelperText';
 import { handlerProps } from '../handlers';
@@ -12,7 +12,6 @@ export const FormText: FC<FormTextProps> = ({
   name,
   size,
   label,
-  noOfLines,
   helperText,
   isTextArea,
   inputProps: { defaultValue, type, ...inputProps } = {},
@@ -22,49 +21,69 @@ export const FormText: FC<FormTextProps> = ({
   InputRightElement,
   ...props
 }: FormTextProps) => {
+  const { input, meta } = useField<string | undefined>(name, {
+    defaultValue,
+    type,
+    ...(fieldProps || {}),
+  });
+  const textAreaRef = useRef<HTMLTextAreaElement>(null);
   const InputComponent = isTextArea ? TextareaStyled : Input;
 
+  useEffect(() => {
+    if (!isTextArea) return;
+    if (!textAreaRef.current) return;
+
+    const { current: input } = textAreaRef;
+    const autoHeightHandler = () => {
+      const oldHeight = input.style.height;
+      input.style.height = 'auto';
+      input.style.height = oldHeight;
+      input.style.height = `${input.scrollHeight}px`;
+    };
+    input.addEventListener('input', autoHeightHandler, false);
+  }, [isTextArea]);
+
+  useEffect(() => {
+    if (!isTextArea) return;
+    if (!textAreaRef.current) return;
+
+    const { current: input } = textAreaRef;
+    input.style.height = `${input.scrollHeight}px`;
+  }, [meta.initial, isTextArea]);
+
   return (
-    <Field<string | undefined>
-      name={name}
-      type={type}
-      defaultValue={defaultValue}
-      {...(fieldProps || {})}
-      render={({ input, meta }) => (
-        <FormControl
-          {...props}
-          as='fieldset'
+    <FormControl
+      {...props}
+      as='fieldset'
+      size={size}
+      isInvalid={props.isInvalid || (meta.invalid && meta.touched)}
+      isDisabled={props.isDisabled}
+    >
+      <FormLabel htmlFor={name} as='legend' size={size}>
+        {label}
+      </FormLabel>
+
+      <InputGroup>
+        {InputLeftElement}
+
+        <InputComponent
+          {...inputProps}
+          {...input}
+          {...handlerProps(input, inputProps)}
+          ref={textAreaRef}
+          value={input.value || ''}
           size={size}
-          isInvalid={props.isInvalid || (meta.invalid && meta.touched)}
-          isDisabled={props.isDisabled}
-        >
-          <FormLabel htmlFor={name} as='legend' size={size}>
-            {label}
-          </FormLabel>
+          variant='outline'
+        />
 
-          <InputGroup>
-            {InputLeftElement}
+        {InputRightElement}
+      </InputGroup>
 
-            <InputComponent
-              {...inputProps}
-              {...input}
-              {...handlerProps(input, inputProps)}
-              value={input.value || ''}
-              size={size}
-              variant='outline'
-              noOfLines={noOfLines}
-            />
-
-            {InputRightElement}
-          </InputGroup>
-
-          <FormHelperText
-            meta={meta}
-            helperText={helperText}
-            unForceHelperText={unForceHelperText}
-          />
-        </FormControl>
-      )}
-    />
+      <FormHelperText
+        meta={meta}
+        helperText={helperText}
+        unForceHelperText={unForceHelperText}
+      />
+    </FormControl>
   );
 };
