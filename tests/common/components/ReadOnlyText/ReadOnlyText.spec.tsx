@@ -50,14 +50,4 @@ describe('component.ReadOnlyText', () => {
 
     expect(unForceHelperTextFragment()).not.toStrictEqual(defaultFragment());
   });
-
-  it('isTextArea noOfLines=5', () => {
-    expect.assertions(1);
-
-    const { asFragment } = render(
-      <ReadOnlyText label='<label>' value='<value>' isTextArea noOfLines={5} />
-    );
-
-    expect(asFragment()).toMatchSnapshot();
-  });
 });

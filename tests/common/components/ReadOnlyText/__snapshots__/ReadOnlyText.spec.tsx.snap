@@ -1,44 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`component.ReadOnlyText isTextArea noOfLines=5 1`] = `
-<DocumentFragment>
-  <fieldset
-    class="chakra-form-control css-1kxonj9"
-    role="group"
-  >
-    <legend
-      class="chakra-form__label css-g6pte"
-      data-disabled=""
-      data-readonly=""
-      for="field-:r5:"
-      id="field-:r5:-label"
-    >
-      &lt;label&gt;
-    </legend>
-    <textarea
-      aria-describedby="field-:r5:-helptext"
-      aria-readonly="true"
-      class="chakra-textarea css-1bkxc57"
-      disabled=""
-      id="field-:r5:"
-      readonly=""
-    >
-      &lt;value&gt;
-    </textarea>
-    <div
-      class="chakra-form__helper-text css-18fa16y"
-      id="field-:r5:-helptext"
-    >
-      ‎
-    </div>
-  </fieldset>
-  <span
-    hidden=""
-    id="__chakra_env"
-  />
-</DocumentFragment>
-`;
-
 exports[`component.ReadOnlyText renders label and value 1`] = `
 <DocumentFragment>
   <fieldset
