@@ -37,7 +37,7 @@ export const CaseReportContent = () => {
           isDisabled={isListening}
           name='content'
           label={t('content')}
-          inputProps={{ h: '200px' }}
+          inputProps={{ minH: '200px' }}
           helperText={
             isListening
               ? tHelperText('editOnlyNotListening') || undefined
