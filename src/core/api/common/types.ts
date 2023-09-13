@@ -33,3 +33,8 @@ export type RequestHandler<TResponse> = (
   req: ReqCustomProps<unknown, unknown>,
   res: NextApiResponse<TResponse>
 ) => void | Promise<void>;
+
+export type TNextRequest = (
+  req: NextApiRequest,
+  res: NextApiResponse
+) => void | Promise<void>;
