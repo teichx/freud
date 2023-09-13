@@ -5,16 +5,23 @@ import { Provider } from 'react-redux';
 
 import { getReducerStore } from '~/common/reducer';
 import { CustomTheme } from '~/common/themes/CustomTheme';
+import { useSoftRefresh } from '~/core/services';
 
 import '~/common/locale/i18n';
 
 const store = getReducerStore();
 
-export const App = ({ Component, pageProps }: AppProps) => (
+const SoftRefresh = ({ Component, pageProps }: AppProps) => {
+  const { id } = useSoftRefresh();
+
+  return <Component key={id} {...pageProps} />;
+};
+
+export const App = (props: AppProps) => (
   <Provider store={store}>
-    <SessionProvider session={pageProps.session}>
+    <SessionProvider session={props.pageProps.session}>
       <ChakraProvider theme={CustomTheme}>
-        <Component {...pageProps} />
+        <SoftRefresh {...props} />
       </ChakraProvider>
     </SessionProvider>
   </Provider>
