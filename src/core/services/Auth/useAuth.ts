@@ -17,7 +17,11 @@ export const useAuth = (): useAuthResultProps => {
         .then((x) => (x.ok ? x : Promise.reject(x)))
         .catch((x) => {
           if (init?.body) {
-            console.log({ body: init.body });
+            try {
+              localStorage.setItem('LAST_SAVE', `${init.body}`);
+            } catch (error) {
+              console.log({ body: init.body });
+            }
           }
 
           return Promise.reject(x);
