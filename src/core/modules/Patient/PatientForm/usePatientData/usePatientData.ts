@@ -47,18 +47,22 @@ export const usePatientData = (): UsePatientDataResultProps => {
   const savePatient = useCallback<UsePatientDataResultProps['savePatient']>(
     async (patientRaw) => {
       const patient = patientSchema.validateSync(patientRaw);
-
+      const body = JSON.stringify({ patient });
       setIsLoading(true);
-      const result = await authenticateFetch(ApiRoutes.Patient.Upsert, {
-        method: 'POST',
-        body: JSON.stringify({ patient }),
-      });
-      const data: PatientFields = await result.json();
+      try {
+        const result = await authenticateFetch(ApiRoutes.Patient.Upsert, {
+          method: 'POST',
+          body,
+        });
+        const data: PatientFields = await result.json();
 
-      setState(INITIAL_STATE);
-      replace(formatRoute(Routes.Core.Patient.Edit, data.id), undefined, {
-        shallow: true,
-      });
+        setState(INITIAL_STATE);
+        replace(formatRoute(Routes.Core.Patient.Edit, data.id), undefined, {
+          shallow: true,
+        });
+      } catch (error) {
+        setIsLoading(false);
+      }
     },
     [authenticateFetch, replace, formatRoute, setIsLoading]
   );
