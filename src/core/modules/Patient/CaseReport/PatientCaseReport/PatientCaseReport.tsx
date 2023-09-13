@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren } from 'react';
+import { FC, PropsWithChildren, useState } from 'react';
 
 import { Box, HStack } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
@@ -13,7 +13,7 @@ import {
 import { FormComponentProps } from '~/common/components/Form/FormComponent/types';
 import { Loader } from '~/common/components/Loader';
 import { ReadOnlyText } from '~/common/components/ReadOnlyText';
-import { useLoader } from '~/core/services';
+import { useLoader, useSoftRefresh } from '~/core/services';
 
 import { useGetCaseReport, useSaveCaseReports } from '../hooks';
 import { CaseReportContent } from './CaseReportContent';
@@ -22,6 +22,9 @@ import { CaseReportFormProps, PatientCaseReportProps } from './types';
 export const PatientCaseReport: FC<
   PropsWithChildren<PatientCaseReportProps>
 > = ({ children, caseReportId, patient }) => {
+  const [hasPendingChanges, setHasPendingChanges] = useState(false);
+  const { refreshId } = useSoftRefresh();
+
   const { t } = useTranslation(undefined, {
     keyPrefix: 'pages.patient.caseReport',
   });
@@ -34,10 +37,19 @@ export const PatientCaseReport: FC<
   );
   const { saveCaseReport } = useSaveCaseReports({
     patientId: patient.id,
-    successCallback: ({ id }) => getById({ caseReportId: id }),
+    successCallback: ({ id }) => {
+      setHasPendingChanges(true);
+      getById({ caseReportId: id });
+    },
   });
 
   const handleOpen = () => getById({ caseReportId });
+  const handleClose = () => {
+    reset();
+
+    if (!hasPendingChanges) return;
+    refreshId();
+  };
 
   const createOrUpdateKey =
     caseReportId || caseReport?.id ? 'update' : 'create';
@@ -53,7 +65,7 @@ export const PatientCaseReport: FC<
       modalProps={{
         closeOnOverlayClick: false,
       }}
-      disclosureProps={{ onOpen: handleOpen, onClose: reset }}
+      disclosureProps={{ onOpen: handleOpen, onClose: handleClose }}
       title={t(`${createOrUpdateKey}.title`)}
       buttonWrapperProps={{
         justifyContent: 'center',
