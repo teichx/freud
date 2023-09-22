@@ -1,5 +1,5 @@
 export const COGNITIVE_FIELDS = {
-  cognitive: ['sensory', 'perception', 'focus'],
+  cognitive: ['sensory', 'perception', 'focus', 'memory'],
   emotional: [
     'decision',
     'affectivity',
