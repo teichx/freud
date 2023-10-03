@@ -1,3 +1,4 @@
+import slugify from 'slugify';
 import { ulid } from 'ulid';
 
 import { getFilter, getPaginate } from '~/common/query';
@@ -13,6 +14,17 @@ import {
   ListPatientHandler,
 } from '../types';
 
+export const parseSearchTerm = (values: string[]) =>
+  values
+    .map((x) =>
+      slugify(x, {
+        replacement: '-',
+        lower: true,
+        trim: true,
+      })
+    )
+    .join('_');
+
 export const upsert: UpsertPatientHandler = async (req, res) => {
   const { authError, customerId } = await getCustomerId(req, res);
   if (!customerId) return sendError({ res, error: authError });
@@ -27,6 +39,7 @@ export const upsert: UpsertPatientHandler = async (req, res) => {
   const bodyPatient = await patientSchema.validate(req.body.patient);
   const patient = {
     ...bodyPatient,
+    searchTerm: parseSearchTerm([bodyPatient.name]),
     personal: {
       ...(bodyPatient.personal || {}),
       birth: bodyPatient?.personal.birth?.toISOString(),
@@ -94,7 +107,7 @@ export const list: ListPatientHandler = async (req, res) => {
       PK: { eq: customerId },
     });
     const withNameFilter = patientName
-      ? base.where('name').contains(patientName)
+      ? base.where('searchTerm').contains(parseSearchTerm([patientName]))
       : base;
 
     return withNameFilter;

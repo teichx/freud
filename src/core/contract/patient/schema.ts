@@ -13,7 +13,8 @@ import { COGNITIVE_FIELDS } from '~/core/modules/Patient/PatientForm/constants';
 
 export const patientSchema = yup.object().shape({
   id: yup.string(),
-  name: yup.string().required(),
+  name: yup.string().required().trim(),
+  searchTerm: yup.string(),
   personal: yup.object().shape({
     birth: yup
       .date()

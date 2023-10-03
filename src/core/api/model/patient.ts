@@ -60,6 +60,10 @@ export const patientDynamoSchema = new Schema(
       type: String,
       required: true,
     },
+    searchTerm: {
+      type: String,
+      required: false,
+    },
     personal: {
       type: Object,
       schema: {
