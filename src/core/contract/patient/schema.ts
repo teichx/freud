@@ -14,6 +14,7 @@ import { COGNITIVE_FIELDS } from '~/core/modules/Patient/PatientForm/constants';
 export const patientSchema = yup.object().shape({
   id: yup.string(),
   name: yup.string().required().trim(),
+  archivedAt: yup.date().withMutation(() => yup.string()),
   searchTerm: yup.string(),
   personal: yup.object().shape({
     birth: yup

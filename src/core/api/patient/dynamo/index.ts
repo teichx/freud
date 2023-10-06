@@ -13,6 +13,7 @@ import {
   GetPatientHandler,
   ListPatientHandler,
 } from '../types';
+import { ArchiveOrUnarchivePatientHandler } from '../types/archive';
 
 export const parseSearchTerm = (values: string[]) =>
   values
@@ -114,7 +115,7 @@ export const list: ListPatientHandler = async (req, res) => {
   };
 
   const patientsQuery = getQueryWithFilters()
-    .attributes(['SK', 'name', 'calculated'])
+    .attributes(['SK', 'name', 'archivedAt', 'calculated'])
     .limit(limit)
     .exec();
 
@@ -130,10 +131,53 @@ export const list: ListPatientHandler = async (req, res) => {
     patients: patients.map((x) => ({
       id: x.id,
       name: x.name,
+      archivedAt: x.archivedAt,
       lastCaseReport: x.calculated?.lastCaseReport
         ? new Date(x.calculated.lastCaseReport).toISOString().split('T')[0]
         : undefined,
       caseReportCount: x.calculated?.caseReportCount || 0,
     })),
   });
+};
+
+export const archive: ArchiveOrUnarchivePatientHandler = async (req, res) => {
+  const { authError, customerId } = await getCustomerId(req, res);
+  if (!customerId) return sendError({ res, error: authError });
+
+  const { patientId } = req.query;
+  if (!patientId)
+    return sendError({ res, error: 'patientId in query is required' });
+
+  await Patient.update(
+    {
+      PK: customerId,
+      SK: patientId,
+    },
+    {
+      archivedAt: new Date().toISOString(),
+    }
+  );
+
+  res.status(EnumHttpStatus.Success).send({});
+};
+
+export const unarchive: ArchiveOrUnarchivePatientHandler = async (req, res) => {
+  const { authError, customerId } = await getCustomerId(req, res);
+  if (!customerId) return sendError({ res, error: authError });
+
+  const { patientId } = req.query;
+  if (!patientId)
+    return sendError({ res, error: 'patientId in query is required' });
+
+  await Patient.update(
+    {
+      PK: customerId,
+      SK: patientId,
+    },
+    {
+      archivedAt: undefined,
+    }
+  );
+
+  res.status(EnumHttpStatus.Success).send({});
 };

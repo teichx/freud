@@ -4,7 +4,7 @@ import { PatientFields } from '~/core/contract';
 import { ErrorMessage, RequestQueryHandler } from '../../common';
 
 export type ListPatientResume =
-  | Pick<PatientFields, 'id' | 'name'> &
+  | Pick<PatientFields, 'id' | 'name' | 'archivedAt'> &
       Pick<
         NonNullable<PatientFields['calculated']>,
         'lastCaseReport' | 'caseReportCount'
