@@ -33,7 +33,7 @@ const MIN_PAGE = 1;
 
 export const getPaginate = ({
   req,
-  maxPaginate = 30,
+  maxPaginate = 100,
 }: GetPaginateProps): GetPaginateResult => {
   const page = Number(req.query.page || INITIAL_QUERY_PAGINATION.page);
   if (!Number.isInteger(page)) return INVALID_PAGE_RESPONSE;
