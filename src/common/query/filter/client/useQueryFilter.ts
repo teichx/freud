@@ -60,8 +60,35 @@ export const useQueryFilter: UseQueryFilter = () => {
     [router]
   );
 
+  const combineFilters: UseQueryFilterResult['combineFilters'] = useCallback(
+    (filterKey, filterValue) => {
+      const { isFinal, baseUrl, parameters } = splitPath(router);
+      if (!isFinal) return;
+
+      const filterCombinedKey = `${FILTER_PREFIX}${filterKey}`;
+      parameters.delete(filterCombinedKey);
+
+      if (Array.isArray(filterValue)) {
+        filterValue.forEach((x) =>
+          parameters.append(filterCombinedKey, x.toString())
+        );
+      } else {
+        parameters.set(filterCombinedKey, filterValue.toString());
+      }
+
+      const newRoute = {
+        pathname: baseUrl,
+        search: parameters.toString(),
+      };
+
+      router.replace(newRoute, undefined, REPLACE_OPTIONS);
+    },
+    [router]
+  );
+
   return {
     setFilters,
     getFilters,
+    combineFilters,
   };
 };

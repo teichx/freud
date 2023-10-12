@@ -14,7 +14,7 @@ export const FormSearchQueryFilter: FC<FormSearchQueryFilterProps> = ({
   inputProps,
   debounceDelay = 500,
 }) => {
-  const { setFilters } = useQueryFilter();
+  const { combineFilters } = useQueryFilter();
 
   return (
     <FormText
@@ -22,7 +22,7 @@ export const FormSearchQueryFilter: FC<FormSearchQueryFilterProps> = ({
       inputProps={{
         ...inputProps,
         onChange: _.debounce<ChangeEventHandler<HTMLInputElement>>(
-          (e) => setFilters({ [name]: e.target.value }),
+          (e) => combineFilters(name, e.target.value),
           debounceDelay
         ),
       }}
