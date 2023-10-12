@@ -12,6 +12,7 @@ import {
   UpsertPatientHandler,
   GetPatientHandler,
   ListPatientHandler,
+  EnumListPatientStatus,
 } from '../types';
 import { ArchiveOrUnarchivePatientHandler } from '../types/archive';
 
@@ -100,18 +101,30 @@ export const list: ListPatientHandler = async (req, res) => {
   if (error) return sendError({ res, error });
 
   const {
-    filter: { patientName },
+    filter: { patientName, status },
   } = getFilter({ req });
 
+  const statusArray = Array.isArray(status) ? status : [status].filter(Boolean);
+
   const getQueryWithFilters = () => {
-    const base = Patient.query({
+    const query = Patient.query({
       PK: { eq: customerId },
     });
-    const withNameFilter = patientName
-      ? base.where('searchTerm').contains(parseSearchTerm([patientName]))
-      : base;
+    if (patientName) {
+      query.where('searchTerm').contains(parseSearchTerm([patientName]));
+    }
+    const filterArchived = statusArray.includes(EnumListPatientStatus.Archived);
+    const filterUnarchive = statusArray.includes(
+      EnumListPatientStatus.Unarchive
+    );
+    if (filterArchived && !filterUnarchive) {
+      query.where('archivedAt').exists();
+    }
+    if (!filterArchived && filterUnarchive) {
+      query.where('archivedAt').not().exists();
+    }
 
-    return withNameFilter;
+    return query;
   };
 
   const patientsQuery = getQueryWithFilters()

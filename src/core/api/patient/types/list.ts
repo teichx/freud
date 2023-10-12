@@ -18,8 +18,13 @@ export type ListPatientSuccess<
 
 export type ListPatientResponse = ListPatientSuccess | ErrorMessage;
 
+export enum EnumListPatientStatus {
+  Archived = 'archived',
+  Unarchive = 'unarchive',
+}
+
 export type ListPatientQueryProps = PaginateQueryProps & {
-  showArchived?: boolean;
+  status?: EnumListPatientStatus;
   patientName?: string;
 };
 
