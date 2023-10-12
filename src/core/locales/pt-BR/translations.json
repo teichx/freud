@@ -8,6 +8,7 @@
       "save": "Salvar",
       "cancel": "Cancelar",
       "archive": "Arquivar",
+      "unarchive": "Desarquivar",
       "print": "Imprimir",
       "share": "Compartilhar",
       "register": "Cadastrar",
@@ -134,7 +135,16 @@
     "pages": {
       "patient": {
         "list": {
-          "search": "Nome do paciente",
+          "filter": {
+            "text": "Nome do paciente",
+            "status": {
+              "placeholder": "Filtre pelo status",
+              "options": {
+                "archived": "Arquivados",
+                "unarchive": "Não arquivados"
+              }
+            }
+          },
           "header": {
             "name": "Nome",
             "actions": "$t(words.actions)",
@@ -145,14 +155,19 @@
           "cell": {
             "caseReportCount_zero": "Nenhum caso anotado",
             "caseReportCount_one": "{{ count }} caso anotado",
-            "caseReportCount": "{{ count }} casos anotados"
+            "caseReportCount": "{{ count }} casos anotados",
+            "archived": {
+              "tooltip": "O paciente está arquivado"
+            }
           },
           "createLabel": "$t(words.register) paciente",
           "actions": {
             "button": "$t(words.actions)",
             "updatePatient": "$t(words.update) dados",
             "createCaseReport": "$t(words.new) relato de caso",
-            "seeCaseReport": "$t(words.see) relatos de caso"
+            "seeCaseReport": "$t(words.see) relatos de caso",
+            "archivePatient": "$t(words.archive) paciente",
+            "unarchivePatient": "$t(words.unarchive) paciente"
           }
         },
         "create": {
