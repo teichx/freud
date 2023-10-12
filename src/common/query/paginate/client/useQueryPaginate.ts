@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback } from 'react';
 
 import { useRouter } from 'next/router';
 
@@ -21,17 +21,6 @@ export const useQueryPaginate = ({
   const limit = Number.isInteger(Number(queryLimit))
     ? Number(queryLimit)
     : initialLimit;
-
-  useEffect(() => {
-    if (typeof queryPage !== 'undefined') return;
-    if (typeof queryLimit !== 'undefined') return;
-
-    replaceRoute({
-      page: initialPage,
-      limit: initialLimit,
-      router: router,
-    });
-  }, [router, queryPage, queryLimit, initialPage, initialLimit]);
 
   const toPage = useCallback<UseQueryPaginateResult['toPage']>(
     (nextPageValue) =>
