@@ -13,17 +13,24 @@ import {
 } from '@chakra-ui/react';
 import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
+import {
+  HiOutlineArchiveBoxArrowDown,
+  HiOutlineArchiveBoxXMark,
+} from 'react-icons/hi2';
 
 import { Routes } from '~/core/constants';
 import { useFormat } from '~/core/hooks';
 
 import { PatientCaseReport } from '../../CaseReport/PatientCaseReport';
+import { useHandleArchive } from './hooks';
 import { PatientActionsProps } from './types';
 
 export const PatientActions: FC<PatientActionsProps> = ({
   patientId,
   patientName,
+  isArchived,
 }) => {
+  const { archivePatient, unarchivePatient } = useHandleArchive();
   const { formatRoute } = useFormat();
   const { t } = useTranslation(undefined, {
     keyPrefix: 'pages.patient.list.actions',
@@ -63,6 +70,26 @@ export const PatientActions: FC<PatientActionsProps> = ({
         >
           <HStack>
             <Text>{t('seeCaseReport')}</Text>
+          </HStack>
+        </MenuItem>
+
+        <MenuDivider />
+
+        <MenuItem
+          onClick={() => {
+            (isArchived ? unarchivePatient : archivePatient)({ patientId });
+          }}
+        >
+          <HStack>
+            <Icon
+              as={
+                isArchived
+                  ? HiOutlineArchiveBoxXMark
+                  : HiOutlineArchiveBoxArrowDown
+              }
+            />
+
+            <Text>{t(isArchived ? 'unarchivePatient' : 'archivePatient')}</Text>
           </HStack>
         </MenuItem>
       </MenuList>
