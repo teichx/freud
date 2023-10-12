@@ -5,4 +5,5 @@ export * from './FormHidden';
 export * from './FormSaveButton';
 export * from './FormSearchQueryFilter';
 export * from './FormSelect';
+export * from './FormSelectQueryFilter';
 export * from './FormText';
