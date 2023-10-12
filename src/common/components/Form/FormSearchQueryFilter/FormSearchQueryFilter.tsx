@@ -13,11 +13,13 @@ export const FormSearchQueryFilter: FC<FormSearchQueryFilterProps> = ({
   name,
   inputProps,
   debounceDelay = 500,
+  ...props
 }) => {
   const { combineFilters } = useQueryFilter();
 
   return (
     <FormText
+      {...props}
       name={name}
       inputProps={{
         ...inputProps,
@@ -31,7 +33,6 @@ export const FormSearchQueryFilter: FC<FormSearchQueryFilterProps> = ({
           <Icon as={FiSearch} />
         </InputLeftElement>
       }
-      unForceHelperText
     />
   );
 };

@@ -59,9 +59,11 @@ export const FormText: FC<FormTextProps> = ({
       isInvalid={props.isInvalid || (meta.invalid && meta.touched)}
       isDisabled={props.isDisabled}
     >
-      <FormLabel htmlFor={name} as='legend' size={size}>
-        {label}
-      </FormLabel>
+      {label && (
+        <FormLabel htmlFor={name} as='legend' size={size}>
+          {label}
+        </FormLabel>
+      )}
 
       <InputGroup>
         {InputLeftElement}

@@ -51,7 +51,7 @@ export function FormSelect<IsMulti extends boolean = false>({
           isInvalid={meta.invalid && meta.touched}
           isDisabled={isDisabled}
         >
-          <FormLabel>{label}</FormLabel>
+          {label && <FormLabel>{label}</FormLabel>}
 
           <Select
             {...selectOptions}
