@@ -28,7 +28,7 @@ export const ApiRoutes = {
     Get: '/api/patient/{0}',
     Archive: '/api/patient/{0}/archive',
     Unarchive: '/api/patient/{0}/unarchive',
-    List: '/api/patient/list?page={0}&limit={1}&filter_by_patientName={2}',
+    List: '/api/patient/list?{0}',
     Upsert: '/api/patient/upsert',
     CaseReport: {
       Get: '/api/patient/{0}/case-report/{1}',

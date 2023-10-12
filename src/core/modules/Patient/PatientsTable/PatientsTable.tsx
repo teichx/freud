@@ -3,16 +3,18 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { DataTable, DataTableColumnProps } from '~/common/components/DataTable';
-import { useQueryFilter, useQueryPaginate } from '~/common/query';
+import { useDefaultQuery } from '~/common/query';
 import {
   ListPatientResume,
   ListPatientSuccess,
 } from '~/core/api/patient/types';
 import { ApiRoutes } from '~/core/constants';
+import { listPatientsSchema } from '~/core/contract/patient/listPatientsSchema';
 import { useFormat } from '~/core/hooks';
 import { useAuth } from '~/core/services';
 
 import { PatientActions } from './PatientActions';
+import { PatientArchived } from './PatientArchived';
 import { PatientTableStateProps } from './types';
 
 const INITIAL_STATE: PatientTableStateProps = {
@@ -22,21 +24,20 @@ const INITIAL_STATE: PatientTableStateProps = {
 };
 
 export const PatientsTable = () => {
-  const { formatRoute } = useFormat();
+  const { format } = useFormat();
   const { t } = useTranslation(undefined, {
     keyPrefix: 'pages.patient.list',
   });
   const [{ isLoading, totalItems, data }, setState] = useState(INITIAL_STATE);
-  const { page, limit: pageSize } = useQueryPaginate();
-  const { getFilters } = useQueryFilter();
+  const { stringParameters, getStateByString } = useDefaultQuery();
   const { authenticateFetch } = useAuth();
-  const { patientName } = getFilters();
 
   useEffect(() => {
     setState((x) => ({ ...x, isLoading: true }));
-    authenticateFetch(
-      formatRoute(ApiRoutes.Patient.List, page, pageSize, patientName)
-    )
+    const state = getStateByString(stringParameters);
+    if (!listPatientsSchema.isValidSync(state)) return;
+
+    authenticateFetch(format(ApiRoutes.Patient.List, stringParameters))
       .then<ListPatientSuccess>((x) => x.json())
       .then((result) => {
         setState((x) => ({
@@ -47,7 +48,7 @@ export const PatientsTable = () => {
         }));
       })
       .catch(() => setState(INITIAL_STATE));
-  }, [page, pageSize, authenticateFetch, formatRoute, patientName]);
+  }, [authenticateFetch, format, stringParameters, getStateByString]);
 
   const COLUMNS: DataTableColumnProps<ListPatientResume>[] = [
     {
@@ -58,6 +59,9 @@ export const PatientsTable = () => {
     {
       accessor: 'name',
       label: t('header.name'),
+      render: ({ data: { archivedAt, name } }) => (
+        <PatientArchived text={name} isArchived={!!archivedAt} />
+      ),
     },
     {
       w: '210px',
@@ -80,7 +84,11 @@ export const PatientsTable = () => {
       accessor: null,
       label: t('header.actions'),
       render: ({ data }) => (
-        <PatientActions patientId={data.id} patientName={data.name} />
+        <PatientActions
+          patientId={data.id}
+          patientName={data.name}
+          isArchived={!!data.archivedAt}
+        />
       ),
     },
   ];

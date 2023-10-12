@@ -105,6 +105,8 @@ export const list: ListPatientHandler = async (req, res) => {
   } = getFilter({ req });
 
   const statusArray = Array.isArray(status) ? status : [status].filter(Boolean);
+  if (!statusArray.length)
+    return sendError({ res, error: 'status is required' });
 
   const getQueryWithFilters = () => {
     const query = Patient.query({
