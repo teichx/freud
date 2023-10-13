@@ -1,4 +1,5 @@
-import { DynamoDBClientConfig } from '@aws-sdk/client-dynamodb';
+import { DynamoDB, DynamoDBClientConfig } from '@aws-sdk/client-dynamodb';
+import { DynamoDBDocument } from '@aws-sdk/lib-dynamodb';
 
 export const dynamodbConfig: DynamoDBClientConfig = {
   region: process.env.DYNAMO_AWS_REGION || undefined,
@@ -8,3 +9,13 @@ export const dynamodbConfig: DynamoDBClientConfig = {
     secretAccessKey: process.env.DYNAMO_AWS_SECRET_ACCESS_KEY || '',
   },
 };
+
+export const dynamoDb = new DynamoDB(dynamodbConfig);
+
+export const dynamodbClient = DynamoDBDocument.from(dynamoDb, {
+  marshallOptions: {
+    convertEmptyValues: true,
+    removeUndefinedValues: true,
+    convertClassInstanceToMap: true,
+  },
+});

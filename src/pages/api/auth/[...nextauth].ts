@@ -1,9 +1,22 @@
-import NextAuth, { AuthOptions } from 'next-auth';
-import GoogleProvider from 'next-auth/providers/google';
+import { DynamoDBAdapter } from '@auth/dynamodb-adapter';
+import * as crypto from 'crypto';
+import NextAuth from 'next-auth/next';
+import Google from 'next-auth/providers/google';
 
+import { dynamodbClient } from '~/core/api/infra/dynamo';
+import { DefaultTable } from '~/core/api/infra/tableDefinition';
+
+if (!global.crypto) {
+  Object.assign(global, { crypto });
+}
+
+const adapter = DynamoDBAdapter(dynamodbClient, DefaultTable);
+
+type AuthOptions = Parameters<typeof NextAuth>[2];
 export const authOptions: AuthOptions = {
+  adapter,
   providers: [
-    GoogleProvider({
+    Google({
       clientId: process.env.NEXT_PUBLIC_GOOGLE_AUTHENTICATE_CLIENT_ID || '',
       clientSecret: process.env.GOOGLE_AUTHENTICATE_CLIENT_SECRET || '',
     }),
