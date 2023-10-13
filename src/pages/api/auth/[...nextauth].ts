@@ -28,16 +28,22 @@ export const authOptions: AuthOptions = {
   debug: process.env.NODE_ENV !== 'production',
   callbacks: {
     redirect: async ({ baseUrl }) => `${baseUrl}/core`,
-    jwt: async ({ token, user }) => {
+    jwt: async ({ token, user, account }) => {
       if (user) {
-        Object.assign(token, { id: user.id });
+        Object.assign(token, {
+          id: user.id,
+          googleId:
+            account?.provider === 'google'
+              ? account?.providerAccountId
+              : undefined,
+        });
       }
 
       return token;
     },
     session: async ({ session, token }) => {
       if (session?.user) {
-        Object.assign(session.user, { id: token.id });
+        Object.assign(session.user, { id: token.id, googleId: token.googleId });
       }
 
       return session;

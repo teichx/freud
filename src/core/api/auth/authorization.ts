@@ -10,7 +10,7 @@ const AUTHENTICATION_ERROR = {
 
 export const getCustomerId: HandleGetCustomerId = async (req, res) => {
   const session = await getServerSession(req, res, authOptions);
-  const id = (session?.user as { id?: string })?.id;
+  const id = (session?.user as { googleId?: string })?.googleId;
 
   if (!id) return AUTHENTICATION_ERROR;
 
