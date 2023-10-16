@@ -1,1 +1,1 @@
-export { get as default } from '~/core/api/patient/dynamo';
+export { get as default } from '~/core/modules/Patient/api/get';

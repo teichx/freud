@@ -1,1 +1,1 @@
-export { upsert as default } from '~/core/api/patient/dynamo';
+export { upsert as default } from '~/core/modules/Patient/api/upsert';

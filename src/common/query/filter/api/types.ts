@@ -1,4 +1,4 @@
-import { ReqCustomProps } from '~/core/api/common';
+import { ReqCustomProps } from '~/core/api';
 
 export type GetFilterProps<TFilter extends Record<string, unknown>> = {
   req: FilterRequestProps<TFilter>;

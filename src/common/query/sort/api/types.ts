@@ -1,4 +1,4 @@
-import { ReqCustomProps } from '~/core/api/common';
+import { ReqCustomProps } from '~/core/api';
 
 import { SortType } from '../types';
 

@@ -1,1 +1,1 @@
-export { list as default } from '~/core/api/patient/caseReport/dynamo';
+export { list as default } from '~/core/modules/Patient/CaseReport/api/list';

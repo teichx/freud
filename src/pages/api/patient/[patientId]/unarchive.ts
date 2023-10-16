@@ -1,1 +1,1 @@
-export { unarchive as default } from '~/core/api/patient/dynamo';
+export { unarchive as default } from '~/core/modules/Patient/api/archive';

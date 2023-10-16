@@ -1,5 +1,6 @@
 import { DynamoDB, DynamoDBClientConfig } from '@aws-sdk/client-dynamodb';
 import { DynamoDBDocument } from '@aws-sdk/lib-dynamodb';
+import { aws } from 'dynamoose';
 
 export const dynamodbConfig: DynamoDBClientConfig = {
   region: process.env.DYNAMO_AWS_REGION || undefined,
@@ -11,6 +12,7 @@ export const dynamodbConfig: DynamoDBClientConfig = {
 };
 
 export const dynamoDb = new DynamoDB(dynamodbConfig);
+aws.ddb.set(dynamoDb);
 
 export const dynamodbClient = DynamoDBDocument.from(dynamoDb, {
   marshallOptions: {
