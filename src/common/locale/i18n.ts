@@ -3,12 +3,14 @@ import { initReactI18next } from 'react-i18next';
 
 import common from '~/core/locales/common.json';
 import ptBR from '~/core/locales/pt-BR/translations.json';
+import projectPtBR from '~/project/locales/pt-BR/project.json';
 
 i18n.use(initReactI18next).init({
   resources: {
     'pt-BR': {
       ...ptBR,
       ...common,
+      ...projectPtBR,
     },
   },
   lng: 'pt-BR',
