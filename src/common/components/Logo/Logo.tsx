@@ -19,10 +19,8 @@ export const Logo: FC<LogoProps> = ({
 
   return (
     <Wrapper {...props}>
-      <Box display='flex' justifyContent='start' alignItems='center' my='0.5'>
-        <Box id='foo' mr={withText ? 2 : 0}>
-          {withIcon && <LogoItem size={size} />}
-        </Box>
+      <Box display='flex' justifyContent='start' alignItems='center'>
+        <Box mr={withText ? 2 : 0}>{withIcon && <LogoItem size={size} />}</Box>
 
         {withText && (
           <LogoText
