@@ -16,8 +16,18 @@ export const Header = () => {
     <Box w='100%' position='relative' zIndex='banner'>
       <HStack w='100%' py='2' px='8' spacing={4} bg='book.darkBlue.500'>
         <HStack w='50%' alignItems='center'>
-          <Buttons.Link href={ProjectRoutes.Home} variant='unstyled'>
-            <Logo mr={4} color='book.desertSun.500' size='medium' />
+          <Buttons.Link
+            py='2'
+            mr={4}
+            height='auto'
+            color='white'
+            variant='ghost'
+            _hover={{
+              bg: 'whiteAlpha.300',
+            }}
+            href={ProjectRoutes.Home}
+          >
+            <Logo size='medium' />
           </Buttons.Link>
 
           <ButtonGroup variant='unstyled' spacing='4' color='white'>
