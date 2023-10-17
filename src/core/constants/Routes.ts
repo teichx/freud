@@ -1,3 +1,7 @@
+export const ProjectRoutes = {
+  Home: '/',
+} as const;
+
 export const Routes = {
   ApiPrefix: '/api/',
   Core: {
