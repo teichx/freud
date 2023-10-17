@@ -7,6 +7,9 @@ import {
   LinkButton,
   SaveButton,
   Microphone,
+  LoginButton,
+  LogoutButton,
+  AccessButton,
 } from './variant';
 
 export const Buttons = {
@@ -15,4 +18,7 @@ export const Buttons = {
   Link: LinkButton,
   Save: SaveButton,
   Microphone: Microphone,
+  Login: LoginButton,
+  Logout: LogoutButton,
+  Access: AccessButton,
 };
