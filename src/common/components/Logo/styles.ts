@@ -47,8 +47,4 @@ export const LogoIconStyled = styled<
   },
 });
 
-export const Wrapper = styled(Box, {
-  baseStyle: {
-    cursor: 'default',
-  },
-});
+export const Wrapper = styled(Box);
