@@ -3,14 +3,13 @@
 exports[`component.Logo renders size large variant full 1`] = `
 <DocumentFragment>
   <div
-    class="css-7i1cpz"
+    class="css-1xdhyk6"
   >
     <div
-      class="css-zz1w7s"
+      class="css-1m29ivc"
     >
       <div
         class="css-11l8nwy"
-        id="foo"
       >
         <svg
           class="chakra-icon css-1l0qf7"
@@ -46,14 +45,13 @@ exports[`component.Logo renders size large variant full 1`] = `
 exports[`component.Logo renders size large variant icon 1`] = `
 <DocumentFragment>
   <div
-    class="css-7i1cpz"
+    class="css-1xdhyk6"
   >
     <div
-      class="css-zz1w7s"
+      class="css-1m29ivc"
     >
       <div
         class="css-jipda8"
-        id="foo"
       >
         <svg
           class="chakra-icon css-1l0qf7"
@@ -84,14 +82,13 @@ exports[`component.Logo renders size large variant icon 1`] = `
 exports[`component.Logo renders size large variant text 1`] = `
 <DocumentFragment>
   <div
-    class="css-7i1cpz"
+    class="css-1xdhyk6"
   >
     <div
-      class="css-zz1w7s"
+      class="css-1m29ivc"
     >
       <div
         class="css-11l8nwy"
-        id="foo"
       />
       <p
         class="chakra-text className css-1b5zc7e"
@@ -110,14 +107,13 @@ exports[`component.Logo renders size large variant text 1`] = `
 exports[`component.Logo renders size medium variant full 1`] = `
 <DocumentFragment>
   <div
-    class="css-7i1cpz"
+    class="css-1xdhyk6"
   >
     <div
-      class="css-zz1w7s"
+      class="css-1m29ivc"
     >
       <div
         class="css-11l8nwy"
-        id="foo"
       >
         <svg
           class="chakra-icon css-ozucbl"
@@ -153,14 +149,13 @@ exports[`component.Logo renders size medium variant full 1`] = `
 exports[`component.Logo renders size medium variant icon 1`] = `
 <DocumentFragment>
   <div
-    class="css-7i1cpz"
+    class="css-1xdhyk6"
   >
     <div
-      class="css-zz1w7s"
+      class="css-1m29ivc"
     >
       <div
         class="css-jipda8"
-        id="foo"
       >
         <svg
           class="chakra-icon css-ozucbl"
@@ -191,14 +186,13 @@ exports[`component.Logo renders size medium variant icon 1`] = `
 exports[`component.Logo renders size medium variant text 1`] = `
 <DocumentFragment>
   <div
-    class="css-7i1cpz"
+    class="css-1xdhyk6"
   >
     <div
-      class="css-zz1w7s"
+      class="css-1m29ivc"
     >
       <div
         class="css-11l8nwy"
-        id="foo"
       />
       <p
         class="chakra-text className css-1ajvdta"
@@ -217,14 +211,13 @@ exports[`component.Logo renders size medium variant text 1`] = `
 exports[`component.Logo renders size small variant full 1`] = `
 <DocumentFragment>
   <div
-    class="css-7i1cpz"
+    class="css-1xdhyk6"
   >
     <div
-      class="css-zz1w7s"
+      class="css-1m29ivc"
     >
       <div
         class="css-11l8nwy"
-        id="foo"
       >
         <svg
           class="chakra-icon css-quexpw"
@@ -260,14 +253,13 @@ exports[`component.Logo renders size small variant full 1`] = `
 exports[`component.Logo renders size small variant icon 1`] = `
 <DocumentFragment>
   <div
-    class="css-7i1cpz"
+    class="css-1xdhyk6"
   >
     <div
-      class="css-zz1w7s"
+      class="css-1m29ivc"
     >
       <div
         class="css-jipda8"
-        id="foo"
       >
         <svg
           class="chakra-icon css-quexpw"
@@ -298,14 +290,13 @@ exports[`component.Logo renders size small variant icon 1`] = `
 exports[`component.Logo renders size small variant text 1`] = `
 <DocumentFragment>
   <div
-    class="css-7i1cpz"
+    class="css-1xdhyk6"
   >
     <div
-      class="css-zz1w7s"
+      class="css-1m29ivc"
     >
       <div
         class="css-11l8nwy"
-        id="foo"
       />
       <p
         class="chakra-text className css-18mtwmh"
