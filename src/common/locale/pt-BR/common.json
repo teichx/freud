@@ -1,5 +1,13 @@
 {
   "common": {
+    "name": "Freud",
+    "components": {
+      "buttons": {
+        "login": "Fazer login",
+        "access": "Entrar como {{ name }}",
+        "logout": "Deslogar"
+      }
+    },
     "languages": {
       "options": "pt-BR,en-US",
       "pt-BR": "Português",
