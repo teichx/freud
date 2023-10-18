@@ -10,3 +10,6 @@ export const parseSearchTerm = (values: string[]) =>
       })
     )
     .join('_');
+
+export const parseToHighlight = (value: string) =>
+  parseSearchTerm([value]).replaceAll('-', ' ');

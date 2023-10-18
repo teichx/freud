@@ -14,7 +14,7 @@ import {
   ListPatientSuccess,
 } from '../../../../api/list/types';
 import { PatientActions } from '../PatientActions';
-import { PatientArchived } from '../PatientArchived';
+import { PatientName } from '../PatientName';
 import { PatientTableStateProps } from './types';
 
 const INITIAL_STATE: PatientTableStateProps = {
@@ -60,7 +60,7 @@ export const PatientsTable = () => {
       accessor: 'name',
       label: t('header.name'),
       render: ({ data: { archivedAt, name } }) => (
-        <PatientArchived text={name} isArchived={!!archivedAt} />
+        <PatientName text={name} isArchived={!!archivedAt} />
       ),
     },
     {
