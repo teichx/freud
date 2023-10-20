@@ -1,10 +1,10 @@
+'use client';
 import { useEffect, useState } from 'react';
 
-import { useRouter } from 'next/router';
+import { useSearchParams, useRouter, usePathname } from 'next/navigation';
 
 import { REPLACE_OPTIONS } from '../../constants';
 import { FILTER_PREFIX } from '../../filter/constants';
-import { splitPath } from '../../path';
 import { getStateByString } from './functions';
 import { UseDefaultQuery } from './types';
 
@@ -14,8 +14,9 @@ export const useDefaultQuery: UseDefaultQuery = (
 ) => {
   const [isInitialized, setIsInitialized] = useState(false);
   const [initialState] = useState(props);
+  const pathname = usePathname();
   const router = useRouter();
-  const { parameters, isFinal } = splitPath(router);
+  const parameters = useSearchParams();
   const stringParameters = parameters.toString();
 
   useEffect(() => {
@@ -25,8 +26,6 @@ export const useDefaultQuery: UseDefaultQuery = (
   useEffect(() => {
     if (isInitialized) return;
     if (!initialState) return;
-    if (!isFinal) return;
-    const { baseUrl } = splitPath(router);
 
     setIsInitialized(true);
     const currentSearch = new URLSearchParams(stringParameters);
@@ -49,13 +48,10 @@ export const useDefaultQuery: UseDefaultQuery = (
       value.forEach((x) => currentSearch.append(filterKey, x));
     });
 
-    const newRoute = {
-      pathname: baseUrl,
-      search: currentSearch.toString(),
-    };
+    const newRoute = `${pathname}?${currentSearch}`;
 
-    router.replace(newRoute, undefined, REPLACE_OPTIONS);
-  }, [initialState, router, isFinal, stringParameters, isInitialized]);
+    router.replace(newRoute, REPLACE_OPTIONS);
+  }, [initialState, router, pathname, stringParameters, isInitialized]);
 
   return {
     getStateByString,

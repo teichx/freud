@@ -1,14 +1,15 @@
+'use client';
 import { useMemo } from 'react';
 
-import { useRouter } from 'next/router';
+import { usePathname } from 'next/navigation';
 import { useTranslation } from 'react-i18next';
 
 import { MENU_ITEMS } from './const';
 import { HeaderItemProps, UseHeaderProps } from './types';
 
 export const useHeader: UseHeaderProps = () => {
-  const { pathname } = useRouter();
-  const { t } = useTranslation(undefined, {
+  const pathname = usePathname();
+  const { t } = useTranslation('translations', {
     keyPrefix: 'header.label',
   });
 

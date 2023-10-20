@@ -1,5 +1,5 @@
 import { Button, ButtonGroup, Flex } from '@chakra-ui/react';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import { useTranslation } from 'react-i18next';
 import { FiPrinter, FiArchive, FiShare2 } from 'react-icons/fi';
 
@@ -10,14 +10,14 @@ import { StickHeader } from './styles';
 
 export const PatientFormHeader = () => {
   const { t } = useTranslation();
-  const { back } = useRouter();
+  const router = useRouter();
 
   return (
     <StickHeader>
       <Section disabledLoading my='0'>
         <Flex justifyContent='flex-end'>
           <ButtonGroup spacing='4' variant='solid'>
-            <Button onClick={back} variant='outline'>
+            <Button onClick={() => router.back()} variant='outline'>
               {t('words.back')}
             </Button>
 

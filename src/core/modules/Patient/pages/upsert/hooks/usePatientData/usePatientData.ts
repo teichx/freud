@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 
-import { useRouter } from 'next/router';
+import { useRouter, useParams } from 'next/navigation';
 
 import { ApiRoutes, Routes } from '~/core/constants';
 import { useFormat } from '~/core/hooks';
@@ -17,10 +17,8 @@ const INITIAL_STATE = {
 };
 
 export const usePatientData = (): UsePatientDataResultProps => {
-  const {
-    query: { patientId },
-    replace,
-  } = useRouter();
+  const { patientId } = useParams<{ patientId: string }>();
+  const router = useRouter();
 
   const [{ patient, isLoaded }, setState] =
     useState<PatientStateProps>(INITIAL_STATE);
@@ -57,14 +55,12 @@ export const usePatientData = (): UsePatientDataResultProps => {
         const data: PatientFields = await result.json();
 
         setState(INITIAL_STATE);
-        replace(formatRoute(Routes.Core.Patient.Edit, data.id), undefined, {
-          shallow: true,
-        });
+        router.replace(formatRoute(Routes.Core.Patient.Edit, data.id));
       } catch (error) {
         setIsLoading(false);
       }
     },
-    [authenticateFetch, replace, formatRoute, setIsLoading]
+    [authenticateFetch, router, formatRoute, setIsLoading]
   );
 
   return {

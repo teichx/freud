@@ -1,19 +1,21 @@
+'use client';
 import { useCallback } from 'react';
 
-import { useRouter } from 'next/router';
+import { useRouter, useSearchParams, usePathname } from 'next/navigation';
 
 import { INITIAL_QUERY_PAGINATION } from '../constants';
-import { getPage, replaceRoute } from './functions';
 import { UseQueryPaginateProps, UseQueryPaginateResult } from './types';
 
 export const useQueryPaginate = ({
   initialPage = INITIAL_QUERY_PAGINATION.page,
   initialLimit = INITIAL_QUERY_PAGINATION.limit,
 }: UseQueryPaginateProps = {}): UseQueryPaginateResult => {
+  const parameters = useSearchParams();
+  const pathname = usePathname();
   const router = useRouter();
-  const {
-    query: { page: queryPage, limit: queryLimit },
-  } = router;
+
+  const queryPage = parameters.get('page');
+  const queryLimit = parameters.get('limit');
 
   const page = Number.isInteger(Number(queryPage))
     ? Number(queryPage)
@@ -23,42 +25,35 @@ export const useQueryPaginate = ({
     : initialLimit;
 
   const toPage = useCallback<UseQueryPaginateResult['toPage']>(
-    (nextPageValue) =>
-      replaceRoute({
-        page: nextPageValue,
-        router,
-      }),
-    [router]
+    (nextPageValue) => {
+      const updatedUrlParameters = new URLSearchParams(parameters);
+      updatedUrlParameters.set('page', nextPageValue.toString());
+      router.replace(`${pathname}?${updatedUrlParameters}`);
+    },
+    [router, pathname, parameters]
   );
 
   const nextPage = useCallback<UseQueryPaginateResult['nextPage']>(() => {
-    const currentPageValue = getPage({ router });
-    const nextPageValue = currentPageValue + 1;
-    replaceRoute({
-      page: nextPageValue,
-      router,
-    });
-  }, [router]);
+    const updatedUrlParameters = new URLSearchParams(parameters);
+    updatedUrlParameters.set('page', (page + 1).toString());
+    router.replace(`${pathname}?${updatedUrlParameters}`);
+  }, [router, pathname, parameters, page]);
 
   const previousPage = useCallback<
     UseQueryPaginateResult['previousPage']
   >(() => {
-    const currentPageValue = getPage({ router });
-    const previousPageValue = currentPageValue - 1;
-    replaceRoute({
-      page: previousPageValue,
-      router,
-    });
-  }, [router]);
+    const updatedUrlParameters = new URLSearchParams(parameters);
+    updatedUrlParameters.set('page', (page - 1).toString());
+    router.replace(`${pathname}?${updatedUrlParameters}`);
+  }, [router, pathname, parameters, page]);
 
   const setLimit = useCallback<UseQueryPaginateResult['setLimit']>(
-    (nextLimit) =>
-      replaceRoute({
-        page: 1,
-        limit: nextLimit,
-        router,
-      }),
-    [router]
+    (nextLimit) => {
+      const updatedUrlParameters = new URLSearchParams(parameters);
+      updatedUrlParameters.set('limit', nextLimit.toString());
+      router.replace(`${pathname}?${updatedUrlParameters}`);
+    },
+    [router, pathname, parameters]
   );
 
   return {
