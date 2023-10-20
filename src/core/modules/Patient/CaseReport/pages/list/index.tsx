@@ -1,9 +1,8 @@
-import { Button, ButtonGroup, Flex } from '@chakra-ui/react';
+import { Box, Button, ButtonGroup, Flex } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
 
 import { BackButton } from '~/common/components/Buttons';
 import { Section } from '~/common/components/Section';
-import { AppPage } from '~/core/template/AppPage';
 
 import { PatientCaseReportUpsertModal } from '../../modal/upsert';
 import { PatientCaseReportTable } from './components/PatientCaseReportTable';
@@ -17,7 +16,7 @@ export const ListCaseReports = () => {
     useListCaseReports();
 
   return (
-    <AppPage titleKey='patient.listCaseReports'>
+    <Box w='100%'>
       <Section disabledLoading>
         <Flex justifyContent='flex-end'>
           <ButtonGroup spacing='4' variant='solid'>
@@ -40,6 +39,6 @@ export const ListCaseReports = () => {
         patientName={patientName}
         caseReports={caseReports}
       />
-    </AppPage>
+    </Box>
   );
 };

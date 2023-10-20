@@ -1,23 +1,14 @@
+'use client';
 import { FC, PropsWithChildren, useEffect } from 'react';
 
 import { Box } from '@chakra-ui/react';
 import { useSession } from 'next-auth/react';
-import { useRouter } from 'next/router';
-import { useTranslation } from 'react-i18next';
+import { useRouter } from 'next/navigation';
 
-import { Meta } from '~/common/components/Meta';
 import { Routes } from '~/core/constants';
 import { Header } from '~/core/sections/Header';
 
-import { AppPageProps } from './types';
-
-export const AppPage: FC<PropsWithChildren<AppPageProps>> = ({
-  titleKey,
-  children,
-}) => {
-  const { t } = useTranslation(undefined, {
-    keyPrefix: 'pageTitle',
-  });
+const AppPage: FC<PropsWithChildren> = ({ children }) => {
   const { status } = useSession();
   const router = useRouter();
 
@@ -30,7 +21,6 @@ export const AppPage: FC<PropsWithChildren<AppPageProps>> = ({
   return status === 'authenticated' ? (
     <Box>
       <Header />
-      {titleKey && <Meta.Title title={t(titleKey)} />}
 
       <Box
         px={{
@@ -44,3 +34,5 @@ export const AppPage: FC<PropsWithChildren<AppPageProps>> = ({
     </Box>
   ) : null;
 };
+
+export default AppPage;

@@ -15,7 +15,6 @@ import { useDefaultQuery } from '~/common/query';
 import { Routes } from '~/core/constants';
 import { listPatientsSchema } from '~/core/modules/Patient/api/list/listPatientsSchema';
 import { PatientsTable } from '~/core/modules/Patient/pages/list/components/PatientsTable';
-import { AppPage } from '~/core/template/AppPage';
 
 import { EnumListPatientStatus } from '../../api/list/types';
 
@@ -45,7 +44,7 @@ export const ListPatients = () => {
   );
 
   return (
-    <AppPage titleKey='patient.list'>
+    <Box w='100%'>
       <Section>
         <Flex alignItems='center'>
           <Box w='100%'>
@@ -91,6 +90,6 @@ export const ListPatients = () => {
       </Section>
 
       <PatientsTable />
-    </AppPage>
+    </Box>
   );
 };
