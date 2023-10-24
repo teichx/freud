@@ -1,40 +1,42 @@
-import { NextApiRequest, NextApiResponse } from 'next';
+import { NextRequest, NextResponse } from 'next/server';
 
 export type ErrorMessage = {
   message: string;
 };
 
-export type ReqProps = {
-  req: ReqCustomProps<unknown, unknown>;
+export type RouteHandlerContext<
+  TQueryProps = Record<string, string | string[]>
+> = {
+  params: TQueryProps;
 };
 
-export interface ReqCustomProps<TQuery, TBody>
-  extends Omit<NextApiRequest, 'query' | 'body'> {
-  query: TQuery;
-  body: TBody;
+export interface ReqCustomProps<TQueryProps, TBody>
+  extends Omit<NextRequest, 'json'> {
+  json: () => Promise<TBody>;
+  _: TQueryProps;
 }
 
 export type RequestQueryHandler<TQueryProps, TResponse> = (
   req: ReqCustomProps<TQueryProps, unknown>,
-  res: NextApiResponse<TResponse>
-) => void | Promise<void>;
+  ctx: RouteHandlerContext<TQueryProps>
+) => NextResponse<TResponse> | Promise<NextResponse<TResponse>>;
 
 export type RequestBodyHandler<TBodyProps, TResponse> = (
   req: ReqCustomProps<unknown, TBodyProps>,
-  res: NextApiResponse<TResponse>
-) => void | Promise<void>;
+  ctx: RouteHandlerContext
+) => NextResponse<TResponse> | Promise<NextResponse<TResponse>>;
 
 export type RequestQueryBodyHandler<TQueryProps, TBodyProps, TResponse> = (
   req: ReqCustomProps<TQueryProps, TBodyProps>,
-  res: NextApiResponse<TResponse>
-) => void | Promise<void>;
+  ctx: RouteHandlerContext<TQueryProps>
+) => NextResponse<TResponse> | Promise<NextResponse<TResponse>>;
 
 export type RequestHandler<TResponse> = (
   req: ReqCustomProps<unknown, unknown>,
-  res: NextApiResponse<TResponse>
-) => void | Promise<void>;
+  ctx: RouteHandlerContext
+) => NextResponse<TResponse> | Promise<NextResponse<TResponse>>;
 
 export type TNextRequest = (
-  req: NextApiRequest,
-  res: NextApiResponse
-) => void | Promise<void>;
+  req: NextRequest,
+  ctx: RouteHandlerContext
+) => NextResponse | Promise<NextResponse>;

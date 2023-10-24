@@ -1,11 +1,7 @@
-import { NextApiResponse } from 'next/types';
-
 import { EnumHttpStatus } from '../constants';
-import { ErrorMessage } from '../types';
 
-export type SendErrorProps = {
-  res: NextApiResponse<ErrorMessage>;
+export type SendErrorProps<TExtras extends object = object> = {
   error: string;
-  extras?: Record<string, unknown>;
+  extras?: TExtras;
   status?: keyof typeof EnumHttpStatus;
 };

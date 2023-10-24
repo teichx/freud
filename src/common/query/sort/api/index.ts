@@ -3,7 +3,7 @@ import { SortType } from '../types';
 import { GetSortHandler, GetSortItem } from './types';
 
 export const getSort: GetSortHandler = ({ req }) => ({
-  sort: (req.query.sort || '')
+  sort: (req.nextUrl.searchParams.get('sort') || '')
     .split(FIELD_SEPARATOR)
     .map<GetSortItem>((key) => {
       const lastIndex = key.lastIndexOf(SORT_TYPE_SEPARATOR);

@@ -35,10 +35,14 @@ export const getPaginate = ({
   req,
   maxPaginate = 100,
 }: GetPaginateProps): GetPaginateResult => {
-  const page = Number(req.query.page || INITIAL_QUERY_PAGINATION.page);
+  const page = Number(
+    req.nextUrl.searchParams.get('page') || INITIAL_QUERY_PAGINATION.page
+  );
   if (!Number.isInteger(page)) return INVALID_PAGE_RESPONSE;
 
-  const limit = Number(req.query.limit || INITIAL_QUERY_PAGINATION.limit);
+  const limit = Number(
+    req.nextUrl.searchParams.get('limit') || INITIAL_QUERY_PAGINATION.limit
+  );
   if (!Number.isInteger(limit)) return INVALID_LIMIT_RESPONSE;
 
   const limitAfterMin = maxPaginate ? Math.min(limit, maxPaginate) : limit;
