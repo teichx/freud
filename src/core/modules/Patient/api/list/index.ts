@@ -1,28 +1,28 @@
+import { NextResponse } from 'next/server';
+
 import { getFilter, getPaginate } from '~/common/query';
 import { sendError } from '~/core/api';
 import { getCustomerId } from '~/core/modules/Customer/auth';
 
-import { EnumHttpStatus } from '../../../../api/constants';
 import { Patient } from '../model';
 import { parseSearchTerm } from '../parseSearchTerm';
 import { ListPatientHandler, EnumListPatientStatus } from './types';
 
-export const list: ListPatientHandler = async (req, res) => {
-  const { authError, customerId } = await getCustomerId(req, res);
-  if (!customerId) return sendError({ res, error: authError });
+export const list: ListPatientHandler = async (req) => {
+  const { authError, customerId } = await getCustomerId();
+  if (!customerId) return sendError({ error: authError });
 
   const { error, limit, getPagination } = getPaginate({
     req,
   });
-  if (error) return sendError({ res, error });
+  if (error) return sendError({ error });
 
   const {
     filter: { patientName, status },
   } = getFilter({ req });
 
   const statusArray = Array.isArray(status) ? status : [status].filter(Boolean);
-  if (!statusArray.length)
-    return sendError({ res, error: 'status is required' });
+  if (!statusArray.length) return sendError({ error: 'status is required' });
 
   const getQueryWithFilters = () => {
     const query = Patient.query({
@@ -57,7 +57,7 @@ export const list: ListPatientHandler = async (req, res) => {
     patientsCountQuery,
   ]);
 
-  return res.status(EnumHttpStatus.Success).send({
+  return NextResponse.json({
     ...getPagination({ totalItems: patientsCount.count }),
     patients: patients.map((x) => ({
       id: x.id,
