@@ -1,4 +1,3 @@
-import { Config } from 'jest';
 import nextJest from 'next/jest.js';
 
 const createJestConfig = nextJest({
@@ -6,11 +5,17 @@ const createJestConfig = nextJest({
   dir: './',
 });
 
-const config: Config = {
+// Add any custom config to be passed to Jest
+/** @type {import('jest').Config} */
+const config = {
   clearMocks: true,
   resetMocks: true,
   restoreMocks: true,
   resetModules: true,
+  fakeTimers: {
+    enableGlobally: true,
+  },
+  injectGlobals: true,
 
   collectCoverage: true,
   coverageProvider: 'v8',
