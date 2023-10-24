@@ -1,6 +1,7 @@
-import { Schema, model } from 'dynamoose';
+import { Schema } from 'dynamoose';
 import { ValueType } from 'dynamoose/dist/Schema';
 
+import { model } from '~/core/api/infra/dynamo';
 import { CaseReportModelFields } from '~/core/modules/Patient/CaseReport/api/schema/types';
 
 import { DynamoItemProps } from '../../../../../api/infra/types';
