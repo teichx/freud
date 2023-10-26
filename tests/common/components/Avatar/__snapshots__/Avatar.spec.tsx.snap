@@ -4,7 +4,7 @@ exports[`component.Avatar renders with width and height 1`] = `
 <DocumentFragment>
   <span
     alt="Great alt"
-    class="chakra-avatar css-11zvsst"
+    class="chakra-avatar css-j9lcef"
   >
     <svg
       aria-label=" avatar"
@@ -44,7 +44,7 @@ exports[`component.Avatar renders without width and height 1`] = `
 <DocumentFragment>
   <span
     alt="Other alt"
-    class="chakra-avatar css-wj3r0b"
+    class="chakra-avatar css-gx9sqk"
   >
     <svg
       aria-label=" avatar"

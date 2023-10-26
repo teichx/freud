@@ -10,7 +10,7 @@ describe('component.Buttons', () => {
       const { asFragment, getByText } = render(<Buttons.Cancel />);
 
       expect(asFragment()).toMatchSnapshot();
-      expect(getByText('words.cancel')).toBeDefined();
+      expect(getByText('translations.words.cancel')).toBeDefined();
     });
 
     it('with text', () => {

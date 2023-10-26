@@ -3,10 +3,10 @@
 exports[`component.Buttons buttons.Back default 1`] = `
 <DocumentFragment>
   <button
-    class="chakra-button css-pmna7d"
+    class="chakra-button css-11494p6"
     type="button"
   >
-    words.back
+    translations.words.back
   </button>
   <span
     hidden=""
