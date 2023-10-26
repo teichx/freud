@@ -1,15 +1,15 @@
 import { SimpleGrid } from '@chakra-ui/react';
-import { useTranslation } from 'react-i18next';
 
 import { FormText } from '~/common/components/Form';
 import { Section } from '~/common/components/Section';
+import { useScopedI18n } from '~/i18n/client';
 
 import { COMPLAINED_HISTORY_FIELDS } from './constants';
 
 export const ComplainedHistory = () => {
-  const { t } = useTranslation(undefined, {
-    keyPrefix: 'pages.patient.create.complainedHistory',
-  });
+  const t = useScopedI18n(
+    'translations.pages.patient.create.complainedHistory'
+  );
 
   return (
     <Section label={t('title')}>

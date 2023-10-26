@@ -1,13 +1,12 @@
 import { useEffect, useState } from 'react';
 
-import { useTranslation } from 'react-i18next';
-
 import { DataTable, DataTableColumnProps } from '~/common/components/DataTable';
 import { useDefaultQuery } from '~/common/query';
 import { ApiRoutes } from '~/core/constants';
 import { useFormat } from '~/core/hooks';
 import { listPatientsSchema } from '~/core/modules/Patient/api/list/listPatientsSchema';
 import { useAuth } from '~/core/services';
+import { useScopedI18n } from '~/i18n/client';
 
 import {
   ListPatientResume,
@@ -25,9 +24,7 @@ const INITIAL_STATE: PatientTableStateProps = {
 
 export const PatientsTable = () => {
   const { format } = useFormat();
-  const { t } = useTranslation(undefined, {
-    keyPrefix: 'pages.patient.list',
-  });
+  const t = useScopedI18n('translations.pages.patient.list');
   const [{ isLoading, totalItems, data }, setState] = useState(INITIAL_STATE);
   const { stringParameters, getStateByString } = useDefaultQuery();
   const { authenticateFetch } = useAuth();
@@ -69,7 +66,7 @@ export const PatientsTable = () => {
       accessor: 'caseReportCount',
       label: t('header.caseReportCount'),
       render: ({ data: { caseReportCount } }) =>
-        t('cell.caseReportCount', { count: caseReportCount }),
+        t('cell.caseReportCount', { count: caseReportCount || 0 }),
     },
     {
       w: '210px',

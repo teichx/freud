@@ -1,3 +1,4 @@
+'use client';
 import { forwardRef, FormControl, FormLabel, Input } from '@chakra-ui/react';
 
 import { FormHelperText } from '../Form';

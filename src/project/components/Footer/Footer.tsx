@@ -1,14 +1,14 @@
 import { Box, Container, Icon, IconButton, Text, Link } from '@chakra-ui/react';
-import { useTranslation } from 'react-i18next';
 import { BsGithub } from 'react-icons/bs';
 import { GiBrazil } from 'react-icons/gi';
 
 import { TooltipComponent } from '~/common/components/TooltipComponent';
+import { useScopedI18n } from '~/i18n/client';
 
 import { StyledHStack } from './style';
 
 export const Footer = () => {
-  const { t } = useTranslation('project');
+  const t = useScopedI18n('project');
 
   return (
     <Box

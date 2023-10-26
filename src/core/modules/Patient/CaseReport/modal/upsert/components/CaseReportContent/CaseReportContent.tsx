@@ -2,20 +2,17 @@ import { useEffect, useRef } from 'react';
 
 import { Box } from '@chakra-ui/react';
 import { useForm } from 'react-final-form';
-import { useTranslation } from 'react-i18next';
 
 import { FormText } from '~/common/components/Form';
 import { useSpeechToText } from '~/common/hooks/useSpeechToText';
+import { useScopedI18n } from '~/i18n/client';
 
 export const CaseReportContent = () => {
   const textRef = useRef('');
+  const tHelperText = useScopedI18n('translations.helperText');
+  const t = useScopedI18n('translations.pages.patient.caseReport');
+
   const form = useForm();
-  const { t: tHelperText } = useTranslation(undefined, {
-    keyPrefix: 'helperText',
-  });
-  const { t } = useTranslation(undefined, {
-    keyPrefix: 'pages.patient.caseReport',
-  });
   const { text, isListening, Microphone } = useSpeechToText({
     onStart: () => {
       textRef.current = form.getFieldState('content')?.value || '';

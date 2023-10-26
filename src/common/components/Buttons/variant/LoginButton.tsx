@@ -1,17 +1,15 @@
 import { Button, Icon, forwardRef } from '@chakra-ui/react';
 import { signIn } from 'next-auth/react';
-import { useTranslation } from 'react-i18next';
 import { FiLogIn } from 'react-icons/fi';
 
 import { useLoader } from '~/core/services';
+import { useScopedI18n } from '~/i18n/client';
 
 import { VariantButtonProps } from '../types';
 
 export const LoginButton = forwardRef<VariantButtonProps, 'button'>(
   ({ text, children, loaderKeys = ['DEFAULT'], ...props }, ref) => {
-    const { t } = useTranslation('common', {
-      keyPrefix: 'components.buttons',
-    });
+    const t = useScopedI18n('common.components.buttons');
     const { isLoading } = useLoader(loaderKeys[0], ...loaderKeys);
 
     return (

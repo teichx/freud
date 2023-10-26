@@ -1,7 +1,6 @@
 import { useMemo } from 'react';
 
 import { Box, Flex, HStack } from '@chakra-ui/react';
-import { useTranslation } from 'react-i18next';
 
 import { LinkButton } from '~/common/components/Buttons';
 import {
@@ -15,6 +14,7 @@ import { useDefaultQuery } from '~/common/query';
 import { Routes } from '~/core/constants';
 import { listPatientsSchema } from '~/core/modules/Patient/api/list/listPatientsSchema';
 import { PatientsTable } from '~/core/modules/Patient/pages/list/components/PatientsTable';
+import { useScopedI18n } from '~/i18n/client';
 
 import { EnumListPatientStatus } from '../../api/list/types';
 
@@ -29,9 +29,7 @@ const defaultQuery = {
 };
 
 export const ListPatients = () => {
-  const { t } = useTranslation(undefined, {
-    keyPrefix: 'pages.patient.list',
-  });
+  const t = useScopedI18n('translations.pages.patient.list');
   const { getStateByString, stringParameters } = useDefaultQuery(defaultQuery);
 
   const patientStatusOptions = useMemo(

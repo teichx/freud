@@ -14,20 +14,18 @@ import {
   Divider,
 } from '@chakra-ui/react';
 import { useSession } from 'next-auth/react';
-import { useTranslation } from 'react-i18next';
 import { MdMenu, MdClose } from 'react-icons/md';
 
 import { Buttons } from '~/common/components/Buttons';
 import { Logo } from '~/common/components/Logo';
 import { ProjectRoutes } from '~/core/constants';
+import { useScopedI18n } from '~/i18n/client';
 
 const isMobileSize = 'md';
 const menuKeys = ['Home'] as const;
 
 export const Header = () => {
-  const { t } = useTranslation('project', {
-    keyPrefix: 'header',
-  });
+  const t = useScopedI18n('project.header');
   const { status } = useSession();
   const { isOpen, onToggle } = useDisclosure();
 

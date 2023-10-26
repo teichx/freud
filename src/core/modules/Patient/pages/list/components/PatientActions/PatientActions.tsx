@@ -12,7 +12,6 @@ import {
   Text,
 } from '@chakra-ui/react';
 import Link from 'next/link';
-import { useTranslation } from 'react-i18next';
 import {
   HiOutlineArchiveBoxArrowDown,
   HiOutlineArchiveBoxXMark,
@@ -20,6 +19,7 @@ import {
 
 import { Routes } from '~/core/constants';
 import { useFormat } from '~/core/hooks';
+import { useScopedI18n } from '~/i18n/client';
 
 import { PatientCaseReportUpsertModal } from '../../../../CaseReport/modal/upsert';
 import { useHandleArchive } from '../../hooks';
@@ -32,9 +32,7 @@ export const PatientActions: FC<PatientActionsProps> = ({
 }) => {
   const { archivePatient, unarchivePatient } = useHandleArchive();
   const { formatRoute } = useFormat();
-  const { t } = useTranslation(undefined, {
-    keyPrefix: 'pages.patient.list.actions',
-  });
+  const t = useScopedI18n('translations.pages.patient.list.actions');
 
   return (
     <Menu>

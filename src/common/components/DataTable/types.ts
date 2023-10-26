@@ -15,10 +15,7 @@ export type DataTableColumnProps<TData extends TDataId> = Omit<
     data: TData;
     column: DataTableColumnProps<TData>;
   }) => ReactNode;
-} & (
-    | { label: string; tLabel?: undefined }
-    | { tLabel: string; label?: undefined }
-  );
+} & { label: string; tLabel?: undefined };
 
 export type DataTableProps<
   TData extends TDataId = TDataId & Record<string, string>

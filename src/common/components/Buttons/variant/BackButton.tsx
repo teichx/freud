@@ -1,13 +1,14 @@
 import { forwardRef, Button } from '@chakra-ui/react';
 import { useRouter } from 'next/navigation';
-import { useTranslation } from 'react-i18next';
+
+import { useScopedI18n } from '~/i18n/client';
 
 import { VariantButtonProps } from '../types';
 
 export const BackButton = forwardRef<VariantButtonProps, 'button'>(
   ({ text, children, ...props }, ref) => {
     const route = useRouter();
-    const { t } = useTranslation();
+    const t = useScopedI18n('translations');
 
     return (
       <Button

@@ -1,7 +1,6 @@
 import { FC, PropsWithChildren, useState } from 'react';
 
 import { Box, HStack } from '@chakra-ui/react';
-import { useTranslation } from 'react-i18next';
 
 import { DataModal } from '~/common/components/DataModal';
 import {
@@ -14,6 +13,7 @@ import { FormComponentProps } from '~/common/components/Form/FormComponent/types
 import { Loader } from '~/common/components/Loader';
 import { ReadOnlyText } from '~/common/components/ReadOnlyText';
 import { useLoader, useSoftRefresh } from '~/core/services';
+import { useScopedI18n } from '~/i18n/client';
 
 import { CaseReportContent } from './components/CaseReportContent';
 import { useGetCaseReport, useSaveCaseReports } from './hooks';
@@ -24,10 +24,8 @@ export const PatientCaseReportUpsertModal: FC<
 > = ({ children, caseReportId, patient }) => {
   const [hasPendingChanges, setHasPendingChanges] = useState(false);
   const { refreshId } = useSoftRefresh();
+  const t = useScopedI18n('translations.pages.patient.caseReport');
 
-  const { t } = useTranslation(undefined, {
-    keyPrefix: 'pages.patient.caseReport',
-  });
   const { caseReport, getById, reset } = useGetCaseReport({
     patientId: patient.id,
   });

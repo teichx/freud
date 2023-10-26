@@ -2,10 +2,10 @@ import { FC } from 'react';
 
 import { EditIcon } from '@chakra-ui/icons';
 import { Button } from '@chakra-ui/react';
-import { useTranslation } from 'react-i18next';
 
 import { DataTable, DataTableColumnProps } from '~/common/components/DataTable';
 import { useLoader } from '~/core/services';
+import { useScopedI18n } from '~/i18n/client';
 
 import { ListCaseReportResume } from '../../../../api/list/types';
 import { PatientCaseReportUpsertModal } from '../../../../modal/upsert';
@@ -17,12 +17,8 @@ export const PatientCaseReportTable: FC<PatientCaseReportTableProps> = ({
   patientName,
   caseReports,
 }) => {
-  const { t: tWords } = useTranslation(undefined, {
-    keyPrefix: 'words',
-  });
-  const { t } = useTranslation(undefined, {
-    keyPrefix: 'pages.patient.caseReport',
-  });
+  const tWords = useScopedI18n('translations.words');
+  const t = useScopedI18n('translations.pages.patient.caseReport');
   const { isLoading } = useLoader('DEFAULT');
 
   const COLUMNS: DataTableColumnProps<ListCaseReportResume>[] = [

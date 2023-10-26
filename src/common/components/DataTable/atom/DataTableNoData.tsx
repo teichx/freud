@@ -1,7 +1,8 @@
 import { FC } from 'react';
 
 import { Tr, Td } from '@chakra-ui/react';
-import { useTranslation } from 'react-i18next';
+
+import { useScopedI18n } from '~/i18n/client';
 
 import { DataTableNoDataProps } from './types';
 
@@ -9,12 +10,12 @@ export const DataTableNoData: FC<DataTableNoDataProps> = ({
   isVisible,
   columnsLength,
 }) => {
-  const { t } = useTranslation();
+  const t = useScopedI18n('common.dataTable');
 
   return isVisible ? (
     <Tr>
       <Td textAlign='center' colSpan={columnsLength}>
-        {t('common:dataTable.noData')}
+        {t('noData')}
       </Td>
     </Tr>
   ) : null;

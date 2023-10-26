@@ -1,15 +1,15 @@
 import { Button, ButtonGroup, Flex } from '@chakra-ui/react';
 import { useRouter } from 'next/navigation';
-import { useTranslation } from 'react-i18next';
 import { FiPrinter, FiArchive, FiShare2 } from 'react-icons/fi';
 
 import { FormSaveButton } from '~/common/components/Form';
 import { Section } from '~/common/components/Section';
+import { useScopedI18n } from '~/i18n/client';
 
 import { StickHeader } from './styles';
 
 export const PatientFormHeader = () => {
-  const { t } = useTranslation();
+  const t = useScopedI18n('translations');
   const router = useRouter();
 
   return (

@@ -1,11 +1,12 @@
 import { forwardRef, Button } from '@chakra-ui/react';
-import { useTranslation } from 'react-i18next';
+
+import { useScopedI18n } from '~/i18n/client';
 
 import { VariantButtonProps } from '../types';
 
 export const CancelButton = forwardRef<VariantButtonProps, 'button'>(
   ({ text, children, ...props }, ref) => {
-    const { t } = useTranslation();
+    const t = useScopedI18n('translations');
 
     return (
       <Button variant='outline' {...props} ref={ref}>

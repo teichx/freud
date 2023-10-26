@@ -1,9 +1,9 @@
 import { Button, Icon, forwardRef } from '@chakra-ui/react';
 import { SignOutParams, signOut } from 'next-auth/react';
-import { useTranslation } from 'react-i18next';
 import { FiLogOut } from 'react-icons/fi';
 
 import { useLoader } from '~/core/services';
+import { useScopedI18n } from '~/i18n/client';
 
 import { VariantButtonProps } from '../types';
 
@@ -21,9 +21,7 @@ export const LogoutButton = forwardRef<
     },
     ref
   ) => {
-    const { t } = useTranslation('common', {
-      keyPrefix: 'components.buttons',
-    });
+    const t = useScopedI18n('common.components.buttons');
     const { isLoading } = useLoader(loaderKeys[0], ...loaderKeys);
 
     return (

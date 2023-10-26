@@ -1,15 +1,13 @@
 import { Box } from '@chakra-ui/react';
-import { useTranslation } from 'react-i18next';
 
 import { FormText } from '~/common/components/Form';
 import { Section } from '~/common/components/Section';
+import { useScopedI18n } from '~/i18n/client';
 
 import { FREE_TEXT_FIELDS } from './constants';
 
 export const FreeText = () => {
-  const { t } = useTranslation(undefined, {
-    keyPrefix: 'pages.patient.create.freeText',
-  });
+  const t = useScopedI18n('translations.pages.patient.create.freeText');
 
   return (
     <Box>

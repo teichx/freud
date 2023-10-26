@@ -1,15 +1,14 @@
 import { CheckboxGroup, SimpleGrid, VStack } from '@chakra-ui/react';
-import { useTranslation } from 'react-i18next';
 
 import { FormText, FormCheckbox } from '~/common/components/Form';
 import { Section } from '~/common/components/Section';
+import { useScopedI18n } from '~/i18n/client';
 
 import { COGNITIVE_FIELDS, COGNITIVE_FIELDS_TYPES } from './constants';
+import { CognitiveOptionsKeys } from './types';
 
 export const ComplainedCheck = () => {
-  const { t } = useTranslation(undefined, {
-    keyPrefix: 'pages.patient.create.complainedCheck',
-  });
+  const t = useScopedI18n('translations.pages.patient.create.complainedCheck');
 
   return (
     <SimpleGrid
@@ -35,7 +34,7 @@ export const ComplainedCheck = () => {
                   <FormCheckbox
                     key={x}
                     name={`symptoms.${type}.${x}`}
-                    label={t(`${type}.${x}`)}
+                    label={t(`${type}.${x}` as CognitiveOptionsKeys)}
                   />
                 ))}
               </SimpleGrid>
