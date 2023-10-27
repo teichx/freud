@@ -1,12 +1,24 @@
 import { FC } from 'react';
 
-import { SVG_LOGO_SIZE } from './constants';
-import { LogoIconStyled } from './styles';
+import { Icon } from '@chakra-ui/react';
+
+import { ICON_WIDTH, SVG_LOGO_SIZE } from './constants';
 import { LogoItemProps } from './types';
 
 export const LogoItem: FC<LogoItemProps> = ({ size }) => (
-  <LogoIconStyled
-    size={size}
+  <Icon
+    sx={{
+      width: `${ICON_WIDTH[size]}px`,
+      height: `${
+        (SVG_LOGO_SIZE.height / SVG_LOGO_SIZE.width) * ICON_WIDTH[size]
+      }px`,
+      '.color-1': {
+        fill: 'book.desertSun.500',
+      },
+      '.color-2': {
+        fill: 'white',
+      },
+    }}
     viewBox={`0 0 ${SVG_LOGO_SIZE.width} ${SVG_LOGO_SIZE.height}`}
   >
     <path
@@ -19,5 +31,5 @@ export const LogoItem: FC<LogoItemProps> = ({ size }) => (
       fill='#FFFFFF'
       d='M179.66,382.53c1.2-1.35,2.33-2.76,3.6-4,58-58,116.11-115.77,173.77-174,17.69-17.87,35.79-35.32,53.4-53.25a8.08,8.08,0,0,1,6.24-2.72c15.52-.13,31.05.31,46.58.07,25.36-.39,48,7.72,68.09,22.47,25.29,18.57,40.45,43.72,46.22,74.54,1.42,2.17-.28,4.8,1,7h0c1.16,8.23.22,16.49.53,24.73,0,.53,0,1.07,0,1.6-.68,2.19-.42,4.46-.5,6.7a8.6,8.6,0,0,1-.18,1.43c-.51,1.62-.33,3.34-.76,5a107.36,107.36,0,0,1-16.72,40.22c-16.2,24.11-38.41,40-66.13,48.44-4,1.2-8.17.89-12.18,1.86h-189c-1-2.78,1-4.47,2.55-6,13.32-13.28,26.52-26.69,40-39.85,2.67-2.61,5.91-2.76,9.28-2.76h65.95c20,0,40-.13,59.95.07a42.81,42.81,0,0,0,18.39-3.91C536.31,309,545,250.37,511.47,217.13c-14.18-14-31.1-20.65-50.78-20.91-7.16-.09-14.32.05-21.48,0a11.65,11.65,0,0,0-8.95,3.55c-30.83,30.88-62.12,61.31-92.4,92.71-28.1,29.13-57.15,57.3-85.45,86.21a24.59,24.59,0,0,1-5.76,3.88Z'
     />
-  </LogoIconStyled>
+  </Icon>
 );
