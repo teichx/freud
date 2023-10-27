@@ -9,7 +9,7 @@ import { TooltipComponent } from '../../TooltipComponent';
 import { FromSaveButtonProps } from './types';
 
 export const FormSaveButton: FC<FromSaveButtonProps> = (props) => {
-  const t = useScopedI18n('translations.form');
+  const t = useScopedI18n('components.form');
 
   const { pristine, hasValidationErrors } = useFormState();
 

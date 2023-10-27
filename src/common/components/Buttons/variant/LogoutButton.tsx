@@ -21,7 +21,7 @@ export const LogoutButton = forwardRef<
     },
     ref
   ) => {
-    const t = useScopedI18n('common.components.buttons');
+    const t = useScopedI18n('components.buttons');
     const { isLoading } = useLoader(loaderKeys[0], ...loaderKeys);
 
     return (

@@ -7,6 +7,8 @@ import {
   SelectInstance,
 } from 'chakra-react-select';
 
+import { useScopedI18n } from '~/i18n/client';
+
 export function Select<
   Option = unknown,
   IsMulti extends boolean = false,
@@ -15,8 +17,15 @@ export function Select<
   props: Props<Option, IsMulti, Group> &
     RefAttributes<SelectInstance<Option, IsMulti, Group>>
 ) {
+  const t = useScopedI18n('components.select');
   return (
     <ChakraSelect
+      placeholder={t(
+        props.isMulti ? 'placeholder.multiple' : 'placeholder.unique'
+      )}
+      noOptionsMessage={(x) =>
+        x.inputValue ? t('empty.filled', x) : t('empty.unfilled')
+      }
       {...props}
       chakraStyles={{
         dropdownIndicator: (x) => ({

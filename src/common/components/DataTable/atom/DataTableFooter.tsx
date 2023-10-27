@@ -22,7 +22,7 @@ export const DataTableFooter: FC<DataTableFooterProps> = ({
   columnsLength,
   limitOptions: limitOptionsParam,
 }) => {
-  const t = useScopedI18n('common.dataTable');
+  const t = useScopedI18n('components.dataTable');
 
   const { page, limit, nextPage, previousPage, setLimit, toPage } =
     useQueryPaginate();

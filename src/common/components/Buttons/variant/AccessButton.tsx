@@ -13,7 +13,7 @@ export const AccessButton = forwardRef<
   Omit<LinkButtonProps, 'href'> & { href?: LinkButtonProps['href'] },
   'button'
 >(({ text, children, loaderKeys = ['DEFAULT'], href, ...props }, ref) => {
-  const t = useScopedI18n('common.components.buttons');
+  const t = useScopedI18n('components.buttons');
   const { isLoading } = useLoader(loaderKeys[0], ...loaderKeys);
   const { data: session } = useSession();
 

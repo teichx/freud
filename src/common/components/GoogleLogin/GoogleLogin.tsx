@@ -35,7 +35,7 @@ export const GoogleLogin: FC<GoogleLoginProps> = ({
   return (
     <Box>
       <LinkButton
-        text={t('translations.login')}
+        text={t('components.buttons.login')}
         href='#'
         size={SIZE_MAPPING[size]}
         onClick={(e) => {

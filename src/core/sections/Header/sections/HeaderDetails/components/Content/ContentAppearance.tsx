@@ -23,7 +23,7 @@ export const ContentAppearance: FC<HeaderDetailsContentProps> = ({
   toContent,
 }) => {
   const t = useScopedI18n('translations.header.appearance');
-  const tWords = useScopedI18n('translations.words');
+  const tToggle = useScopedI18n('components.toggleTheme');
   const { setColorMode, colorMode, forced } = useColorMode();
 
   const currentTheme = forced ? 'system' : colorMode;
@@ -62,7 +62,7 @@ export const ContentAppearance: FC<HeaderDetailsContentProps> = ({
               />
             }
           >
-            {t('text', { appearance: tWords(themeName) })}
+            {t('text', { appearance: tToggle(themeName) })}
           </HeaderButton>
         ))}
       </PopoverBody>

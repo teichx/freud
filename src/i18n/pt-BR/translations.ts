@@ -1,28 +1,4 @@
 export const translations = {
-  login: 'Fazer login',
-  words: {
-    light: 'claro',
-    dark: 'escuro',
-    back: 'Voltar',
-    save: 'Salvar',
-    cancel: 'Cancelar',
-    archive: 'Arquivar',
-    unarchive: 'Desarquivar',
-    print: 'Imprimir',
-    share: 'Compartilhar',
-    register: 'Cadastrar',
-    update: 'Atualizar',
-    actions: 'Ações',
-    see: 'Ver',
-    new: 'Novo',
-    id: 'Id',
-    identifier: 'Identificador',
-    freud: 'Freud',
-  },
-  form: {
-    disabledByPristine: 'Não há alterações a serem salvas',
-    disabledByHasValidationErrors: 'Há dados inválidos no formulário',
-  },
   pageTitle: {
     patient: {
       list: 'Pacientes - Freud',
@@ -53,19 +29,6 @@ export const translations = {
     },
     language: {
       title: 'Selecione seu idioma',
-    },
-  },
-  helperText: {
-    editOnlyNotListening:
-      'O campo não pode ser editado enquanto o microfone estiver ligado',
-  },
-  components: {
-    toggleTheme: {
-      label: 'Usar tema {appearance}',
-    },
-    microphone: {
-      toDisable: 'Desligar microfone',
-      toEnable: 'Ativar microfone',
     },
   },
   options: {
@@ -208,6 +171,11 @@ export const translations = {
         list: {
           resume: 'Resumo do relato',
           new: 'Novo relato de caso',
+        },
+        table: {
+          id: 'Id',
+          actions: 'Ações',
+          update: 'Atualizar',
         },
         reportingDate: 'Data do atendimento',
         patientName: 'Nome do paciente',

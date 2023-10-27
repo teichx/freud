@@ -10,7 +10,7 @@ import { IconButtonStyled } from './style';
 import { MicrophoneProps } from './types';
 
 export const Microphone: FC<MicrophoneProps> = ({ isListening, onClick }) => {
-  const t = useScopedI18n('translations.components.microphone');
+  const t = useScopedI18n('components.buttons.microphone');
 
   return (
     <Box position='relative'>

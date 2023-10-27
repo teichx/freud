@@ -17,7 +17,6 @@ export const PatientCaseReportTable: FC<PatientCaseReportTableProps> = ({
   patientName,
   caseReports,
 }) => {
-  const tWords = useScopedI18n('translations.words');
   const t = useScopedI18n('translations.pages.patient.caseReport');
   const { isLoading } = useLoader('DEFAULT');
 
@@ -26,7 +25,7 @@ export const PatientCaseReportTable: FC<PatientCaseReportTableProps> = ({
       w: '310px',
       maxW: '310px',
       accessor: 'id',
-      label: tWords('id'),
+      label: t('table.id'),
     },
     {
       maxW: '210px',
@@ -48,14 +47,14 @@ export const PatientCaseReportTable: FC<PatientCaseReportTableProps> = ({
       minW: '150px',
       textAlign: 'center',
       accessor: null,
-      label: tWords('actions'),
+      label: t('table.actions'),
       render: ({ data: caseReport }) => (
         <PatientCaseReportUpsertModal
           caseReportId={caseReport.id}
           patient={{ id: patientId, name: patientName }}
         >
           <Button size='sm' leftIcon={<EditIcon />}>
-            {tWords('update')}
+            {t('table.update')}
           </Button>
         </PatientCaseReportUpsertModal>
       ),

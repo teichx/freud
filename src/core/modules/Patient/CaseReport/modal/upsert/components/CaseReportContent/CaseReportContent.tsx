@@ -9,7 +9,7 @@ import { useScopedI18n } from '~/i18n/client';
 
 export const CaseReportContent = () => {
   const textRef = useRef('');
-  const tHelperText = useScopedI18n('translations.helperText');
+  const tHelperText = useScopedI18n('components.buttons.microphone.helperText');
   const t = useScopedI18n('translations.pages.patient.caseReport');
 
   const form = useForm();

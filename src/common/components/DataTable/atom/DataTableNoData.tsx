@@ -10,7 +10,7 @@ export const DataTableNoData: FC<DataTableNoDataProps> = ({
   isVisible,
   columnsLength,
 }) => {
-  const t = useScopedI18n('common.dataTable');
+  const t = useScopedI18n('components.dataTable');
 
   return isVisible ? (
     <Tr>

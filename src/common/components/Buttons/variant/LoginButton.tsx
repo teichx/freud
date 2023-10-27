@@ -9,7 +9,7 @@ import { VariantButtonProps } from '../types';
 
 export const LoginButton = forwardRef<VariantButtonProps, 'button'>(
   ({ text, children, loaderKeys = ['DEFAULT'], ...props }, ref) => {
-    const t = useScopedI18n('common.components.buttons');
+    const t = useScopedI18n('components.buttons');
     const { isLoading } = useLoader(loaderKeys[0], ...loaderKeys);
 
     return (

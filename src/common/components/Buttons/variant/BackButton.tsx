@@ -8,7 +8,7 @@ import { VariantButtonProps } from '../types';
 export const BackButton = forwardRef<VariantButtonProps, 'button'>(
   ({ text, children, ...props }, ref) => {
     const route = useRouter();
-    const t = useScopedI18n('translations');
+    const t = useScopedI18n('components.buttons');
 
     return (
       <Button
@@ -17,7 +17,7 @@ export const BackButton = forwardRef<VariantButtonProps, 'button'>(
         {...props}
         ref={ref}
       >
-        {text || children || t('words.back')}
+        {text || children || t('back')}
       </Button>
     );
   }

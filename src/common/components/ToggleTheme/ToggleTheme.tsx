@@ -14,14 +14,13 @@ import { useScopedI18n } from '~/i18n/client';
 export const ToggleTheme: FC<
   Omit<IconButtonProps, 'onClick' | 'icon' | 'aria-label'>
 > = (props) => {
-  const t = useScopedI18n('translations.components.toggleTheme');
-  const tWords = useScopedI18n('translations.words');
+  const t = useScopedI18n('components.toggleTheme');
 
   const { toggleColorMode, colorMode } = useColorMode();
   const IconTheme = useColorModeValue(SunIcon, MoonIcon);
 
   return (
-    <Tooltip label={t('label', { appearance: tWords(colorMode) })}>
+    <Tooltip label={t('label', { appearance: t(colorMode) })}>
       <IconButton
         {...props}
         bg='whiteAlpha.400'

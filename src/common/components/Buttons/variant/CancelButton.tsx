@@ -6,11 +6,11 @@ import { VariantButtonProps } from '../types';
 
 export const CancelButton = forwardRef<VariantButtonProps, 'button'>(
   ({ text, children, ...props }, ref) => {
-    const t = useScopedI18n('translations');
+    const t = useScopedI18n('components.buttons');
 
     return (
       <Button variant='outline' {...props} ref={ref}>
-        {text || children || t('words.cancel')}
+        {text || children || t('cancel')}
       </Button>
     );
   }

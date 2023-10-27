@@ -34,7 +34,7 @@ export const ContentDefault: FC<HeaderDetailsContentProps> = ({
   const locale = useCurrentLocale();
   const t = useScopedI18n('translations.header.details.default');
   const tLanguage = useScopedI18n('translations.header.details.language');
-  const tWords = useScopedI18n('translations.words');
+  const tToggle = useScopedI18n('components.toggleTheme');
   const { data } = useSession({ required: true });
   const { user = {} } = data || { user: {} };
   const name = user.name || '';
@@ -68,7 +68,7 @@ export const ContentDefault: FC<HeaderDetailsContentProps> = ({
           leftIcon={<Icon as={AppearanceIcon} />}
           rightIcon={<Icon as={FiChevronRight} />}
         >
-          {t('appearance', { appearance: tWords(appearanceText) })}
+          {t('appearance', { appearance: tToggle(appearanceText) })}
         </HeaderButton>
 
         <HeaderButton
