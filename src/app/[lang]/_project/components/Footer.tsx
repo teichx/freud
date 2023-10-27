@@ -1,14 +1,21 @@
-import { Box, Container, Icon, IconButton, Text, Link } from '@chakra-ui/react';
+'use server';
+import {
+  Box,
+  Container,
+  Icon,
+  IconButton,
+  Text,
+  HStack,
+} from '@chakra-ui/react';
 import { BsGithub } from 'react-icons/bs';
 import { GiBrazil } from 'react-icons/gi';
 
+import { LinkButton } from '~/common/components/Buttons/variant/LinkButton';
 import { TooltipComponent } from '~/common/components/TooltipComponent';
-import { useScopedI18n } from '~/i18n/client';
+import { getScopedI18n } from '~/i18n/server';
 
-import { StyledHStack } from './style';
-
-export const Footer = () => {
-  const t = useScopedI18n('project');
+export const Footer = async () => {
+  const t = await getScopedI18n('project');
 
   return (
     <Box
@@ -22,7 +29,16 @@ export const Footer = () => {
       }}
     >
       <Container w='100%' maxW='container.xl' fontSize='sm'>
-        <StyledHStack justifyContent='center'>
+        <HStack
+          justifyContent='center'
+          py='2'
+          columnGap='1'
+          sx={{
+            '> *': {
+              marginInlineStart: '0 !important',
+            },
+          }}
+        >
           <Text m='0'>{t('author.createdOn')}</Text>
 
           <TooltipComponent label={t('author.brazil')}>
@@ -36,21 +52,32 @@ export const Footer = () => {
                 },
               }}
             >
-              <Icon as={GiBrazil} />
+              <Icon viewBox='0 0 14 14'>
+                <GiBrazil />
+              </Icon>
             </Box>
           </TooltipComponent>
 
           <Text>{t('author.by')}</Text>
 
-          <Link color='white' target='_blank' href='https://github.com/teichx'>
+          <LinkButton
+            p='0'
+            height='auto'
+            color='inherit'
+            variant='link'
+            fontSize='inherit'
+            fontWeight='inherit'
+            linkProps={{
+              target: '_blank',
+            }}
+            href='https://github.com/teichx'
+          >
             {t('author.teichx')}
-          </Link>
+          </LinkButton>
 
           <IconButton
-            as={Link}
             size='xs'
             rounded='full'
-            target='_blank'
             sx={{
               color: 'black',
               _dark: {
@@ -58,10 +85,13 @@ export const Footer = () => {
               },
             }}
             aria-label='https://github.com/teichx/freud'
-            href='https://github.com/teichx/freud'
-            icon={<Icon as={BsGithub} fontSize='md' />}
+            icon={
+              <Icon viewBox='0 0 16 16' fontSize='md'>
+                <BsGithub />
+              </Icon>
+            }
           />
-        </StyledHStack>
+        </HStack>
       </Container>
     </Box>
   );
