@@ -6,11 +6,13 @@ import { useRouter, useSearchParams, usePathname } from 'next/navigation';
 import { INITIAL_QUERY_PAGINATION } from '../constants';
 import { UseQueryPaginateProps, UseQueryPaginateResult } from './types';
 
+const defaultParameters = new URLSearchParams();
+
 export const useQueryPaginate = ({
   initialPage = INITIAL_QUERY_PAGINATION.page,
   initialLimit = INITIAL_QUERY_PAGINATION.limit,
 }: UseQueryPaginateProps = {}): UseQueryPaginateResult => {
-  const parameters = useSearchParams();
+  const parameters = useSearchParams() || defaultParameters;
   const pathname = usePathname();
   const router = useRouter();
 

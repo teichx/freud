@@ -17,7 +17,7 @@ export const useDefaultQuery: UseDefaultQuery = (
   const pathname = usePathname();
   const router = useRouter();
   const parameters = useSearchParams();
-  const stringParameters = parameters.toString();
+  const stringParameters = parameters?.toString() || '';
 
   useEffect(() => {
     if (!stringParameters && !stringParameters) setIsInitialized(false);

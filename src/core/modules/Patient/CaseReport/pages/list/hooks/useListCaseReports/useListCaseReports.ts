@@ -18,7 +18,9 @@ const INITIAL_STATE: UseListCaseReportsState = {
 };
 
 export const useListCaseReports: UseListCaseReports = () => {
-  const { patientId: id } = useParams<{ patientId: string }>();
+  const { patientId: id } = useParams<{ patientId: string }>() || {
+    patientId: '',
+  };
   const { setIsLoading } = useLoader('DEFAULT');
   const { formatRoute } = useFormat();
   const { authenticateFetch } = useAuth();

@@ -18,7 +18,7 @@ const INITIAL_STATE = {
 
 export const usePatientData = (): UsePatientDataResultProps => {
   const schema = useRef(createPatientSchema());
-  const { patientId } = useParams<{ patientId: string }>();
+  const { patientId } = useParams<{ patientId: string }>() || { patientId: '' };
   const router = useRouter();
 
   const [{ patient, isLoaded }, setState] =

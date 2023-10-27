@@ -6,8 +6,10 @@ import { useSearchParams } from 'next/navigation';
 import { FILTER_PREFIX } from '../constants';
 import { UseQueryFilterByName, UseQueryFilterByNameResult } from './types';
 
+const defaultParameters = new URLSearchParams();
+
 export const useQueryFilterByName: UseQueryFilterByName = (name) => {
-  const searchParams = useSearchParams();
+  const searchParams = useSearchParams() || defaultParameters;
 
   const result = useMemo<UseQueryFilterByNameResult>(() => {
     const queryFilterArray = searchParams.getAll(`${FILTER_PREFIX}${name}`);

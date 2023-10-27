@@ -9,8 +9,10 @@ import { FilterValueType, UseQueryFilter, UseQueryFilterResult } from './types';
 
 const hasFilterPrefix = (key: string) => key.startsWith(FILTER_PREFIX);
 
+const defaultParameters = new URLSearchParams();
+
 export const useQueryFilter: UseQueryFilter = () => {
-  const parameters = useSearchParams();
+  const parameters = useSearchParams() || defaultParameters;
   const pathname = usePathname();
   const router = useRouter();
 

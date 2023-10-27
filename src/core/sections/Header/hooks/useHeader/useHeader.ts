@@ -9,7 +9,7 @@ import { MENU_ITEMS } from './const';
 import { HeaderItemProps, UseHeaderProps } from './types';
 
 export const useHeader: UseHeaderProps = () => {
-  const pathname = usePathname();
+  const pathname = usePathname() || '';
   const t = useScopedI18n('translations.header.label');
 
   const headersItems = useMemo<HeaderItemProps[]>(
