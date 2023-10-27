@@ -6,7 +6,7 @@ exports[`component.Buttons buttons.Cancel default 1`] = `
     class="chakra-button css-11494p6"
     type="button"
   >
-    translations.words.cancel
+    components.buttons.cancel
   </button>
   <span
     hidden=""

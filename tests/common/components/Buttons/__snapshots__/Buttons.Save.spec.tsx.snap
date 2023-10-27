@@ -33,7 +33,7 @@ exports[`component.Buttons buttons.Save default 1`] = `
         />
       </svg>
     </span>
-    translations.words.save
+    components.buttons.save
   </button>
   <span
     hidden=""
@@ -93,7 +93,7 @@ exports[`component.Buttons buttons.Save when isLoading default when isLoading 1`
           />
         </svg>
       </span>
-      translations.words.save
+      components.buttons.save
     </span>
   </button>
   <span
