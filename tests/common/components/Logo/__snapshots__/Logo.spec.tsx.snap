@@ -3,7 +3,7 @@
 exports[`component.Logo renders size large variant full 1`] = `
 <DocumentFragment>
   <div
-    class="css-1xdhyk6"
+    class="css-0"
   >
     <div
       class="css-1m29ivc"
@@ -12,7 +12,7 @@ exports[`component.Logo renders size large variant full 1`] = `
         class="css-11l8nwy"
       >
         <svg
-          class="chakra-icon css-1l0qf7"
+          class="chakra-icon css-1lblv2x"
           focusable="false"
           viewBox="0 0 580 383"
         >
@@ -29,7 +29,7 @@ exports[`component.Logo renders size large variant full 1`] = `
         </svg>
       </div>
       <p
-        class="chakra-text className css-1b5zc7e"
+        class="chakra-text className css-1hz9zmp"
       >
         Freud
       </p>
@@ -45,7 +45,7 @@ exports[`component.Logo renders size large variant full 1`] = `
 exports[`component.Logo renders size large variant icon 1`] = `
 <DocumentFragment>
   <div
-    class="css-1xdhyk6"
+    class="css-0"
   >
     <div
       class="css-1m29ivc"
@@ -54,7 +54,7 @@ exports[`component.Logo renders size large variant icon 1`] = `
         class="css-jipda8"
       >
         <svg
-          class="chakra-icon css-1l0qf7"
+          class="chakra-icon css-1lblv2x"
           focusable="false"
           viewBox="0 0 580 383"
         >
@@ -82,7 +82,7 @@ exports[`component.Logo renders size large variant icon 1`] = `
 exports[`component.Logo renders size large variant text 1`] = `
 <DocumentFragment>
   <div
-    class="css-1xdhyk6"
+    class="css-0"
   >
     <div
       class="css-1m29ivc"
@@ -91,7 +91,7 @@ exports[`component.Logo renders size large variant text 1`] = `
         class="css-11l8nwy"
       />
       <p
-        class="chakra-text className css-1b5zc7e"
+        class="chakra-text className css-1hz9zmp"
       >
         Freud
       </p>
@@ -107,7 +107,7 @@ exports[`component.Logo renders size large variant text 1`] = `
 exports[`component.Logo renders size medium variant full 1`] = `
 <DocumentFragment>
   <div
-    class="css-1xdhyk6"
+    class="css-0"
   >
     <div
       class="css-1m29ivc"
@@ -116,7 +116,7 @@ exports[`component.Logo renders size medium variant full 1`] = `
         class="css-11l8nwy"
       >
         <svg
-          class="chakra-icon css-ozucbl"
+          class="chakra-icon css-1goxnbb"
           focusable="false"
           viewBox="0 0 580 383"
         >
@@ -133,7 +133,7 @@ exports[`component.Logo renders size medium variant full 1`] = `
         </svg>
       </div>
       <p
-        class="chakra-text className css-1ajvdta"
+        class="chakra-text className css-5xfgci"
       >
         Freud
       </p>
@@ -149,7 +149,7 @@ exports[`component.Logo renders size medium variant full 1`] = `
 exports[`component.Logo renders size medium variant icon 1`] = `
 <DocumentFragment>
   <div
-    class="css-1xdhyk6"
+    class="css-0"
   >
     <div
       class="css-1m29ivc"
@@ -158,7 +158,7 @@ exports[`component.Logo renders size medium variant icon 1`] = `
         class="css-jipda8"
       >
         <svg
-          class="chakra-icon css-ozucbl"
+          class="chakra-icon css-1goxnbb"
           focusable="false"
           viewBox="0 0 580 383"
         >
@@ -186,7 +186,7 @@ exports[`component.Logo renders size medium variant icon 1`] = `
 exports[`component.Logo renders size medium variant text 1`] = `
 <DocumentFragment>
   <div
-    class="css-1xdhyk6"
+    class="css-0"
   >
     <div
       class="css-1m29ivc"
@@ -195,7 +195,7 @@ exports[`component.Logo renders size medium variant text 1`] = `
         class="css-11l8nwy"
       />
       <p
-        class="chakra-text className css-1ajvdta"
+        class="chakra-text className css-5xfgci"
       >
         Freud
       </p>
@@ -211,7 +211,7 @@ exports[`component.Logo renders size medium variant text 1`] = `
 exports[`component.Logo renders size small variant full 1`] = `
 <DocumentFragment>
   <div
-    class="css-1xdhyk6"
+    class="css-0"
   >
     <div
       class="css-1m29ivc"
@@ -220,7 +220,7 @@ exports[`component.Logo renders size small variant full 1`] = `
         class="css-11l8nwy"
       >
         <svg
-          class="chakra-icon css-quexpw"
+          class="chakra-icon css-kk9qxd"
           focusable="false"
           viewBox="0 0 580 383"
         >
@@ -237,7 +237,7 @@ exports[`component.Logo renders size small variant full 1`] = `
         </svg>
       </div>
       <p
-        class="chakra-text className css-18mtwmh"
+        class="chakra-text className css-ry0011"
       >
         Freud
       </p>
@@ -253,7 +253,7 @@ exports[`component.Logo renders size small variant full 1`] = `
 exports[`component.Logo renders size small variant icon 1`] = `
 <DocumentFragment>
   <div
-    class="css-1xdhyk6"
+    class="css-0"
   >
     <div
       class="css-1m29ivc"
@@ -262,7 +262,7 @@ exports[`component.Logo renders size small variant icon 1`] = `
         class="css-jipda8"
       >
         <svg
-          class="chakra-icon css-quexpw"
+          class="chakra-icon css-kk9qxd"
           focusable="false"
           viewBox="0 0 580 383"
         >
@@ -290,7 +290,7 @@ exports[`component.Logo renders size small variant icon 1`] = `
 exports[`component.Logo renders size small variant text 1`] = `
 <DocumentFragment>
   <div
-    class="css-1xdhyk6"
+    class="css-0"
   >
     <div
       class="css-1m29ivc"
@@ -299,7 +299,7 @@ exports[`component.Logo renders size small variant text 1`] = `
         class="css-11l8nwy"
       />
       <p
-        class="chakra-text className css-18mtwmh"
+        class="chakra-text className css-ry0011"
       >
         Freud
       </p>
