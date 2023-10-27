@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 
-import { v4 } from 'uuid';
+import { ulid } from 'ulid';
 
 import { useAppDispatch, useAppSelector } from '~/common/reducer';
 
@@ -20,7 +20,7 @@ export const useSoftRefresh: SoftRefresh = () => {
       dispatch(
         SoftRefreshSlice.actions.refreshId({
           name,
-          id: v4(),
+          id: ulid(),
         })
       ),
     [dispatch]
@@ -31,14 +31,14 @@ export const useSoftRefresh: SoftRefresh = () => {
       const result = softRefresh.customIds[name];
       if (result) return result;
 
-      const newUUID = v4();
+      const newId = ulid();
       dispatch(
         SoftRefreshSlice.actions.refreshId({
           name,
-          id: newUUID,
+          id: newId,
         })
       );
-      return newUUID;
+      return newId;
     },
     [softRefresh, dispatch]
   );
