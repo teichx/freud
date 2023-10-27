@@ -12,7 +12,7 @@ import { LinkButton } from './LinkButton';
 export const AccessButton = forwardRef<
   Omit<LinkButtonProps, 'href'> & { href?: LinkButtonProps['href'] },
   'button'
->(({ text, children, loaderKeys = ['DEFAULT'], href, ...props }, ref) => {
+>(({ text, children, loaderKeys = ['DEFAULT'], href, ...props }) => {
   const t = useScopedI18n('components.buttons');
   const { isLoading } = useLoader(loaderKeys[0], ...loaderKeys);
   const { data: session } = useSession();
@@ -32,7 +32,6 @@ export const AccessButton = forwardRef<
       }
       href={href || Routes.Core.Patient.List}
       {...props}
-      ref={ref}
     >
       {text || children || t('access', { name: session?.user?.name })}
     </LinkButton>

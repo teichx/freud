@@ -1,3 +1,4 @@
+'use client';
 import { forwardRef, Button } from '@chakra-ui/react';
 import { useRouter } from 'next/navigation';
 

@@ -1,3 +1,4 @@
+'use client';
 import { forwardRef, Button } from '@chakra-ui/react';
 
 import { useScopedI18n } from '~/i18n/client';
