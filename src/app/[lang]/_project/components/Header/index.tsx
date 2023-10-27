@@ -30,7 +30,7 @@ export const Header = () => {
   const { isOpen, onToggle } = useDisclosure();
 
   return (
-    <Box top='0' left='0' w='100%' position='fixed' zIndex='sticky'>
+    <Box top='0' left='0' w='100%' position='sticky' zIndex='sticky'>
       <Box bg='book.darkBlue.500'>
         <Container w='100%' maxW='container.xl' py='3'>
           <Flex alignItems='center' justifyContent='space-between'>

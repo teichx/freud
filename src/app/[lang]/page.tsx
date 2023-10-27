@@ -1,17 +1,15 @@
 'use client';
 import { Box } from '@chakra-ui/react';
 
-import { GoogleLogin } from '~/common/components/GoogleLogin';
+import { Footer, Header } from './_project/components';
 
 const Index = () => (
-  <Box
-    height='100vh'
-    width='100vw'
-    display='flex'
-    alignItems='center'
-    justifyContent='center'
-  >
-    <GoogleLogin />
+  <Box width='100%'>
+    <Header />
+
+    <Box h='50vh' />
+
+    <Footer />
   </Box>
 );
 
