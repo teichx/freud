@@ -1,14 +1,14 @@
 import { forwardRef, Button } from '@chakra-ui/react';
-import { useTranslation } from 'react-i18next';
 import { FiSave } from 'react-icons/fi';
 
 import { useLoader } from '~/core/services';
+import { useScopedI18n } from '~/i18n/client';
 
 import { VariantButtonProps } from '../types';
 
 export const SaveButton = forwardRef<VariantButtonProps, 'button'>(
   ({ text, children, loaderKeys = ['DEFAULT'], ...props }, ref) => {
-    const { t } = useTranslation();
+    const t = useScopedI18n('components.buttons');
     const { isLoading } = useLoader(loaderKeys[0], ...loaderKeys);
 
     return (
@@ -21,7 +21,7 @@ export const SaveButton = forwardRef<VariantButtonProps, 'button'>(
         {...props}
         ref={ref}
       >
-        {text || children || t('words.save')}
+        {text || children || t('save')}
       </Button>
     );
   }

@@ -6,7 +6,7 @@ exports[`component.Buttons buttons.Link default 1`] = `
     href="/example/link"
   >
     <button
-      class="chakra-button css-i857na"
+      class="chakra-button css-ez23ye"
       type="button"
     />
   </a>

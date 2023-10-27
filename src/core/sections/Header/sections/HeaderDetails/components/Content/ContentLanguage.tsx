@@ -9,8 +9,10 @@ import {
   PopoverContent,
   Text,
 } from '@chakra-ui/react';
-import { useTranslation } from 'react-i18next';
 import { FiCheck, FiChevronLeft } from 'react-icons/fi';
+
+import { useI18n } from '~/i18n/client';
+import { LocaleKeys } from '~/i18n/types';
 
 import { HeaderButton } from '../../../../components/HeaderButton';
 import { HeaderDetailsContentProps } from './types';
@@ -25,7 +27,7 @@ const useLanguage = () => ({
 export const ContentLanguage: FC<HeaderDetailsContentProps> = ({
   toContent,
 }) => {
-  const { t } = useTranslation();
+  const t = useI18n();
   const { currentLanguage, toLanguage } = useLanguage();
 
   return (
@@ -40,15 +42,16 @@ export const ContentLanguage: FC<HeaderDetailsContentProps> = ({
             <Icon as={FiChevronLeft} />
           </IconButton>
 
-          <Text>{t('header.language.title')}</Text>
+          <Text>{t('translations.header.language.title')}</Text>
         </HStack>
       </PopoverBody>
 
       <Divider />
 
       <PopoverBody px='0'>
-        {t('common:languages.options')
+        {t('common.languages.options')
           .split(',')
+          .map((x) => x as LocaleKeys)
           .map((langName) => (
             <HeaderButton
               key={langName}
@@ -66,7 +69,7 @@ export const ContentLanguage: FC<HeaderDetailsContentProps> = ({
                 />
               }
             >
-              {t(`common:languages.${langName}`)}
+              {t(`common.languages.${langName}`)}
             </HeaderButton>
           ))}
       </PopoverBody>

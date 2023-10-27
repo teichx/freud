@@ -1,19 +1,17 @@
 import { Box, Stack } from '@chakra-ui/react';
 import { FormSpy } from 'react-final-form';
-import { useTranslation } from 'react-i18next';
 
 import { FormSelect, FormText } from '~/common/components/Form';
 import { ReadOnlyText } from '~/common/components/ReadOnlyText';
 import { Section } from '~/common/components/Section';
 import { TooltipComponent } from '~/common/components/TooltipComponent';
 import { PatientFields } from '~/core/modules/Patient/api/schema/types';
+import { useScopedI18n } from '~/i18n/client';
 
 import { calculateAge } from '../../helpers/calculateAge';
 
 export const PersonalData = () => {
-  const { t } = useTranslation(undefined, {
-    keyPrefix: 'pages.patient.create.personal',
-  });
+  const t = useScopedI18n('translations.pages.patient.create.personal');
 
   return (
     <Section label={t('title')}>

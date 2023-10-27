@@ -1,5 +1,8 @@
 export type useAuthResultProps = {
-  authenticateFetch: typeof fetch;
+  authenticateFetch: (
+    input: RequestInfo | URL,
+    init?: RequestInit
+  ) => Promise<Response>;
 };
 
 export type useAuthProps = () => useAuthResultProps;

@@ -1,6 +1,7 @@
+'use client';
 import { useEffect, useState } from 'react';
 
-import { useRouter } from 'next/router';
+import { useParams } from 'next/navigation';
 
 import { useQueryPaginate } from '~/common/query';
 import { ApiRoutes } from '~/core/constants';
@@ -17,17 +18,17 @@ const INITIAL_STATE: UseListCaseReportsState = {
 };
 
 export const useListCaseReports: UseListCaseReports = () => {
-  const { query } = useRouter();
+  const { patientId: id } = useParams<{ patientId: string }>();
   const { setIsLoading } = useLoader('DEFAULT');
   const { formatRoute } = useFormat();
   const { authenticateFetch } = useAuth();
   const { page, limit } = useQueryPaginate();
   const [state, setState] = useState(INITIAL_STATE);
 
-  const id = String(query.patientId || '');
-
   useEffect(() => {
     if (!id) return;
+    if (!page) return;
+    if (!limit) return;
 
     setIsLoading(true);
     authenticateFetch(

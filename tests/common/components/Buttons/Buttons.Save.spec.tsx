@@ -21,7 +21,7 @@ describe('component.Buttons', () => {
       const { asFragment, getByText } = render(<Buttons.Save />);
 
       expect(asFragment()).toMatchSnapshot();
-      expect(getByText('words.save')).toBeDefined();
+      expect(getByText('components.buttons.save')).toBeDefined();
     });
 
     it('with text', () => {
@@ -80,7 +80,7 @@ describe('component.Buttons', () => {
       const { asFragment, getByText } = render(<Buttons.Save />);
 
       expect(asFragment()).toMatchSnapshot();
-      expect(getByText('words.save')).toBeDefined();
+      expect(getByText('components.buttons.save')).toBeDefined();
     });
   });
 });

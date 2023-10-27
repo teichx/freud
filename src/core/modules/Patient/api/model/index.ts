@@ -1,11 +1,12 @@
-import { Schema, model } from 'dynamoose';
+import { Schema } from 'dynamoose';
 import { ValueType } from 'dynamoose/dist/Schema';
 
 import {
   marriageStatus,
   schooling,
 } from '~/common/components/Form/FormSelect/options';
-import { listToObject } from '~/common/helpers';
+import { listToObject } from '~/common/validation';
+import { model } from '~/core/api/infra/dynamo';
 
 import { DynamoItemProps } from '../../../../api/infra/types';
 import { COGNITIVE_FIELDS } from '../../pages/upsert/components/ComplainedCheck/constants';

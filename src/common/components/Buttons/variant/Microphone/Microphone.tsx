@@ -1,18 +1,16 @@
 import { FC } from 'react';
 
 import { Box, Icon } from '@chakra-ui/react';
-import { useTranslation } from 'react-i18next';
 import { BiMicrophone, BiMicrophoneOff } from 'react-icons/bi';
 
 import { TooltipComponent } from '~/common/components/TooltipComponent';
+import { useScopedI18n } from '~/i18n/client';
 
 import { IconButtonStyled } from './style';
 import { MicrophoneProps } from './types';
 
 export const Microphone: FC<MicrophoneProps> = ({ isListening, onClick }) => {
-  const { t } = useTranslation(undefined, {
-    keyPrefix: 'components.microphone',
-  });
+  const t = useScopedI18n('components.buttons.microphone');
 
   return (
     <Box position='relative'>

@@ -10,7 +10,6 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 import { signOut, useSession } from 'next-auth/react';
-import { useTranslation } from 'react-i18next';
 import {
   FiChevronRight,
   FiLogOut,
@@ -22,6 +21,7 @@ import { IoLanguage } from 'react-icons/io5';
 
 import { Avatar } from '~/common/components/Avatar';
 import { Routes } from '~/core/constants';
+import { useCurrentLocale, useScopedI18n } from '~/i18n/client';
 
 import { HeaderButton } from '../../../../components/HeaderButton';
 import { HeaderDetailsContentProps } from './types';
@@ -31,9 +31,10 @@ const IMAGE_SIZE = 48;
 export const ContentDefault: FC<HeaderDetailsContentProps> = ({
   toContent,
 }) => {
-  const { t } = useTranslation(undefined, {
-    keyPrefix: 'header.details.default',
-  });
+  const locale = useCurrentLocale();
+  const t = useScopedI18n('translations.header.details.default');
+  const tLanguage = useScopedI18n('translations.header.details.language');
+  const tToggle = useScopedI18n('components.toggleTheme');
   const { data } = useSession({ required: true });
   const { user = {} } = data || { user: {} };
   const name = user.name || '';
@@ -56,9 +57,6 @@ export const ContentDefault: FC<HeaderDetailsContentProps> = ({
           <Text fontSize='xs' color={emailColor}>
             {email}
           </Text>
-          <Text fontSize='md'>
-            <i>{t('googleDrive')}</i>
-          </Text>
         </Box>
       </PopoverBody>
 
@@ -70,7 +68,7 @@ export const ContentDefault: FC<HeaderDetailsContentProps> = ({
           leftIcon={<Icon as={AppearanceIcon} />}
           rightIcon={<Icon as={FiChevronRight} />}
         >
-          {t('appearance', { appearance: appearanceText })}
+          {t('appearance', { appearance: tToggle(appearanceText) })}
         </HeaderButton>
 
         <HeaderButton
@@ -78,7 +76,7 @@ export const ContentDefault: FC<HeaderDetailsContentProps> = ({
           rightIcon={<Icon as={FiChevronRight} />}
           onClick={() => toContent('language')}
         >
-          {t('language', { language: 'pt-BR' })}
+          {t('language', { language: tLanguage(locale) })}
         </HeaderButton>
       </PopoverBody>
 

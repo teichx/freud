@@ -10,7 +10,7 @@ describe('component.Buttons', () => {
       const { asFragment, getByText } = render(<Buttons.Back />);
 
       expect(asFragment()).toMatchSnapshot();
-      expect(getByText('words.back')).toBeDefined();
+      expect(getByText('components.buttons.back')).toBeDefined();
     });
 
     it('with text', () => {

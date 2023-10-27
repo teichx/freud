@@ -1,9 +1,11 @@
+'use client';
 import { FC } from 'react';
 
 import { Box, Icon } from '@chakra-ui/react';
 import { signIn } from 'next-auth/react';
-import { useTranslation } from 'react-i18next';
 import { RxAvatar } from 'react-icons/rx';
+
+import { useI18n } from '~/i18n/client';
 
 import { LinkButton } from '../Buttons';
 import {
@@ -28,12 +30,12 @@ export const GoogleLogin: FC<GoogleLoginProps> = ({
   size = 'medium',
   radius = 'medium',
 }) => {
-  const { t } = useTranslation();
+  const t = useI18n();
 
   return (
     <Box>
       <LinkButton
-        text={t('login')}
+        text={t('components.buttons.login')}
         href='#'
         size={SIZE_MAPPING[size]}
         onClick={(e) => {

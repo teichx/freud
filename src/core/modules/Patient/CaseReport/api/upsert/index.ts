@@ -1,4 +1,5 @@
 import { parseISO } from 'date-fns';
+import { NextResponse } from 'next/server';
 import { ulid } from 'ulid';
 
 import { EnumHttpStatus, sendError } from '~/core/api';
@@ -9,27 +10,29 @@ import { CaseReport, getCaseReportPK } from '../model';
 import { CASE_REPORT_RESUME_LENGTH, caseReportSchema } from '../schema';
 import { UpsertCaseReportHandler } from './upsert';
 
-export const upsert: UpsertCaseReportHandler = async (req, res) => {
-  const { authError, customerId } = await getCustomerId(req, res);
-  if (!customerId) return sendError({ res, error: authError });
+export const upsert: UpsertCaseReportHandler = async (req) => {
+  const { authError, customerId } = await getCustomerId();
+  if (!customerId) return sendError({ error: authError });
+
+  const body = await req.json();
 
   const PK = getCaseReportPK({
     tenantId: customerId,
-    patientId: req.body.caseReport.patientId,
+    patientId: body.caseReport.patientId,
   });
   const patientKeys = {
     PK: customerId,
-    SK: req.body.caseReport.patientId,
+    SK: body.caseReport.patientId,
   };
 
-  const receivedId = req.body.caseReport?.id;
-  const SK = req.body.caseReport?.id || ulid();
+  const receivedId = body.caseReport?.id;
+  const SK = body.caseReport?.id || ulid();
   const keys = {
     PK,
     SK,
   } as const;
 
-  const caseReportBody = await caseReportSchema.validate(req.body.caseReport);
+  const caseReportBody = await caseReportSchema.validate(body.caseReport);
   const caseReport = {
     ...caseReportBody,
     reportingDate: caseReportBody.reportingDate.toISOString(),
@@ -67,15 +70,11 @@ export const upsert: UpsertCaseReportHandler = async (req, res) => {
     });
     await Patient.update(patientKeys, patientCalculated);
 
-    return res.status(EnumHttpStatus.Created).send({
-      id: SK,
-    });
+    return NextResponse.json({ id: SK }, { status: EnumHttpStatus.Created });
   }
 
   await CaseReport.update(keys, caseReport);
   await Patient.update(patientKeys, patientCalculated);
 
-  return res.status(EnumHttpStatus.Success).send({
-    id: SK,
-  });
+  return NextResponse.json({ id: SK });
 };

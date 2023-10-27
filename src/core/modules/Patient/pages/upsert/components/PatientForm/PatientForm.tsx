@@ -1,6 +1,8 @@
+import { useRef } from 'react';
+
 import { FormComponent, FormHidden } from '~/common/components/Form';
-import { schemaValidation } from '~/common/helpers';
-import { patientSchema } from '~/core/modules/Patient/api/schema/schema';
+import { schemaValidation } from '~/common/validation';
+import { createPatientSchema } from '~/core/modules/Patient/api/schema/schema';
 import { PatientFields } from '~/core/modules/Patient/api/schema/types';
 
 import { usePatientData } from '../../hooks';
@@ -12,13 +14,14 @@ import { PatientFormHeader } from '../PatientFormHeader';
 import { PersonalData } from '../PersonalData';
 
 export const PatientForm = () => {
+  const schema = useRef(createPatientSchema());
   const { patient, savePatient } = usePatientData();
 
   return (
     <FormComponent<PatientFields>
       onSubmit={savePatient}
       initialValues={patient}
-      validate={schemaValidation(patientSchema)}
+      validate={schemaValidation(schema.current)}
     >
       <FormHidden name='id' />
 

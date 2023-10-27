@@ -15,9 +15,9 @@ export const useHandleArchive: UseHandleArchive = () => {
     ReturnType<UseHandleArchive>['archivePatient']
   >(
     ({ patientId }) => {
-      authenticateFetch(formatRoute(ApiRoutes.Patient.Archive, patientId)).then(
-        () => refreshId()
-      );
+      authenticateFetch(formatRoute(ApiRoutes.Patient.Archive, patientId), {
+        method: 'POST',
+      }).then(() => refreshId());
     },
     [authenticateFetch, formatRoute, refreshId]
   );
@@ -26,9 +26,9 @@ export const useHandleArchive: UseHandleArchive = () => {
     ReturnType<UseHandleArchive>['unarchivePatient']
   >(
     ({ patientId }) => {
-      authenticateFetch(
-        formatRoute(ApiRoutes.Patient.Unarchive, patientId)
-      ).then(() => refreshId());
+      authenticateFetch(formatRoute(ApiRoutes.Patient.Unarchive, patientId), {
+        method: 'POST',
+      }).then(() => refreshId());
     },
     [authenticateFetch, formatRoute, refreshId]
   );

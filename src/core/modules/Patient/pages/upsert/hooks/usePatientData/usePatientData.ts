@@ -1,10 +1,10 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
-import { useRouter } from 'next/router';
+import { useRouter, useParams } from 'next/navigation';
 
 import { ApiRoutes, Routes } from '~/core/constants';
 import { useFormat } from '~/core/hooks';
-import { patientSchema } from '~/core/modules/Patient/api/schema/schema';
+import { createPatientSchema } from '~/core/modules/Patient/api/schema/schema';
 import { PatientFields } from '~/core/modules/Patient/api/schema/types';
 import { useAuth, useLoader } from '~/core/services';
 
@@ -17,10 +17,9 @@ const INITIAL_STATE = {
 };
 
 export const usePatientData = (): UsePatientDataResultProps => {
-  const {
-    query: { patientId },
-    replace,
-  } = useRouter();
+  const schema = useRef(createPatientSchema());
+  const { patientId } = useParams<{ patientId: string }>();
+  const router = useRouter();
 
   const [{ patient, isLoaded }, setState] =
     useState<PatientStateProps>(INITIAL_STATE);
@@ -46,7 +45,7 @@ export const usePatientData = (): UsePatientDataResultProps => {
 
   const savePatient = useCallback<UsePatientDataResultProps['savePatient']>(
     async (patientRaw) => {
-      const patient = patientSchema.validateSync(patientRaw);
+      const patient = schema.current.validateSync(patientRaw);
       const body = JSON.stringify({ patient });
       setIsLoading(true);
       try {
@@ -57,14 +56,12 @@ export const usePatientData = (): UsePatientDataResultProps => {
         const data: PatientFields = await result.json();
 
         setState(INITIAL_STATE);
-        replace(formatRoute(Routes.Core.Patient.Edit, data.id), undefined, {
-          shallow: true,
-        });
+        router.replace(formatRoute(Routes.Core.Patient.Edit, data.id));
       } catch (error) {
         setIsLoading(false);
       }
     },
-    [authenticateFetch, replace, formatRoute, setIsLoading]
+    [authenticateFetch, router, formatRoute, setIsLoading]
   );
 
   return {

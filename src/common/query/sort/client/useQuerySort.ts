@@ -1,3 +1,4 @@
+'use client';
 import Router from 'next/router';
 
 import { REPLACE_OPTIONS } from '../../constants';

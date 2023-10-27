@@ -1,17 +1,15 @@
 import { Flex } from '@chakra-ui/react';
-import { useTranslation } from 'react-i18next';
 
 import { FormText } from '~/common/components/Form';
 import { Section } from '~/common/components/Section';
+import { useScopedI18n } from '~/i18n/client';
 
 import { FIRST_CONSULT_FIELDS } from './constants';
 
 const COLUMN_WIDTH = ['100%', '100%', '100%', '32%', '32%', '32%'];
 
 export const FirstConsult = () => {
-  const { t } = useTranslation(undefined, {
-    keyPrefix: 'pages.patient.create.firstConsult',
-  });
+  const t = useScopedI18n('translations.pages.patient.create.firstConsult');
 
   return (
     <Section label={t('title')}>

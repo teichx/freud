@@ -1,23 +1,30 @@
-import { Button, ButtonGroup, Flex } from '@chakra-ui/react';
-import { useTranslation } from 'react-i18next';
+import { Box, Button, ButtonGroup, Flex } from '@chakra-ui/react';
 
 import { BackButton } from '~/common/components/Buttons';
 import { Section } from '~/common/components/Section';
-import { AppPage } from '~/core/template/AppPage';
+import { useDefaultQuery } from '~/common/query';
+import { useScopedI18n } from '~/i18n/client';
 
 import { PatientCaseReportUpsertModal } from '../../modal/upsert';
 import { PatientCaseReportTable } from './components/PatientCaseReportTable';
 import { useListCaseReports } from './hooks';
 
+const defaultQuery = {
+  pagination: {
+    page: 1,
+    limit: 10,
+  },
+};
+
 export const ListCaseReports = () => {
-  const { t } = useTranslation(undefined, {
-    keyPrefix: 'pages.patient.caseReport',
-  });
+  const t = useScopedI18n('translations.pages.patient.caseReport');
+  useDefaultQuery(defaultQuery);
+
   const { patientId, patientName, caseReports, totalItems } =
     useListCaseReports();
 
   return (
-    <AppPage titleKey='patient.listCaseReports'>
+    <Box w='100%'>
       <Section disabledLoading>
         <Flex justifyContent='flex-end'>
           <ButtonGroup spacing='4' variant='solid'>
@@ -40,6 +47,6 @@ export const ListCaseReports = () => {
         patientName={patientName}
         caseReports={caseReports}
       />
-    </AppPage>
+    </Box>
   );
 };

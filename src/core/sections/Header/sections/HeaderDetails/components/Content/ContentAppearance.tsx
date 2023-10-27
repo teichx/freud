@@ -10,18 +10,20 @@ import {
   Text,
   useColorMode,
 } from '@chakra-ui/react';
-import { useTranslation } from 'react-i18next';
 import { FiCheck, FiChevronLeft } from 'react-icons/fi';
+
+import { useScopedI18n } from '~/i18n/client';
 
 import { HeaderButton } from '../../../../components/HeaderButton';
 import { HeaderDetailsContentProps } from './types';
 
+const themeColors = ['light', 'dark'] as const;
+
 export const ContentAppearance: FC<HeaderDetailsContentProps> = ({
   toContent,
 }) => {
-  const { t } = useTranslation(undefined, {
-    keyPrefix: 'header.appearance',
-  });
+  const t = useScopedI18n('translations.header.appearance');
+  const tToggle = useScopedI18n('components.toggleTheme');
   const { setColorMode, colorMode, forced } = useColorMode();
 
   const currentTheme = forced ? 'system' : colorMode;
@@ -45,26 +47,24 @@ export const ContentAppearance: FC<HeaderDetailsContentProps> = ({
       <Divider />
 
       <PopoverBody px='0'>
-        {t('themes')
-          .split(',')
-          .map((themeName) => (
-            <HeaderButton
-              key={themeName}
-              onClick={() => {
-                setColorMode(themeName);
-                toContent('default');
-              }}
-              leftIcon={
-                <Icon
-                  ml='0.5'
-                  as={FiCheck}
-                  visibility={currentTheme === themeName ? 'visible' : 'hidden'}
-                />
-              }
-            >
-              {t('text', { appearance: themeName })}
-            </HeaderButton>
-          ))}
+        {themeColors.map((themeName) => (
+          <HeaderButton
+            key={themeName}
+            onClick={() => {
+              setColorMode(themeName);
+              toContent('default');
+            }}
+            leftIcon={
+              <Icon
+                ml='0.5'
+                as={FiCheck}
+                visibility={currentTheme === themeName ? 'visible' : 'hidden'}
+              />
+            }
+          >
+            {t('text', { appearance: tToggle(themeName) })}
+          </HeaderButton>
+        ))}
       </PopoverBody>
     </PopoverContent>
   );

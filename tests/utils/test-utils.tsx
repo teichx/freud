@@ -1,3 +1,7 @@
+jest.mock<typeof import('~/common/reducer/ReduxProvider')>(
+  '~/common/reducer/ReduxProvider',
+  jest.fn()
+);
 import { FC, Fragment, PropsWithChildren, ReactElement } from 'react';
 
 import { ChakraProvider } from '@chakra-ui/react';
@@ -19,6 +23,7 @@ const DefaultProviders: FC<PropsWithChildren> = ({ children }) => (
 );
 
 export type AllOptions = RenderOptions & {
+  wrapper?: FC<PropsWithChildren>;
   hocWrapper?: FC<PropsWithChildren>;
 };
 

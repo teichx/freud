@@ -1,7 +1,6 @@
 import { FC } from 'react';
 
 import { Tr, Td, Tfoot, Text, Flex, Icon, HStack } from '@chakra-ui/react';
-import { useTranslation } from 'react-i18next';
 import {
   MdFirstPage,
   MdLastPage,
@@ -10,6 +9,7 @@ import {
 } from 'react-icons/md';
 
 import { useQueryPaginate } from '~/common/query';
+import { useScopedI18n } from '~/i18n/client';
 
 import { FormComponent, FormSelect } from '../../Form';
 import { TooltipComponent } from '../../TooltipComponent';
@@ -22,7 +22,8 @@ export const DataTableFooter: FC<DataTableFooterProps> = ({
   columnsLength,
   limitOptions: limitOptionsParam,
 }) => {
-  const { t } = useTranslation();
+  const t = useScopedI18n('components.dataTable');
+
   const { page, limit, nextPage, previousPage, setLimit, toPage } =
     useQueryPaginate();
 
@@ -44,7 +45,7 @@ export const DataTableFooter: FC<DataTableFooterProps> = ({
             justifyContent='center'
           >
             <HStack w='50%' justifyContent='flex-end'>
-              <Text mr={2}>{t('common:dataTable.rowsPerPage')}</Text>
+              <Text mr={2}>{t('rowsPerPage')}</Text>
 
               <FormComponent
                 onSubmit={() => undefined}
@@ -63,7 +64,7 @@ export const DataTableFooter: FC<DataTableFooterProps> = ({
             </HStack>
 
             <HStack w='50%' justifyContent='flex-start' columnGap={1}>
-              <TooltipComponent label={t('common:dataTable.pageHint.first')}>
+              <TooltipComponent label={t('pageHint.first')}>
                 <FooterIconButton
                   onClick={() => toPage(1)}
                   aria-label='First page'
@@ -73,7 +74,7 @@ export const DataTableFooter: FC<DataTableFooterProps> = ({
                 </FooterIconButton>
               </TooltipComponent>
 
-              <TooltipComponent label={t('common:dataTable.pageHint.before')}>
+              <TooltipComponent label={t('pageHint.before')}>
                 <FooterIconButton
                   onClick={previousPage}
                   aria-label='Before page'
@@ -83,11 +84,9 @@ export const DataTableFooter: FC<DataTableFooterProps> = ({
                 </FooterIconButton>
               </TooltipComponent>
 
-              <Text>
-                {t('common:dataTable.pagination', { page, pageCount })}
-              </Text>
+              <Text>{t('pagination', { page, pageCount })}</Text>
 
-              <TooltipComponent label={t('common:dataTable.pageHint.next')}>
+              <TooltipComponent label={t('pageHint.next')}>
                 <FooterIconButton
                   onClick={nextPage}
                   isDisabled={!canNext}
@@ -97,7 +96,7 @@ export const DataTableFooter: FC<DataTableFooterProps> = ({
                 </FooterIconButton>
               </TooltipComponent>
 
-              <TooltipComponent label={t('common:dataTable.pageHint.last')}>
+              <TooltipComponent label={t('pageHint.last')}>
                 <FooterIconButton
                   onClick={() => toPage(pageCount)}
                   aria-label='Last page'

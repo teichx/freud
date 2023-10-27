@@ -1,23 +1,24 @@
+import { NextResponse } from 'next/server';
+
 import { getPaginate } from '~/common/query';
-import { EnumHttpStatus, sendError } from '~/core/api';
+import { sendError } from '~/core/api';
 import { getCustomerId } from '~/core/modules/Customer/auth';
 
 import { Patient } from '../../../api/model';
 import { CaseReport, getCaseReportPK } from '../model';
 import { ListCaseReportHandler } from './types';
 
-export const list: ListCaseReportHandler = async (req, res) => {
-  const { authError, customerId } = await getCustomerId(req, res);
-  if (!customerId) return sendError({ res, error: authError });
+export const list: ListCaseReportHandler = async (req, ctx) => {
+  const { authError, customerId } = await getCustomerId();
+  if (!customerId) return sendError({ error: authError });
 
   const { error, limit, getPagination } = getPaginate({
     req,
   });
-  if (error) return sendError({ res, error });
+  if (error) return sendError({ error });
 
-  const { patientId } = req.query;
-  if (!patientId)
-    return sendError({ res, error: 'patientId not found in query' });
+  const { patientId } = ctx.params;
+  if (!patientId) return sendError({ error: 'patientId not found in query' });
 
   const PK = getCaseReportPK({ tenantId: customerId, patientId });
   const caseReportCountQuery = CaseReport.query({
@@ -46,13 +47,9 @@ export const list: ListCaseReportHandler = async (req, res) => {
     caseReportCountQuery,
   ]);
   if (!patientName)
-    return sendError({
-      res,
-      error: 'patientName not found',
-      status: 'NotFound',
-    });
+    return sendError({ error: 'patientName not found', status: 'NotFound' });
 
-  return res.status(EnumHttpStatus.Success).send({
+  return NextResponse.json({
     ...getPagination({ totalItems: caseReportCount.count }),
     patientName: patientName.name,
     caseReports: caseReports.map((x) => ({

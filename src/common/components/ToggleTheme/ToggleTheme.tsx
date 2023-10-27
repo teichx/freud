@@ -8,19 +8,19 @@ import {
   useColorMode,
   useColorModeValue,
 } from '@chakra-ui/react';
-import { useTranslation } from 'next-i18next';
+
+import { useScopedI18n } from '~/i18n/client';
 
 export const ToggleTheme: FC<
   Omit<IconButtonProps, 'onClick' | 'icon' | 'aria-label'>
 > = (props) => {
-  const { t } = useTranslation(undefined, {
-    keyPrefix: 'components.toggleTheme.label',
-  });
+  const t = useScopedI18n('components.toggleTheme');
+
   const { toggleColorMode, colorMode } = useColorMode();
   const IconTheme = useColorModeValue(SunIcon, MoonIcon);
 
   return (
-    <Tooltip label={t(`.${colorMode}`)}>
+    <Tooltip label={t('label', { appearance: t(colorMode) })}>
       <IconButton
         {...props}
         bg='whiteAlpha.400'

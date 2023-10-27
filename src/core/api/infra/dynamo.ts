@@ -21,3 +21,5 @@ export const dynamodbClient = DynamoDBDocument.from(dynamoDb, {
     convertClassInstanceToMap: true,
   },
 });
+
+export { model } from 'dynamoose';

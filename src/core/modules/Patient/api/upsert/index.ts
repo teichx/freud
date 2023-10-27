@@ -1,3 +1,4 @@
+import { NextResponse } from 'next/server';
 import { ulid } from 'ulid';
 
 import { EnumHttpStatus, sendError } from '~/core/api';
@@ -5,21 +6,22 @@ import { getCustomerId } from '~/core/modules/Customer/auth';
 
 import { Patient } from '../model';
 import { parseSearchTerm } from '../parseSearchTerm';
-import { patientSchema } from '../schema/schema';
+import { createPatientSchema } from '../schema/schema';
 import { UpsertPatientHandler } from './types';
 
-export const upsert: UpsertPatientHandler = async (req, res) => {
-  const { authError, customerId } = await getCustomerId(req, res);
-  if (!customerId) return sendError({ res, error: authError });
+export const upsert: UpsertPatientHandler = async (req) => {
+  const { authError, customerId } = await getCustomerId();
+  if (!customerId) return sendError({ error: authError });
 
-  const receivedId = req.body.patient?.id;
+  const body = await req.json();
+  const receivedId = body.patient?.id;
   const id = receivedId || ulid();
   const keys = {
     PK: customerId,
     SK: id,
   } as const;
 
-  const bodyPatient = await patientSchema.validate(req.body.patient);
+  const bodyPatient = await createPatientSchema().validate(body.patient);
   const patient = {
     ...bodyPatient,
     searchTerm: parseSearchTerm([bodyPatient.name]),
@@ -35,14 +37,19 @@ export const upsert: UpsertPatientHandler = async (req, res) => {
       ...patient,
     });
 
-    return res.status(EnumHttpStatus.Created).send({
-      id,
-    });
+    return NextResponse.json(
+      {
+        id,
+      },
+      {
+        status: EnumHttpStatus.Created,
+      }
+    );
   }
 
   await Patient.update(keys, patient);
 
-  return res.status(EnumHttpStatus.Success).send({
+  return NextResponse.json({
     id,
   });
 };

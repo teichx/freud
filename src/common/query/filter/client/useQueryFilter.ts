@@ -1,21 +1,20 @@
+'use client';
 import { useCallback } from 'react';
 
-import { useRouter } from 'next/router';
+import { useRouter, useSearchParams, usePathname } from 'next/navigation';
 
 import { REPLACE_OPTIONS } from '../../constants';
-import { splitPath } from '../../path';
 import { FILTER_PREFIX } from '../constants';
 import { FilterValueType, UseQueryFilter, UseQueryFilterResult } from './types';
 
 const hasFilterPrefix = (key: string) => key.startsWith(FILTER_PREFIX);
 
 export const useQueryFilter: UseQueryFilter = () => {
+  const parameters = useSearchParams();
+  const pathname = usePathname();
   const router = useRouter();
 
   const getFilters: UseQueryFilterResult['getFilters'] = useCallback(() => {
-    const { isFinal, parameters } = splitPath(router);
-    if (!isFinal) return;
-
     const filterEntries = Array.from(parameters.keys())
       .filter(hasFilterPrefix)
       .map<[string, string[]]>((key) => [key, parameters.getAll(key)])
@@ -26,16 +25,14 @@ export const useQueryFilter: UseQueryFilter = () => {
       .map(([key, value]) => [key.replace(FILTER_PREFIX, ''), value]);
 
     return Object.fromEntries(filterEntries);
-  }, [router]);
+  }, [parameters]);
 
   const setFilters: UseQueryFilterResult['setFilters'] = useCallback(
     (filters) => {
-      const { isFinal, baseUrl, parameters } = splitPath(router);
-      if (!isFinal) return;
-
-      Array.from(parameters.keys())
+      const updatedParameters = new URLSearchParams(parameters);
+      Array.from(updatedParameters.keys())
         .filter(hasFilterPrefix)
-        .forEach((key) => parameters.delete(key));
+        .forEach((key) => updatedParameters.delete(key));
 
       Object.entries(filters)
         .map(([key, value]) => [key.replace(FILTER_PREFIX, ''), value])
@@ -45,45 +42,37 @@ export const useQueryFilter: UseQueryFilter = () => {
         ])
         .forEach(([key, value]) => {
           if (!Array.isArray(value)) {
-            return parameters.set(key, value.toString());
+            return updatedParameters.set(key, value.toString());
           }
-          value.map((x) => parameters.append(key, x.toString()));
+          value.map((x) => updatedParameters.append(key, x.toString()));
         });
 
-      const newRoute = {
-        pathname: baseUrl,
-        search: parameters.toString(),
-      };
+      const newRoute = `${pathname}?${updatedParameters}`;
 
-      router.replace(newRoute, undefined, REPLACE_OPTIONS);
+      router.replace(newRoute, REPLACE_OPTIONS);
     },
-    [router]
+    [router, pathname, parameters]
   );
 
   const combineFilters: UseQueryFilterResult['combineFilters'] = useCallback(
     (filterKey, filterValue) => {
-      const { isFinal, baseUrl, parameters } = splitPath(router);
-      if (!isFinal) return;
-
+      const updatedParameters = new URLSearchParams(parameters);
       const filterCombinedKey = `${FILTER_PREFIX}${filterKey}`;
-      parameters.delete(filterCombinedKey);
+      updatedParameters.delete(filterCombinedKey);
 
       if (Array.isArray(filterValue)) {
         filterValue.forEach((x) =>
-          parameters.append(filterCombinedKey, x.toString())
+          updatedParameters.append(filterCombinedKey, x.toString())
         );
       } else {
-        parameters.set(filterCombinedKey, filterValue.toString());
+        updatedParameters.set(filterCombinedKey, filterValue.toString());
       }
 
-      const newRoute = {
-        pathname: baseUrl,
-        search: parameters.toString(),
-      };
+      const newRoute = `${pathname}?${updatedParameters}`;
 
-      router.replace(newRoute, undefined, REPLACE_OPTIONS);
+      router.replace(newRoute, REPLACE_OPTIONS);
     },
-    [router]
+    [router, pathname, parameters]
   );
 
   return {

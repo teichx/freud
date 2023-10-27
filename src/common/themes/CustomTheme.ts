@@ -1,5 +1,4 @@
-import { extendTheme, StyleFunctionProps, Theme } from '@chakra-ui/react';
-import { mode } from '@chakra-ui/theme-tools';
+import { extendTheme, Theme } from '@chakra-ui/react';
 
 const theme = {
   colors: {
@@ -51,11 +50,22 @@ const theme = {
     },
   },
   styles: {
-    global: (props: StyleFunctionProps) => ({
+    global: () => ({
+      html: {
+        height: '100%',
+      },
       body: {
-        bg: mode('gray.200', 'gray.800')(props),
+        bg: 'gray.200',
+        color: 'gray.800',
         '*, *::before, ::after': {
-          borderColor: mode('blackAlpha.400', 'whiteAlpha.400')(props),
+          borderColor: 'blackAlpha.400',
+        },
+        _dark: {
+          bg: 'gray.800',
+          color: 'gray.200',
+          '*, *::before, ::after': {
+            borderColor: 'whiteAlpha.400',
+          },
         },
       },
     }),
