@@ -6,7 +6,7 @@ import { getCustomerId } from '~/core/modules/Customer/auth';
 
 import { Patient } from '../model';
 import { parseSearchTerm } from '../parseSearchTerm';
-import { patientSchema } from '../schema/schema';
+import { createPatientSchema } from '../schema/schema';
 import { UpsertPatientHandler } from './types';
 
 export const upsert: UpsertPatientHandler = async (req) => {
@@ -21,7 +21,7 @@ export const upsert: UpsertPatientHandler = async (req) => {
     SK: id,
   } as const;
 
-  const bodyPatient = await patientSchema.validate(body.patient);
+  const bodyPatient = await createPatientSchema().validate(body.patient);
   const patient = {
     ...bodyPatient,
     searchTerm: parseSearchTerm([bodyPatient.name]),

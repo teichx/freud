@@ -1,10 +1,10 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { useRouter, useParams } from 'next/navigation';
 
 import { ApiRoutes, Routes } from '~/core/constants';
 import { useFormat } from '~/core/hooks';
-import { patientSchema } from '~/core/modules/Patient/api/schema/schema';
+import { createPatientSchema } from '~/core/modules/Patient/api/schema/schema';
 import { PatientFields } from '~/core/modules/Patient/api/schema/types';
 import { useAuth, useLoader } from '~/core/services';
 
@@ -17,6 +17,7 @@ const INITIAL_STATE = {
 };
 
 export const usePatientData = (): UsePatientDataResultProps => {
+  const schema = useRef(createPatientSchema());
   const { patientId } = useParams<{ patientId: string }>();
   const router = useRouter();
 
@@ -44,7 +45,7 @@ export const usePatientData = (): UsePatientDataResultProps => {
 
   const savePatient = useCallback<UsePatientDataResultProps['savePatient']>(
     async (patientRaw) => {
-      const patient = patientSchema.validateSync(patientRaw);
+      const patient = schema.current.validateSync(patientRaw);
       const body = JSON.stringify({ patient });
       setIsLoading(true);
       try {

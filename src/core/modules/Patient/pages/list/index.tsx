@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, useRef } from 'react';
 
 import { Box, Flex, HStack } from '@chakra-ui/react';
 
@@ -9,10 +9,10 @@ import {
   FormSelectQueryFilter,
 } from '~/common/components/Form';
 import { Section } from '~/common/components/Section';
-import { schemaValidation } from '~/common/helpers';
 import { useDefaultQuery } from '~/common/query';
+import { schemaValidation } from '~/common/validation';
 import { Routes } from '~/core/constants';
-import { listPatientsSchema } from '~/core/modules/Patient/api/list/listPatientsSchema';
+import { createListPatientsSchema } from '~/core/modules/Patient/api/list/listPatientsSchema';
 import { PatientsTable } from '~/core/modules/Patient/pages/list/components/PatientsTable';
 import { useScopedI18n } from '~/i18n/client';
 
@@ -29,6 +29,7 @@ const defaultQuery = {
 };
 
 export const ListPatients = () => {
+  const schema = useRef(createListPatientsSchema());
   const t = useScopedI18n('translations.pages.patient.list');
   const { getStateByString, stringParameters } = useDefaultQuery(defaultQuery);
 
@@ -50,7 +51,7 @@ export const ListPatients = () => {
               onSubmit={() => undefined}
               validateOnBlur
               initialValues={getStateByString(stringParameters)}
-              validate={schemaValidation(listPatientsSchema)}
+              validate={schemaValidation(schema.current)}
             >
               <HStack>
                 <Box w='100%' maxW={300}>

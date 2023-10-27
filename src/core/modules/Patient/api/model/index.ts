@@ -5,7 +5,7 @@ import {
   marriageStatus,
   schooling,
 } from '~/common/components/Form/FormSelect/options';
-import { listToObject } from '~/common/helpers';
+import { listToObject } from '~/common/validation';
 import { model } from '~/core/api/infra/dynamo';
 
 import { DynamoItemProps } from '../../../../api/infra/types';

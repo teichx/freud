@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { DataTable, DataTableColumnProps } from '~/common/components/DataTable';
 import { useDefaultQuery } from '~/common/query';
 import { ApiRoutes } from '~/core/constants';
 import { useFormat } from '~/core/hooks';
-import { listPatientsSchema } from '~/core/modules/Patient/api/list/listPatientsSchema';
+import { createListPatientsSchema } from '~/core/modules/Patient/api/list/listPatientsSchema';
 import { useAuth } from '~/core/services';
 import { useScopedI18n } from '~/i18n/client';
 
@@ -23,6 +23,7 @@ const INITIAL_STATE: PatientTableStateProps = {
 };
 
 export const PatientsTable = () => {
+  const schema = useRef(createListPatientsSchema());
   const { format } = useFormat();
   const t = useScopedI18n('translations.pages.patient.list');
   const [{ isLoading, totalItems, data }, setState] = useState(INITIAL_STATE);
@@ -32,7 +33,7 @@ export const PatientsTable = () => {
   useEffect(() => {
     setState((x) => ({ ...x, isLoading: true }));
     const state = getStateByString(stringParameters);
-    if (!listPatientsSchema.isValidSync(state)) return;
+    if (!schema.current.isValidSync(state)) return;
 
     authenticateFetch(format(ApiRoutes.Patient.List, stringParameters))
       .then<ListPatientSuccess>((x) => x.json())
