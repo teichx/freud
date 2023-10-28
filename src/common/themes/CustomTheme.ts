@@ -72,7 +72,7 @@ const theme = {
   },
 } as const;
 
-export const CustomTheme = extendTheme(theme);
+export const CustomTheme = extendTheme(theme) as ThemeProps;
 
 export type CustomThemeProps = typeof theme;
 
