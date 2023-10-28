@@ -1,13 +1,14 @@
 'use server';
-import { Box, Container, HStack, Flex, Hide } from '@chakra-ui/react';
+import { Box, Container, HStack, Flex } from '@chakra-ui/react';
 
 import { LinkButton } from '~/common/components/Buttons/variant/LinkButton';
+import { Display } from '~/common/components/Display';
 import { Logo } from '~/common/components/Logo';
 import { ProjectRoutes } from '~/core/constants';
 import { getScopedI18n } from '~/i18n/server';
 
 import { AccessButtons } from './AccessButtons';
-import { isMobileSize, menuKeys } from './constants';
+import { menuKeys } from './constants';
 import { MobileMenu } from './MobileMenu';
 
 export const Header = async () => {
@@ -32,7 +33,7 @@ export const Header = async () => {
                 <Logo />
               </LinkButton>
 
-              <Hide below={isMobileSize}>
+              <Display.Show size='md'>
                 <HStack ml='4'>
                   {menuKeys.map((x) => (
                     <Box px='2' key={x}>
@@ -46,12 +47,16 @@ export const Header = async () => {
                     </Box>
                   ))}
                 </HStack>
-              </Hide>
+              </Display.Show>
             </Flex>
 
-            <AccessButtons />
+            <Display.Show size='md'>
+              <AccessButtons />
+            </Display.Show>
 
-            <MobileMenu />
+            <Display.Hide size='md'>
+              <MobileMenu />
+            </Display.Hide>
           </Flex>
         </Container>
       </Box>

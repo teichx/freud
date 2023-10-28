@@ -1,16 +1,16 @@
 'use client';
-import { Flex, ButtonGroup, Hide, SkeletonText } from '@chakra-ui/react';
+import { Suspense } from 'react';
+
+import { Flex, ButtonGroup, SkeletonText } from '@chakra-ui/react';
 import { useSession } from 'next-auth/react';
 
 import { Buttons } from '~/common/components/Buttons';
-
-import { isMobileSize } from './constants';
 
 export const AccessButtons = () => {
   const { status } = useSession();
 
   return (
-    <Hide below={isMobileSize}>
+    <Suspense>
       <Flex alignItems='center'>
         {status === 'loading' && (
           <Flex columnGap='2' justifyContent='flex-end'>
@@ -26,6 +26,6 @@ export const AccessButtons = () => {
           </ButtonGroup>
         )}
       </Flex>
-    </Hide>
+    </Suspense>
   );
 };
