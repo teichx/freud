@@ -1,4 +1,3 @@
-import { forwardRef } from '@chakra-ui/react';
 import { useSession } from 'next-auth/react';
 
 import { Routes } from '~/core/constants';
@@ -9,10 +8,13 @@ import { Avatar } from '../../Avatar';
 import { LinkButtonProps } from '../types';
 import { LinkButton } from './LinkButton';
 
-export const AccessButton = forwardRef<
-  Omit<LinkButtonProps, 'href'> & { href?: LinkButtonProps['href'] },
-  'button'
->(({ text, children, loaderKeys = ['DEFAULT'], href, ...props }) => {
+export const AccessButton = ({
+  text,
+  children,
+  loaderKeys = ['DEFAULT'],
+  href,
+  ...props
+}: Omit<LinkButtonProps, 'href'> & { href?: LinkButtonProps['href'] }) => {
   const t = useScopedI18n('components.buttons');
   const { isLoading } = useLoader(loaderKeys[0], ...loaderKeys);
   const { data: session } = useSession();
@@ -36,4 +38,4 @@ export const AccessButton = forwardRef<
       {text || children || t('access', { name: session?.user?.name })}
     </LinkButton>
   );
-});
+};
