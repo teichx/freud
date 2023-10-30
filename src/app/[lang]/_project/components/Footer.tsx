@@ -7,6 +7,7 @@ import {
   Text,
   HStack,
 } from '@chakra-ui/react';
+import Link from 'next/link';
 import { BsGithub } from 'react-icons/bs';
 import { GiBrazil } from 'react-icons/gi';
 
@@ -75,22 +76,24 @@ export const Footer = async () => {
             {t('author.teichx')}
           </LinkButton>
 
-          <IconButton
-            size='xs'
-            rounded='full'
-            sx={{
-              color: 'black',
-              _dark: {
-                color: 'white',
-              },
-            }}
-            aria-label='https://github.com/teichx/freud'
-            icon={
-              <Icon viewBox='0 0 16 16' fontSize='md'>
-                <BsGithub />
-              </Icon>
-            }
-          />
+          <Link href='https://github.com/teichx/freud' target='_blank'>
+            <IconButton
+              size='xs'
+              rounded='full'
+              sx={{
+                color: 'black',
+                _dark: {
+                  color: 'white',
+                },
+              }}
+              aria-label='Github'
+              icon={
+                <Icon viewBox='0 0 16 16' fontSize='md'>
+                  <BsGithub />
+                </Icon>
+              }
+            />
+          </Link>
         </HStack>
       </Container>
     </Box>
