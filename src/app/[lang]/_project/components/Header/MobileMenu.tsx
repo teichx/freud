@@ -10,6 +10,7 @@ import {
   VStack,
   Divider,
   useDisclosure,
+  Skeleton,
 } from '@chakra-ui/react';
 import { useSession } from 'next-auth/react';
 import { MdMenu, MdClose } from 'react-icons/md';
@@ -28,11 +29,15 @@ export const MobileMenu = () => {
 
   return (
     <Suspense>
-      <IconButton
-        onClick={onToggle}
-        aria-label='open/close'
-        icon={<Icon fontSize='2xl'>{isOpen ? <MdClose /> : <MdMenu />}</Icon>}
-      />
+      {status === 'loading' ? (
+        <Skeleton h='40px' w='40px' borderRadius='lg' />
+      ) : (
+        <IconButton
+          onClick={onToggle}
+          aria-label='open/close'
+          icon={<Icon fontSize='2xl'>{isOpen ? <MdClose /> : <MdMenu />}</Icon>}
+        />
+      )}
 
       <Box top='80px' left='0' position='absolute' width='100%'>
         <SlideFade in={isOpen} offsetY='-12' unmountOnExit>
