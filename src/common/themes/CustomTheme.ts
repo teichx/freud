@@ -53,9 +53,12 @@ const theme = {
     global: () => ({
       html: {
         height: '100%',
+        width: '100%',
       },
       body: {
+        width: '100%',
         bg: 'gray.200',
+        overflowX: 'hidden',
         color: 'gray.800',
         '*, *::before, ::after': {
           borderColor: 'blackAlpha.400',
