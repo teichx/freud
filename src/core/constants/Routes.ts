@@ -1,5 +1,6 @@
 export const ProjectRoutes = {
   Home: '/',
+  Policies: '/policies',
 } as const;
 
 export const Routes = {

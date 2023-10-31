@@ -8,5 +8,9 @@ export const project = {
   },
   header: {
     Home: 'Início',
+    Policies: 'Políticas',
+  },
+  policies: {
+    inDevelopment: 'Esta página ainda está em desenvolvimento',
   },
 } as const;

@@ -1,1 +1,1 @@
-export const menuKeys = ['Home'] as const;
+export const menuKeys = ['Home', 'Policies'] as const;
