@@ -1,6 +1,6 @@
 import { PropsWithChildren } from 'react';
 
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 
 import { NextAuthProvider } from '~/common/nextAuth';
 import { ReduxProvider } from '~/common/reducer';
@@ -31,6 +31,15 @@ const RootLayout = ({ children, params: { lang } }: RootLayoutProps) => (
     </body>
   </html>
 );
+
+export function generateViewport(): Viewport {
+  return {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 1,
+    userScalable: false,
+  };
+}
 
 export const metadata: Metadata = {
   title: 'Freud',
