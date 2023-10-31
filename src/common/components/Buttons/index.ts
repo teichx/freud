@@ -8,6 +8,8 @@ import {
   SaveButton,
   Microphone,
   LoginButton,
+  LoginOrAccessButton,
+  LoginOrNull,
   LogoutButton,
   AccessButton,
 } from './variant';
@@ -19,6 +21,8 @@ export const Buttons = {
   Save: SaveButton,
   Microphone: Microphone,
   Login: LoginButton,
+  LoginOrAccess: LoginOrAccessButton,
+  LoginOrNull: LoginOrNull,
   Logout: LogoutButton,
   Access: AccessButton,
 };

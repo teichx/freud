@@ -4,5 +4,7 @@ export * from './CancelButton';
 export * from './LinkButton';
 export * from './SaveButton';
 export * from './LoginButton';
+export * from './LoginOrAccessButton';
+export * from './LoginOrNull';
 export * from './LogoutButton';
 export * from './AccessButton';
