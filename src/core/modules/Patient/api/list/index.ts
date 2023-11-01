@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 
 import { getFilter, getPaginate } from '~/common/query';
 import { sendError } from '~/core/api';
+import { dynamoPaginator } from '~/core/api/infra/dynamoPaginator';
 import { getCustomerId } from '~/core/modules/Customer/auth';
 
 import { Patient } from '../model';
@@ -12,7 +13,7 @@ export const list: ListPatientHandler = async (req) => {
   const { authError, customerId } = await getCustomerId();
   if (!customerId) return sendError({ error: authError });
 
-  const { error, limit, getPagination } = getPaginate({
+  const { error, offset, limit, getPagination } = getPaginate({
     req,
   });
   if (error) return sendError({ error });
@@ -45,15 +46,21 @@ export const list: ListPatientHandler = async (req) => {
     return query;
   };
 
-  const patientsQuery = getQueryWithFilters()
-    .attributes(['SK', 'name', 'archivedAt', 'calculated'])
-    .limit(limit)
-    .exec();
+  const patientsQuery = getQueryWithFilters().attributes([
+    'SK',
+    'name',
+    'archivedAt',
+    'calculated',
+  ]);
 
   const patientsCountQuery = getQueryWithFilters().count().exec();
 
   const [patients, patientsCount] = await Promise.all([
-    patientsQuery,
+    dynamoPaginator({
+      offset,
+      limit,
+      query: patientsQuery,
+    }),
     patientsCountQuery,
   ]);
 

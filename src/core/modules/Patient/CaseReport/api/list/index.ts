@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 
 import { getPaginate } from '~/common/query';
 import { sendError } from '~/core/api';
+import { dynamoPaginator } from '~/core/api/infra/dynamoPaginator';
 import { getCustomerId } from '~/core/modules/Customer/auth';
 
 import { Patient } from '../../../api/model';
@@ -12,7 +13,7 @@ export const list: ListCaseReportHandler = async (req, ctx) => {
   const { authError, customerId } = await getCustomerId();
   if (!customerId) return sendError({ error: authError });
 
-  const { error, limit, getPagination } = getPaginate({
+  const { error, offset, limit, getPagination } = getPaginate({
     req,
   });
   if (error) return sendError({ error });
@@ -29,10 +30,7 @@ export const list: ListCaseReportHandler = async (req, ctx) => {
 
   const caseReportQuery = CaseReport.query({
     PK,
-  })
-    .attributes(['SK', 'resume', 'reportingDate'])
-    .limit(limit)
-    .exec();
+  }).attributes(['SK', 'resume', 'reportingDate']);
 
   const patientNameQuery = Patient.query({
     PK: customerId,
@@ -42,7 +40,11 @@ export const list: ListCaseReportHandler = async (req, ctx) => {
     .exec();
 
   const [caseReports, [patientName], caseReportCount] = await Promise.all([
-    caseReportQuery,
+    dynamoPaginator({
+      offset,
+      limit,
+      query: caseReportQuery,
+    }),
     patientNameQuery,
     caseReportCountQuery,
   ]);
