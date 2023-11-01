@@ -9,16 +9,13 @@ import { DataTableLoaderProps } from './types';
 export const DataTableLoader: FC<DataTableLoaderProps> = ({
   isLoading,
   fixedHeight,
-  dataLength,
   skeletonHeight,
   columnsLength,
 }) => {
   const { limit } = useQueryPaginate();
   if (!isLoading) return null;
 
-  const elements = new Array(limit - Math.min(limit, dataLength || 0)).fill(
-    undefined
-  );
+  const elements = new Array(limit).fill(undefined);
 
   return (
     <>

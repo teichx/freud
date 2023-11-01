@@ -15,7 +15,6 @@ export type DataTableNoDataProps = {
 
 export type DataTableLoaderProps = {
   isLoading: boolean;
-  dataLength?: number;
   columnsLength: number;
   fixedHeight: boolean;
   skeletonHeight: SkeletonTextProps['skeletonHeight'];

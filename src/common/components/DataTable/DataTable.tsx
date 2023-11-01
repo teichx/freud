@@ -34,7 +34,6 @@ export function DataTable<
 
           <DataTableLoader
             isLoading={!!isLoading}
-            dataLength={data?.length}
             columnsLength={columns.length}
             fixedHeight={!!fixedHeight}
             skeletonHeight={skeletonHeight}
