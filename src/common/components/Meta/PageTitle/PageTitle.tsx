@@ -1,12 +1,16 @@
-import { FC } from 'react';
-
-import Head from 'next/head';
+import { FC, useEffect } from 'react';
 
 import { PageTitleProps } from './types';
 
-export const PageTitle: FC<PageTitleProps> = ({ title }) => (
-  <Head>
-    <title>{title}</title>
-    <meta property='og:title' content={title} key='title' />
-  </Head>
-);
+export const PageTitle: FC<PageTitleProps> = ({ title }) => {
+  useEffect(() => {
+    const oldTitle = document.title;
+    document.title = title;
+
+    return () => {
+      document.title = oldTitle;
+    };
+  }, [title]);
+
+  return null;
+};
