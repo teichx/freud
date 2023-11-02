@@ -5,3 +5,6 @@ export const languages = {
 export const languagesKey = Object.keys(
   languages
 ) as (keyof typeof languages)[];
+
+export const generateStaticParams = async () =>
+  languagesKey.map((lang) => ({ lang }));

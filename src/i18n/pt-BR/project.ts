@@ -64,4 +64,13 @@ export const project = {
   policies: {
     inDevelopment: 'Esta página ainda está em desenvolvimento',
   },
+  notFound: {
+    title: 'Ops, conteúdo não encontrado',
+    status: 'Status 404',
+    text: [
+      'Não encontramos o que você procurava.',
+      'Que tal tentar mais tarde?',
+    ],
+    alt: 'Mulher pensativa segurando uma caneta próxima a boca',
+  },
 } as const;
