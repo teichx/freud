@@ -27,7 +27,7 @@ export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
         h={h ? `${h}px` : undefined}
         minH={h ? `${h}px` : undefined}
       >
-        <Image src={src} alt={src} width={w} height={h} />
+        {src && <Image src={src} alt={src} width={w} height={h} />}
       </ChakraUiAvatar>
     );
   }
