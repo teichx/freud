@@ -60,7 +60,7 @@ export const FormText: FC<FormTextProps> = ({
       isDisabled={props.isDisabled}
     >
       {label && (
-        <FormLabel htmlFor={name} as='legend' size={size}>
+        <FormLabel htmlFor={name} as='legend' size={size} w='100%'>
           {label}
         </FormLabel>
       )}

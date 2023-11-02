@@ -1,4 +1,4 @@
-import { ReactElement } from 'react';
+import { ReactElement, ReactNode } from 'react';
 
 import { FormControlProps, InputProps } from '@chakra-ui/react';
 import { UseFieldConfig } from 'react-final-form';
@@ -15,7 +15,7 @@ export type FormTextTextAreaProps = {
 export type FormTextProps = {
   name: string;
   helperText?: string;
-  label?: string | null;
+  label?: ReactNode;
   inputProps?: Omit<InputProps, 'defaultValue'> & {
     defaultValue?: string;
   };
@@ -29,7 +29,13 @@ export type FormTextProps = {
   >;
 } & Pick<
   FormControlProps,
-  'isRequired' | 'isDisabled' | 'isInvalid' | 'isReadOnly' | 'isTruncated' | 'w'
+  | 'isRequired'
+  | 'isDisabled'
+  | 'isInvalid'
+  | 'isReadOnly'
+  | 'isTruncated'
+  | 'w'
+  | 'sx'
 > &
   Pick<InputProps, 'size'> &
   (FormTextInputProps | FormTextTextAreaProps);
