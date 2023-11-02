@@ -40,7 +40,6 @@ const Index = async ({ params: { lang } }: { params: { lang: string } }) => {
         <Box
           sx={{
             mt: '-80px',
-            backdropFilter: 'blur(5px)',
             py: ['5%', '5%', '2.5%', '2.5%'],
           }}
         >
