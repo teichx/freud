@@ -183,11 +183,18 @@ export const translations = {
       },
     },
     profile: {
+      title: 'Meus dados',
+      unavailableResource: 'Recurso ainda não disponível',
       badge: {
         verified: {
           true: 'Verificado',
           false: 'Não verificado',
         },
+      },
+      myData: {
+        name: 'Nome',
+        email: 'E-mail',
+        phone: 'Telefone',
       },
     },
   },
