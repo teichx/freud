@@ -49,8 +49,24 @@ const theme = {
       },
     },
   },
+  components: {
+    Tabs: {
+      variants: {
+        enclosed: () => ({
+          tab: {
+            _selected: {
+              borderBottomColor: 'gray.200',
+              _dark: {
+                borderBottomColor: 'gray.800',
+              },
+            },
+          },
+        }),
+      },
+    },
+  },
   styles: {
-    global: () => ({
+    global: {
       html: {
         height: '100%',
         width: '100%',
@@ -71,7 +87,7 @@ const theme = {
           },
         },
       },
-    }),
+    },
   },
 } as const;
 
