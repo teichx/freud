@@ -101,7 +101,7 @@ export const translations = {
           profession: 'Ocupação',
           cpf: 'CPF',
           rg: 'RG',
-          phoneNumber: 'Contato',
+          phoneNumber: 'Telefone',
           address: 'Endereço',
           schooling: 'Escolaridade',
           marriageStatus: 'Estado civil',
