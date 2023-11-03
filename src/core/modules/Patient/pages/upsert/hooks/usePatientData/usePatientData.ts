@@ -6,7 +6,7 @@ import { ApiRoutes, Routes } from '~/core/constants';
 import { useFormat } from '~/core/hooks';
 import { createPatientSchema } from '~/core/modules/Patient/api/schema/schema';
 import { PatientFields } from '~/core/modules/Patient/api/schema/types';
-import { useAuth, useLoader } from '~/core/services';
+import { useAuth, useLoader, useSoftRefresh } from '~/core/services';
 
 import { GetPatientSuccess } from '../../../../api/get/types';
 import { PatientStateProps, UsePatientDataResultProps } from './types';
@@ -24,6 +24,7 @@ export const usePatientData = (): UsePatientDataResultProps => {
   const [{ patient, isLoaded }, setState] =
     useState<PatientStateProps>(INITIAL_STATE);
   const { setIsLoading } = useLoader('DEFAULT');
+  const { refreshId } = useSoftRefresh();
   const { authenticateFetch } = useAuth();
   const { formatRoute } = useFormat();
 
@@ -55,13 +56,16 @@ export const usePatientData = (): UsePatientDataResultProps => {
         });
         const data: PatientFields = await result.json();
 
-        setState(INITIAL_STATE);
-        router.replace(formatRoute(Routes.Core.Patient.Edit, data.id));
+        if (!patientId) {
+          router.replace(formatRoute(Routes.Core.Patient.Edit, data.id));
+          return;
+        }
+        refreshId();
       } catch (error) {
         setIsLoading(false);
       }
     },
-    [authenticateFetch, router, formatRoute, setIsLoading]
+    [authenticateFetch, router, formatRoute, setIsLoading, refreshId, patientId]
   );
 
   return {
