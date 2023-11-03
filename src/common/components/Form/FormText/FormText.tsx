@@ -1,7 +1,8 @@
-import { FC, useEffect, useRef } from 'react';
+import { FC, useCallback, useEffect, useRef } from 'react';
 
 import { FormControl, FormLabel, Input, InputGroup } from '@chakra-ui/react';
 import { useField } from 'react-final-form';
+import { useIMask, IMask } from 'react-imask';
 
 import { FormHelperText } from '../FormHelperText';
 import { handlerProps } from '../handlers';
@@ -11,6 +12,7 @@ import { FormTextProps } from './types';
 export const FormText: FC<FormTextProps> = ({
   name,
   size,
+  mask = { mask: '' },
   label,
   helperText,
   isTextArea,
@@ -21,19 +23,41 @@ export const FormText: FC<FormTextProps> = ({
   InputRightElement,
   ...props
 }: FormTextProps) => {
+  const maskRef = useRef(mask.mask ? IMask.createMask(mask) : undefined);
+  const isEqual = useCallback(
+    (a: string | undefined, b: string | undefined) => {
+      if (!maskRef.current) return a === b;
+
+      return (
+        maskRef.current.resolve(a || '') === maskRef.current.resolve(b || '')
+      );
+    },
+    []
+  );
+
   const { input, meta } = useField<string | undefined>(name, {
     defaultValue,
     type,
+    isEqual,
     ...(fieldProps || {}),
   });
-  const textAreaRef = useRef<HTMLTextAreaElement>(null);
   const InputComponent = isTextArea ? TextareaStyled : Input;
+
+  const { ref, setValue } = useIMask(mask, {
+    onAccept: input.onChange,
+  });
+
+  useEffect(() => {
+    if (!meta.initial) return;
+
+    setValue(meta.initial);
+  }, [meta.initial, setValue]);
 
   useEffect(() => {
     if (!isTextArea) return;
-    if (!textAreaRef.current) return;
+    if (!ref.current) return;
 
-    const { current: input } = textAreaRef;
+    const { current: input } = ref;
     const autoHeightHandler = () => {
       const oldHeight = input.style.height;
       input.style.height = 'auto';
@@ -41,15 +65,15 @@ export const FormText: FC<FormTextProps> = ({
       input.style.height = `${input.scrollHeight}px`;
     };
     input.addEventListener('input', autoHeightHandler, false);
-  }, [isTextArea]);
+  }, [isTextArea, ref]);
 
   useEffect(() => {
     if (!isTextArea) return;
-    if (!textAreaRef.current) return;
+    if (!ref.current) return;
 
-    const { current: input } = textAreaRef;
+    const { current: input } = ref;
     input.style.height = `${input.scrollHeight}px`;
-  }, [meta.initial, isTextArea]);
+  }, [meta.initial, isTextArea, ref]);
 
   return (
     <FormControl
@@ -72,7 +96,7 @@ export const FormText: FC<FormTextProps> = ({
           {...inputProps}
           {...input}
           {...handlerProps(input, inputProps)}
-          ref={textAreaRef}
+          ref={ref}
           value={input.value || ''}
           size={size}
           variant='outline'
