@@ -182,5 +182,13 @@ export const translations = {
         content: 'Relato de caso',
       },
     },
+    profile: {
+      badge: {
+        verified: {
+          true: 'Verificado',
+          false: 'Não verificado',
+        },
+      },
+    },
   },
 } as const;
