@@ -5,10 +5,10 @@ import {
   marriageStatus,
   schooling,
 } from '~/common/components/Form/FormSelect/options';
+import { model } from '~/common/database/dynamo';
 import { listToObject } from '~/common/validation';
-import { model } from '~/core/api/infra/dynamo';
 
-import { DynamoItemProps } from '../../../../api/infra/types';
+import { DynamoItemProps } from '../../../../../common/database/dynamo/types';
 import { COGNITIVE_FIELDS } from '../../pages/upsert/components/ComplainedCheck/constants';
 import { PatientFields } from '../schema/types';
 

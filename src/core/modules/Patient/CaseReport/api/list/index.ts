@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server';
 
+import { dynamoPaginator } from '~/common/database/dynamo/dynamoPaginator';
 import { getPaginate } from '~/common/query';
 import { sendError } from '~/core/api';
-import { dynamoPaginator } from '~/core/api/infra/dynamoPaginator';
 import { getCustomerId } from '~/core/modules/Customer/auth';
 
 import { Patient } from '../../../api/model';

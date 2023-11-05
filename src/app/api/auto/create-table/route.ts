@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-import { dynamoDb } from '~/core/api/infra/dynamo';
-import { DefaultTable } from '~/core/api/infra/tableDefinition';
+import { dynamoDb } from '~/common/database/dynamo';
+import { DefaultTable } from '~/common/database/dynamo/tableDefinition';
 
 export type CreateTableResponse = {
   ok: boolean;

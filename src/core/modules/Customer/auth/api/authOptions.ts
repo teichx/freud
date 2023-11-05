@@ -3,8 +3,8 @@ import * as crypto from 'crypto';
 import NextAuth from 'next-auth/next';
 import Google from 'next-auth/providers/google';
 
-import { dynamodbClient } from '~/core/api/infra/dynamo';
-import { DefaultTable } from '~/core/api/infra/tableDefinition';
+import { dynamodbClient } from '~/common/database/dynamo';
+import { DefaultTable } from '~/common/database/dynamo/tableDefinition';
 
 if (!global.crypto) {
   Object.assign(global, { crypto });
