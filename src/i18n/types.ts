@@ -7,7 +7,8 @@ export type Locales = typeof languages;
 
 export type LocaleKeys = keyof Locales;
 
-export type FlattenLocaleKeys = keyof FlattenLocale<GetLocaleType<Locales>>;
+export type FlattenLocaleProps = FlattenLocale<GetLocaleType<Locales>>;
+export type FlattenLocaleKeys = keyof FlattenLocaleProps;
 
 export type CleanedScopeKeys = {
   [key in FlattenLocaleKeys]: string;
