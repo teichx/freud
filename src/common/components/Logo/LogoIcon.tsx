@@ -2,16 +2,14 @@ import { FC } from 'react';
 
 import { Icon } from '@chakra-ui/react';
 
-import { ICON_WIDTH, SVG_LOGO_SIZE } from './constants';
+import { LOGO_HEIGHT } from './constants';
 import { LogoItemProps } from './types';
 
 export const LogoItem: FC<LogoItemProps> = ({ size }) => (
   <Icon
     sx={{
-      width: `${ICON_WIDTH[size]}px`,
-      height: `${
-        (SVG_LOGO_SIZE.height / SVG_LOGO_SIZE.width) * ICON_WIDTH[size]
-      }px`,
+      height: `${LOGO_HEIGHT[size]}px`,
+      width: 'auto',
       '.color-1': {
         fill: 'book.desertSun.500',
       },
@@ -19,7 +17,7 @@ export const LogoItem: FC<LogoItemProps> = ({ size }) => (
         fill: 'white',
       },
     }}
-    viewBox={`0 0 ${SVG_LOGO_SIZE.width} ${SVG_LOGO_SIZE.height}`}
+    viewBox='0 0 580 383'
   >
     <path
       className='color-1'

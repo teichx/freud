@@ -1,15 +1,15 @@
 import { BoxProps } from '@chakra-ui/react';
 
-import { ICON_WIDTH } from './constants';
+import { LOGO_HEIGHT } from './constants';
 
 export type LogoProps = BoxProps & {
   size?: LogoSizes;
   variant?: LogoVariants;
 };
 
-export type LogoSizes = keyof typeof ICON_WIDTH;
+export type LogoSizes = keyof typeof LOGO_HEIGHT;
 
-export type LogoVariants = 'icon' | 'text' | 'full';
+export type LogoVariants = 'icon' | 'full';
 
 export type LogoItemProps = {
   size: LogoSizes;
