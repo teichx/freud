@@ -4,7 +4,7 @@ import { Logo, LogoSizes, LogoVariants } from '~/common/components/Logo';
 
 describe('component.Logo', () => {
   const sizes: LogoSizes[] = ['small', 'medium', 'large'];
-  const variants: LogoVariants[] = ['icon', 'text', 'full'];
+  const variants: LogoVariants[] = ['icon', 'full'];
 
   const combinations = sizes
     .map((x) => variants.map<[LogoSizes, LogoVariants]>((y) => [x, y]))
