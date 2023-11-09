@@ -7,8 +7,11 @@ export const Body = ({ children, style, ...props }: EmailComponentProps) => (
   <EmailBody
     {...props}
     style={{
-      backgroundColor: emailTheme.colors.gray[200],
+      textAlign: 'left',
+      lineHeight: '1.5',
+      fontSize: emailTheme.fontSizes.md,
       color: emailTheme.colors.blackAlpha[900],
+      backgroundColor: emailTheme.colors.gray[200],
       fontFamily:
         '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Ubuntu,sans-serif',
       ...style,

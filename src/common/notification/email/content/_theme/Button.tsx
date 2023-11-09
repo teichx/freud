@@ -14,7 +14,6 @@ export const Button = ({
       backgroundColor: emailTheme.colors.book.desertSun[500],
       borderRadius: emailTheme.radii['2xl'],
       color: emailTheme.colors.white,
-      fontSize: emailTheme.fontSizes.md,
       fontWeight: emailTheme.fontWeights.bold,
       padding: `${emailTheme.sizes[3]} 0`,
       textDecoration: 'none',
