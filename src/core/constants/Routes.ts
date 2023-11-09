@@ -10,6 +10,8 @@ export const Routes = {
     Authenticated: '/core/authenticated',
     Profile: {
       Default: '/core/profile',
+      Notifications: '/core/profile/notifications',
+      Unsubscribe: '/core/profile/unsubscribe',
     },
     Dashboard: {
       Default: '/core/dashboard',
