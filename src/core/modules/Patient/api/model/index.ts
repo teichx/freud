@@ -10,7 +10,7 @@ import { listToObject } from '~/common/validation';
 
 import { DynamoItemProps } from '../../../../../common/database/dynamo/types';
 import { COGNITIVE_FIELDS } from '../../pages/upsert/components/ComplainedCheck/constants';
-import { PatientFields } from '../schema/types';
+import { ParsedPatientFields } from '../schema/types';
 
 export const PATIENT_PREFIX = {
   PK: 'Tenant#',
@@ -155,7 +155,7 @@ export const patientDynamoSchema = new Schema(
   }
 );
 
-export const Patient = model<DynamoItemProps<PatientFields>>(
+export const Patient = model<DynamoItemProps<ParsedPatientFields>>(
   'Patient',
   patientDynamoSchema,
   {

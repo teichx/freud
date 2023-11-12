@@ -1,9 +1,9 @@
 import { ErrorMessage, RequestQueryHandler } from '~/core/api';
 
-import { PatientFields } from '../schema/types';
+import { ParsedPatientFields } from '../schema/types';
 
 export type GetPatientSuccess = {
-  patient: PatientFields | undefined;
+  patient: ParsedPatientFields | undefined;
 };
 
 export type GetPatientResponse = GetPatientSuccess | ErrorMessage;

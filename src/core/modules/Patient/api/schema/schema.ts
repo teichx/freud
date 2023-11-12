@@ -48,12 +48,14 @@ export const createPatientSchema = () =>
       cognitive: yup
         .array()
         .transform(objectToUniqueList)
-        .of(yup.string().oneOf(COGNITIVE_FIELDS.cognitive)),
+        .of(yup.string().oneOf(COGNITIVE_FIELDS.cognitive))
+        .transform((x: string[]) => (x.length ? x : undefined)),
       emotionalDetails: yup.string(),
       emotional: yup
         .array()
         .transform(objectToUniqueList)
-        .of(yup.string().oneOf(COGNITIVE_FIELDS.emotional)),
+        .of(yup.string().oneOf(COGNITIVE_FIELDS.emotional))
+        .transform((x: string[]) => (x.length ? x : undefined)),
     }),
     freeText: yup.object().shape({
       lifestyle: yup.string(),
