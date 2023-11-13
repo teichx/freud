@@ -15,5 +15,6 @@ export const objectToUniqueList = (
   return [value].filter(Boolean);
 };
 
-export const listToObject = (value: Set<string> | string[] | undefined) =>
-  Object.fromEntries(Array.from(value || []).map((x) => [x, true]));
+export const listToObject = (
+  value: Set<string | undefined> | (string | undefined)[] | undefined
+) => Object.fromEntries(Array.from(value || []).map((x) => [x, true]));

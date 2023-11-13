@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 
+import { listToObject } from '~/common/validation';
 import { sendError } from '~/core/api';
 import { getCustomerId } from '~/core/modules/Customer/auth';
 
@@ -24,8 +25,14 @@ export const get: GetPatientHandler = async (req, ctx) => {
       status: 'NotFound',
     });
   }
-
   return NextResponse.json({
-    patient,
+    patient: {
+      ...patient,
+      symptoms: {
+        ...patient.symptoms,
+        cognitive: listToObject(patient.symptoms.cognitive),
+        emotional: listToObject(patient.symptoms.emotional),
+      },
+    },
   });
 };

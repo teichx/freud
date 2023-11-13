@@ -1,4 +1,4 @@
-import { PatientFields } from '~/core/modules/Patient/api/schema/types';
+import { ParsedPatientFields } from '~/core/modules/Patient/api/schema/types';
 
 import { GetPatientSuccess } from '../../../../api/get/types';
 
@@ -7,5 +7,5 @@ export type PatientStateProps = Pick<GetPatientSuccess, 'patient'> & {
 };
 
 export type UsePatientDataResultProps = Pick<GetPatientSuccess, 'patient'> & {
-  savePatient: (patient: PatientFields) => Promise<void>;
+  savePatient: (patient: ParsedPatientFields) => Promise<void>;
 };

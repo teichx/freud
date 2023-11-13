@@ -6,11 +6,10 @@ import {
   schooling,
 } from '~/common/components/Form/FormSelect/options';
 import { model } from '~/common/database/dynamo';
-import { listToObject } from '~/common/validation';
 
 import { DynamoItemProps } from '../../../../../common/database/dynamo/types';
 import { COGNITIVE_FIELDS } from '../../pages/upsert/components/ComplainedCheck/constants';
-import { ParsedPatientFields } from '../schema/types';
+import { PatientFields } from '../schema/types';
 
 export const PATIENT_PREFIX = {
   PK: 'Tenant#',
@@ -134,7 +133,7 @@ export const patientDynamoSchema = new Schema(
               enum: [...COGNITIVE_FIELDS.cognitive],
             },
           ],
-          get: (x: ValueType) => listToObject(x as string[]),
+          get: (x: ValueType) => Array.from(x as string[]),
         },
         emotionalDetails: String,
         emotional: {
@@ -145,7 +144,7 @@ export const patientDynamoSchema = new Schema(
               enum: [...COGNITIVE_FIELDS.emotional],
             },
           ],
-          get: (x: ValueType) => listToObject(x as string[]),
+          get: (x: ValueType) => Array.from(x as string[]),
         },
       },
     },
@@ -155,7 +154,7 @@ export const patientDynamoSchema = new Schema(
   }
 );
 
-export const Patient = model<DynamoItemProps<ParsedPatientFields>>(
+export const Patient = model<DynamoItemProps<PatientFields>>(
   'Patient',
   patientDynamoSchema,
   {

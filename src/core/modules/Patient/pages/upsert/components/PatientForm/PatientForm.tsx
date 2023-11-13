@@ -3,7 +3,7 @@ import { useRef } from 'react';
 import { FormComponent, FormHidden } from '~/common/components/Form';
 import { schemaValidation } from '~/common/validation';
 import { createPatientSchema } from '~/core/modules/Patient/api/schema/schema';
-import { PatientFields } from '~/core/modules/Patient/api/schema/types';
+import { ParsedPatientFields } from '~/core/modules/Patient/api/schema/types';
 
 import { usePatientData } from '../../hooks';
 import { ComplainedCheck } from '../ComplainedCheck';
@@ -18,7 +18,7 @@ export const PatientForm = () => {
   const { patient, savePatient } = usePatientData();
 
   return (
-    <FormComponent<PatientFields>
+    <FormComponent<ParsedPatientFields>
       onSubmit={savePatient}
       initialValues={patient}
       validate={schemaValidation(schema.current)}
