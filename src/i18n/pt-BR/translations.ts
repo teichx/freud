@@ -148,6 +148,7 @@ export const translations = {
           },
         },
         freeText: {
+          title: 'Observações',
           lifestyle: 'Socialização, Lazer e Estilo de vida',
           familyHistory: 'Antecedentes Familiares',
           familyRelationship: 'Relação/Dinâmica Familiar',
