@@ -1,6 +1,7 @@
 export * from './Microphone';
 export * from './BackButton';
 export * from './CancelButton';
+export * from './IconButton';
 export * from './LinkButton';
 export * from './SaveButton';
 export * from './LoginButton';
