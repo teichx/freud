@@ -12,4 +12,5 @@ export type DataModalProps<TWrapperProps extends PropsWithChildren> = {
   modalProps?: Omit<ModalProps, 'isOpen' | 'onClose' | 'children'>;
   disclosureProps?: UseDisclosureProps;
   buttonWrapperProps?: Omit<StackProps, 'onClick'>;
+  headerContent?: ReactNode;
 };

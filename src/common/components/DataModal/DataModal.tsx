@@ -6,15 +6,16 @@ import {
   HStack,
   Modal,
   ModalBody,
-  ModalCloseButton,
   ModalContent,
   ModalFooter,
   ModalHeader,
   ModalOverlay,
   useDisclosure,
+  Heading,
 } from '@chakra-ui/react';
+import { FiX } from 'react-icons/fi';
 
-import { CancelButton } from '../Buttons';
+import { Buttons, CancelButton } from '../Buttons';
 import { DataModalProps } from './types';
 
 export function DataModal<TWrapperProps extends PropsWithChildren>({
@@ -28,8 +29,10 @@ export function DataModal<TWrapperProps extends PropsWithChildren>({
   disclosureProps,
   wrapperProps,
   buttonWrapperProps,
+  headerContent,
 }: PropsWithChildren<DataModalProps<TWrapperProps>>) {
   const { isOpen, onOpen, onClose } = useDisclosure(disclosureProps);
+  const hasTitle = Boolean(title);
 
   return (
     <Box>
@@ -41,18 +44,44 @@ export function DataModal<TWrapperProps extends PropsWithChildren>({
         {buttonTrigger}
       </HStack>
 
-      <Modal {...modalProps} size='4xl' isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay backdropFilter='blur(6px)' />
+      <Modal
+        motionPreset='slideInBottom'
+        {...modalProps}
+        size='4xl'
+        isOpen={isOpen}
+        onClose={onClose}
+      >
+        <ModalOverlay backdropFilter='auto' backdropBlur='6px' />
 
         <Wrapper {...{ children: undefined, ...wrapperProps }}>
           <ModalContent>
-            <ModalCloseButton mt={2} zIndex='popover' />
+            <ModalHeader>
+              <Box
+                display='flex'
+                alignItems='center'
+                justifyContent={hasTitle ? 'space-between' : 'flex-end'}
+              >
+                {hasTitle && (
+                  <Heading variant='h3' size='md' fontWeight='semibold'>
+                    {title}
+                  </Heading>
+                )}
 
-            {title ? (
-              <ModalHeader>{title}</ModalHeader>
-            ) : (
-              <Box pt='14' mt='1.5' />
-            )}
+                <Box
+                  display='flex'
+                  alignItems='center'
+                  justifyContent='space-between'
+                >
+                  {headerContent}
+
+                  <Buttons.IconButton
+                    onClick={onClose}
+                    icon={<FiX />}
+                    aria-label='close button'
+                  />
+                </Box>
+              </Box>
+            </ModalHeader>
 
             {children && (
               <Box>
@@ -64,11 +93,13 @@ export function DataModal<TWrapperProps extends PropsWithChildren>({
 
             {(!hideCancelButton || !!footerComponents) && <Divider />}
 
-            <ModalFooter>
-              {!hideCancelButton && <CancelButton onClick={onClose} mr='4' />}
+            {(!!footerComponents || !hideCancelButton) && (
+              <ModalFooter>
+                {!hideCancelButton && <CancelButton onClick={onClose} mr='4' />}
 
-              {footerComponents}
-            </ModalFooter>
+                {footerComponents}
+              </ModalFooter>
+            )}
           </ModalContent>
         </Wrapper>
       </Modal>
