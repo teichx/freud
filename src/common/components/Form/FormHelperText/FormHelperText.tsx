@@ -10,6 +10,6 @@ export const FormHelperText: FC<FormHelperTextProps> = ({
 }) => (
   <InputHelperText
     unForceHelperText={unForceHelperText}
-    helperText={(meta?.touched ? meta?.error : undefined) || helperText || '‎'}
+    helperText={(meta?.touched ? meta?.error : undefined) || helperText}
   />
 );
