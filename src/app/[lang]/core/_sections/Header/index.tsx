@@ -1,6 +1,5 @@
 'use client';
 import { Box, ButtonGroup, Flex, HStack } from '@chakra-ui/react';
-import Link from 'next/link';
 
 import { Buttons } from '~/common/components/Buttons';
 import { Logo } from '~/common/components/Logo';
@@ -8,18 +7,17 @@ import { ProjectRoutes } from '~/core/constants';
 
 import { useHeader } from './hooks';
 import { HeaderDetails } from './sections/HeaderDetails';
-import { HeaderButton } from './styles';
 
 export const Header = () => {
   const { headersItems } = useHeader();
 
   return (
     <Box w='100%' position='relative' zIndex='banner'>
-      <HStack w='100%' py='2' px='8' spacing={4} bg='book.darkBlue.500'>
+      <HStack w='100%' py='1' px='8' spacing={4} bg='book.darkBlue.500'>
         <HStack w='50%' alignItems='center'>
           <Buttons.Link
-            py='2'
             mr={4}
+            py='1'
             height='auto'
             color='white'
             variant='ghost'
@@ -28,19 +26,23 @@ export const Header = () => {
             }}
             href={ProjectRoutes.Home}
           >
-            <Logo size='medium' />
+            <Logo size='small' />
           </Buttons.Link>
 
           <ButtonGroup variant='unstyled' spacing='4' color='white'>
             {headersItems.map(({ path, label, isSelected }) => (
-              <HeaderButton
+              <Buttons.Link
                 key={path}
                 href={path}
-                as={Link}
-                selected={isSelected}
+                h='auto'
+                fontSize='small'
+                color={isSelected ? 'white' : 'whiteAlpha.800'}
+                _hover={{
+                  color: isSelected ? 'white' : 'whiteAlpha.900',
+                }}
               >
                 {label}
-              </HeaderButton>
+              </Buttons.Link>
             ))}
           </ButtonGroup>
         </HStack>
