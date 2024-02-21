@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 
-import { SkeletonTextProps, TableColumnHeaderProps } from '@chakra-ui/react';
+import { TableColumnHeaderProps } from '@chakra-ui/react';
 
 export type TDataId = {
   id: string | number;
@@ -27,7 +27,8 @@ export type DataTableProps<
   limitOptions?: number[];
   fixedHeight?: boolean;
   size?: 'sm' | 'md' | 'lg';
-} & Pick<SkeletonTextProps, 'skeletonHeight'>;
+  skeletonHeight?: number;
+};
 
 export type DataTableStateProps = {
   totalItems: number;

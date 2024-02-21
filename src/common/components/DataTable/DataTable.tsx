@@ -1,9 +1,10 @@
-import { Table, Tbody } from '@chakra-ui/react';
+import { Box, SkeletonText, Table, Tbody, Td, Tr } from '@chakra-ui/react';
+
+import { useQueryPaginate } from '~/common/query';
 
 import {
   DataTableHeader,
   DataTableFooter,
-  DataTableLoader,
   DataTableNoData,
   DataTableRows,
 } from './atom';
@@ -22,6 +23,8 @@ export function DataTable<
   skeletonHeight = 8,
   limitOptions = [10, 25, 50, 100],
 }: DataTableProps<TData>) {
+  const { limit } = useQueryPaginate();
+
   return (
     <StyledTableContainer>
       <Table variant='simple' colorScheme='book.desertSun' size={size}>
@@ -33,18 +36,36 @@ export function DataTable<
             isVisible={!data.length && !isLoading}
           />
 
-          <DataTableLoader
-            isLoading={!!isLoading}
-            columnsLength={columns.length}
-            fixedHeight={!!fixedHeight}
-            skeletonHeight={skeletonHeight}
-          />
+          {isLoading
+            ? new Array(limit).fill(undefined).map((_, index) => (
+                <Tr key={`loading-${index}`}>
+                  <Td textAlign='center' colSpan={columns.length}>
+                    <SkeletonText
+                      noOfLines={1}
+                      skeletonHeight={`${skeletonHeight}px`}
+                    />
+                  </Td>
+                </Tr>
+              ))
+            : null}
 
           <DataTableRows<TData>
             isLoading={!!isLoading}
             columns={columns}
             data={data}
           />
+
+          {fixedHeight && !isLoading
+            ? new Array(Math.max(limit - data.length, 0))
+                .fill(undefined)
+                .map((_, index) => (
+                  <Tr key={`loaded-empty-${index}`}>
+                    <Td textAlign='center' colSpan={columns.length}>
+                      <Box h={`${skeletonHeight}px`} />
+                    </Td>
+                  </Tr>
+                ))
+            : null}
         </Tbody>
 
         <DataTableFooter
