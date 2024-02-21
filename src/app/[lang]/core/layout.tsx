@@ -1,38 +1,42 @@
 'use client';
-import { FC, PropsWithChildren, useEffect } from 'react';
+import { FC, PropsWithChildren, useEffect, useState } from 'react';
 
 import { Box } from '@chakra-ui/react';
 import { useSession } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
 
-import { Routes } from '~/core/constants';
 import { Header } from '~/core/sections/Header';
 
+import { AuthRefresh } from './auth/refresh';
+
 const AppPage: FC<PropsWithChildren> = ({ children }) => {
+  const [wasVisible, setWasVisible] = useState(false);
   const { status } = useSession();
-  const router = useRouter();
 
   useEffect(() => {
-    if (status !== 'unauthenticated') return;
+    if (status !== 'authenticated') return;
+    setWasVisible(true);
+  }, [status]);
 
-    router.push(Routes.Core.Login);
-  }, [status, router]);
-
-  return status === 'authenticated' ? (
+  return (
     <Box>
-      <Header />
+      {wasVisible && (
+        <Box>
+          {status === 'authenticated' && <Header />}
 
-      <Box
-        px={{
-          base: 4,
-          md: 8,
-        }}
-        py='4'
-      >
-        {children}
-      </Box>
+          <Box
+            px={{
+              base: 4,
+              md: 8,
+            }}
+            py='4'
+          >
+            {children}
+          </Box>
+        </Box>
+      )}
+      {status === 'unauthenticated' && <AuthRefresh isRefresh={wasVisible} />}
     </Box>
-  ) : null;
+  );
 };
 
 export default AppPage;

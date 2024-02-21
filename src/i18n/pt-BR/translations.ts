@@ -1,4 +1,27 @@
 export const translations = {
+  auth: {
+    signInAgain: {
+      content: {
+        title: 'Sua sessão expirou!',
+        paragraphs: [
+          'Para garantir a máxima segurança dos dados dos nossos clientes e a integridade do sistema, solicitamos que você faça login novamente.',
+          'Entendemos que isso pode parecer inconveniente, mas é uma medida essencial para proteger as informações confidenciais dos nossos pacientes e manter a segurança da plataforma.',
+          'Atenciosamente,',
+        ],
+      },
+      button: 'Entrar novamente',
+    },
+    signIn: {
+      content: {
+        title: 'Área protegida!',
+        paragraphs: [
+          'Para acessar todo o conteúdo e recursos disponíveis, é necessário fazer o login.',
+          'Agradecemos pela sua compreensão e colaboração. Se precisar de ajuda ou tiver alguma dúvida, não hesite em entrar em contato conosco.',
+        ],
+      },
+      button: 'Fazer login',
+    },
+  },
   pageTitle: {
     patient: {
       list: 'Pacientes - Freud',

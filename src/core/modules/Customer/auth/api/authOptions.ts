@@ -27,18 +27,23 @@ export const authOptions: AuthOptions = {
   },
   debug: process.env.NODE_ENV !== 'production',
   callbacks: {
-    redirect: async ({ baseUrl }) => `${baseUrl}/core`,
+    redirect: async ({ url, baseUrl }) =>
+      url.includes('/core') ? url : `${baseUrl}/core`,
     jwt: async ({ token, user, account }) => {
-      if (user) {
+      if (account) {
         Object.assign(token, {
-          id: user.id,
+          accessToken: account.access_token,
           googleId:
-            account?.provider === 'google'
-              ? account?.providerAccountId
+            account.provider === 'google'
+              ? account.providerAccountId
               : undefined,
         });
       }
-
+      if (user) {
+        Object.assign(token, {
+          id: user.id,
+        });
+      }
       return token;
     },
     session: async ({ session, token }) => {
@@ -50,3 +55,10 @@ export const authOptions: AuthOptions = {
     },
   },
 };
+
+declare module 'next-auth/jwt' {
+  interface JWT {
+    accessToken: string;
+    googleId?: string;
+  }
+}
