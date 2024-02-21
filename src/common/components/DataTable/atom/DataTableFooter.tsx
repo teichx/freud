@@ -37,7 +37,7 @@ export const DataTableFooter: FC<DataTableFooterProps> = ({
 
   return (
     <Tfoot w='100%'>
-      <Tr>
+      <Tr borderStyle='hidden'>
         <Td colSpan={columnsLength}>
           <Flex
             w='100%'

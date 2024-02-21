@@ -22,10 +22,8 @@ export const StyledTheadTh = styled(Th, {
 
 export const StyledTableContainer = styled(TableContainer, {
   baseStyle: ({ theme }: HavingThemeProps) => ({
-    p: theme.space[4],
     borderWidth: 1,
     borderRadius: theme.radii.md,
-    borderStyle: 'solid',
   }),
 });
 
