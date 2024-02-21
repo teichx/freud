@@ -14,6 +14,7 @@ export function DataTable<
   TData extends TDataId = TDataId & Record<string, string>
 >({
   data,
+  size,
   columns,
   isLoading,
   fixedHeight,
@@ -23,7 +24,7 @@ export function DataTable<
 }: DataTableProps<TData>) {
   return (
     <StyledTableContainer>
-      <Table variant='simple' colorScheme='book.desertSun'>
+      <Table variant='simple' colorScheme='book.desertSun' size={size}>
         <DataTableHeader<TData> columns={columns} />
 
         <Tbody>
@@ -47,9 +48,10 @@ export function DataTable<
         </Tbody>
 
         <DataTableFooter
-          columnsLength={columns.length}
+          size={size}
           totalItems={totalItems}
           limitOptions={limitOptions}
+          columnsLength={columns.length}
         />
       </Table>
     </StyledTableContainer>

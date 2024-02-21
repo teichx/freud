@@ -6,6 +6,7 @@ export type DataTableFooterProps = {
   limitOptions: number[];
   totalItems?: number;
   columnsLength: number;
+  size?: 'sm' | 'md' | 'lg';
 };
 
 export type DataTableNoDataProps = {

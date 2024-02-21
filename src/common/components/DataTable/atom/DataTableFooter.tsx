@@ -18,6 +18,7 @@ import { FooterIconButton } from './styles';
 import { DataTableFooterProps } from './types';
 
 export const DataTableFooter: FC<DataTableFooterProps> = ({
+  size,
   totalItems,
   columnsLength,
   limitOptions: limitOptionsParam,
@@ -53,6 +54,7 @@ export const DataTableFooter: FC<DataTableFooterProps> = ({
               >
                 <FormSelect
                   selectOptions={{
+                    size,
                     menuPosition: 'fixed',
                     onChange: (value) => setLimit(Number(value?.value)),
                   }}
@@ -69,6 +71,7 @@ export const DataTableFooter: FC<DataTableFooterProps> = ({
                   onClick={() => toPage(1)}
                   aria-label='First page'
                   isDisabled={!canPrevious}
+                  size={size}
                 >
                   <Icon as={MdFirstPage} />
                 </FooterIconButton>
@@ -79,6 +82,7 @@ export const DataTableFooter: FC<DataTableFooterProps> = ({
                   onClick={previousPage}
                   aria-label='Before page'
                   isDisabled={!canPrevious}
+                  size={size}
                 >
                   <Icon as={MdNavigateBefore} />
                 </FooterIconButton>
@@ -91,6 +95,7 @@ export const DataTableFooter: FC<DataTableFooterProps> = ({
                   onClick={nextPage}
                   isDisabled={!canNext}
                   aria-label='Next page'
+                  size={size}
                 >
                   <Icon as={MdNavigateNext} />
                 </FooterIconButton>
@@ -101,6 +106,7 @@ export const DataTableFooter: FC<DataTableFooterProps> = ({
                   onClick={() => toPage(pageCount)}
                   aria-label='Last page'
                   isDisabled={!canNext}
+                  size={size}
                 >
                   <Icon as={MdLastPage} />
                 </FooterIconButton>
