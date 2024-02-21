@@ -52,7 +52,7 @@ export const SignInAgain = () => {
           _hover={{ bgColor: 'book.desertSun.600' }}
           variant='solid'
           text={t('button')}
-          linkProps={{ target: '_blank' }}
+          target='_blank'
         />
       </Box>
     </Box>

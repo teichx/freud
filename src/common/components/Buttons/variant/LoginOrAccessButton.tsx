@@ -3,11 +3,13 @@
 import { Box } from '@chakra-ui/react';
 import { useSession } from 'next-auth/react';
 
-import { VariantButtonProps } from '../types';
+import { LinkButtonProps, VariantButtonProps } from '../types';
 import { AccessButton } from './AccessButton';
 import { LoginButton } from './LoginButton';
 
-export const LoginOrAccessButton = (props: VariantButtonProps) => {
+export const LoginOrAccessButton = (
+  props: VariantButtonProps & Omit<LinkButtonProps, 'href'>
+) => {
   const { status } = useSession();
 
   const Component = {

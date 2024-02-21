@@ -1,18 +1,20 @@
-import { ComponentProps, ReactNode } from 'react';
+import { ReactNode } from 'react';
 
-import { ButtonProps } from '@chakra-ui/react';
-import Link from 'next/link';
+import {
+  LinkProps as ChakraUiLinkProps,
+  ButtonProps,
+  HTMLChakraProps,
+} from '@chakra-ui/react';
+import { LinkProps } from 'next/link';
 
 import { LoaderType } from '~/core/services/Loader';
-
-type LinkProps = ComponentProps<typeof Link>;
 
 export type VariantButtonProps = ButtonProps & {
   text?: ReactNode;
   loaderKeys?: LoaderType[];
 };
 
-export type LinkButtonProps = VariantButtonProps &
-  Pick<LinkProps, 'href'> & {
-    linkProps?: Omit<LinkProps, 'href'>;
-  } & Pick<VariantButtonProps, 'text'>;
+export type LinkButtonProps = Omit<ChakraUiLinkProps, 'href' | 'type'> &
+  Pick<VariantButtonProps, 'text' | 'loaderKeys' | 'leftIcon' | 'isLoading'> &
+  HTMLChakraProps<'button'> &
+  Pick<LinkProps, 'href' | 'onClick'>;

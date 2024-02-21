@@ -7,10 +7,9 @@ export const LinkButton = ({
   text,
   children,
   href,
-  linkProps,
   ...props
 }: LinkButtonProps) => (
-  <Link {...(linkProps || {})} href={href}>
-    <Button {...props}>{text || children}</Button>
-  </Link>
+  <Button as={Link} href={href} {...props}>
+    {text || children}
+  </Button>
 );

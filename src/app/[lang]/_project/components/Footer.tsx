@@ -68,9 +68,7 @@ export const Footer = async () => {
             variant='link'
             fontSize='inherit'
             fontWeight='inherit'
-            linkProps={{
-              target: '_blank',
-            }}
+            target='_blank'
             href='https://github.com/teichx'
           >
             {t('author.teichx')}
