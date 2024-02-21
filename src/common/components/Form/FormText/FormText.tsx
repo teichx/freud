@@ -89,7 +89,7 @@ export const FormText: FC<FormTextProps> = ({
         </FormLabel>
       )}
 
-      <InputGroup>
+      <InputGroup size={size}>
         {InputLeftElement}
 
         <InputComponent
