@@ -20,3 +20,5 @@ export const HeaderButton: FC<HeaderButtonProps> = ({ children, ...props }) => (
     </Box>
   </Button>
 );
+
+export * from './types';

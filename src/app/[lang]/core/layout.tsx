@@ -4,8 +4,7 @@ import { FC, PropsWithChildren, useEffect, useState } from 'react';
 import { Box } from '@chakra-ui/react';
 import { useSession } from 'next-auth/react';
 
-import { Header } from '~/core/sections/Header';
-
+import { Header } from './_sections';
 import { AuthRefresh } from './auth/refresh';
 
 const AppPage: FC<PropsWithChildren> = ({ children }) => {
