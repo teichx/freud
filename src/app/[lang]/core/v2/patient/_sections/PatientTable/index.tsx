@@ -22,7 +22,12 @@ export const PatientsTable = () => {
           size='sm'
           variant='link'
           href={`/core/v2/patient/${id}`}
-          color={archivedAt ? 'book.darkBlue.100' : 'book.darkBlue.900'}
+          sx={{
+            color: archivedAt ? 'book.darkBlue.100' : 'book.darkBlue.900',
+            _dark: {
+              color: archivedAt ? 'whiteAlpha.700' : 'whiteAlpha.900',
+            },
+          }}
         >
           <TextHighlight
             query={patientNameQueryFilter}
