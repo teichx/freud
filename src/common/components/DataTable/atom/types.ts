@@ -6,7 +6,7 @@ export type DataTableFooterProps = {
   limitOptions: number[];
   totalItems?: number;
   columnsLength: number;
-  size?: 'sm' | 'md' | 'lg';
+  size: 'sm' | 'md' | 'lg' | undefined;
 };
 
 export type DataTableNoDataProps = {
@@ -25,6 +25,7 @@ export type DataTableHeaderProps<
   TData extends TDataId = TDataId & Record<string, string>
 > = {
   columns: DataTableColumnProps<TData>[];
+  size: 'sm' | 'md' | 'lg' | undefined;
 };
 
 export type DataTableRowsProps<

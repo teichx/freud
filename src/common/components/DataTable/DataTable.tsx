@@ -17,6 +17,7 @@ export function DataTable<
   data,
   size,
   columns,
+  headSize,
   isLoading,
   fixedHeight,
   totalItems = 0,
@@ -28,7 +29,7 @@ export function DataTable<
   return (
     <StyledTableContainer>
       <Table variant='simple' colorScheme='book.desertSun' size={size}>
-        <DataTableHeader<TData> columns={columns} />
+        <DataTableHeader<TData> columns={columns} size={headSize || size} />
 
         <Tbody>
           <DataTableNoData

@@ -6,7 +6,7 @@ import { DataTableHeaderProps } from './types';
 
 export function DataTableHeader<
   TData extends TDataId = TDataId & Record<string, string>
->({ columns }: DataTableHeaderProps<TData>) {
+>({ columns, size }: DataTableHeaderProps<TData>) {
   return (
     <Thead>
       <StyledTheadTr>
@@ -17,7 +17,18 @@ export function DataTableHeader<
             )
           )
           .map(({ label, ...columnProps }) => (
-            <StyledTheadTh {...columnProps} key={label}>
+            <StyledTheadTh
+              {...columnProps}
+              py={
+                {
+                  '': undefined,
+                  sm: '1',
+                  md: '3',
+                  lg: '4',
+                }[size || '']
+              }
+              key={label}
+            >
               {label}
             </StyledTheadTh>
           ))}

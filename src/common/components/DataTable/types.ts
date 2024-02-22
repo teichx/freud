@@ -27,6 +27,7 @@ export type DataTableProps<
   limitOptions?: number[];
   fixedHeight?: boolean;
   size?: 'sm' | 'md' | 'lg';
+  headSize?: 'sm' | 'md' | 'lg';
   skeletonHeight?: number;
 };
 
