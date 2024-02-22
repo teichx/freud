@@ -93,11 +93,14 @@ export const PatientsTable = () => {
 
   return (
     <DataTable
+      size='sm'
+      headSize='md'
+      fixedHeight
       data={data}
       columns={COLUMNS}
       isLoading={isLoading}
       totalItems={totalItems}
-      skeletonHeight='38px'
+      skeletonHeight={34}
     />
   );
 };

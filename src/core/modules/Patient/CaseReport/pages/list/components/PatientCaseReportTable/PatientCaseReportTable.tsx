@@ -63,11 +63,13 @@ export const PatientCaseReportTable: FC<PatientCaseReportTableProps> = ({
 
   return (
     <DataTable
+      size='sm'
+      headSize='md'
       fixedHeight
       data={caseReports}
       columns={COLUMNS}
       isLoading={isLoading}
-      skeletonHeight='32px'
+      skeletonHeight={32}
       totalItems={totalItems}
     />
   );

@@ -1,6 +1,6 @@
 import { useMemo, useRef } from 'react';
 
-import { Box, Flex, HStack } from '@chakra-ui/react';
+import { Box, Divider, Flex, HStack } from '@chakra-ui/react';
 
 import { LinkButton } from '~/common/components/Buttons';
 import {
@@ -8,7 +8,6 @@ import {
   FormSearchQueryFilter,
   FormSelectQueryFilter,
 } from '~/common/components/Form';
-import { Section } from '~/common/components/Section';
 import { useDefaultQuery } from '~/common/query';
 import { schemaValidation } from '~/common/validation';
 import { Routes } from '~/core/constants';
@@ -44,8 +43,8 @@ export const ListPatients = () => {
 
   return (
     <Box w='100%'>
-      <Section>
-        <Flex alignItems='center'>
+      <Box py='3'>
+        <Flex alignItems='start'>
           <Box w='100%'>
             <FormComponent
               onSubmit={() => undefined}
@@ -56,8 +55,9 @@ export const ListPatients = () => {
               <HStack>
                 <Box w='100%' maxW={300}>
                   <FormSearchQueryFilter
-                    name='patientName'
+                    size='sm'
                     isRequired
+                    name='patientName'
                     inputProps={{ placeholder: t('filter.text') }}
                   />
                 </Box>
@@ -65,11 +65,13 @@ export const ListPatients = () => {
                 <Box w='100%' maxW={400}>
                   <FormSelectQueryFilter<true>
                     isMulti
+                    size='sm'
+                    name='status'
                     selectOptions={{
+                      size: 'sm',
                       isClearable: false,
                       placeholder: t('filter.status.placeholder'),
                     }}
-                    name='status'
                     options={patientStatusOptions}
                   />
                 </Box>
@@ -77,16 +79,28 @@ export const ListPatients = () => {
             </FormComponent>
           </Box>
 
-          <Box mb='6' pb='1'>
-            <LinkButton
-              text={t('createLabel')}
-              href={Routes.Core.Patient.Create}
-              color='whiteAlpha.900'
-              colorScheme='book.desertSun'
-            />
-          </Box>
+          <LinkButton
+            text={t('createLabel')}
+            size='sm'
+            href={Routes.Core.Patient.Create}
+            sx={{
+              color: 'white',
+              bg: 'book.desertSun.500',
+              _hover: {
+                bg: 'book.desertSun.600',
+              },
+              _dark: {
+                bg: 'book.desertSun.600',
+                _hover: {
+                  bg: 'book.desertSun.500',
+                },
+              },
+            }}
+          />
         </Flex>
-      </Section>
+      </Box>
+
+      <Divider mb='5' />
 
       <PatientsTable />
     </Box>
