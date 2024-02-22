@@ -67,6 +67,17 @@ const theme = {
   },
   styles: {
     global: {
+      '&::-webkit-scrollbar': {
+        width: '6px',
+        bg: 'blackAlpha.700',
+      },
+      '&::-webkit-scrollbar-track': {
+        width: '6px',
+      },
+      '&::-webkit-scrollbar-thumb': {
+        background: 'book.desertSun.400',
+        borderRadius: 6,
+      },
       html: {
         height: '100%',
         width: '100%',
