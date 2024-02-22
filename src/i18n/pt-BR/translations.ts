@@ -114,6 +114,35 @@ export const translations = {
           unarchivePatient: 'Desarquivar paciente',
         },
       },
+      listV2: {
+        filter: {
+          text: 'Nome do paciente',
+          status: {
+            placeholder: 'Filtre pelo status',
+            options: {
+              archived: 'Arquivados',
+              unarchive: 'Não arquivados',
+            },
+          },
+        },
+        header: {
+          name: 'Nome',
+          caseReportCount: 'Casos anotados',
+          lastCaseReport: 'Último relato de caso',
+          status: 'Status',
+        },
+        cell: {
+          'caseReportCount#zero': 'Nenhum caso anotado',
+          'caseReportCount#one': '{count} caso anotado',
+          'caseReportCount#two': '{count} casos anotados',
+          'caseReportCount#other': '{count} casos anotados',
+          status: {
+            active: 'Ativo',
+            archived: 'Arquivado',
+          },
+        },
+        createLabel: 'Cadastrar paciente',
+      },
       create: {
         personal: {
           title: 'Informações Pessoais',
