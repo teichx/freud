@@ -3,13 +3,9 @@
 exports[`component.Buttons buttons.Link default 1`] = `
 <DocumentFragment>
   <a
+    class="chakra-button css-ez23ye"
     href="/example/link"
-  >
-    <button
-      class="chakra-button css-ez23ye"
-      type="button"
-    />
-  </a>
+  />
   <span
     hidden=""
     id="__chakra_env"
