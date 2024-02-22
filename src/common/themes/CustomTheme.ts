@@ -72,6 +72,7 @@ const theme = {
         width: '100%',
       },
       body: {
+        height: '100%',
         width: '100%',
         bg: 'gray.200',
         overflowX: 'hidden',

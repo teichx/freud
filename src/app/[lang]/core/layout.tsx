@@ -17,22 +17,13 @@ const AppPage: FC<PropsWithChildren> = ({ children }) => {
   }, [status]);
 
   return (
-    <Box>
-      {wasVisible && (
-        <Box>
-          {status === 'authenticated' && <Header />}
+    <Box h='100%' display='flex' flexDirection='column' overflow='hidden'>
+      {status === 'authenticated' && <Header />}
 
-          <Box
-            px={{
-              base: 4,
-              md: 8,
-            }}
-            py='4'
-          >
-            {children}
-          </Box>
-        </Box>
-      )}
+      <Box h='100%' display='flex' flexDirection='column' overflow='auto'>
+        {wasVisible && children}
+      </Box>
+
       {status === 'unauthenticated' && <AuthRefresh isRefresh={wasVisible} />}
     </Box>
   );

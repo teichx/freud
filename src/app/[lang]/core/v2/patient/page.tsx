@@ -41,7 +41,14 @@ const ListPatients = () => {
   );
 
   return (
-    <Box w='100%'>
+    <Box
+      w='100%'
+      px={{
+        base: 4,
+        md: 8,
+      }}
+      py='4'
+    >
       <Box py='3'>
         <Flex alignItems='start'>
           <Box w='100%'>
