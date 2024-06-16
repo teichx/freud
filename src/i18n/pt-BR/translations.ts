@@ -160,6 +160,10 @@ export const translations = {
           },
           contact: {
             title: 'Dados de contato',
+            phoneNumber: 'Telefone',
+            email: 'E-mail',
+            address: 'Endereço',
+            emergency: 'Em caso de emergência',
           },
           firstConsult: {
             title: 'Primeira Consulta',
