@@ -34,6 +34,10 @@ export const useSidebar: UseSidebar = () => {
           label: t('firstConsult.title'),
           href: `/core/v2/patient/${patientId}/consult`,
         },
+        {
+          label: t('observations.title'),
+          href: `/core/v2/patient/${patientId}/observations`,
+        },
       ],
     },
     {

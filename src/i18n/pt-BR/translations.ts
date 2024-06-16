@@ -194,7 +194,7 @@ export const translations = {
               other: 'Outras queixas afetivas/emocionais',
             },
             history: {
-              title: 'Histórico',
+              title: 'Histórico da Queixa',
               fields: {
                 problemInitiation: 'Início da problemática',
                 frequencyAndIntensity: 'Frequência e Intensidade',
@@ -202,6 +202,18 @@ export const translations = {
                 medication: 'Uso de Fármacos',
               },
             },
+          },
+          observations: {
+            title: 'Observações',
+            lifestyle: 'Socialização, Lazer e Estilo de vida',
+            familyHistory: 'Antecedentes Familiares',
+            familyRelationship: 'Relação/Dinâmica Familiar',
+            traumaticEvents: 'Eventos Traumáticos de Vida',
+            affectiveExperiences: 'Experiências afetivas marcantes',
+            importantFacts: 'Outras Informações Importantes',
+            prognosis: 'Hipótese Diagnóstica Inicial / Prognóstico',
+            treatment: 'Acompanhamento e Tratamento',
+            others: 'Outras Observações',
           },
           caseReport: {
             title: 'Relato de caso',
