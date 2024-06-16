@@ -143,6 +143,35 @@ export const translations = {
         },
         createLabel: 'Cadastrar paciente',
       },
+      form: {
+        sidebar: {
+          title: 'Paciente',
+          description: 'Gerencie as informações sobre seu paciente.',
+        },
+        pages: {
+          principal: {
+            title: 'Principal',
+            form: {
+              name: 'Nome',
+            },
+          },
+          personal: {
+            title: 'Informações Pessoais',
+          },
+          contact: {
+            title: 'Dados de contato',
+          },
+          firstConsult: {
+            title: 'Primeira Consulta',
+          },
+          complained: {
+            title: 'Queixas',
+          },
+          caseReport: {
+            title: 'Relato de caso',
+          },
+        },
+      },
       create: {
         personal: {
           title: 'Informações Pessoais',
