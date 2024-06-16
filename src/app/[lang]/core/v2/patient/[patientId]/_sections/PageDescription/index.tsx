@@ -7,7 +7,7 @@ export const PageDescription = ({
   description,
   children,
 }: PageDescriptionProps) => (
-  <Box>
+  <Box display='flex' flexGrow={1} flexDirection='column'>
     <Box>
       {title && (
         <Heading variant='h2' fontSize='2xl' fontWeight='semibold' mb='2'>

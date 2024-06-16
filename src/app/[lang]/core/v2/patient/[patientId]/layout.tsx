@@ -2,6 +2,7 @@
 import { PropsWithChildren } from 'react';
 
 import { Box } from '@chakra-ui/react';
+import { Form } from 'react-final-form';
 
 import { Sidebar } from './_sections/Sidebar';
 
@@ -28,19 +29,30 @@ export default function PatientLayout({ children }: PropsWithChildren) {
           <p>{new Date().toLocaleString()}</p>
         </Box>
 
-        <Box
-          p='5'
-          bg='gray.50'
-          _dark={{
-            bg: 'gray.700',
-          }}
-          flexGrow={1}
-          flexShrink={1}
-          borderWidth={1}
-          borderRadius='lg'
-        >
-          {children}
-        </Box>
+        <Form
+          onSubmit={console.log}
+          render={({ handleSubmit }) => (
+            <form
+              onSubmit={handleSubmit}
+              style={{ display: 'flex', flexGrow: 1, width: '100%' }}
+            >
+              <Box
+                p='5'
+                bg='gray.50'
+                _dark={{
+                  bg: 'gray.700',
+                }}
+                display='flex'
+                flexGrow={1}
+                flexShrink={1}
+                borderWidth={1}
+                borderRadius='lg'
+              >
+                {children}
+              </Box>
+            </form>
+          )}
+        />
       </Box>
     </Box>
   );

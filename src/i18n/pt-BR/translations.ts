@@ -163,6 +163,11 @@ export const translations = {
           },
           firstConsult: {
             title: 'Primeira Consulta',
+            fields: {
+              principalReason: 'Queixa Principal',
+              appearanceAndBehavior: 'Aparência e comportamento',
+              demandAssessment: 'Avaliação de Demanda',
+            },
           },
           complained: {
             title: 'Queixas',
