@@ -171,6 +171,37 @@ export const translations = {
           },
           complained: {
             title: 'Queixas',
+            cognitive: {
+              title: 'Cognitivas',
+              sensory: 'Integridade Sensorial',
+              perception: 'Percepção',
+              focus: 'Atenção e Concentração',
+              memory: 'Memória',
+              other: 'Outras queixas cognitivas',
+            },
+            emotional: {
+              title: 'Afetivas/Emocionais',
+              decision: 'Tomada de decisão',
+              affectivity: 'Afetividade',
+              anxiety: 'Ansiedade',
+              fear: 'Medo',
+              grief: 'Luto',
+              anger: 'Raiva',
+              humor: 'Humor',
+              blame: 'Culpa',
+              aggressiveness: 'Agressividade',
+              discouragement: 'Desânimo',
+              other: 'Outras queixas afetivas/emocionais',
+            },
+            history: {
+              title: 'Histórico',
+              fields: {
+                problemInitiation: 'Início da problemática',
+                frequencyAndIntensity: 'Frequência e Intensidade',
+                previousTreatments: 'Tratamentos Anteriores',
+                medication: 'Uso de Fármacos',
+              },
+            },
           },
           caseReport: {
             title: 'Relato de caso',
