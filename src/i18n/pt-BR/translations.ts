@@ -157,6 +157,17 @@ export const translations = {
           },
           personal: {
             title: 'Informações Pessoais',
+            age: 'Idade',
+            birth: 'Nascimento',
+            gender: 'Gênero',
+            profession: 'Ocupação',
+            schooling: 'Escolaridade',
+            cpf: 'CPF',
+            rg: 'RG',
+            marriageStatus: 'Estado civil',
+            tooltip: {
+              age: 'Este campo não pode ser preenchido porque é calculado a partir da data de nascimento',
+            },
           },
           contact: {
             title: 'Dados de contato',
