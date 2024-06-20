@@ -4,7 +4,7 @@ import { PropsWithChildren } from 'react';
 import { Box } from '@chakra-ui/react';
 import { Form } from 'react-final-form';
 
-import { Sidebar } from './_sections/Sidebar';
+import { SyncStatus, Sidebar } from './_sections';
 
 export default function PatientLayout({ children }: PropsWithChildren) {
   return (
@@ -13,44 +13,56 @@ export default function PatientLayout({ children }: PropsWithChildren) {
       display='flex'
       flexDirection='row'
       bg='gray.200'
+      overflow='hidden'
       _dark={{ bg: 'gray.800' }}
     >
       <Sidebar />
 
       <Box
         mr='4'
-        mb='4'
         display='flex'
         flexGrow={1}
         flexShrink={1}
         flexDirection='column'
+        height='100%'
       >
-        <Box my='4' w='100%' display='flex' justifyContent='flex-end'>
-          <p>{new Date().toLocaleString()}</p>
-        </Box>
+        <SyncStatus />
 
         <Form
           onSubmit={console.log}
           render={({ handleSubmit }) => (
-            <form
-              onSubmit={handleSubmit}
-              style={{ display: 'flex', flexGrow: 1, width: '100%' }}
+            <Box
+              mb='4'
+              bg='gray.50'
+              flexGrow={1}
+              display='flex'
+              boxShadow='0 0 16px 0 rgba(0,0,0, 0.45)'
+              _dark={{
+                bg: 'gray.700',
+              }}
+              borderWidth={1}
+              borderRadius='lg'
+              flexDirection='column'
+              overflow='hidden'
             >
               <Box
                 p='5'
-                bg='gray.50'
-                _dark={{
-                  bg: 'gray.700',
-                }}
-                display='flex'
                 flexGrow={1}
-                flexShrink={1}
-                borderWidth={1}
-                borderRadius='lg'
+                display='flex'
+                overflowY='auto'
+                flexDirection='column'
               >
-                {children}
+                <form
+                  onSubmit={handleSubmit}
+                  style={{
+                    flexGrow: 1,
+                    display: 'flex',
+                  }}
+                >
+                  {children}
+                </form>
               </Box>
-            </form>
+            </Box>
           )}
         />
       </Box>

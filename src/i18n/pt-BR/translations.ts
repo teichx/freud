@@ -148,6 +148,10 @@ export const translations = {
           title: 'Paciente',
           description: 'Gerencie as informações sobre seu paciente.',
         },
+        syncStatus: {
+          history: 'Histórico',
+          lastSync: 'Última sincronização',
+        },
         pages: {
           principal: {
             title: 'Principal',
