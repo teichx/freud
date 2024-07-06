@@ -17,3 +17,4 @@ export * from './Select';
 export * from './TextHighlight';
 export * from './ToggleTheme';
 export * from './TooltipComponent';
+export * from './TooltipDate';

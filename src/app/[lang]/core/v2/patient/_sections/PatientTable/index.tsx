@@ -1,6 +1,6 @@
 import { Tag, TagLabel } from '@chakra-ui/react';
 
-import { Buttons, TextHighlight } from '~/common/components';
+import { Buttons, TextHighlight, TooltipDate } from '~/common/components';
 import { DataTable, DataTableColumnProps } from '~/common/components/DataTable';
 import { ListPatientResume } from '~/core/modules/Patient/api/list/types';
 import { parseToHighlight } from '~/core/modules/Patient/api/parseSearchTerm';
@@ -68,7 +68,9 @@ export const PatientsTable = () => {
       textAlign: 'center',
       accessor: 'lastCaseReport',
       label: t('header.lastCaseReport'),
-      render: ({ data: { lastCaseReport } }) => lastCaseReport || '-',
+      render: ({ data: { lastCaseReport } }) => (
+        <TooltipDate date={lastCaseReport}>{lastCaseReport || '-'}</TooltipDate>
+      ),
     },
   ];
 
