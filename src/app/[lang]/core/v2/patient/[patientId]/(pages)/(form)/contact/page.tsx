@@ -5,7 +5,7 @@ import { Flex } from '@chakra-ui/react';
 import { FormText } from '~/common/components';
 import { useScopedI18n } from '~/i18n/client';
 
-import { PageDescription } from '../../_sections';
+import { PageDescription } from '../../../_sections';
 
 export default function PatientContact() {
   const t = useScopedI18n('translations.pages.patient.form.pages.contact');

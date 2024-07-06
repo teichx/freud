@@ -2,7 +2,6 @@
 import { PropsWithChildren } from 'react';
 
 import { Box } from '@chakra-ui/react';
-import { Form } from 'react-final-form';
 
 import { SyncStatus, Sidebar } from './_sections';
 
@@ -28,43 +27,30 @@ export default function PatientLayout({ children }: PropsWithChildren) {
       >
         <SyncStatus />
 
-        <Form
-          onSubmit={console.log}
-          render={({ handleSubmit }) => (
-            <Box
-              mb='4'
-              bg='gray.50'
-              flexGrow={1}
-              display='flex'
-              boxShadow='0 0 16px 0 rgba(0,0,0, 0.45)'
-              _dark={{
-                bg: 'gray.700',
-              }}
-              borderWidth={1}
-              borderRadius='lg'
-              flexDirection='column'
-              overflow='hidden'
-            >
-              <Box
-                p='5'
-                flexGrow={1}
-                display='flex'
-                overflowY='auto'
-                flexDirection='column'
-              >
-                <form
-                  onSubmit={handleSubmit}
-                  style={{
-                    flexGrow: 1,
-                    display: 'flex',
-                  }}
-                >
-                  {children}
-                </form>
-              </Box>
-            </Box>
-          )}
-        />
+        <Box
+          mb='4'
+          bg='gray.50'
+          flexGrow={1}
+          display='flex'
+          boxShadow='0 0 16px 0 rgba(0,0,0, 0.45)'
+          _dark={{
+            bg: 'gray.700',
+          }}
+          borderWidth={1}
+          borderRadius='lg'
+          flexDirection='column'
+          overflow='hidden'
+        >
+          <Box
+            p='5'
+            flexGrow={1}
+            display='flex'
+            overflowY='auto'
+            flexDirection='column'
+          >
+            {children}
+          </Box>
+        </Box>
       </Box>
     </Box>
   );

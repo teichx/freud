@@ -12,7 +12,7 @@ import {
 import { FormCheckbox, FormText } from '~/common/components';
 import { useScopedI18n } from '~/i18n/client';
 
-import { PageDescription } from '../../_sections';
+import { PageDescription } from '../../../_sections';
 import {
   COGNITIVE_FIELDS,
   COGNITIVE_FIELDS_TYPES,

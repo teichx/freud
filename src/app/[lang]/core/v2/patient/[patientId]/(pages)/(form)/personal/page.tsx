@@ -10,7 +10,7 @@ import {
 } from '~/common/components';
 import { useScopedI18n } from '~/i18n/client';
 
-import { PageDescription } from '../../_sections';
+import { PageDescription } from '../../../_sections';
 import { calculateAge } from './calculateAge';
 
 export default function PatientPersonal() {

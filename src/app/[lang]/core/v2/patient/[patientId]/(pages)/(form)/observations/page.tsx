@@ -2,7 +2,7 @@
 import { FormText } from '~/common/components/Form';
 import { useScopedI18n } from '~/i18n/client';
 
-import { PageDescription } from '../../_sections';
+import { PageDescription } from '../../../_sections';
 import { FREE_TEXT_FIELDS } from './constants';
 
 export default function PatientObservations() {
