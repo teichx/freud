@@ -8,6 +8,7 @@ export * from './Display';
 export * from './Form';
 export * from './Input';
 export * from './GoogleLogin';
+export * from './InfiniteScroll';
 export * from './Loader';
 export * from './Logo';
 export * from './Meta';

@@ -46,4 +46,7 @@ export const components = {
       multiple: 'Selecione as opções',
     },
   },
+  infiniteScroll: {
+    endOfList: 'Sem mais items',
+  },
 } as const;
