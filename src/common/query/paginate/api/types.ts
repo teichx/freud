@@ -1,8 +1,15 @@
 import { ReqCustomProps } from '~/core/api';
 
+export type GetLimitProps = {
+  req: ReqCustomProps<{ limit?: number }, unknown>;
+  maxPaginate?: number;
+  defaultLimit?: number;
+};
+
 export type GetPaginateProps = {
   req: PaginateRequestSimpleProps;
   maxPaginate?: number;
+  defaultLimit?: number;
 };
 
 export type GetPaginateResult = {

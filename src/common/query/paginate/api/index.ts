@@ -1,5 +1,5 @@
 import { INITIAL_QUERY_PAGINATION } from '../constants';
-import { GetPaginateProps, GetPaginateResult } from './types';
+import { GetLimitProps, GetPaginateProps, GetPaginateResult } from './types';
 
 const getPaginationResult = {
   page: 0,
@@ -20,49 +20,52 @@ const INVALID_PAGE_RESPONSE = {
   getPagination,
 };
 
-const INVALID_LIMIT_RESPONSE = {
-  page: 0,
-  limit: 0,
-  offset: 0,
-  error: 'Invalid limit',
-  hasBeforePage: false,
-  getPagination,
-};
-
 const MIN_PAGE = 1;
+
+export const getLimit = ({
+  req,
+  maxPaginate = 100,
+  defaultLimit = INITIAL_QUERY_PAGINATION.limit,
+}: GetLimitProps) => {
+  const limitParam = Number(
+    req.nextUrl.searchParams.get('limit') || defaultLimit
+  );
+  if (!Number.isInteger(limitParam)) return { limit: 0 };
+  const limit = maxPaginate ? Math.min(limitParam, maxPaginate) : limitParam;
+
+  return { limit };
+};
 
 export const getPaginate = ({
   req,
   maxPaginate = 100,
+  defaultLimit = INITIAL_QUERY_PAGINATION.limit,
 }: GetPaginateProps): GetPaginateResult => {
   const page = Number(
     req.nextUrl.searchParams.get('page') || INITIAL_QUERY_PAGINATION.page
   );
   if (!Number.isInteger(page)) return INVALID_PAGE_RESPONSE;
 
-  const limit = Number(
-    req.nextUrl.searchParams.get('limit') || INITIAL_QUERY_PAGINATION.limit
-  );
-  if (!Number.isInteger(limit)) return INVALID_LIMIT_RESPONSE;
+  const { limit } = getLimit({ req, maxPaginate, defaultLimit });
+  if (limit === 0) return INVALID_PAGE_RESPONSE;
 
-  const limitAfterMin = maxPaginate ? Math.min(limit, maxPaginate) : limit;
   const pageAfterMax = Math.max(page, MIN_PAGE);
-  const offset = (pageAfterMax - 1) * limitAfterMin;
+  const offset = (pageAfterMax - 1) * limit;
   const hasBeforePage = pageAfterMax > MIN_PAGE;
 
   const getPagination: GetPaginateResult['getPagination'] = ({
     totalItems,
   }) => ({
     page: pageAfterMax,
-    limit: limitAfterMin,
+    limit,
     hasBeforePage,
-    hasNextPage: totalItems > limitAfterMin + offset,
+    hasNextPage: totalItems > limit + offset,
     totalItems,
   });
 
   return {
     page: pageAfterMax,
-    limit: limitAfterMin,
+    limit,
     offset,
     hasBeforePage,
     getPagination,
