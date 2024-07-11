@@ -1,4 +1,4 @@
-import { Box, SkeletonText, Table, Tbody, Td, Tr } from '@chakra-ui/react';
+import { Box, Table, Tbody, Td, Tr } from '@chakra-ui/react';
 
 import { useQueryPaginate } from '~/common/query';
 
@@ -7,6 +7,7 @@ import {
   DataTableFooter,
   DataTableNoData,
   DataTableRows,
+  ShowSkeleton,
 } from './atom';
 import { StyledTableContainer } from './atom/styles';
 import { DataTableProps, TDataId } from './types';
@@ -37,18 +38,13 @@ export function DataTable<
             isVisible={!data.length && !isLoading}
           />
 
-          {isLoading
-            ? new Array(limit).fill(undefined).map((_, index) => (
-                <Tr key={`loading-${index}`}>
-                  <Td textAlign='center' colSpan={columns.length}>
-                    <SkeletonText
-                      noOfLines={1}
-                      skeletonHeight={`${skeletonHeight}px`}
-                    />
-                  </Td>
-                </Tr>
-              ))
-            : null}
+          {isLoading ? (
+            <ShowSkeleton
+              count={limit}
+              columnsLength={columns.length}
+              skeletonHeight={skeletonHeight}
+            />
+          ) : null}
 
           <DataTableRows<TData>
             isLoading={!!isLoading}

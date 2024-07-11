@@ -31,6 +31,23 @@ export type DataTableProps<
   skeletonHeight?: number;
 };
 
+export type DataTableInfiniteScrollProps<
+  TData extends TDataId = TDataId & Record<string, string>
+> = {
+  url: string;
+  columns: DataTableColumnProps<TData>[];
+  size?: 'sm' | 'md' | 'lg';
+  headSize?: 'sm' | 'md' | 'lg';
+  skeletonHeight?: number;
+};
+
+export type DataTableInfiniteScrollStateProps<
+  TData extends TDataId = TDataId & Record<string, string>
+> = {
+  items: TData[];
+  hasNextPage: boolean;
+};
+
 export type DataTableStateProps = {
   totalItems: number;
   isLoading: boolean;

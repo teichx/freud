@@ -35,3 +35,9 @@ export type DataTableRowsProps<
   data: TData[];
   columns: DataTableColumnProps<TData>[];
 };
+
+export type ShowSkeletonProps = {
+  count: number;
+  columnsLength: number;
+  skeletonHeight: number;
+};
