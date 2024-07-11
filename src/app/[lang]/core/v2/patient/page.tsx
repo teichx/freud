@@ -16,12 +16,11 @@ import { createListPatientsSchema } from '~/core/modules/Patient/api/list/listPa
 import { EnumListPatientStatus } from '~/core/modules/Patient/api/list/types';
 import { useScopedI18n } from '~/i18n/client';
 
-import { PatientsTable } from './_sections/PatientTable';
+import { PatientList } from './_sections/PatientList';
 
 const defaultQuery = {
   pagination: {
-    page: 1,
-    limit: 10,
+    limit: 20,
   },
   filters: {
     status: [EnumListPatientStatus.Unarchive],
@@ -108,7 +107,7 @@ const ListPatients = () => {
 
       <Divider mb='5' />
 
-      <PatientsTable />
+      <PatientList />
     </Box>
   );
 };

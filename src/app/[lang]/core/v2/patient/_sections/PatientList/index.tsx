@@ -1,16 +1,21 @@
 import { Tag, TagLabel } from '@chakra-ui/react';
 
-import { Buttons, TextHighlight, TooltipDate } from '~/common/components';
-import { DataTable, DataTableColumnProps } from '~/common/components/DataTable';
-import { ListPatientResume } from '~/core/modules/Patient/api/list/types';
+import { ListPatientResume } from '~/app/api/patient/v2/(list)/types';
+import {
+  Buttons,
+  DataTableColumnProps,
+  DataTableInfiniteScroll,
+  TextHighlight,
+  TooltipDate,
+} from '~/common/components';
+import { useQueryFilterByName } from '~/common/query';
 import { parseToHighlight } from '~/core/modules/Patient/api/parseSearchTerm';
 import { useScopedI18n } from '~/i18n/client';
 
-import { usePatientTable } from './usePatientTable';
+export const PatientList = () => {
+  const { queryFilter: patientNameQueryFilter } =
+    useQueryFilterByName('patientName');
 
-export const PatientsTable = () => {
-  const { isLoading, totalItems, data, patientNameQueryFilter } =
-    usePatientTable();
   const t = useScopedI18n('translations.pages.patient.listV2');
 
   const COLUMNS: DataTableColumnProps<ListPatientResume>[] = [
@@ -75,14 +80,9 @@ export const PatientsTable = () => {
   ];
 
   return (
-    <DataTable
-      size='sm'
-      headSize='md'
-      fixedHeight
-      data={data}
+    <DataTableInfiniteScroll
+      url='/api/patient/v2'
       columns={COLUMNS}
-      isLoading={isLoading}
-      totalItems={totalItems}
       skeletonHeight={24}
     />
   );
