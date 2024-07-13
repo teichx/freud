@@ -1,4 +1,35 @@
-import { extendTheme, Theme } from '@chakra-ui/react';
+import { extendTheme, Theme, ThemeComponents } from '@chakra-ui/react';
+
+const components: ThemeComponents = {
+  Tabs: {
+    variants: {
+      enclosed: () => ({
+        tab: {
+          _selected: {
+            borderBottomColor: 'gray.200',
+            _dark: {
+              borderBottomColor: 'gray.800',
+            },
+          },
+        },
+      }),
+    },
+  },
+  Switch: {
+    baseStyle: {
+      track: {
+        _checked: {
+          bg: 'book.desertSun.400',
+        },
+      },
+      thumb: {
+        _dark: {
+          bg: 'gray.700',
+        },
+      },
+    },
+  },
+};
 
 const theme = {
   colors: {
@@ -49,22 +80,7 @@ const theme = {
       },
     },
   },
-  components: {
-    Tabs: {
-      variants: {
-        enclosed: () => ({
-          tab: {
-            _selected: {
-              borderBottomColor: 'gray.200',
-              _dark: {
-                borderBottomColor: 'gray.800',
-              },
-            },
-          },
-        }),
-      },
-    },
-  },
+  components,
   styles: {
     global: {
       '&::-webkit-scrollbar': {
