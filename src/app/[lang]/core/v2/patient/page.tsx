@@ -54,16 +54,16 @@ const ListPatients = () => {
       py='4'
     >
       <Box py='3'>
-        <Flex alignItems='start'>
-          <Box w='100%'>
+        <HStack alignItems='start' flexWrap='wrap' spacing='3'>
+          <Flex w={{ base: '100%', md: 'auto' }} flexGrow={1}>
             <FormComponent
               onSubmit={() => undefined}
               validateOnBlur
               initialValues={initialValues}
               validate={schemaValidation(schema.current)}
             >
-              <HStack>
-                <Box w='100%' maxW={300}>
+              <HStack spacing='4' flexWrap='wrap'>
+                <Flex w='100%' maxW={{ base: '100%', md: 300 }} flexGrow={1}>
                   <FormSearchQueryFilter
                     size='sm'
                     isRequired
@@ -71,39 +71,37 @@ const ListPatients = () => {
                     name='patientName'
                     inputProps={{ placeholder: t('filter.text') }}
                   />
-                </Box>
+                </Flex>
 
                 <FormMultipleSwitchQueryFilter
                   name='status'
                   options={patientStatusOptions}
-                  stackProps={{
-                    direction: 'row',
-                    spacing: 4,
-                  }}
                 />
               </HStack>
             </FormComponent>
-          </Box>
+          </Flex>
 
-          <LinkButton
-            text={t('createLabel')}
-            size='sm'
-            href={Routes.Core.Patient.Create}
-            sx={{
-              color: 'white',
-              bg: 'book.desertSun.500',
-              _hover: {
-                bg: 'book.desertSun.600',
-              },
-              _dark: {
-                bg: 'book.desertSun.600',
+          <Flex w={{ base: '100%', md: 'auto' }} justifyContent='flex-end'>
+            <LinkButton
+              text={t('createLabel')}
+              size='sm'
+              href={Routes.Core.Patient.Create}
+              sx={{
+                color: 'white',
+                bg: 'book.desertSun.500',
                 _hover: {
-                  bg: 'book.desertSun.500',
+                  bg: 'book.desertSun.600',
                 },
-              },
-            }}
-          />
-        </Flex>
+                _dark: {
+                  bg: 'book.desertSun.600',
+                  _hover: {
+                    bg: 'book.desertSun.500',
+                  },
+                },
+              }}
+            />
+          </Flex>
+        </HStack>
       </Box>
 
       <Divider mb='5' />

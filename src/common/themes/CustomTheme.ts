@@ -98,6 +98,9 @@ const theme = {
         height: '100%',
         width: '100%',
       },
+      form: {
+        width: '100%',
+      },
       body: {
         height: '100%',
         width: '100%',
