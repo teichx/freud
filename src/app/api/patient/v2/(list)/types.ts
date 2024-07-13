@@ -19,7 +19,7 @@ export type ListPatientResponse = ListPatientSuccess | ErrorMessage;
 
 export enum EnumListPatientStatus {
   Archived = 'archived',
-  Unarchive = 'unarchive',
+  Active = 'active',
 }
 
 export type ListPatientQueryProps = {

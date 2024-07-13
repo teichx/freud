@@ -121,7 +121,7 @@ export const translations = {
             placeholder: 'Filtre pelo status',
             options: {
               archived: 'Arquivados',
-              unarchive: 'Não arquivados',
+              active: 'Ativos',
             },
           },
         },
@@ -155,8 +155,13 @@ export const translations = {
         pages: {
           principal: {
             title: 'Principal',
-            form: {
-              name: 'Nome',
+            name: 'Nome',
+            status: {
+              title: 'Status',
+              active: 'Ativo',
+              to_active: 'Ativar',
+              archive: 'Arquivado',
+              to_archive: 'Arquivar',
             },
           },
           personal: {
@@ -235,7 +240,10 @@ export const translations = {
             others: 'Outras Observações',
           },
           caseReport: {
-            title: 'Relato de caso',
+            title: 'Relatos de caso',
+            reportingDate: 'Data do atendimento',
+            content: 'Relato de caso',
+            contentPlaceholder: 'Insira aqui os detalhes do atendimento',
           },
         },
       },

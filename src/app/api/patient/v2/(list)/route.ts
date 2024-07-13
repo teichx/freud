@@ -38,13 +38,11 @@ export const GET: ListPatientHandler = async (req) => {
       query.where('searchTerm').contains(parseSearchTerm([patientName]));
     }
     const filterArchived = statusArray.includes(EnumListPatientStatus.Archived);
-    const filterUnarchive = statusArray.includes(
-      EnumListPatientStatus.Unarchive
-    );
-    if (filterArchived && !filterUnarchive) {
+    const filterActive = statusArray.includes(EnumListPatientStatus.Active);
+    if (filterArchived && !filterActive) {
       query.where('archivedAt').exists();
     }
-    if (!filterArchived && filterUnarchive) {
+    if (!filterArchived && filterActive) {
       query.where('archivedAt').not().exists();
     }
     const lastId = req.nextUrl.searchParams.get('lastId');

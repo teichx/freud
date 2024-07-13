@@ -3,17 +3,17 @@ import { useRef } from 'react';
 
 import { Box, Divider, Flex, HStack } from '@chakra-ui/react';
 
+import { EnumListPatientStatus } from '~/app/api/patient/v2/(list)/types';
 import { LinkButton } from '~/common/components/Buttons';
 import {
   FormComponent,
   FormSearchQueryFilter,
-  FormSelectQueryFilter,
+  FormMultipleSwitchQueryFilter,
 } from '~/common/components/Form';
 import { useDefaultQuery } from '~/common/query';
 import { schemaValidation } from '~/common/validation';
 import { Routes } from '~/core/constants';
 import { createListPatientsSchema } from '~/core/modules/Patient/api/list/listPatientsSchema';
-import { EnumListPatientStatus } from '~/core/modules/Patient/api/list/types';
 import { useScopedI18n } from '~/i18n/client';
 
 import { PatientList } from './_sections/PatientList';
@@ -23,14 +23,19 @@ const defaultQuery = {
     limit: 20,
   },
   filters: {
-    status: [EnumListPatientStatus.Unarchive],
+    status: [EnumListPatientStatus.Active],
   },
 };
 
 const ListPatients = () => {
   const schema = useRef(createListPatientsSchema());
-  const t = useScopedI18n('translations.pages.patient.list');
+  const t = useScopedI18n('translations.pages.patient.listV2');
   const { getStateByString, stringParameters } = useDefaultQuery(defaultQuery);
+  const state = getStateByString(stringParameters);
+  const initialValues = {
+    ...state,
+    status: Array.isArray(state.status) ? state.status : [state.status],
+  };
 
   const patientStatusOptions = Object.values(EnumListPatientStatus).map(
     (x) => ({
@@ -54,7 +59,7 @@ const ListPatients = () => {
             <FormComponent
               onSubmit={() => undefined}
               validateOnBlur
-              initialValues={getStateByString(stringParameters)}
+              initialValues={initialValues}
               validate={schemaValidation(schema.current)}
             >
               <HStack>
@@ -62,24 +67,20 @@ const ListPatients = () => {
                   <FormSearchQueryFilter
                     size='sm'
                     isRequired
+                    unForceHelperText
                     name='patientName'
                     inputProps={{ placeholder: t('filter.text') }}
                   />
                 </Box>
 
-                <Box w='100%' maxW={400}>
-                  <FormSelectQueryFilter<true>
-                    isMulti
-                    size='sm'
-                    name='status'
-                    selectOptions={{
-                      size: 'sm',
-                      isClearable: false,
-                      placeholder: t('filter.status.placeholder'),
-                    }}
-                    options={patientStatusOptions}
-                  />
-                </Box>
+                <FormMultipleSwitchQueryFilter
+                  name='status'
+                  options={patientStatusOptions}
+                  stackProps={{
+                    direction: 'row',
+                    spacing: 4,
+                  }}
+                />
               </HStack>
             </FormComponent>
           </Box>
