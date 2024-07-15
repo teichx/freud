@@ -36,82 +36,79 @@ export const DataTableFooter: FC<DataTableFooterProps> = ({
   );
 
   return (
-    <Tfoot w='100%'>
+    <Tfoot w='100%' data-testid='bar'>
       <Tr borderStyle='hidden'>
         <Td colSpan={columnsLength}>
-          <Flex
-            w='100%'
-            columnGap={8}
-            alignItems='center'
-            justifyContent='center'
-          >
-            <HStack w='50%' justifyContent='flex-end'>
-              <Text mr={2}>{t('rowsPerPage')}</Text>
+          <Flex w='100%' justifyContent='center'>
+            <Flex columnGap={8} alignItems='center' justifyContent='center'>
+              <HStack w='50%' justifyContent='flex-end'>
+                <Text mr={2}>{t('rowsPerPage')}</Text>
 
-              <FormComponent
-                onSubmit={() => undefined}
-                initialValues={{ limit }}
-              >
-                <FormSelect
-                  selectOptions={{
-                    size,
-                    menuPosition: 'fixed',
-                    onChange: (value) => setLimit(Number(value?.value)),
-                  }}
-                  name='limit'
-                  unForceHelperText
-                  options={limitOptionsToSelect({ limitOptions })}
-                />
-              </FormComponent>
-            </HStack>
-
-            <HStack w='50%' justifyContent='flex-start' columnGap={1}>
-              <TooltipComponent label={t('pageHint.first')}>
-                <FooterIconButton
-                  onClick={() => toPage(1)}
-                  aria-label='First page'
-                  isDisabled={!canPrevious}
-                  size={size}
+                <FormComponent
+                  onSubmit={() => undefined}
+                  initialValues={{ limit }}
                 >
-                  <Icon as={MdFirstPage} />
-                </FooterIconButton>
-              </TooltipComponent>
+                  <FormSelect
+                    selectOptions={{
+                      size,
+                      menuPosition: 'fixed',
+                      onChange: (value) => setLimit(Number(value?.value)),
+                    }}
+                    name='limit'
+                    unForceHelperText
+                    options={limitOptionsToSelect({ limitOptions })}
+                  />
+                </FormComponent>
+              </HStack>
 
-              <TooltipComponent label={t('pageHint.before')}>
-                <FooterIconButton
-                  onClick={previousPage}
-                  aria-label='Before page'
-                  isDisabled={!canPrevious}
-                  size={size}
-                >
-                  <Icon as={MdNavigateBefore} />
-                </FooterIconButton>
-              </TooltipComponent>
+              <HStack w='50%' justifyContent='flex-start' columnGap={1}>
+                <TooltipComponent label={t('pageHint.first')}>
+                  <FooterIconButton
+                    onClick={() => toPage(1)}
+                    aria-label='First page'
+                    isDisabled={!canPrevious}
+                    size={size}
+                  >
+                    <Icon as={MdFirstPage} />
+                  </FooterIconButton>
+                </TooltipComponent>
 
-              <Text>{t('pagination', { page, pageCount })}</Text>
+                <TooltipComponent label={t('pageHint.before')}>
+                  <FooterIconButton
+                    onClick={previousPage}
+                    aria-label='Before page'
+                    isDisabled={!canPrevious}
+                    size={size}
+                  >
+                    <Icon as={MdNavigateBefore} />
+                  </FooterIconButton>
+                </TooltipComponent>
 
-              <TooltipComponent label={t('pageHint.next')}>
-                <FooterIconButton
-                  onClick={nextPage}
-                  isDisabled={!canNext}
-                  aria-label='Next page'
-                  size={size}
-                >
-                  <Icon as={MdNavigateNext} />
-                </FooterIconButton>
-              </TooltipComponent>
+                <Text>{t('pagination', { page, pageCount })}</Text>
 
-              <TooltipComponent label={t('pageHint.last')}>
-                <FooterIconButton
-                  onClick={() => toPage(pageCount)}
-                  aria-label='Last page'
-                  isDisabled={!canNext}
-                  size={size}
-                >
-                  <Icon as={MdLastPage} />
-                </FooterIconButton>
-              </TooltipComponent>
-            </HStack>
+                <TooltipComponent label={t('pageHint.next')}>
+                  <FooterIconButton
+                    onClick={nextPage}
+                    isDisabled={!canNext}
+                    aria-label='Next page'
+                    size={size}
+                  >
+                    <Icon as={MdNavigateNext} />
+                  </FooterIconButton>
+                </TooltipComponent>
+
+                <TooltipComponent label={t('pageHint.last')}>
+                  <FooterIconButton
+                    onClick={() => toPage(pageCount)}
+                    aria-label='Last page'
+                    isDisabled={!canNext}
+                    size={size}
+                  >
+                    <Icon as={MdLastPage} />
+                  </FooterIconButton>
+                </TooltipComponent>
+              </HStack>
+            </Flex>
           </Flex>
         </Td>
       </Tr>
