@@ -15,15 +15,19 @@ exports[`component.ReadOnlyText renders label and value 1`] = `
     >
       &lt;label&gt;
     </legend>
-    <input
-      aria-describedby="field-:r0:-helptext"
-      aria-readonly="true"
-      class="chakra-input css-1cjy4zv"
-      disabled=""
-      id="field-:r0:"
-      readonly=""
-      value="<value>"
-    />
+    <div
+      class="chakra-skeleton css-jd6dnq"
+    >
+      <input
+        aria-describedby="field-:r0:-helptext"
+        aria-readonly="true"
+        class="chakra-input css-1cjy4zv"
+        disabled=""
+        id="field-:r0:"
+        readonly=""
+        value="<value>"
+      />
+    </div>
     <div
       class="chakra-form__helper-text css-18fa16y"
       id="field-:r0:-helptext"
@@ -53,15 +57,19 @@ exports[`component.ReadOnlyText renders label value and helper text 1`] = `
     >
       &lt;label&gt;
     </legend>
-    <input
-      aria-describedby="field-:r1:-helptext"
-      aria-readonly="true"
-      class="chakra-input css-1cjy4zv"
-      disabled=""
-      id="field-:r1:"
-      readonly=""
-      value="<value>"
-    />
+    <div
+      class="chakra-skeleton css-jd6dnq"
+    >
+      <input
+        aria-describedby="field-:r1:-helptext"
+        aria-readonly="true"
+        class="chakra-input css-1cjy4zv"
+        disabled=""
+        id="field-:r1:"
+        readonly=""
+        value="<value>"
+      />
+    </div>
     <div
       class="chakra-form__helper-text css-18fa16y"
       id="field-:r1:-helptext"
@@ -91,14 +99,18 @@ exports[`component.ReadOnlyText unForceHelperText 1`] = `
     >
       &lt;label&gt;
     </legend>
-    <input
-      aria-readonly="true"
-      class="chakra-input css-1cjy4zv"
-      disabled=""
-      id="field-:r2:"
-      readonly=""
-      value="<value>"
-    />
+    <div
+      class="chakra-skeleton css-jd6dnq"
+    >
+      <input
+        aria-readonly="true"
+        class="chakra-input css-1cjy4zv"
+        disabled=""
+        id="field-:r2:"
+        readonly=""
+        value="<value>"
+      />
+    </div>
   </fieldset>
   <span
     hidden=""
