@@ -1,9 +1,9 @@
 import { NextResponse } from 'next/server';
 
+import { PATIENT_PREFIX, Patient } from '~/app/api/patient/v2/model';
 import { getFilter, getLimit } from '~/common/query';
 import { sendError } from '~/core/api';
 import { getCustomerId } from '~/core/modules/Customer/auth';
-import { PATIENT_PREFIX, Patient } from '~/core/modules/Patient/api/model';
 import { parseSearchTerm } from '~/core/modules/Patient/api/parseSearchTerm';
 
 import { ListPatientHandler, EnumListPatientStatus } from './types';
