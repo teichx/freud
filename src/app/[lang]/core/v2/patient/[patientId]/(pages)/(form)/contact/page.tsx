@@ -19,7 +19,7 @@ export default function PatientContact() {
       >
         <Flex w={['100%', '100%', '100%', 200]}>
           <FormText
-            name='phoneNumber'
+            name='contact.phoneNumber'
             label={t('phoneNumber')}
             mask={{
               mask: [
@@ -31,12 +31,12 @@ export default function PatientContact() {
         </Flex>
 
         <Flex w={['100%', '100%', '100%', 400]}>
-          <FormText name='email' label={t('email')} />
+          <FormText name='contact.email' label={t('email')} />
         </Flex>
       </Flex>
 
-      <FormText name='address' label={t('address')} />
-      <FormText name='emergency' label={t('emergency')} isTextArea />
+      <FormText name='contact.address' label={t('address')} />
+      <FormText name='contact.emergency' label={t('emergency')} isTextArea />
     </PageDescription>
   );
 }

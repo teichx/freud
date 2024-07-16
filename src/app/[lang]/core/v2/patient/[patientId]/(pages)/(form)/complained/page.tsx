@@ -77,7 +77,7 @@ export default function PatientComplained() {
               key={x}
               isTextArea
               label={t(`history.fields.${x}`)}
-              name={`firstConsult.${x}`}
+              name={`history.${x}`}
             />
           ))}
         </Flex>

@@ -1,11 +1,9 @@
 'use client';
 
 import { Button, ButtonGroup, Text, VStack } from '@chakra-ui/react';
+import { useField } from 'react-final-form';
 import { FaRegCircleCheck } from 'react-icons/fa6';
-import {
-  // HiOutlineArchiveBoxXMark,
-  HiOutlineArchiveBoxArrowDown,
-} from 'react-icons/hi2';
+import { HiOutlineArchiveBoxArrowDown } from 'react-icons/hi2';
 
 import { FormText } from '~/common/components';
 import { useScopedI18n } from '~/i18n/client';
@@ -25,12 +23,12 @@ const BUTTON_STATUS = [
 
 export default function PatientDefault() {
   const t = useScopedI18n('translations.pages.patient.form.pages.principal');
-  // const isArchived = false;
-  // const ArchiveIcon = isArchived
-  //   ? HiOutlineArchiveBoxXMark
-  //   : HiOutlineArchiveBoxArrowDown;
+  const { input: archivedAtInput } = useField('archivedAt', {
+    subscription: { value: true },
+  });
+  const isArchived = Boolean(archivedAtInput.value);
 
-  const status = 'active';
+  const status = isArchived ? 'archive' : 'active';
 
   return (
     <PageDescription title={t('title')}>
