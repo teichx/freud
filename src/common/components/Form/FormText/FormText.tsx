@@ -4,6 +4,7 @@ import { FormControl, FormLabel, Input, InputGroup } from '@chakra-ui/react';
 import { useField } from 'react-final-form';
 import { useIMask, IMask } from 'react-imask';
 
+import { SkeletonContextLoader } from '../../SkeletonContextLoader';
 import { FormHelperText } from '../FormHelperText';
 import { handlerProps } from '../handlers';
 import { TextareaStyled } from './styles';
@@ -92,15 +93,17 @@ export const FormText: FC<FormTextProps> = ({
       <InputGroup size={size}>
         {InputLeftElement}
 
-        <InputComponent
-          {...inputProps}
-          {...input}
-          {...handlerProps(input, inputProps)}
-          ref={ref}
-          value={input.value || ''}
-          size={size}
-          variant='outline'
-        />
+        <SkeletonContextLoader>
+          <InputComponent
+            {...inputProps}
+            {...input}
+            {...handlerProps(input, inputProps)}
+            ref={ref}
+            value={input.value || ''}
+            size={size}
+            variant='outline'
+          />
+        </SkeletonContextLoader>
 
         {InputRightElement}
       </InputGroup>

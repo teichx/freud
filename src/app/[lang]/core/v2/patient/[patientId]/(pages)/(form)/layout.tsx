@@ -3,6 +3,8 @@ import { PropsWithChildren } from 'react';
 
 import { Form } from 'react-final-form';
 
+import { ContextLoader } from '~/core/services';
+
 import { useGetPatient } from './useGetPatient';
 
 export default function PatientFormLayout({ children }: PropsWithChildren) {
@@ -20,7 +22,7 @@ export default function PatientFormLayout({ children }: PropsWithChildren) {
             display: 'flex',
           }}
         >
-          {children}
+          <ContextLoader loaders={['DEFAULT']}>{children}</ContextLoader>
         </form>
       )}
     />

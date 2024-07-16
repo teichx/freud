@@ -9,6 +9,8 @@ import {
 
 import { useScopedI18n } from '~/i18n/client';
 
+import { SkeletonContextLoader } from '../SkeletonContextLoader';
+
 export function Select<
   Option = unknown,
   IsMulti extends boolean = false,
@@ -18,24 +20,27 @@ export function Select<
     RefAttributes<SelectInstance<Option, IsMulti, Group>>
 ) {
   const t = useScopedI18n('components.select');
+
   return (
-    <ChakraSelect
-      placeholder={t(
-        props.isMulti ? 'placeholder.multiple' : 'placeholder.unique'
-      )}
-      noOptionsMessage={(x) =>
-        x.inputValue ? t('empty.filled', x) : t('empty.unfilled')
-      }
-      {...props}
-      chakraStyles={{
-        dropdownIndicator: (x) => ({
-          ...x,
-          bg: 'blackAlpha.100',
-          _dark: {
-            bg: 'whiteAlpha.100',
-          },
-        }),
-      }}
-    />
+    <SkeletonContextLoader>
+      <ChakraSelect
+        placeholder={t(
+          props.isMulti ? 'placeholder.multiple' : 'placeholder.unique'
+        )}
+        noOptionsMessage={(x) =>
+          x.inputValue ? t('empty.filled', x) : t('empty.unfilled')
+        }
+        {...props}
+        chakraStyles={{
+          dropdownIndicator: (x) => ({
+            ...x,
+            bg: 'blackAlpha.100',
+            _dark: {
+              bg: 'whiteAlpha.100',
+            },
+          }),
+        }}
+      />
+    </SkeletonContextLoader>
   );
 }

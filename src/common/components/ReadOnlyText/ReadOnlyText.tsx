@@ -2,6 +2,7 @@
 import { forwardRef, FormControl, FormLabel, Input } from '@chakra-ui/react';
 
 import { FormHelperText } from '../Form';
+import { SkeletonContextLoader } from '../SkeletonContextLoader';
 import { TextareaStyled } from './styles';
 import { ReadOnlyTextProps } from './types';
 
@@ -25,12 +26,14 @@ export const ReadOnlyText = forwardRef<ReadOnlyTextProps, 'div'>(
           {label}
         </FormLabel>
 
-        <InputComponent
-          key={value}
-          size={size}
-          value={value}
-          variant='outline'
-        />
+        <SkeletonContextLoader>
+          <InputComponent
+            key={value}
+            size={size}
+            value={value}
+            variant='outline'
+          />
+        </SkeletonContextLoader>
 
         <FormHelperText
           meta={undefined}

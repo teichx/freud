@@ -29,6 +29,11 @@ const components: ThemeComponents = {
       },
     },
   },
+  Skeleton: {
+    baseStyle: {
+      borderRadius: 'base',
+    },
+  },
 };
 
 const theme = {
