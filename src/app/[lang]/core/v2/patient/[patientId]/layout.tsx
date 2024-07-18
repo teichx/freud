@@ -3,22 +3,18 @@ import { PropsWithChildren } from 'react';
 
 import { Box } from '@chakra-ui/react';
 
+import { SidebarWrapper } from '../../../_sections/BaseSidebar';
 import { SyncStatus, Sidebar } from './_sections';
 
 export default function PatientLayout({ children }: PropsWithChildren) {
   return (
-    <Box
-      flexGrow={1}
-      display='flex'
-      flexDirection='row'
+    <SidebarWrapper
+      mx='4'
       bg='gray.200'
-      overflow='hidden'
       _dark={{ bg: 'gray.800' }}
+      Sidebar={Sidebar}
     >
-      <Sidebar />
-
       <Box
-        mr='4'
         display='flex'
         flexGrow={1}
         flexShrink={1}
@@ -52,6 +48,6 @@ export default function PatientLayout({ children }: PropsWithChildren) {
           </Box>
         </Box>
       </Box>
-    </Box>
+    </SidebarWrapper>
   );
 }

@@ -49,4 +49,8 @@ export const components = {
   infiniteScroll: {
     endOfList: 'Sem mais items',
   },
+  sidebar: {
+    open: 'Abrir barra lateral',
+    close: 'Fechar barra lateral',
+  },
 } as const;

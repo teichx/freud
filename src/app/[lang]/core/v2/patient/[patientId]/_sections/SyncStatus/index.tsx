@@ -1,4 +1,4 @@
-import { Box, Button, HStack, Text } from '@chakra-ui/react';
+import { Box, Button, Flex, HStack, Text } from '@chakra-ui/react';
 import {
   IoCloudDoneSharp,
   IoCloudUpload,
@@ -6,6 +6,7 @@ import {
 } from 'react-icons/io5';
 import { LuHistory } from 'react-icons/lu';
 
+import { ButtonToggleSidebar } from '~/app/[lang]/core/_sections/BaseSidebar';
 import { TooltipComponent } from '~/common/components';
 import { useScopedI18n } from '~/i18n/client';
 
@@ -22,22 +23,36 @@ export const SyncStatus = () => {
   const Icon = IconMap[status];
 
   return (
-    <Box w='100%' display='flex' justifyContent='flex-end' position='relative'>
-      <HStack my='4' alignItems='center'>
+    <Flex w='100%' position='relative'>
+      <HStack
+        my='4'
+        w='100%'
+        wrap='wrap'
+        alignItems='center'
+        justifyContent='space-between'
+      >
         <Box>
-          <Button aria-label='history' leftIcon={<LuHistory />} size='sm'>
-            {t('history')}
-          </Button>
+          <Box display={['block', 'block', 'none']}>
+            <ButtonToggleSidebar />
+          </Box>
         </Box>
 
-        <TooltipComponent label={t('lastSync')}>
-          <HStack>
-            <Icon />
+        <HStack alignItems='center' wrap='wrap' alignSelf='flex-end'>
+          <Box>
+            <Button aria-label='history' leftIcon={<LuHistory />} size='sm'>
+              {t('history')}
+            </Button>
+          </Box>
 
-            <Text>{lastUpdatedAt.toLocaleString()}</Text>
-          </HStack>
-        </TooltipComponent>
+          <TooltipComponent label={t('lastSync')}>
+            <HStack>
+              <Icon />
+
+              <Text>{lastUpdatedAt.toLocaleString()}</Text>
+            </HStack>
+          </TooltipComponent>
+        </HStack>
       </HStack>
-    </Box>
+    </Flex>
   );
 };
