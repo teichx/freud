@@ -16,6 +16,7 @@ import {
 
 export function InfiniteScroll<TItem extends { id: string }>({
   url,
+  listProps,
   RenderItem,
   bottomDistance,
 }: InfiniteScrollProps<TItem>) {
@@ -88,7 +89,7 @@ export function InfiniteScroll<TItem extends { id: string }>({
       flexDirection='column'
       position='relative'
     >
-      <VStack w='100%'>
+      <VStack w='100%' {...listProps}>
         {items.map((x) => (
           <RenderItem key={x.id} {...x} />
         ))}
