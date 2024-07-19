@@ -1,72 +1,49 @@
-import { Box } from '@chakra-ui/react';
-import {
-  formatDistanceStrict,
-  parseISO,
-  startOfDay,
-  startOfToday,
-} from 'date-fns';
-import { ptBR } from 'date-fns/locale';
-import { Form } from 'react-final-form';
+import { Box, Flex, Stack } from '@chakra-ui/react';
 
-import { FormText } from '~/common/components';
+import { FormHidden, FormText } from '~/common/components';
 import { useScopedI18n } from '~/i18n/client';
 
 import { CaseReportProps } from './types';
 
-export const CaseReport = (item: CaseReportProps) => {
+export const CaseReport = ({ id, content, reportingDate }: CaseReportProps) => {
   const t = useScopedI18n('translations.pages.patient.form.pages.caseReport');
 
   return (
-    <Box w='100%' display='flex' flexGrow={1} key={item.id}>
-      <Form<CaseReportProps> onSubmit={console.log} initialValues={item}>
-        {({ handleSubmit, values }) => (
-          <form onSubmit={handleSubmit} style={{ width: '100%' }}>
-            <Box
-              w='100%'
-              display='flex'
-              flexDirection='row'
-              alignItems='flex-start'
-            >
-              <input type='hidden' name='id' value={item.id} />
+    <Stack
+      key={id}
+      w='100%'
+      flexGrow={1}
+      flexDirection='row'
+      alignItems={['stretch', 'stretch', 'flex-start']}
+      columnGap='4'
+      flexDir={['column', 'column', 'row']}
+    >
+      <Box w={180} position='relative' mb={['2', '2', 0]}>
+        <FormHidden name={`${id}.id`} defaultValue={id} />
 
-              <Box w={180} position='relative'>
-                <FormText
-                  name={'reportingDate'}
-                  label={t('reportingDate')}
-                  helperText={formatDistanceStrict(
-                    startOfDay(parseISO(values.reportingDate)),
-                    startOfToday(),
-                    {
-                      addSuffix: true,
-                      roundingMethod: 'floor',
-                      locale: ptBR,
-                    }
-                  )}
-                  inputProps={{
-                    type: 'date',
-                  }}
-                />
-              </Box>
+        <FormText
+          name={`${id}.reportingDate`}
+          label={t('reportingDate')}
+          unForceHelperText
+          inputProps={{
+            type: 'date',
+            defaultValue: reportingDate,
+          }}
+        />
+      </Box>
 
-              <Box
-                ml={4}
-                shadow='xl'
-                flexGrow={1}
-                display='flex'
-                borderRadius='lg'
-              >
-                <FormText
-                  name={'content'}
-                  label={t('content')}
-                  isTextArea
-                  unForceHelperText
-                  inputProps={{ placeholder: t('contentPlaceholder') }}
-                />
-              </Box>
-            </Box>
-          </form>
-        )}
-      </Form>
-    </Box>
+      <Flex shadow='xl' flexGrow={1} borderRadius='lg'>
+        <FormText
+          name={`${id}.content`}
+          label={t('content')}
+          isTextArea
+          unForceHelperText
+          inputProps={{
+            placeholder: t('contentPlaceholder'),
+            defaultValue: content,
+          }}
+        />
+      </Flex>
+    </Stack>
   );
 };
