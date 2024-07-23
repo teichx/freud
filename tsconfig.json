@@ -15,7 +15,7 @@
         "./src/*"
       ],
       "test-utils": [
-        "./tests/utils/test-utils.tsx"
+        "./__tests__/utils/test-utils.tsx"
       ]
     },
     "target": "esnext",
