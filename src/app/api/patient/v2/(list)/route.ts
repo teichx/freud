@@ -70,8 +70,8 @@ export const GET: ListPatientHandler = async (req) => {
   return NextResponse.json({
     items: patients.map((x) => ({
       id: x.id,
-      name: x.name,
-      archivedAt: x.archivedAt,
+      name: x.name || '',
+      archivedAt: x.archivedAt || undefined,
       lastCaseReport: x.calculated?.lastCaseReport
         ? new Date(x.calculated.lastCaseReport).toISOString().split('T')[0]
         : undefined,

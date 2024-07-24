@@ -7,7 +7,7 @@ import { getCustomerId } from '~/core/modules/Customer/auth';
 
 import { GetPatientHandler } from './types';
 
-export const GET: GetPatientHandler = async (req, ctx) => {
+export const getById: GetPatientHandler = async (req, ctx) => {
   const { authError, customerId } = await getCustomerId();
   if (!customerId) return sendError({ error: authError });
 

@@ -25,26 +25,33 @@ const ISO_TYPE = {
   },
 };
 
+export const setPatientPK = (tenantId: ValueType) =>
+  tenantId.toString().startsWith(PATIENT_PREFIX.PK)
+    ? tenantId
+    : `${PATIENT_PREFIX.PK}${tenantId}`;
+
+export const setPatientSK = (value: ValueType) =>
+  value.toString().startsWith(PATIENT_PREFIX.SK)
+    ? value
+    : `${PATIENT_PREFIX.SK}${value}`;
+
+export const getPatientSK = (value: ValueType) =>
+  value.toString().replace(PATIENT_PREFIX.SK, '');
+
 export const patientDynamoSchema = new Schema(
   {
     PK: {
       type: String,
       hashKey: true,
-      set: (value) =>
-        value.toString().startsWith(PATIENT_PREFIX.PK)
-          ? value
-          : `${PATIENT_PREFIX.PK}${value}`,
+      set: setPatientPK,
       get: () => '',
       aliases: 'tenantId',
     },
     SK: {
       type: String,
       rangeKey: true,
-      set: (value) =>
-        value.toString().startsWith(PATIENT_PREFIX.SK)
-          ? value
-          : `${PATIENT_PREFIX.SK}${value}`,
-      get: (value) => value.toString().replace(PATIENT_PREFIX.SK, ''),
+      set: setPatientSK,
+      get: getPatientSK,
       alias: 'id',
     },
     createdAt: ISO_TYPE,

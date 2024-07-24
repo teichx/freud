@@ -14,14 +14,15 @@ import { COGNITIVE_FIELDS } from '~/core/modules/Patient/pages/upsert/components
 export const getPatientSchema = () =>
   yup.object().shape({
     id: yup.string(),
-    name: yup.string().required().trim(),
-    archivedAt: yup.date().withMutation(() => yup.string()),
+    name: yup.string().trim(),
+    archivedAt: yup.date().withMutation(() => yup.string().nullable()),
     searchTerm: yup.string(),
     personal: yup.object().shape({
       birth: yup
         .date()
         .min('1900-01-01')
-        .max(new Date().toISOString().split('T')[0]),
+        .max(new Date().toISOString().split('T')[0])
+        .withMutation(() => yup.string()),
       gender: yup.string(),
       profession: yup.string(),
       cpf: yup.string().transform(numbersOnly).test(isEmptyOrCpf),
