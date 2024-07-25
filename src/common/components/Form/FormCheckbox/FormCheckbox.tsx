@@ -10,13 +10,15 @@ import { FormCheckboxProps } from './types';
 export const FormCheckbox: FC<FormCheckboxProps> = ({
   name,
   label,
+  value,
   isDisabled,
   defaultChecked,
   ...props
 }) => (
-  <Field<boolean>
+  <Field<boolean | string | number>
     name={name}
     type='checkbox'
+    value={value}
     defaultValue={defaultChecked}
     render={({ input, meta }) => (
       <Box my='2px' display='inline-block'>
