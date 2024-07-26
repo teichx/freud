@@ -45,7 +45,8 @@ export default function PatientComplained() {
                   {COGNITIVE_FIELDS[type].map((x) => (
                     <Box key={x}>
                       <FormCheckbox
-                        name={`symptoms.${type}.${x}`}
+                        value={x}
+                        name={`symptoms.${type}`}
                         label={t(`${type}.${x}` as CognitiveOptionsKeys)}
                       />
                     </Box>

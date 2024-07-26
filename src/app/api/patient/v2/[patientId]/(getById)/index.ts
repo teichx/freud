@@ -1,7 +1,6 @@
 import { NextResponse } from 'next/server';
 
 import { Patient } from '~/app/api/patient/v2/model';
-import { listToObject } from '~/common/validation';
 import { sendError } from '~/core/api';
 import { getCustomerId } from '~/core/modules/Customer/auth';
 
@@ -35,11 +34,6 @@ export const getById: GetPatientHandler = async (req, ctx) => {
         address: contact?.address || personal?.address,
         phoneNumber: contact?.phoneNumber || personal?.phoneNumber,
         emergency: contact?.emergency || personal?.emergency,
-      },
-      symptoms: {
-        ...patient.symptoms,
-        cognitive: listToObject(patient.symptoms.cognitive),
-        emotional: listToObject(patient.symptoms.emotional),
       },
     },
   });
